@@ -26,3 +26,5 @@ introtorhythm/__pycache__/urls\.cpython-36\.pyc
 introtorhythm/__pycache__/wsgi\.cpython-36\.pyc
 
 introtorhythm/__pycache__/
+
+*.pyc
