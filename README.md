@@ -1,5 +1,7 @@
 https://medium.com/quick-code/crud-app-using-vue-js-and-django-516edf4e4217
 
+https://stackoverflow.com/questions/45135263/class-has-no-objects-member
+
 ```
 In this tutorial you will learn how to make a simple CRUD application using Vue.js 2.x and Django 2.0.2. Vue.js is progressive framework for building user interfaces while Django is a high level python Development framework that encourages rapid Develpoment.
 Follow this steps to make a CRUD app using Vue.js and Django
