@@ -5,6 +5,7 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 module.exports = (env, argv) => ({
     context: __dirname,
+    mode: argv.mode,
     entry: './assets/js/index',
     output: {
         path: path.resolve('./assets/bundles/'),
@@ -40,7 +41,7 @@ module.exports = (env, argv) => ({
     },
     resolve: {
         alias: {
-            vue: 'vue/dist/vue.js'
+            'vue$': 'vue/dist/vue.common.js'
         }
     },
 });
