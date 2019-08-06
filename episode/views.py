@@ -1,12 +1,13 @@
 import json
 
 from django.shortcuts import render
-
 from .repository import EpisodeRepository as repo
 
-# Create your views here.
 def index(request):
-    episodes = repo.getEpisodeList()
+    data = {
+        'episodes': repo.get_episode_list(),
+        'current_episode': repo.get_current_episode()
+    }
     return render(request, 'index.html', {
-        'episodes': json.dumps(list(episodes))
+        'data': json.dumps(data)
     })

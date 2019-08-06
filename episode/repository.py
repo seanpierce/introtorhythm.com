@@ -3,7 +3,20 @@ from django.db import connection
 from .models import Episode
 
 class EpisodeRepository(object):
-    
-    """Collects a list of number-title combos"""
-    def getEpisodeList():
-        return Episode.objects.values('number', 'title')
+    """Access layer for episode data."""
+
+    def get_episode_list():
+        """Collects a list of number-title combos."""
+        return list(Episode.objects.values('number', 'title'))
+
+    def get_current_episode(number=None):
+        """Collects all data for the currently selected episode."""
+        episode = Episode.objects.order_by('-number').first()
+        return {
+            'id': episode.pk,
+            'number': episode.number,
+            'title': episode.title,
+            'image': episode.image,
+            'audio': episode.audio,
+            'content': episode.content
+        }

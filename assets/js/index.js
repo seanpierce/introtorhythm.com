@@ -12,12 +12,18 @@ const app = new Vue({
     },
     data() {
         return {
-            episodeList: null
+            data: null
         }
     },
     methods: {
     },
+    computed: {
+        loaded() {
+            return this.data !== null
+        }
+    },
     mounted() {
-        this.episodeList = JSON.parse(this.$el.attributes.episodes.value);
+        var data = this.$el.attributes.data.value
+        this.data = JSON.parse(data)
     }
 });
