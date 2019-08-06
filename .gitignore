@@ -4,3 +4,4 @@ yarn.lock
 yarn-error.log
 node_modules
 assets/bundles/
+webpack-stats.json
