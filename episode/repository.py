@@ -11,7 +11,12 @@ class EpisodeRepository(object):
 
     def get_current_episode(number=None):
         """Collects all data for the currently selected episode."""
-        episode = Episode.objects.order_by('-number').first()
+
+        if number is not None:
+            episode = Episode.objects.filter(number=number).first()
+        else:
+            episode = Episode.objects.order_by('-number').first()
+
         return {
             'id': episode.pk,
             'number': episode.number,
