@@ -1,5 +1,10 @@
 {
   "name": "introtorhythm",
+  "scripts": {
+    "watch": "./node_modules/.bin/webpack --mode=development --minimize",
+    "build": "./node_modules/.bin/webpack --mode=production --minimize",
+    "test": "jest"
+  },
   "version": "1.0.0",
   "main": "index.js",
   "repository": "https://github.com/seanpierce/itr-upgrade.git",
