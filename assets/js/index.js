@@ -9,5 +9,15 @@ const app = new Vue({
     el: '#app',
     components: {
         Navigation
+    },
+    data() {
+        return {
+            episodeList: null
+        }
+    },
+    methods: {
+    },
+    mounted() {
+        this.episodeList = JSON.parse(this.$el.attributes.episodes.value);
     }
 });
