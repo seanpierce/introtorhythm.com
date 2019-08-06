@@ -1,6 +1,6 @@
 <template>
     <div>
-        <p>This is just a demo. OK!?!??!?!?!?!</p>
+        <p>This is just a demo.</p>
     </div>
 </template>
 
