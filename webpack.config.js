@@ -4,12 +4,16 @@ const BundleTracker = require('webpack-bundle-tracker');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 module.exports = (env, argv) => ({
-    watch: argv.mode === 'development' ? true : false,
     context: __dirname,
     entry: './assets/js/index',
     output: {
         path: path.resolve('./assets/bundles/'),
         filename: 'app.js'
+    },
+
+    watchOptions: {
+        poll: true,
+        ignored: /node_modules/
     },
 
     plugins: [
@@ -35,7 +39,8 @@ module.exports = (env, argv) => ({
         ],
     },
     resolve: {
-        alias: {vue: 'vue/dist/vue.js'}
+        alias: {
+            vue: 'vue/dist/vue.js'
+        }
     },
-
 });

@@ -1,7 +1,7 @@
 {
   "name": "introtorhythm",
   "scripts": {
-    "watch": "./node_modules/.bin/webpack --mode=development --minimize",
+    "watch": "./node_modules/.bin/webpack --mode=development --watch --progress --minimize",
     "build": "./node_modules/.bin/webpack --mode=production --minimize",
     "test": "jest"
   },
