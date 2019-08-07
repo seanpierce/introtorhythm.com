@@ -23,3 +23,8 @@ class EpisodeTestCase(TestCase):
         """Ensures that the current episode is successfully fetched given an episode number"""
         current_episode = repo.get_current_episode('002')
         self.assertEqual('002', current_episode['number'])
+
+    def test_get_current_episode_by_number_not_found(self):
+        """Ensures that if a supplied episode number that does not exist returns None."""
+        current_episode = repo.get_current_episode('004')
+        self.assertEqual(None, current_episode)
