@@ -30,8 +30,8 @@ introtorhythm.com/
 
 ## Versions
 
-Django 2.2.4
-Python 3.6.3
+* Django 2.2.4
+* Python 3.6.3
 
 ## Usage
 
@@ -53,6 +53,13 @@ python manage.py test episode.tests
 
 # start the development server
 python manage.py runserver
+
+#build the front end
+yarn i
+# ...for development
+yarn run watch
+# ...for production
+yarn run build
 ```
 
 ## Resource list

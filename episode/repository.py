@@ -7,7 +7,10 @@ class EpisodeRepository(object):
 
     def get_episode_list():
         """Collects a list of number-title combos."""
-        return list(Episode.objects.values('number', 'title'))
+        return list(Episode.objects
+            .filter(active=True)
+            .order_by('-id')[:10]
+            .values('number', 'title'))
 
     def get_current_episode(number=None):
         """Collects all data for the currently selected episode."""
