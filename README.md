@@ -1,5 +1,9 @@
 # ITR with Django and VUE
 
+source ../venv/Scripts/activate
+python manage.py runserver
+python manage.py test episode.tests
+
 ## Resource list
 
 * https://medium.com/quick-code/crud-app-using-vue-js-and-django-516edf4e4217
