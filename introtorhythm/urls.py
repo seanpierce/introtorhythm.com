@@ -19,7 +19,7 @@ from .routers import router
 from episode.views import index
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin', admin.site.urls),
     path('api/', include(router.urls)),
     path('', index),
     path('<number>', index)
