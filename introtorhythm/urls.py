@@ -15,11 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.views.generic import RedirectView
+
 from .routers import router
 from episode.views import index
 
 urlpatterns = [
-    path('admin', admin.site.urls),
+    path('admin', RedirectView.as_view(url = 'admin/')),
+    path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
     path('', index),
     path('<number>', index)
