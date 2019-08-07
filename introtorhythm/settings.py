@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'episode',
     'rest_framework',
     'webpack_loader',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -141,3 +142,14 @@ WEBPACK_LOADER = {
         'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.json'),
     }
 }
+
+AWS_ACCESS_KEY_ID = CONFIG.get('AWS Secret Keys', 'AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = CONFIG.get('AWS Secret Keys', 'AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = 'podcasts.introtorhythm.com'
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400',
+}
+
+DEFAULT_FILE_STORAGE = 'introtorhythm.storage_backends.MediaStorage'
