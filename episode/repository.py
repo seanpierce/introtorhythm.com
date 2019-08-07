@@ -14,6 +14,8 @@ class EpisodeRepository(object):
 
         if number is not None:
             episode = Episode.objects.filter(number=number).first()
+            if episode is None:
+                return None
         else:
             episode = Episode.objects.order_by('-number').first()
 
