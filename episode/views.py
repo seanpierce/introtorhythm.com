@@ -19,8 +19,14 @@ def index(request, number=None):
 
     data = {
         'episodes': repo.get_episode_list(),
-        'current_episode': repo.get_current_episode()
+        'current_episode': repo.get_current_episode(number)
     }
+
+    if data['current_episode'] is None:
+        response = render(request, '404.html')
+        response.status_code = 404
+        return response
+
     return render(request, 'index.html', {
         'data': json.dumps(data)
     })
