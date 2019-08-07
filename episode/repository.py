@@ -23,7 +23,7 @@ class EpisodeRepository(object):
             'id': episode.pk,
             'number': episode.number,
             'title': episode.title,
-            'image': episode.image,
-            'audio': episode.audio,
+            'image': str(episode.image),
+            'audio': str(episode.audio),
             'content': episode.content
         }
