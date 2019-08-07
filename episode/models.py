@@ -2,11 +2,18 @@ from django.db import models
 
 class Episode(models.Model):
     id = models.AutoField(primary_key=True)
+    created_at = models.DateTimeField(auto_now=True)
+    title = models.CharField(max_length=255)
     number = models.CharField(max_length=3)
-    title = models.CharField(max_length=250)
-    image = models.CharField(max_length=250)
-    audio = models.CharField(max_length=250)
     content = models.TextField()
+    image = models.ImageField(upload_to='episodes/images/',
+        max_length=500, default='assets/not-found.jpg')
+    audio = models.FileField(upload_to='episodes/audio/',
+        max_length=500, default='assets/not-found.mp3')
+    active = models.BooleanField(default=True)
+
+    class Meta:
+        ordering = ['-number',]
 
     def __str__(self):
         return self.number + '- ' + self.title
