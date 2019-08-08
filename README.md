@@ -39,7 +39,7 @@ introtorhythm.com/
 # navigate into the project root
 # cd introtorhythm.com
 
-#activate the virtual environment
+# activate the virtual environment
 source ../venv/Scripts/activate
 
 # install dependencies
@@ -54,11 +54,13 @@ python manage.py test episode.tests
 # start the development server
 python manage.py runserver
 
-#build the front end
+# install front end dependencies
 yarn i
-# ...for development
+
+# build the FE for development
 yarn run watch
-# ...for production
+
+# build the FE for production
 yarn run build
 ```
 
