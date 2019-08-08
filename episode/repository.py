@@ -31,7 +31,7 @@ class EpisodeRepository(object):
 
             return list(Episode.objects
                 .filter(active=True)
-                .order_by('-number')[offest:10]
+                .order_by('-number')[offest:10 + offest]
                 .values('number', 'title'))
         else:
             return list(Episode.objects

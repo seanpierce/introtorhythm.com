@@ -17,16 +17,29 @@ class EpisodeTestCase(TestCase):
         Episode.objects.create(number='010', title='Episode 10')
         Episode.objects.create(number='011', title='Episode 11')
         Episode.objects.create(number='012', title='Episode 12')
+        Episode.objects.create(number='013', title='Episode 13')
 
     def test_retrieve_episode_list(self):
         """Ensures that the active episode list is successfully pulled from database"""
-        episode_list = repo.get_episode_list('00000')
+        episode_list = repo.get_episode_list()
+        self.assertEqual(len(episode_list), 10)
+
+    def test_retrieve_episode_list_by_number_not_in_most_recent_ten(self):
+        """Ensures that the active episode list is successfully pulled from database
+        begining at the provided episode.
+        """
+        episode_list = repo.get_episode_list_by_number('002')
+        self.assertEqual(len(episode_list), 10)
+
+    def test_retrieve_episode_list_by_number_in_most_recent_ten(self):
+        """Ensures that the most recent, active episode list is successfully pulled from database"""
+        episode_list = repo.get_episode_list_by_number('008')
         self.assertEqual(len(episode_list), 10)
 
     def test_get_current_episode(self):
         """Ensures that the current episode is successfully pulled from the database"""
         current_episode = repo.get_current_episode()
-        self.assertEqual('012', current_episode['number'])
+        self.assertEqual('013', current_episode['number'])
 
     def test_get_current_episode_by_number(self):
         """Ensures that the current episode is successfully fetched given an episode number"""
@@ -42,11 +55,3 @@ class EpisodeTestCase(TestCase):
         """Ensures that if a supplied episode number exists, but is not active, returns None."""
         current_episode = repo.get_current_episode('001')
         self.assertEqual(None, current_episode)
-
-    def test_return_false_if_item_is_not_in_most_recent_ten_episodes(self):
-        """Ensures that the application knows wether or not an episode is in the most recent ten episodes given the episode number."""
-        self.assertEqual(False, repo.check_if_episode_in_most_recent_ten('002'))
-
-    def test_return_true_if_item_is_in_most_recent_ten_episodes(self):
-        """Ensures that the application knows wether or not an episode is in the most recent ten episodes given the episode number."""
-        self.assertEqual(True, repo.check_if_episode_in_most_recent_ten('008'))
