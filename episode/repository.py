@@ -26,7 +26,11 @@ class EpisodeRepository(object):
             in_most_recent_ten = False
 
         if not in_most_recent_ten:
-            ep = Episode.objects.filter(number=number).get()
+            ep = Episode.objects.filter(active=True, number=number).first()
+
+            if ep is None:
+                return None
+
             offest = Episode.objects.filter(pk__lte=ep.pk).count() - 1
 
             return list(Episode.objects
