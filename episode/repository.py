@@ -7,10 +7,38 @@ class EpisodeRepository(object):
 
     def get_episode_list():
         """Collects a list of number-title combos."""
+
         return list(Episode.objects
             .filter(active=True)
-            .order_by('-id')[:10]
+            .order_by('-number')[:10]
             .values('number', 'title'))
+
+
+    def get_episode_list_by_number(number):
+        most_recent_ten = list(Episode.objects
+            .filter(active=True)
+            .order_by('-number')[:10]
+            .values_list('number', flat=True))
+        
+        if number in most_recent_ten:
+            in_most_recent_ten = True
+        else:
+            in_most_recent_ten = False
+
+        if not in_most_recent_ten:
+            ep = Episode.objects.filter(number=number).get()
+            offest = Episode.objects.filter(pk__lte=ep.pk).count() - 1
+
+            return list(Episode.objects
+                .filter(active=True)
+                .order_by('-number')[offest:10]
+                .values('number', 'title'))
+        else:
+            return list(Episode.objects
+                .filter(active=True)
+                .order_by('-number')[:10]
+                .values('number', 'title'))
+
 
     def get_current_episode(number=None):
         """Collects all data for the currently selected episode."""
