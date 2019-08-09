@@ -1,12 +1,14 @@
 # introtorhythm.com with Django and VUE (rebuild)
 
+![Travis CI build badge](https://api.travis-ci.com/seanpierce/introtorhythm.com-rebuild.svg?branch=master)
+
 The purpose of this project it to take what I've learned with the initial django build for introtorhythm.com, and rebuild it to be cleaner and scalable.
 
 **Specific goals:**
 
-* Unit tesable
-* CI/CD pipeline
-* Integration with VueJS
+* Unit tesable (WIP, all repository methods have 100% coverage)
+* CI/CD pipeline (in progress with Travis CI)
+* ~~Integration with VueJS~~ ✓
 * Exposed (and enhanced) _Subscriber_ and _Episodes_ API
 
 ## Installation

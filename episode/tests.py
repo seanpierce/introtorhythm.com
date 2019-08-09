@@ -21,7 +21,7 @@ class EpisodeTestCase(TestCase):
 
     def test_retrieve_episode_list(self):
         """Ensures that the active episode list is successfully pulled from database"""
-        episode_list = repo.get_episode_list()
+        episode_list = repo.get_latest_episode_list()
         self.assertEqual(len(episode_list), 10)
 
     def test_retrieve_episode_list_by_number_not_in_most_recent_ten(self):
