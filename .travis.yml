@@ -3,13 +3,16 @@ language: python
       - "2.6"
       - "2.7"
       - "3.6.3"
-    services:
-      - sqlite3
+
+      branches:
+        only:
+        - master
+
     env:
-      -DJANGO=2.2.4 DB=sqlite3
+      - DJANGO_VERSION=2.2.4
+
     install:
       - pip install -r requirements.txt
-    before_script:
-      # 
+      
     script:
       - python manage.py test
