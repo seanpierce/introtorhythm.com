@@ -1,3 +1,4 @@
+dist: xenial
 language: python
 python:
   - "3.6.3"
@@ -11,9 +12,6 @@ env:
 
 install:
   - pip install -r requirements.txt
-
-before_script:
-  - python manage.py migrate
 
 script:
   - python manage.py test
