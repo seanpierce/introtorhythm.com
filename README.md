@@ -2,8 +2,6 @@
 
 ![Travis CI build badge](https://api.travis-ci.com/seanpierce/introtorhythm.com-rebuild.svg?branch=master)
 
-[![Coverage Status](https://coveralls.io/repos/github/seanpierce/introtorhythm.com-rebuild/badge.svg?branch=master)](https://coveralls.io/github/seanpierce/introtorhythm.com-rebuild?branch=master)
-
 The purpose of this project it to take what I've learned with the initial django build for introtorhythm.com, and rebuild it to be cleaner and scalable.
 
 **Specific goals:**
