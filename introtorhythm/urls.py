@@ -18,12 +18,18 @@ from django.urls import path, include
 from django.views.generic import RedirectView
 
 from .routers import router
-from episode.views import index, episode
+from episode.views import index, episode, archive
 
 urlpatterns = [
+    # admin routes
     path('admin', RedirectView.as_view(url = 'admin/')),
     path('admin/', admin.site.urls),
+
+    # api routes
     path('api/', include(router.urls)),
+
+    # main application routes
     path('', index),
+    path('archive', archive),
     path('<number>', episode)
 ]

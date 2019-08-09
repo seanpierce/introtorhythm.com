@@ -5,7 +5,7 @@ from .models import Episode
 class EpisodeRepository(object):
     """Access layer for episode data."""
 
-    def get_episode_list():
+    def get_latest_episode_list():
         """Collects a list of number-title combos.
         
         Returns:
@@ -49,6 +49,20 @@ class EpisodeRepository(object):
                 .filter(active=True)
                 .order_by('-number')[:10]
                 .values('number', 'title'))
+
+    
+    def get_all_episode_list():
+        """Collects a list of number-title combos.
+        
+        Returns:
+            A list of all number-title combos.
+            Example [{'number': '001', 'title': 'First Episode'}, ...]
+        """
+
+        return list(Episode.objects
+            .filter(active=True)
+            .order_by('-number')
+            .values('number', 'title'))
 
 
     def get_current_episode(number=None):

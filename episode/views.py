@@ -13,7 +13,7 @@ def index(request):
     """
 
     data = {
-        'episodes': repo.get_episode_list(),
+        'episodes': repo.get_latest_episode_list(),
         'current_episode': repo.get_current_episode()
     }
 
@@ -47,5 +47,15 @@ def episode(request, number):
         return response
 
     return render(request, 'index.html', {
+        'data': json.dumps(data)
+    })
+
+
+def archive(request):
+    data = {
+        'episodes': repo.get_all_episode_list() 
+    }
+
+    return render(request, 'archive.html', {
         'data': json.dumps(data)
     })
