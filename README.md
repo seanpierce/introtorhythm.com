@@ -1,6 +1,6 @@
 # introtorhythm.com with Django and VUE (rebuild)
 
-![Travis CI build badge](https://api.travis-ci.com/seanpierce/introtorhythm.com-rebuild.svg?branch=master)
+![Travis CI build badge](https://api.travis-ci.com/seanpierce/introtorhythm.com-rebuild.svg?branch=master) ![Test coverage badge](coverage.svg)
 
 The purpose of this project it to take what I've learned with the initial django build for introtorhythm.com, and rebuild it to be cleaner and scalable.
 
