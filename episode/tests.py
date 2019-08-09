@@ -55,3 +55,8 @@ class EpisodeTestCase(TestCase):
         """Ensures that if a supplied episode number exists, but is not active, returns None."""
         current_episode = repo.get_current_episode('001')
         self.assertEqual(None, current_episode)
+
+    def test_episode_model_str_method(self):
+        """Ensures that the __str__ method functions as intended."""
+        ep = Episode.objects.filter(number='005').get()
+        self.assertEqual('005- Episode 5', ep.__str__())
