@@ -1,11 +1,13 @@
 from django.db import models
 
+from ckeditor.fields import RichTextField
+
 class Episode(models.Model):
     id = models.AutoField(primary_key=True)
     created_at = models.DateTimeField(auto_now=True)
     title = models.CharField(max_length=255)
     number = models.CharField(max_length=3)
-    content = models.TextField()
+    content = RichTextField()
     image = models.ImageField(upload_to='episodes/images/',
         max_length=500, default='assets/not-found.jpg')
     audio = models.FileField(upload_to='episodes/audio/',
