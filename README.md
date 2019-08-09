@@ -16,7 +16,6 @@ The purpose of this project it to take what I've learned with the initial django
 ```shell
 mkdir introtorhythm.com
 python -m venv introtorhythm.com/
-touch introtorhythm/settings.ini
 git clone [this repo] introtorhythm.com/introtorhythm
 ```
 
@@ -27,7 +26,6 @@ introtorhythm.com/
     introtorhythm/
         [django project/ this repository]
     venv/
-    settings.ini
 ```
 
 ## Versions
