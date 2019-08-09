@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'webpack_loader',
     'storages',
+    'ckeditor',
 ]
 
 MIDDLEWARE = [
