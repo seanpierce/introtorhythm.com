@@ -1,6 +1,9 @@
 from django.contrib import admin
 
-# Register your models here.
 from .models import Episode
+
+class EpisodeAdmin(admin.ModelAdmin):
+    list_per_page = 10
+
   
-admin.site.register(Episode)
+admin.site.register(Episode, EpisodeAdmin)
