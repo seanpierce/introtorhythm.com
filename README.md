@@ -2,13 +2,14 @@
 
 ![Travis CI build badge](https://api.travis-ci.com/seanpierce/introtorhythm.com-rebuild.svg?branch=master) ![Test coverage badge](coverage.svg)
 
-The purpose of this project it to take what I've learned with the initial django build for introtorhythm.com, and rebuild it to be cleaner and scalable.
+The purpose of this project it to take what I've learned with the [initial django build for introtorhythm.com](https://github.com/seanpierce/introtorhythm.com), and rebuild it to be cleaner and scalable.
 
 **Specific goals:**
 
-* Unit tesable (WIP, all repository methods have 100% coverage)
+* Unit tesable (ongoing) ✓
+  * Add coverage badge to README ✓
 * CI/CD pipeline (in progress with Travis CI)
-* ~~Integration with VueJS~~ ✓
+* Integration with VueJS ✓
 * Exposed (and enhanced) _Subscriber_ and _Episodes_ API
 
 ## Installation
