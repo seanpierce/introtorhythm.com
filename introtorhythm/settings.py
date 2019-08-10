@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'episode',
+    'subscribers',
     'rest_framework',
     'webpack_loader',
     'storages',
