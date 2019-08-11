@@ -1,10 +1,3 @@
-# Find request by token
-# If request is valid:
-    # Create Subscriber
-    # Delete request
-    # return thank you message
-# If no matching request, or request is not valid
-    # return error meessage
 import datetime
 
 from django.core.exceptions import ObjectDoesNotExist
