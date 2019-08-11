@@ -17,8 +17,8 @@ from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import RedirectView
 
-from .routers import router
 from episode.views import index, episode, archive
+from subscribers.views import confirm
 
 urlpatterns = [
     # admin routes
@@ -26,7 +26,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     # api routes
-    path('api/', include(router.urls)),
+    path('api/requests/confirm/<token>', confirm),
 
     # main application routes
     path('', index),

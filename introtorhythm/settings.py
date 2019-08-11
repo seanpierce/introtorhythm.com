@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'episode',
-    'rest_framework',
+    'subscribers',
     'webpack_loader',
     'storages',
     'ckeditor',

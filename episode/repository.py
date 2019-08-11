@@ -1,5 +1,3 @@
-from django.db import connection
-
 from .models import Episode
 
 class EpisodeRepository(object):
