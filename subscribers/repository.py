@@ -15,7 +15,7 @@ class SubscriberRepository(object):
 
     def get_request_by_token(token):
         try:
-            request = SubscriptionRequest.objects.filter(token=token).get()
+            request = SubscriptionRequest.objects.get(token=token)
         except ObjectDoesNotExist:
             return None
 
