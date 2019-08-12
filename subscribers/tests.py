@@ -1,4 +1,5 @@
 from django.test import TestCase
+from django.db import IntegrityError
 
 from .models import Subscriber, SubscriptionRequest
 from .repository import SubscriberRepository as repo
@@ -28,3 +29,23 @@ class SubscriberTestCase(TestCase):
         repo.remove_subscription_request(req.token)
         count = SubscriptionRequest.objects.all().count()
         self.assertEqual(count, 2)
+
+    def test_subscriber_model_method_str(self):
+        sub = Subscriber.objects.get(email='four@test.com')
+        self.assertEqual('four@test.com', sub.__str__())
+
+    def test_subscription_request_model_method_str(self):
+        req = SubscriptionRequest.objects.get(email='one@test.com')
+        self.assertEqual('one@test.com', req.__str__())
+
+    def test_subscription_request_email_unique(self):
+        try:
+            SubscriptionRequest.objects.create(email='one@test.com')
+        except IntegrityError:
+            pass
+
+    def test_subscriber_email_unique(self):
+        try:
+            Subscriber.objects.create(email='four@test.com')
+        except IntegrityError:
+            pass

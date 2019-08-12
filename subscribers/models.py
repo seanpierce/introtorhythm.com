@@ -4,7 +4,10 @@ from django.db import models
 
 class Subscriber(models.Model):
     created_at = models.DateTimeField(auto_now=True)
-    email = models.EmailField(max_length=255)
+    email = models.EmailField(
+            max_length=255,
+            unique=True,
+        )
 
     class Meta:
         ordering = ['email', ]
@@ -15,7 +18,10 @@ class Subscriber(models.Model):
 
 class SubscriptionRequest(models.Model):
     created_at = models.DateTimeField(auto_now=True)
-    email = models.EmailField(max_length=255)
+    email = models.EmailField(
+            max_length=255,
+            unique=True,
+        )
     token = models.CharField(
             max_length=100,
             blank=True,
