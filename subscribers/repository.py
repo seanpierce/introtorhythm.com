@@ -1,7 +1,6 @@
 import datetime
 
 from django.db import IntegrityError
-from django.core.exceptions import ObjectDoesNotExist
 
 from .models import Subscriber, SubscriptionRequest
 
@@ -24,7 +23,7 @@ class SubscriberRepository(object):
 
         try:
             request = SubscriptionRequest.objects.get(token=token)
-        except ObjectDoesNotExist:
+        except Exception as e:
             return None
 
         return {
@@ -40,14 +39,14 @@ class SubscriberRepository(object):
             email: an email address to be assigned to the newly created Subscriber.
 
         Returns:
-            If a SUbscriber is already in the database with the email address provided,
+            If a Subscriber is already in the database with the email address provided,
             returns false. Otherwise returns true.
         """
 
         try:
             Subscriber.objects.create(email=email)
             return True
-        except IntegrityError:
+        except Exception as e:
             return False
 
     def remove_subscription_request(token):
@@ -60,4 +59,20 @@ class SubscriberRepository(object):
         Returns:
             void
         """
-        SubscriptionRequest.objects.filter(token=token).delete()
+        SubscriptionRequest.objects.get(token=token).delete()
+
+    def create_subscription_request(email):
+        """Creates a new SubscriptionRequest record.
+
+        Args:
+            email: a string representing anemail address for the subscripton request.
+
+        Returns:
+            If a SubscriptionRequest is already in the database with the email address provided,
+            returns false. Otherwise returns true.
+        """
+        try:
+            SubscriptionRequest.objects.create(email=email)
+            return True
+        except Exception as e:
+            return False

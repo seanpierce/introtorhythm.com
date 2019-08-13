@@ -52,7 +52,8 @@ class SubscriberTestCase(TestCase):
 
     def test_subscription_request_email_unique(self):
         """Ensures that the unique constraint is enforces on the
-        Email column for the SubscriptionRequest model."""
+        Email column for the SubscriptionRequest model.
+        """
         try:
             SubscriptionRequest.objects.create(email='one@test.com')
         except IntegrityError:
@@ -60,8 +61,20 @@ class SubscriberTestCase(TestCase):
 
     def test_subscriber_email_unique(self):
         """Ensures that the unique constraint is enforces on the
-        Email column for the Subscriber model."""
+        Email column for the Subscriber model.
+        """
         try:
             Subscriber.objects.create(email='four@test.com')
         except IntegrityError:
             pass
+
+    def test_create_subscription_request(self):
+        """Ensures that a subscription request is successfully created.
+        """
+        self.assertEqual(repo.create_subscription_request('seven@test.com'), True)
+
+    def test_create_subscription_request_failure(self):
+        """Ensures that a subscription request will not be created 
+        if the provided email address is not unique.
+        """
+        self.assertEqual(repo.create_subscription_request('two@test.com'), False)
