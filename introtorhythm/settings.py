@@ -14,14 +14,17 @@ import os
 import os.path
 import configparser
 
-configs = ['./env.ini', './test.env.ini']
+# configs = ['./env.ini', './test.env.ini']
 CONFIG = configparser.RawConfigParser()
-CONFIG.read(configs)
+
+try:
+    CONFIG.read('./env.ini')
+except Exception as e:
+    CONFIG.read('./test.env.ini')
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
@@ -30,9 +33,16 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'tg#v3opo9aqqm#rns#^t(+29)@@!#e1bk!_47q)biu$_e-_m*j'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = eval(CONFIG.get('Environment', 'DEBUG'))
 
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = []
+ALLOWED_HOSTS = CONFIG.get('Environment', 'ALLOWED_HOSTS').split(',')
+HOST_URL = CONFIG.get('Environment', 'HOST_URL')
+
+if DEBUG is True:
+	SECURE_SSL_REDIRECT = False
+else:
+	SECURE_SSL_REDIRECT = True
 
 
 # Application definition

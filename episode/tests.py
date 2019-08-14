@@ -1,3 +1,5 @@
+import json 
+
 from django.test import TestCase
 
 from .models import Episode
@@ -60,3 +62,20 @@ class EpisodeTestCase(TestCase):
         """Ensures that the __str__ method functions as intended."""
         ep = Episode.objects.filter(number='005').get()
         self.assertEqual('005- Episode 5', ep.__str__())
+
+    def test_index_route(self):
+        response = self.client.get('/', follow=True)
+        self.assertTemplateUsed(response, 'index.html')
+
+    def test_index_route_data(self):
+        response = self.client.get('/', follow=True)
+        data = json.loads(response.context['data'])
+        self.assertEqual('013', data['current_episode']['number'])
+
+    def test_episode_route(self):
+        response = self.client.get('/002', follow=True)
+        self.assertTemplateUsed(response, 'index.html')
+
+    def test_episode_not_found_route(self):
+        response = self.client.get('999', follow=True)
+        self.assertTemplateUsed(response, '404.html')
