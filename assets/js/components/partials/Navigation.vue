@@ -19,13 +19,16 @@
                         {{ episode.number }}- {{ episode.title }}
                     </a>
                 </li>
+                <li>------</li>
+                <li>About ITR</li>
+                <li><a href="/archive" target="_blank">Archive</a></li>
             </ul>
         </div>
     </div>
 </template>
 
 <script>
-module.exports = {
+export default {
     data() {
         return {
         }
@@ -47,6 +50,3 @@ module.exports = {
     }
 }
 </script>
-
-<style>
-</style>

@@ -31,9 +31,26 @@ ul, li {
 	margin: 0.5em 0;
 }
 
-#nav ul li a {
+#nav ul li a,
+#archive ul li a {
 	text-decoration: none;
 	color: inherit;
+}
+
+#archive ul li a:hover {
+	text-decoration: underline;
+}
+
+#archive ul li.pad-2 {
+	margin-left: 2em;
+}
+
+#archive ul li.pad-4 {
+	margin-left: 4em;
+}
+
+#archive ul li.pad-6 {
+	margin-left: 6em;
 }
 
 #nav ul li a.active,
