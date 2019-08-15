@@ -12,7 +12,7 @@ class SubscriberEmails():
 
         send_mail('Please confirm your subsciption to ITR',
 			html_content,
-			'No Reply <noreply@introtorhythm.com>',
+			'Intro To Rhythm <info@introtorhythm.com>',
 			[email],
 			fail_silently=True,
 			html_message=html_content)
