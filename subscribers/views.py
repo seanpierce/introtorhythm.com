@@ -1,7 +1,6 @@
 """
 Routes for the subscriber API. 
 """
-
 import json
 
 from django.http import HttpResponse
@@ -14,6 +13,7 @@ if settings.DEBUG:
     from django.utils.decorators import method_decorator
 
 from .repository import SubscriberRepository as repo
+from .emails import SubscriberEmails as email
 
 class SubscrptionConfirmationAPI(View):
     def get(self, request, *args, **kwargs):
@@ -72,7 +72,8 @@ class SubscriptionRequestAPI(View):
         body = json.loads(request.body)
 
         if repo.create_subscription_request(body['email']):
-            # send email
+            token = repo.get_token_by_email(body['email'])
+            email.send_request_confirmation_email(body['email'], token)
             return HttpResponse(json.dumps({'data': True}), content_type="application/json")
         else:
             return HttpResponse(json.dumps({'data': False}), content_type="application/json")

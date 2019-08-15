@@ -7,3 +7,4 @@ assets/bundles/
 webpack-stats.json
 env.ini
 \.coverage
+tmp
