@@ -1,11 +1,11 @@
 <template>
     <div>
-        <div id="navigation" v-if="loaded">
+        <div id="nav" v-if="loaded">
             <ul>
                 <li 
                     v-for="episode in episodes" 
                     v-bind:key="episode.number">
-                    {{ episode.number }}- {{ episode.title }}
+                    <a :href="'/' + episode.number">{{ episode.number }}- {{ episode.title }}</a>
                 </li>
             </ul>
         </div>

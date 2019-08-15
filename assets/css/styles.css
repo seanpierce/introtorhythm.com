@@ -1,0 +1,37 @@
+* {
+	font-family: 'Droid Sans Mono';
+	color: #222;
+	box-sizing: border-box;
+}
+
+ul, li {
+	list-style: none;
+	padding: 0;
+}
+
+#nav {
+	width: 320px;
+	max-width: 100%;
+	border-right: solid 1px #222;
+	height: 100%;
+	position: fixed;
+	left: 0;
+	top:0;
+	background: rgba(255, 255, 255, 0.8);
+	padding: 1em 1em;
+	z-index: 3;
+	overflow-y: scroll;
+}
+
+#nav ul {
+	margin-bottom: 4em;
+}
+
+#nav ul li {
+	margin: 0.5em 0;
+}
+
+#nav ul li a {
+	text-decoration: none;
+	color: inherit;
+}
