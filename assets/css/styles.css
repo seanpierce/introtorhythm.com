@@ -35,3 +35,8 @@ ul, li {
 	text-decoration: none;
 	color: inherit;
 }
+
+#nav ul li a.active,
+#nav ul li span.see-info {
+    color: red;
+}
