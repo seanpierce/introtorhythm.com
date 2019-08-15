@@ -76,3 +76,7 @@ class SubscriberRepository(object):
             return True
         except Exception as e:
             return False
+
+    def get_token_by_email(email):
+            token = SubscriptionRequest.objects.get(email=email)
+            return token.token
