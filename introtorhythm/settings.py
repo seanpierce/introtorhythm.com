@@ -16,11 +16,7 @@ import configparser
 
 # configs = ['./env.ini', './test.env.ini']
 CONFIG = configparser.RawConfigParser()
-
-try:
-    CONFIG.read('./env.ini')
-except Exception as e:
-    CONFIG.read('./test.env.ini')
+CONFIG.read('./env.ini')
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
