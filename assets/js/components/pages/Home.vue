@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Navigation from "../partials/Navigation.vue";
+import Navigation from '../partials/Navigation.vue';
 
 export default {
     components: {

@@ -7,7 +7,7 @@
                 <li>Now Playing: Ep {{ currentEpisode.number }}</li>
                 <li id="tracktime">00:00:00 / 00:00:00</li>
                 <li>
-                    <span class="see-info pointer">
+                    <span class="see-info pointer" @click="showEpsisodeInfoModal = true">
                         See Ep {{ currentEpisode.number }} Info &lt;
                     </span>
                 </li>
@@ -22,18 +22,42 @@
                 <li>------</li>
                 <li>About ITR</li>
                 <li><a href="/archive" target="_blank">Archive</a></li>
+                <li>
+                    <div id="subscription-form-wrapper">
+                        <form id="subscription-form" @submit="createSubscriptionRequest($event)" v-if="!submittedRequestMessage">
+                            <input type="email" name="subscriber-email" id="subscriber-email" placeholder="email address" />
+                            <input type="submit" value="Subscribe">
+                        </form>
+                        <span v-if="submittedRequestMessage">{{ submittedRequestMessage }}</span>              
+                    </div>
+                </li>
             </ul>
         </div>
+        <EpisodeInfoModal />
     </div>
 </template>
 
 <script>
+import EpisodeInfoModal from './EpisodeInfoModal.vue';
+
 export default {
+    components: {
+        EpisodeInfoModal
+    },
     data() {
         return {
+            submittedRequestMessage: null,
+            showEpsisodeInfoModal: false
         }
     },
     methods: {
+        createSubscriptionRequest(e) {
+            e.preventDefault();
+            // post to subscription request API
+            // once complete remove form and update message
+            this.submittedRequestMessage = 'Thanks!'
+
+        }
     },
     computed: {
         episodes() {
