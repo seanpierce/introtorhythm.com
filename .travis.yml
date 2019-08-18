@@ -10,8 +10,14 @@ branches:
 env:
   - DJANGO_VERSION=2.2.4
 
+before_install:
+  - virtualenv venv
+  - source venv/bin/activate
+
 install:
   - pip install -r requirements.txt
+  - yarn install
 
 script:
+  - yarn run build
   - python run-tests.py
