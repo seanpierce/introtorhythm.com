@@ -1,19 +1,16 @@
 <template>
-    <div>
-        <div id="navigation" v-if="loaded">
-            <ul>
-                <li 
-                    v-for="episode in episodes" 
-                    v-bind:key="episode.number">
-                    {{ episode.number }}- {{ episode.title }}
-                </li>
-            </ul>
-        </div>
+    <div id="home">
+        <Navigation />
     </div>
 </template>
 
 <script>
-module.exports = {
+import Navigation from '../partials/Navigation.vue';
+
+export default {
+    components: {
+        Navigation
+    },
     data() {
         return {
         }

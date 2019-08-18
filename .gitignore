@@ -8,3 +8,4 @@ webpack-stats.json
 env.ini
 \.coverage
 tmp
+static
