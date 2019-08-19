@@ -5,22 +5,12 @@ python:
 branches:
   only:
   - master
-  - develop
 env:
 - DJANGO_VERSION=2.2.4
 before_install:
-- ssh-keyscan -H 167.71.118.223 >> ~/.ssh/known_hosts
-- openssl aes-256-cbc -K $encrypted_ae9e2abb8f12_key -iv $encrypted_ae9e2abb8f12_iv
-  -in deploy_key.enc -out ./deploy_key -d
-- eval "$(ssh-agent -s)"
-- chmod 600 ./deploy_key
-- echo -e "Host $SERVER_IP_ADDRESS\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
-- ssh-add ./deploy_key
-- ssh -i ./deploy_key root@167.71.118.223 pwd
 - virtualenv venv
 - source venv/bin/activate
 install:
-
 - pip install -r requirements.txt
 - yarn install
 before_script:
@@ -28,3 +18,11 @@ before_script:
 script:
 - yarn run build
 - python run-tests.py
+deploy:
+  provider: script
+  script: bash deploy.sh
+  on:
+    branch: master
+
+after_success:
+- echo "Success!"
