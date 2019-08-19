@@ -9,3 +9,4 @@ env.ini
 \.coverage
 tmp
 static
+deploy_key
