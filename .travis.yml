@@ -6,6 +6,7 @@ python:
 branches:
   only:
         - master
+        - develop
 
 env:
     - DJANGO_VERSION=2.2.4
