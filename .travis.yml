@@ -27,7 +27,7 @@ after_success:
 - chmod 600 ./deploy_key
 - echo -e "Host $SERVER_IP_ADDRESS\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 - ssh-add ./deploy_key
-- ssh -i ./deploy_key root@167.71.118.223
-- pwd
-- cd apps/introtorhythm.com
+- ssh -i ./deploy_key root@167.71.118.223 pwd
+- cd apps/
+- cd introtorhythm.com/
 - ls
