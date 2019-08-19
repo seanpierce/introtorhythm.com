@@ -1,16 +1,18 @@
 dist: xenial
 language: python
 python:
-  - "3.6.3"
+  - 3.6.3
 
 branches:
   only:
-  - master
+    - master
 
 env:
   - DJANGO_VERSION=2.2.4
 
 before_install:
+  - openssl aes-256-cbc -K $encrypted_b628dea4aac4_key -iv $encrypted_b628dea4aac4_iv
+    -in deploy_key.enc -out ./deploy_key -d
   - virtualenv venv
   - source venv/bin/activate
 
