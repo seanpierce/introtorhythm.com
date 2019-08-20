@@ -78,3 +78,16 @@ class SubscriberTestCase(TestCase):
         if the provided email address is not unique.
         """
         self.assertEqual(repo.create_subscription_request('two@test.com'), False)
+
+    def test_get_token_by_email(self):
+        """Ensures that the repository is able to fetch a SubscriptionRequest
+        token when provided an email address.
+        """
+        new_token = SubscriptionRequest.objects.create(email='test123@test.com')
+        self.assertEqual(str(new_token.token), repo.get_token_by_email('test123@test.com'))
+
+    def test_get_token_by_email_not_found(self):
+        """Ensures that the repository returns None if no SubscriptionRequest contains
+        the provided email address.
+        """
+        self.assertEqual(None, repo.get_token_by_email('test123@test.com'))
