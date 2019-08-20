@@ -1,5 +1,7 @@
+from django.apps import apps
 from django.test import TestCase
 from django.db import IntegrityError
+from subscribers.apps import SubscribersConfig
 
 from .models import Subscriber, SubscriptionRequest
 from .repository import SubscriberRepository as repo
@@ -91,3 +93,9 @@ class SubscriberTestCase(TestCase):
         the provided email address.
         """
         self.assertEqual(None, repo.get_token_by_email('test123@test.com'))
+
+
+class SubscribersConfigTestCase(TestCase):
+    def test_apps(self):
+        self.assertEqual(SubscribersConfig.name, 'subscribers')
+        self.assertEqual(apps.get_app_config('subscribers').name, 'subscribers')
