@@ -18,11 +18,5 @@ before_script:
 script:
 - yarn run build
 - python run-tests.py
-deploy:
-  provider: script
-  script: bash deploy.sh
-  on:
-    branch: master
-
 after_success:
 - echo "Success!"
