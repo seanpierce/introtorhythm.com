@@ -1,6 +1,8 @@
 import json 
 
+from django.apps import apps
 from django.test import TestCase
+from episode.apps import EpisodeConfig
 
 from .models import Episode
 from .repository import EpisodeRepository as repo
@@ -79,3 +81,8 @@ class EpisodeTestCase(TestCase):
     def test_episode_not_found_route(self):
         response = self.client.get('999', follow=True)
         self.assertTemplateUsed(response, '404.html')
+
+class EpisodeConfigTestCase(TestCase):
+    def test_apps(self):
+        self.assertEqual(EpisodeConfig.name, 'episode')
+        self.assertEqual(apps.get_app_config('episode').name, 'episode')

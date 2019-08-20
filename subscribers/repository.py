@@ -1,6 +1,7 @@
 import datetime
 
 from django.db import IntegrityError
+from django.core.exceptions import ObjectDoesNotExist
 
 from .models import Subscriber, SubscriptionRequest
 
@@ -78,5 +79,18 @@ class SubscriberRepository(object):
             return False
 
     def get_token_by_email(email):
+        """Returns a string representing a token found in the SubscriptionRequest table.
+
+        Args:
+            email: a string representing an email for a SubscriptionRequest object.
+
+        Returns:
+            The token as a string for a given SubsctiptionRequest object
+            matching the provided email address. If no SubscriptionRequest is found,
+            returns None.
+        """
+        try:
             token = SubscriptionRequest.objects.get(email=email)
-            return token.token
+            return token.token 
+        except ObjectDoesNotExist:
+            return None
