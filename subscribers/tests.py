@@ -1,9 +1,12 @@
+import requests, json
+
 from django.apps import apps
-from django.test import TestCase
+from django.test import TestCase, Client
 from django.db import IntegrityError
 from subscribers.apps import SubscribersConfig
 
 from .models import Subscriber, SubscriptionRequest
+from .views import SubscriptionRequestAPI, SubscrptionConfirmationAPI
 from .repository import SubscriberRepository as repo
 
 class SubscriberTestCase(TestCase):
@@ -94,6 +97,25 @@ class SubscriberTestCase(TestCase):
         """
         self.assertEqual(None, repo.get_token_by_email('test123@test.com'))
 
+
+class SubscriptionAPITestCase(TestCase):
+    def setUp(self):
+        # create requests
+        SubscriptionRequest.objects.create(email='one@test.com')
+
+    def test_subscription_request_api_new_request(self):
+        c = Client()
+        response = c.post('/api/requests/',
+            json.dumps({"email":"newrequest@test.com"}), 
+            content_type="application/json")
+        self.assertEqual(True, response.json()['data'])
+
+    def test_subscription_request_api_existing_request(self):
+        c = Client()
+        response = c.post('/api/requests/',
+            json.dumps({"email":"one@test.com"}), 
+            content_type="application/json")
+        self.assertEqual(False, response.json()['data'])
 
 class SubscribersConfigTestCase(TestCase):
     def test_apps(self):
