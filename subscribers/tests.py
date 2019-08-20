@@ -1,7 +1,12 @@
-from django.test import TestCase
+import requests, json
+
+from django.apps import apps
+from django.test import TestCase, Client
 from django.db import IntegrityError
+from subscribers.apps import SubscribersConfig
 
 from .models import Subscriber, SubscriptionRequest
+from .views import SubscriptionRequestAPI, SubscrptionConfirmationAPI
 from .repository import SubscriberRepository as repo
 
 class SubscriberTestCase(TestCase):
@@ -78,3 +83,41 @@ class SubscriberTestCase(TestCase):
         if the provided email address is not unique.
         """
         self.assertEqual(repo.create_subscription_request('two@test.com'), False)
+
+    def test_get_token_by_email(self):
+        """Ensures that the repository is able to fetch a SubscriptionRequest
+        token when provided an email address.
+        """
+        new_token = SubscriptionRequest.objects.create(email='test123@test.com')
+        self.assertEqual(str(new_token.token), repo.get_token_by_email('test123@test.com'))
+
+    def test_get_token_by_email_not_found(self):
+        """Ensures that the repository returns None if no SubscriptionRequest contains
+        the provided email address.
+        """
+        self.assertEqual(None, repo.get_token_by_email('test123@test.com'))
+
+
+class SubscriptionAPITestCase(TestCase):
+    def setUp(self):
+        # create requests
+        SubscriptionRequest.objects.create(email='one@test.com')
+
+    def test_subscription_request_api_new_request(self):
+        c = Client()
+        response = c.post('/api/requests/',
+            json.dumps({"email":"newrequest@test.com"}), 
+            content_type="application/json")
+        self.assertEqual(True, response.json()['data'])
+
+    def test_subscription_request_api_existing_request(self):
+        c = Client()
+        response = c.post('/api/requests/',
+            json.dumps({"email":"one@test.com"}), 
+            content_type="application/json")
+        self.assertEqual(False, response.json()['data'])
+
+class SubscribersConfigTestCase(TestCase):
+    def test_apps(self):
+        self.assertEqual(SubscribersConfig.name, 'subscribers')
+        self.assertEqual(apps.get_app_config('subscribers').name, 'subscribers')
