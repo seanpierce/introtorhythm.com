@@ -10,3 +10,4 @@ env.ini
 tmp
 static
 deploy_key
+.vscode
