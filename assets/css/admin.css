@@ -1,0 +1,53 @@
+* {
+    font-family: monospace !important;
+}
+
+a {
+    color: #41b883 !important;
+}
+
+a.addlink,
+a.historylink {
+    color: white !important;
+    background: #41b883 !important;
+    padding: 3px 12px !important;
+}
+
+a.deletelink {
+    color: white !important;
+}
+
+/* ck editor modal buttons */
+a.cke_dialog_ui_button_ok {
+    color: white !important;
+    background: #41b883 !important;
+}
+a.cke_dialog_ui_button_cancel {
+    color: #555 !important;
+}
+
+#header {
+    background-color: #333;
+    color: white;
+}
+
+#site-name {
+    color: white !important;
+}
+
+.breadcrumbs {
+    background-color: #555 !important;
+    color: white !important;
+}
+
+.module table caption {
+    background-color: #555;
+}
+
+.paginator a {
+    background: none !important;
+}
+
+#changelist-filter h2 {
+    background: #555;
+}
