@@ -44,6 +44,10 @@ a.cke_dialog_ui_button_cancel {
     background-color: #555;
 }
 
+.module table caption a {
+    color: white !important;
+}
+
 .paginator a {
     background: none !important;
 }

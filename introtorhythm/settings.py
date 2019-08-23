@@ -43,10 +43,8 @@ else:
 
 # Application definition
 
-# Add subscribers projects before django admin 
-# to overwrite and extend templates.
 INSTALLED_APPS = [
-    'subscribers',
+    'admin_extension',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -54,6 +52,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'episode',
+    'subscribers',
     'webpack_loader',
     'storages',
     'ckeditor',
