@@ -39,7 +39,7 @@ def episode(request, number):
 
     data = {
         'episodes': repo.get_episode_list_by_number(number),
-        'current_episode': repo.get_current_episode(number)
+        'current_episode': repo.get_current_episode(number),
     }
 
     if data['current_episode'] is None:
@@ -48,7 +48,8 @@ def episode(request, number):
         return response
 
     return render(request, 'index.html', {
-        'data': json.dumps(data)
+        'data': json.dumps(data),
+        'number': data['current_episode']['number']
     })
 
 

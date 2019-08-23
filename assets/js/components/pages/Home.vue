@@ -1,6 +1,9 @@
 <template>
-    <div id="home">
+    <div id='home' v-if="loaded">
         <Navigation />
+        <div id='filter-overlay'></div>
+        <div id='episode-image'
+            v-bind:style="{backgroundImage:'url('+getBackgroundUrl()+')'}"></div>
     </div>
 </template>
 
@@ -16,6 +19,9 @@ export default {
         }
     },
     methods: {
+        getBackgroundUrl() {
+            return this.$root.mediaUrl + this.currentEpisode.image
+        }
     },
     computed: {
         episodes() {
