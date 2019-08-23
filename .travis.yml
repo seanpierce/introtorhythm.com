@@ -1,22 +1,30 @@
 dist: xenial
 language: python
 python:
-- 3.6.3
+  - 3.6.3
+  
 branches:
   only:
-  - master
+    - master
+
 env:
-- DJANGO_VERSION=2.2.4
+  - DJANGO_VERSION=2.2.4
+
 before_install:
-- virtualenv venv
-- source venv/bin/activate
+  - virtualenv venv
+  - source venv/bin/activate
+
 install:
-- pip install -r requirements.txt
-- yarn install
+  - pip install -r requirements.txt
+  - yarn install
+
 before_script:
-- cp test.env.ini env.ini
+  - cp test.env.ini env.ini
+
 script:
-- yarn run build
-- python run-tests.py
+  - yarn run build
+  - python run-tests.py
+
 after_success:
-- echo "Success!"
+  - ./deploy.sh
+  - echo "Success!"

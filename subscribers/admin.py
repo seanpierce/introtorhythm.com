@@ -10,6 +10,8 @@ class SubscriberAdmin(admin.ModelAdmin):
     list_display = ('email', 'created_at')
     list_per_page = 10
     actions = ["export_as_csv"]
+    search_fields = ('email',)
+    list_filter = ('created_at',)
 
     def export_as_csv(self, request, queryset):
         meta = self.model._meta
@@ -31,6 +33,8 @@ class SubscriptionRequestAdmin(admin.ModelAdmin):
     list_display = ('token', 'email', 'created_at')
     list_per_page = 10
     actions = ["add_to_subscribers"]
+    search_fields = ('email',)
+    list_filter = ('created_at',)
 
     def add_to_subscribers(self, request, queryset):
         for obj in queryset:

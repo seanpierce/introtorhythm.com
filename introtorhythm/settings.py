@@ -44,6 +44,7 @@ else:
 # Application definition
 
 INSTALLED_APPS = [
+    'admin_extension',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

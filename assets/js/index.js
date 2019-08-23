@@ -14,7 +14,8 @@ const app = new Vue({
     },
     data() {
         return {
-            data: null
+            data: null,
+            mediaUrl: 'https://s3.amazonaws.com/podcasts.introtorhythm.com/media/'
         }
     },
     methods: {
