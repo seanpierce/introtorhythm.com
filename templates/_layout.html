@@ -13,10 +13,11 @@
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
-    <div id="app" data="{{ data }}">
+    <div id="data" data="{{ data }}"></div>
+    <div id="app">
         {% block content %}
         {% endblock %}
     </div>
-    {% render_bundle 'main' %}
+    {% render_bundle 'app' %}
 </body>
 </html>
