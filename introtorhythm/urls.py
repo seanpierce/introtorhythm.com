@@ -33,7 +33,7 @@ urlpatterns = [
 
     # main application routes
     path('', index),
-    path('test', TemplateView.as_view(template_name="application.html"), name="app",),
+    # path('', TemplateView.as_view(template_name="index.html")),
     path('archive', archive),
     path('<number>', episode)
 ]
