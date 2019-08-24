@@ -56,17 +56,18 @@ python manage.py test episode.tests
 python manage.py runserver
 
 # install front end dependencies
+cd app
 yarn i
 
 # build the FE for development
-yarn run watch
+# (from the app directory)
+yarn run serve
 
 # build the FE for production
+# (from the app directory)
 yarn run build
 ```
 
 ## Resource list
 
-* [crud-app-using-vue-js-and-django](https://medium.com/quick-code/crud-app-using-vue-js-and-django-516edf4e4217)
-* [django-vuejs-tutorial](https://github.com/michaelbukachi/django-vuejs-tutorial/wiki/Django-Vue.js-Integration-Tutorial)
-* [clean-architecture-in-django](https://engineering.21buttons.com/clean-architecture-in-django-d326a4ab86a9)
+* https://medium.com/@rodrigosmaniotto/integrating-django-and-vuejs-with-vue-cli-3-and-webpack-loader-145c3b98501a

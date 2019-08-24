@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import RedirectView
+from django.views.generic import TemplateView
 
 from episode.views import index, episode, archive
 from subscribers.views import SubscriptionRequestAPI, SubscrptionConfirmationAPI
@@ -32,6 +33,7 @@ urlpatterns = [
 
     # main application routes
     path('', index),
+    path('test', TemplateView.as_view(template_name="application.html"), name="app",),
     path('archive', archive),
     path('<number>', episode)
 ]
