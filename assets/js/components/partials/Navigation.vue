@@ -5,7 +5,7 @@
                 <li><a href="/">Intro To Rhythm</a><li>
                 <li>------</li>
                 <li>Now Playing: Ep {{ currentEpisode.number }}</li>
-                <li id="tracktime">00:00:00 / 00:00:00</li>
+                <li id="tracktime">{{ currentTime }} / {{ totalTime }}</li>
                 <li>
                     <span class="see-info pointer" @click="showEpsisodeInfoModal = true">
                         See Ep {{ currentEpisode.number }} Info &lt;
@@ -56,7 +56,6 @@ export default {
             // post to subscription request API
             // once complete remove form and update message
             this.submittedRequestMessage = 'Thanks!'
-
         }
     },
     computed: {
@@ -68,6 +67,12 @@ export default {
         },
         loaded() {
             return this.$root.loaded;
+        },
+        currentTime() {
+            return this.$root.currentTime;
+        },
+        totalTime() {
+            return this.$root.totalTime;
         }
     },
     mounted() {

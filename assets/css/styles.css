@@ -96,12 +96,19 @@ ul, li {
 	background: rgba(0, 0, 0, 0.5);
 }
 
-.modal .modal-content p {
+.modal .modal-content div,
+.modal .modal-content p,
+.modal .modal-content a {
 	color: white;
 }
 
 .pointer {
 	cursor: pointer;
+}
+
+.close {
+	height: 1.5em;
+	margin-bottom: 1em;
 }
 
 #episode-image {
