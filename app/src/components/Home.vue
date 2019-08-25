@@ -1,19 +1,32 @@
 <template>
   <div id="home">
-    <h1>Intro To Rhythm</h1>
+    <Navigation />
   </div>
 </template>
 
 <script>
-export default {
-  data: () => ({
+/*eslint no-console: ["error", { allow: ["log"] }] */
+import Navigation from './partials/Navigation';
 
-  })
+export default {
+  components: {
+    Navigation
+  },
+  data() {
+    return {
+      test: null
+    }
+  },
+  computed: {
+    currentEpisode() {
+      return this.$root.data.current_episode;
+    },
+    episodes() {
+      return this.$root.data.episodes;
+    },
+  }
 }; 
 </script>
 
-<style>
-* {
-  color: red;
-}
+<style scoped>
 </style>

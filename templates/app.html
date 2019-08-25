@@ -10,14 +10,10 @@
     <link rel="icon" type="image/png" sizes="96x96" href="{% static 'images/wrench-icon.png' %}">
     <title>Intro To Rhythm | {{ number }}</title>
     <link href="https://fonts.googleapis.com/css?family=Droid+Sans+Mono" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
     <div id="data" data="{{ data }}"></div>
-    <div id="app">
-        {% block content %}
-        {% endblock %}
-    </div>
+    <div id="app"></div>
     {% render_bundle 'app' %}
 </body>
 </html>

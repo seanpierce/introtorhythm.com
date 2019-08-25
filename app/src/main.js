@@ -13,6 +13,7 @@ new Vue({
   methods: {
   },
   mounted() {
+    // Fetch the initial page data MVC style
     var elem = document.getElementById('data');
     var data = elem.attributes.data.value;
     this.data = JSON.parse(data);
