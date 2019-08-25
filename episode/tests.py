@@ -67,7 +67,7 @@ class EpisodeTestCase(TestCase):
 
     def test_index_route(self):
         response = self.client.get('/', follow=True)
-        self.assertTemplateUsed(response, 'index.html')
+        self.assertTemplateUsed(response, 'app.html')
 
     def test_index_route_data(self):
         response = self.client.get('/', follow=True)
@@ -76,7 +76,7 @@ class EpisodeTestCase(TestCase):
 
     def test_episode_route(self):
         response = self.client.get('/002', follow=True)
-        self.assertTemplateUsed(response, 'index.html')
+        self.assertTemplateUsed(response, 'app.html')
 
     def test_episode_not_found_route(self):
         response = self.client.get('999', follow=True)
