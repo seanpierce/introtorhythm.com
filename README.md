@@ -15,9 +15,8 @@ The purpose of this project it to take what I've learned with the [initial djang
 ## Installation
 
 ```shell
-mkdir introtorhythm.com
+git clone [this repo] introtorhythm.com
 python -m venv introtorhythm.com/
-git clone [this repo] introtorhythm.com/introtorhythm
 ```
 
 The project structure should look like this:
@@ -41,7 +40,8 @@ introtorhythm.com/
 # cd introtorhythm.com
 
 # activate the virtual environment
-source ../venv/Scripts/activate
+source ./venv/bin/activate # mac
+source ./venv/Scripts/activate # windows
 
 # install dependencies
 pip install -r requirements.txt
@@ -50,22 +50,20 @@ pip install -r requirements.txt
 python manage.py migrate
 
 # run unit tests
-python manage.py test episode.tests
+python scripts/run-tests.py
+
+# install front end dependencies
+python scripts/install-frontend.py
+
+# build the FE for development
+python scripts/serve-frontend.py
+
+# build the FE for production
+python scripts/build-frontend.py
 
 # start the development server
 python manage.py runserver
 
-# install front end dependencies
-cd app
-yarn i
-
-# build the FE for development
-# (from the app directory)
-yarn run serve
-
-# build the FE for production
-# (from the app directory)
-yarn run build
 ```
 
 ## Resource list
