@@ -78,6 +78,11 @@ class EpisodeTestCase(TestCase):
         response = self.client.get('/002', follow=True)
         self.assertTemplateUsed(response, 'app.html')
 
+    def test_episode_route_data(self):
+        response = self.client.get('/002', follow=True)
+        data = json.loads(response.context['data'])
+        self.assertEqual('002', data['current_episode']['number'])
+
     def test_episode_not_found_route(self):
         response = self.client.get('999', follow=True)
         self.assertTemplateUsed(response, '404.html')
