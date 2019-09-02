@@ -19,15 +19,6 @@ git clone [this repo] introtorhythm.com
 python -m venv introtorhythm.com/
 ```
 
-The project structure should look like this:
-
-```ini
-introtorhythm.com/
-    introtorhythm/
-        [django project/ this repository]
-    venv/
-```
-
 ## Versions
 
 * Django 2.2.4
