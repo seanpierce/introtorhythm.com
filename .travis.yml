@@ -16,15 +16,11 @@ before_install:
 
 install:
   - pip install -r requirements.txt
-  - yarn install
+  - python scripts/install-frontend.py
 
 before_script:
   - cp test.env.ini env.ini
 
 script:
-  - yarn run build
-  - python run-tests.py
-
-after_success:
-  - ./deploy.sh
-  - echo "Success!"
+  - python scripts/build-frontend.py
+  - python scripts/run-tests.py

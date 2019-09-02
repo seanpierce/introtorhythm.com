@@ -17,7 +17,7 @@ def index(request):
         'current_episode': repo.get_current_episode()
     }
 
-    return render(request, 'index.html', {
+    return render(request, 'app.html', {
         'data': json.dumps(data),
         'number': data['current_episode']['number']
     })
@@ -47,7 +47,7 @@ def episode(request, number):
         response.status_code = 404
         return response
 
-    return render(request, 'index.html', {
+    return render(request, 'app.html', {
         'data': json.dumps(data),
         'number': data['current_episode']['number']
     })
@@ -58,6 +58,6 @@ def archive(request):
         'episodes': repo.get_all_episode_list() 
     }
 
-    return render(request, 'archive.html', {
+    return render(request, 'app.html', {
         'data': json.dumps(data)
     })
