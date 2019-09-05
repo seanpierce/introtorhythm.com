@@ -16,9 +16,10 @@ export default {
     Home,
     Archive
   },
-  data: () => ({
-    data: null
-  }),
+  data() {
+    return {
+    }
+  },
   computed: {
     route() {
       var path = window.location.pathname;
@@ -34,3 +35,19 @@ export default {
   }
 };
 </script>
+
+<style>
+/* Global application styles */
+* {
+	font-family: 'Droid Sans Mono';
+	color: #222;
+	box-sizing: border-box;
+}
+ul, li {
+	list-style: none;
+	padding: 0;
+}
+.pointer {
+  cursor: pointer;
+}
+</style>

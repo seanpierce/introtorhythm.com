@@ -12,6 +12,11 @@ new Vue({
   }),
   methods: {
   },
+  computed: {
+    loaded() {
+      return this.data != null;
+    }
+  },
   mounted() {
     // Fetch the initial page data MVC style
     var elem = document.getElementById('data');

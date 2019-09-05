@@ -19,7 +19,8 @@ def index(request):
 
     return render(request, 'app.html', {
         'data': json.dumps(data),
-        'number': data['current_episode']['number']
+        'number': data['current_episode']['number'],
+        'title': data['current_episode']['title']
     })
 
 def episode(request, number):
@@ -49,7 +50,8 @@ def episode(request, number):
 
     return render(request, 'app.html', {
         'data': json.dumps(data),
-        'number': data['current_episode']['number']
+        'number': data['current_episode']['number'],
+        'title': data['current_episode']['title']
     })
 
 
