@@ -138,6 +138,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
+INTERNAL_IPS = (
+    'localhost',
+    '0.0.0.0',
+    '127.0.0.1'
+)
+
 STATIC_ROOT = 'static'
 STATIC_URL = '/assets/'
 STATICFILES_DIRS = ( os.path.join('assets'), )
