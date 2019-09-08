@@ -1,7 +1,13 @@
 <template>
   <div class="nav" v-if="loaded">
     <div id="play-button-container">
-      <!-- <button id="play-button" class="play" onclick="play()"></button> -->
+      <button 
+        id="play-button" 
+        v-bind:style="{ 
+          backgroundImage: 'url(' + playButtonBackgroundUrl + ')', 
+          backgroundColor: 'rgba(0,0,0,0)'
+        }"
+        @click="togglePlay()"></button>
     </div>
     <ul>
       <li><a href="/">Intro To Rhythm</a><li>
@@ -27,14 +33,21 @@
 export default {
   data() {
     return {
+      playing: this.$parent.playing
     }
   },
   methods: {
     isCurrent(number) {
       return this.currentEpisode.number === number;
+    },
+    togglePlay() {
+      this.$parent.playing = !this.$parent.playing;
     }
   }, 
   computed: {
+    debug() {
+      return this.$root.debug;
+    },
     loaded() {
       return this.$root.loaded;
     },
@@ -44,6 +57,20 @@ export default {
     episodes() {
       return this.$root.data.episodes;
     },
+    playButtonBackgroundUrl() {
+      var url = '';
+      if (this.debug) {
+        url += '/assets/images'
+      } else {
+        url += '/static/images'
+      }
+      if (this.playing) {
+        url += '/pause.png'
+      } else {
+        url += '/play.png'
+      }
+      return url;
+    }
   }
 }; 
 </script>
@@ -75,5 +102,43 @@ export default {
 }
 .red {
 	color: red;
+}
+#play-button-container {
+	width: 200px;
+	text-align: center;
+	height: 200px;
+	position: fixed;
+	top:0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	z-index: 1;
+}
+#play-button {
+	height:200px;
+	width: 200px;
+	border: none;
+	background-size: 50% 50%;
+	background-repeat: no-repeat;
+	background-position: center;
+	outline:none;
+	cursor: pointer;
+}
+.play { 
+  background: url('/static/images/play.png');
+}
+.pause {
+  background: url('/static/images/pause.png');
+}
+@media (max-width: 750px) {
+	.nav .nav-items {
+		margin-top: 200px;
+	}
+
+	#play-button-container {
+		position: absolute;
+		bottom: unset;
+	}
 }
 </style>

@@ -8,7 +8,8 @@ Vue.config.productionTip = false
 new Vue({
   render: h => h(App),
   data: () => ({
-    data: null
+    data: null,
+    debug: null
   }),
   methods: {
   },
@@ -21,6 +22,8 @@ new Vue({
     // Fetch the initial page data MVC style
     var elem = document.getElementById('data');
     var data = elem.attributes.data.value;
+    var debug = elem.attributes.debug.value;
     this.data = JSON.parse(data);
+    this.debug = debug === 'True';
   }
 }).$mount('#app')

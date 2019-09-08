@@ -1,20 +1,24 @@
 <template>
   <div id="home">
     <Navigation />
+    <Player />
   </div>
 </template>
 
 <script>
 /*eslint no-console: ["error", { allow: ["log"] }] */
 import Navigation from './partials/Navigation';
+import Player from './partials/Player';
 
 export default {
   components: {
-    Navigation
+    Navigation,
+    Player,
   },
   data() {
     return {
-      test: null
+      playing: false,
+      audio: new Audio()
     }
   },
   computed: {
@@ -24,6 +28,9 @@ export default {
     episodes() {
       return this.$root.data.episodes;
     },
+  },
+  mounted() {
+    this.audio.src = this.currentEpisode.audio;
   }
 }; 
 </script>
