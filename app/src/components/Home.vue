@@ -1,6 +1,7 @@
 <template>
   <div id="home">
     <Navigation />
+    <BackgroundImage />
     <Player />
   </div>
 </template>
@@ -8,11 +9,13 @@
 <script>
 /*eslint no-console: ["error", { allow: ["log"] }] */
 import Navigation from './partials/Navigation';
+import BackgroundImage from './partials/BackgroundImage';
 import Player from './partials/Player';
 
 export default {
   components: {
     Navigation,
+    BackgroundImage,
     Player,
   },
   data() {
@@ -30,7 +33,7 @@ export default {
     },
   },
   mounted() {
-    this.audio.src = this.currentEpisode.audio;
+    this.audio.src = this.$root.mediaUrl + this.currentEpisode.audio;
   }
 }; 
 </script>

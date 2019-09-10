@@ -9,7 +9,8 @@ new Vue({
   render: h => h(App),
   data: () => ({
     data: null,
-    debug: null
+    debug: null,
+    mediaUrl: 'https://s3.amazonaws.com/podcasts.introtorhythm.com/media/'
   }),
   methods: {
   },
