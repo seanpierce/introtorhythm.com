@@ -41,4 +41,10 @@ export default {
 	background-position: center;
 	z-index: 2;
 }
+
+@media (max-width: 500px) {
+	#brighten {
+		display: none;
+	}
+}
 </style>

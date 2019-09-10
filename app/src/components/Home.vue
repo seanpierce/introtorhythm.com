@@ -2,6 +2,7 @@
   <div id="home">
     <Navigation />
     <BackgroundImage />
+    <Modal v-if="showEpisodeInfoModal" type="episodeInfo"/>
     <Player />
   </div>
 </template>
@@ -10,18 +11,21 @@
 /*eslint no-console: ["error", { allow: ["log"] }] */
 import Navigation from './partials/Navigation';
 import BackgroundImage from './partials/BackgroundImage';
+import Modal from './partials/modals/Modal';
 import Player from './partials/Player';
 
 export default {
   components: {
     Navigation,
     BackgroundImage,
+    Modal,
     Player,
   },
   data() {
     return {
       playing: false,
-      audio: new Audio()
+      audio: new Audio(),
+      showEpisodeInfoModal: false
     }
   },
   computed: {

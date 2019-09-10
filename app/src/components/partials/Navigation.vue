@@ -17,7 +17,7 @@
       <li>
         <span 
           class="red pointer"
-          onclick="openModal('info-modal')">
+          @click="showEpisodeInfoModal()">
           See Ep {{ currentEpisode.number }} Info &lt;
         </span>
       </li>
@@ -41,7 +41,10 @@ export default {
     },
     togglePlay() {
       this.$parent.playing = !this.$parent.playing;
-    }
+    },
+    showEpisodeInfoModal() {
+      this.$parent.showEpisodeInfoModal = true;
+    },
   }, 
   computed: {
     debug() {
@@ -134,13 +137,18 @@ export default {
   background: url('/static/images/pause.png');
 }
 @media (max-width: 750px) {
-	.nav .nav-items {
+	.nav ul {
 		margin-top: 200px;
 	}
-
 	#play-button-container {
 		position: absolute;
 		bottom: unset;
+	}
+}
+@media (max-width: 500px) {
+	.nav {
+		width: 100%;
+    background: rgba(255, 255, 255, 0.7)
 	}
 }
 </style>
