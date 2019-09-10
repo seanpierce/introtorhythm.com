@@ -33,7 +33,6 @@
 export default {
   data() {
     return {
-      playing: this.$parent.playing
     }
   },
   methods: {
@@ -56,6 +55,9 @@ export default {
     },
     episodes() {
       return this.$root.data.episodes;
+    },
+    playing() {
+      return this.$parent.playing;
     },
     playButtonBackgroundUrl() {
       var url = '';

@@ -1,7 +1,7 @@
 <template>
     <div>
         <div id="brighten"></div>
-        <div id="background-image" :style="{backgroundImage: 'url(' + imageUrl + ')'}"></div>
+        <div id="background-image" :style="{ backgroundImage: 'url(' + imageUrl + ')' }"></div>
     </div>
 </template>
 
