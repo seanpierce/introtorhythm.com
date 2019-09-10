@@ -1,18 +1,30 @@
 <template>
     <div id="episode-info">
-        <div v-html="content" style="color: white"></div>
+        <div id="episode-heading">{{ currentEpisode.number }}- {{ currentEpisode.title }}</div>
+        <div v-html="currentEpisode.content"></div>
+        <div>
+            ------------<br>
+            <br>
+            Share this episode on:<br>
+            facebook / twitter<br>
+            <br>
+            info@introtorhythm.com
+        </div>
     </div>
 </template>
 
 <script>
 export default {
     computed: {
-        content() {
-            return this.$root.data.current_episode.content;
+        currentEpisode() {
+            return this.$root.data.current_episode;
         }
     }
 }
 </script>
 
 <style scoped>
+#episode-heading {
+    margin-top: 1em;
+}
 </style>
