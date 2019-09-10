@@ -25,7 +25,36 @@ export default {
     return {
       playing: false,
       audio: new Audio(),
-      showEpisodeInfoModal: false
+      showEpisodeInfoModal: false,
+      currentTime: '00:00:00',
+      totalTime: null
+    }
+  },
+  methods: {
+    togglePlay() {
+      if (this.audio.paused) {
+        this.playing = true;
+        this.audio.play();
+      } else {
+        this.playing = false; 
+        this.audio.pause();
+      }
+    },
+    formatTime(input) {
+      var sec_num = parseInt(input, 10);
+      var hours   = Math.floor(sec_num / 3600);
+      var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
+      var seconds = sec_num - (hours * 3600) - (minutes * 60);
+      if (hours   < 10) { hours   = "0" + hours; }
+      if (minutes < 10) { minutes = "0" + minutes; }
+      if (seconds < 10) { seconds = "0" + seconds; }
+      return hours + ':' + minutes + ':' + seconds;
+    },
+    timeUpdate() {
+      if (!this.totalTime)
+        this.totalTime = this.formatTime(this.audio.duration);
+
+      this.currentTime = this.formatTime(this.audio.currentTime);
     }
   },
   computed: {
@@ -38,6 +67,9 @@ export default {
   },
   mounted() {
     this.audio.src = this.$root.mediaUrl + this.currentEpisode.audio;
+    this.audio.addEventListener('timeupdate', () => {
+      this.timeUpdate();
+    });
   }
 }; 
 </script>

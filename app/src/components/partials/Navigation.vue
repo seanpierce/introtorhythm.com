@@ -13,7 +13,7 @@
       <li><a href="/">Intro To Rhythm</a><li>
       <li>------</li>
       <li>Now Playing: Ep {{ currentEpisode.number }}</li>
-      <li id="tracktime">00:00:00 / 00:00:00</li>
+      <li id="tracktime">{{ $parent.currentTime }} / {{ $parent.totalTime || '00:00:00' }}</li>
       <li>
         <span 
           class="red pointer"
@@ -25,12 +25,20 @@
       <li v-for="episode in episodes" :key="episode.number" :class="isCurrent(episode.number) ? 'red': ''">
         <a :href="'/' + episode.number">{{ episode.number }}- {{ episode.title }}</a>
       </li>
+      <li>------</li>
+      <li><span class="pointer">About ITR</span></li>
+      <li><a href="/archive">Archive</a></li>
+      <SubscriptionForm />
     </ul>
   </div>
 </template>
 
 <script>
+import SubscriptionForm from './SubscriptionForm.vue';
 export default {
+  components: {
+    SubscriptionForm
+  },
   data() {
     return {
     }
@@ -40,7 +48,7 @@ export default {
       return this.currentEpisode.number === number;
     },
     togglePlay() {
-      this.$parent.playing = !this.$parent.playing;
+      this.$parent.togglePlay();
     },
     showEpisodeInfoModal() {
       this.$parent.showEpisodeInfoModal = true;

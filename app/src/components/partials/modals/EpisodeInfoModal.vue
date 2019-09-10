@@ -6,7 +6,7 @@
             ------------<br>
             <br>
             Share this episode on:<br>
-            facebook / twitter<br>
+            <a :href="'https://www.facebook.com/sharer/sharer.php?u=https://introtorhythm.com/' + currentEpisode.number" target="_blank">facebook</a> / <a :href="'https://twitter.com/home?status=https://introtorhythm.com/' + currentEpisode.number">twitter</a><br>
             <br>
             info@introtorhythm.com
         </div>
