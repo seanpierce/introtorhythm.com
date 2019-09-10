@@ -35,6 +35,7 @@
 
 <script>
 import SubscriptionForm from './SubscriptionForm.vue';
+
 export default {
   components: {
     SubscriptionForm
@@ -71,18 +72,10 @@ export default {
       return this.$parent.playing;
     },
     playButtonBackgroundUrl() {
-      var url = '';
-      if (this.debug) {
-        url += '/assets/images'
-      } else {
-        url += '/static/images'
-      }
-      if (this.playing) {
-        url += '/pause.png'
-      } else {
-        url += '/play.png'
-      }
-      return url;
+      if (this.playing)
+        return require('../../assets/pause.png')
+      else
+        return require('../../assets/play.png')
     }
   }
 }; 
