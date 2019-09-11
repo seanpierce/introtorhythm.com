@@ -25,7 +25,26 @@ export default {
       var player = document.getElementById('player');
       var percent = (event.pageX - player.offsetLeft) / this.$parent.playerWidth;
       this.$parent.audio.currentTime = this.$parent.audio.duration * percent;
-    }
+    },
+    mouseDownEvent() {
+      // onplayhead = true;
+      window.addEventListener('mousemove', this.movePlayhead, true);
+      this.$parent.audio.removeEventListener('timeupdate', this.$parent.timeUpdate, false);
+    },
+    movePlayhead(event) {
+      var player = document.getElementById('player');
+      var playhead = document.getElementById('playhead');
+      var margin = event.pageX - player.offsetLeft;
+
+      if (margin >= 0 && margin <= this.$parent.playerWidth)
+        playhead.style.marginLeft = margin + "px";
+
+      if (margin < 0)
+        playhead.style.marginLeft = "0px";
+
+      if (margin > this.$parent.playerWidth)
+        playhead.style.marginLeft = this.$parent.playerWidth + "px"
+        },
   }, 
   computed: {
     loaded() {
@@ -34,11 +53,15 @@ export default {
   },
   mounted() {
     var player = document.getElementById('player');
+    var playhead = document.getElementById('playhead');
+
     this.getPlayerWidth();
 
     player.addEventListener('click', (event) => {
       this.clickEvent(event);
     });
+
+    playhead.addEventListener('mousedown', this.mouseDownEvent, false);
   }
 }; 
 </script>
