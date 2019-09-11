@@ -2,7 +2,7 @@
   <div id="player" v-if="loaded">
     <div id="audio-player">
       <div id="timeline">
-        <div id="playhead"></div>
+        <div id="playhead" :style="{ marginLeft: $parent.playPercent + 'px' }"></div>
       </div>
     </div>
   </div>
@@ -12,14 +12,24 @@
 export default {
   data() {
     return {
+      playerWidth: null,
     }
   },
   methods: {
+    getPlayerWidth() {
+      var player = document.getElementById('player');
+      var playhead = document.getElementById('playhead');
+      var playerWidth = player.offsetWidth - playhead.offsetWidth;
+      this.$parent.playerWidth = playerWidth;
+    }
   }, 
   computed: {
     loaded() {
       return this.$root.loaded;
     }
+  },
+  mounted() {
+    this.getPlayerWidth();
   }
 }; 
 </script>

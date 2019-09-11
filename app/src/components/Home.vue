@@ -27,7 +27,9 @@ export default {
       audio: new Audio(),
       showEpisodeInfoModal: false,
       currentTime: '00:00:00',
-      totalTime: null
+      totalTime: null,
+      playPercent: 0,
+      playerWidth: 0
     }
   },
   methods: {
@@ -55,6 +57,7 @@ export default {
         this.totalTime = this.formatTime(this.audio.duration);
 
       this.currentTime = this.formatTime(this.audio.currentTime);
+      this.playPercent = this.playerWidth * (this.audio.currentTime / this.audio.duration);
     }
   },
   computed: {
