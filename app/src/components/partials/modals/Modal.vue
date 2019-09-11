@@ -42,7 +42,7 @@ export default {
 	top: 0;
 	left: 0;
 	background: rgba(0, 0, 0, 0.7);
-	z-index: 8;
+	z-index: 15;
 	overflow-y: scroll;
 }
 .modal-content {
