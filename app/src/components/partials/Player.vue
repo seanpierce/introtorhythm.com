@@ -27,9 +27,16 @@ export default {
       this.$parent.audio.currentTime = this.$parent.audio.duration * percent;
     },
     mouseDownEvent() {
-      // onplayhead = true;
+      this.$parent.onplayhead = true;
       window.addEventListener('mousemove', this.movePlayhead, true);
+      window.addEventListener('mouseup', this.mouseUpEvent, false);
       this.$parent.audio.removeEventListener('timeupdate', this.$parent.timeUpdate, false);
+    },
+    mouseUpEvent() {
+      this.$parent.onplayhead = false;
+      this.$parent.audio.addEventListener('timeupdate', this.$parent.timeUpdate, true);
+      window.removeEventListener('mousemove', this.movePlayhead, true);
+      window.removeEventListener('mouseup', this.mouseUpEvent, true);
     },
     movePlayhead(event) {
       var player = document.getElementById('player');
@@ -44,7 +51,7 @@ export default {
 
       if (margin > this.$parent.playerWidth)
         playhead.style.marginLeft = this.$parent.playerWidth + "px"
-        },
+    },
   }, 
   computed: {
     loaded() {

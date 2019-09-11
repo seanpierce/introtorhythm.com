@@ -29,7 +29,8 @@ export default {
       currentTime: '00:00:00',
       totalTime: null,
       playPercent: 0,
-      playerWidth: 0
+      playerWidth: 0,
+      onplayhead: false
     }
   },
   methods: {
@@ -57,7 +58,8 @@ export default {
         this.totalTime = this.formatTime(this.audio.duration);
 
       this.currentTime = this.formatTime(this.audio.currentTime);
-      this.playPercent = this.playerWidth * (this.audio.currentTime / this.audio.duration);
+      if (!this.onplayhead)
+        this.playPercent = this.playerWidth * (this.audio.currentTime / this.audio.duration);
     }
   },
   computed: {
@@ -70,9 +72,7 @@ export default {
   },
   mounted() {
     this.audio.src = this.$root.mediaUrl + this.currentEpisode.audio;
-    this.audio.addEventListener('timeupdate', () => {
-      this.timeUpdate();
-    });
+    this.audio.addEventListener('timeupdate', this.timeUpdate);
   }
 }; 
 </script>
