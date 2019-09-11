@@ -69,6 +69,7 @@ export default {
     });
 
     playhead.addEventListener('mousedown', this.mouseDownEvent, false);
+    window.addEventListener('resize', this.getPlayerWidth);
   }
 }; 
 </script>
