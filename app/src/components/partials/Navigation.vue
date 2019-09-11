@@ -1,17 +1,23 @@
 <template>
   <div class="nav" v-if="loaded">
     <div id="play-button-container">
-      <!-- <button id="play-button" class="play" onclick="play()"></button> -->
+      <button 
+        id="play-button" 
+        v-bind:style="{ 
+          backgroundImage: 'url(' + playButtonBackgroundUrl + ')', 
+          backgroundColor: 'rgba(0,0,0,0)'
+        }"
+        @click="togglePlay()"></button>
     </div>
     <ul>
       <li><a href="/">Intro To Rhythm</a><li>
       <li>------</li>
       <li>Now Playing: Ep {{ currentEpisode.number }}</li>
-      <li id="tracktime">00:00:00 / 00:00:00</li>
+      <li id="tracktime">{{ $parent.currentTime }} / {{ $parent.totalTime || '00:00:00' }}</li>
       <li>
         <span 
           class="red pointer"
-          onclick="openModal('info-modal')">
+          @click="showEpisodeInfoModal()">
           See Ep {{ currentEpisode.number }} Info &lt;
         </span>
       </li>
@@ -19,12 +25,21 @@
       <li v-for="episode in episodes" :key="episode.number" :class="isCurrent(episode.number) ? 'red': ''">
         <a :href="'/' + episode.number">{{ episode.number }}- {{ episode.title }}</a>
       </li>
+      <li>------</li>
+      <li><span class="pointer">About ITR</span></li>
+      <li><a href="/archive">Archive</a></li>
+      <SubscriptionForm />
     </ul>
   </div>
 </template>
 
 <script>
+import SubscriptionForm from './SubscriptionForm.vue';
+
 export default {
+  components: {
+    SubscriptionForm
+  },
   data() {
     return {
     }
@@ -32,9 +47,18 @@ export default {
   methods: {
     isCurrent(number) {
       return this.currentEpisode.number === number;
-    }
+    },
+    togglePlay() {
+      this.$parent.togglePlay();
+    },
+    showEpisodeInfoModal() {
+      this.$parent.showEpisodeInfoModal = true;
+    },
   }, 
   computed: {
+    debug() {
+      return this.$root.debug;
+    },
     loaded() {
       return this.$root.loaded;
     },
@@ -44,6 +68,15 @@ export default {
     episodes() {
       return this.$root.data.episodes;
     },
+    playing() {
+      return this.$parent.playing;
+    },
+    playButtonBackgroundUrl() {
+      if (this.playing)
+        return require('../../assets/pause.png')
+      else
+        return require('../../assets/play.png')
+    }
   }
 }; 
 </script>
@@ -75,5 +108,48 @@ export default {
 }
 .red {
 	color: red;
+}
+#play-button-container {
+	width: 200px;
+	text-align: center;
+	height: 200px;
+	position: fixed;
+	top:0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	z-index: 1;
+}
+#play-button {
+	height:200px;
+	width: 200px;
+	border: none;
+	background-size: 50% 50%;
+	background-repeat: no-repeat;
+	background-position: center;
+	outline:none;
+	cursor: pointer;
+}
+.play { 
+  background: url('/static/images/play.png');
+}
+.pause {
+  background: url('/static/images/pause.png');
+}
+@media (max-width: 750px) {
+	.nav ul {
+		margin-top: 200px;
+	}
+	#play-button-container {
+		position: absolute;
+		bottom: unset;
+	}
+}
+@media (max-width: 500px) {
+	.nav {
+		width: 100%;
+    background: rgba(255, 255, 255, 0.7)
+	}
 }
 </style>

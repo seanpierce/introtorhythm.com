@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="loaded">
     <Home v-if="route === 'home'"/>
     <Archive v-if="route === 'archive'"/>
   </div>
@@ -29,6 +29,9 @@ export default {
         default:
           return 'home';
       }
+    },
+    loaded() {
+      return this.$root.loaded;
     }
   },
   mounted() {
