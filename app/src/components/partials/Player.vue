@@ -12,7 +12,6 @@
 export default {
   data() {
     return {
-      playerWidth: null,
     }
   },
   methods: {
@@ -21,6 +20,11 @@ export default {
       var playhead = document.getElementById('playhead');
       var playerWidth = player.offsetWidth - playhead.offsetWidth;
       this.$parent.playerWidth = playerWidth;
+    },
+    clickEvent(event) {
+      var player = document.getElementById('player');
+      var percent = (event.pageX - player.offsetLeft) / this.$parent.playerWidth;
+      this.$parent.audio.currentTime = this.$parent.audio.duration * percent;
     }
   }, 
   computed: {
@@ -29,7 +33,12 @@ export default {
     }
   },
   mounted() {
+    var player = document.getElementById('player');
     this.getPlayerWidth();
+
+    player.addEventListener('click', (event) => {
+      this.clickEvent(event);
+    });
   }
 }; 
 </script>
