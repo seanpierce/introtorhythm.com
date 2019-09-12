@@ -1,4 +1,3 @@
-{% load render_bundle from webpack_loader %}
 {% load static %}
 
 <!DOCTYPE html>
@@ -10,10 +9,19 @@
     <link rel="icon" type="image/png" sizes="96x96" href="{% static 'images/favicon.png' %}">
     <title>Intro To Rhythm | {{ title }}</title>
     <link href="https://fonts.googleapis.com/css?family=Droid+Sans+Mono" rel="stylesheet" type="text/css" />
+    <link href="{% static 'css/app.css' %}" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <div id="data" data="{{ data }}" debug="{{ debug }}"></div>
     <div id="app"></div>
-    {% render_bundle 'app' %}
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+{% if debug %}
+<!-- development version -->
+<script src="https://unpkg.com/vue"></script>
+{% else %}
+<!-- production version -->
+<script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+{% endif %}
+<script type="module" src="{% static 'app/index.js' %}"></script>
 </html>

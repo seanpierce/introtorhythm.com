@@ -26,5 +26,5 @@ new Vue({
     var debug = elem.attributes.debug.value;
     this.data = JSON.parse(data);
     this.debug = debug === 'True';
-  }
+},
 }).$mount('#app')
