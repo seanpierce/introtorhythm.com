@@ -145,7 +145,7 @@ INTERNAL_IPS = (
 )
 
 STATIC_ROOT = 'static'
-STATIC_URL = '/assets/'
+STATIC_URL = '/static/'
 STATICFILES_DIRS = ( os.path.join('assets'), )
 
 WEBPACK_LOADER = {

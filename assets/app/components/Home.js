@@ -1,10 +1,16 @@
 import { Navigation } from './partials/Navigation.js';
 import { BackgroundImage } from './partials/BackgroundImage.js';
+import { PlayButton } from './partials/PlayButton.js';
+import { Modal } from './partials/modals/Modal.js';
+import { Player } from './partials/Player.js';
 
 export var Home = {
     components: {
         'Navigation': Navigation,
-        'BackgroundImage': BackgroundImage
+        'BackgroundImage': BackgroundImage,
+        'PlayButton': PlayButton,
+        'Modal': Modal,
+        'Player': Player
     },
     data() {
         return {
@@ -66,6 +72,10 @@ export var Home = {
         <div id="home">
             <Navigation />
             <BackgroundImage />
+            <PlayButton />
+            <Modal v-if="showEpisodeInfoModal" type="episodeInfo"/>
+            <Modal v-if="showAboutModal" type="about"/>
+            <Player />
         </div>
     `
 }

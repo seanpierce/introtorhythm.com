@@ -4,10 +4,10 @@
             <img id="close" 
                 class="pointer" 
                 @click="closeModal($event)"
-                src="../../../assets/close.svg">
+                src="static/images/close.svg">
             <!-- content -->
-            <EpisodeInfoModal v-if="type==='episodeInfo'" />
-            <AboutModal v-if="type==='about'" />
+            <!-- <EpisodeInfoModal v-if="type==='episodeInfo'" />
+            <AboutModal v-if="type==='about'" /> -->
         </div>
     </div>
 </template>

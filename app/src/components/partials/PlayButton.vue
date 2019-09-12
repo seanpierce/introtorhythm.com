@@ -3,10 +3,7 @@
         <button 
             id="play-button" 
             v-if="!$parent.showMobileNav || !$parent.mobile"
-            v-bind:style="{ 
-                backgroundImage: 'url(' + playButtonBackgroundUrl + ')', 
-                backgroundColor: 'rgba(0,0,0,0)'
-            }"
+            v-bind:class="{ class : true }"
             @click="togglePlay()">
         </button>
     </div>
@@ -23,11 +20,11 @@ export default {
         playing() {
             return this.$parent.playing;
         },
-        playButtonBackgroundUrl() {
+        class() {
             if (this.playing)
-                return require('../../assets/pause.png')
-            else
-                return require('../../assets/play.png')
+                return 'pause';
+            else 
+                return 'play';
         }
     }
 }

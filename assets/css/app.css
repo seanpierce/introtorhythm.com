@@ -141,3 +141,127 @@ ul, li {
 	background-position: center;
 	z-index: 2;
 }
+
+/* ----------------------------------- Play Button */
+#play-button-container {
+	width: 200px;
+	text-align: center;
+	height: 200px;
+	position: fixed;
+	top:0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	z-index: 5;
+}
+
+#play-button {
+	height:200px;
+	width: 200px;
+	border: none;
+	background-size: 50% 50%;
+	background-repeat: no-repeat;
+	background-position: center;
+	outline:none;
+	cursor: pointer;
+}
+
+.play {
+	background: rgba(0, 0, 0, 0);
+	background-image: url('/static/images/play.png');
+}
+
+.pause {
+	background: rgba(0, 0, 0, 0);
+	background-image: url('/static/images/pause.png');
+}
+
+/* ---------------------------------------- Modals */
+#modal {
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	background: rgba(0, 0, 0, 0.7);
+	z-index: 15;
+	overflow-y: scroll;
+}
+
+.modal-content {
+	width: 96%;
+	max-width: 900px;
+	display: block;
+	margin: 4em auto 8em auto;
+	border: solid 1px white;
+	padding: 2em;
+	background: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content * {
+	color: white !important;
+}
+
+.modal-content .content {
+    margin-top: 1em;
+}
+
+#close {
+    height: 1.5em;
+}
+
+/* ---------------------------------------- Player */
+#player {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	height: 3em;
+	width: 100%;
+	background-color: rgba(255, 255, 255, 1);
+	z-index: 14;
+}
+
+#audioplayer {
+	width: 100%;
+	height: 3em;
+}
+
+#timeline {
+	width: 100%;
+	height: 3em;
+	border-top: solid 1px black;
+	background: rgba(255,255,255,1);
+}
+
+#playhead {
+	width: 10px;
+	height: 3em;
+	background: rgba(0, 0, 0, 1);
+	cursor: ew-resize;
+}
+
+/* -------------------------------------------- Archive */
+
+#archive {
+	margin: 2em 1em;
+}
+#archive a {
+	text-decoration: none;
+}
+#archive a:hover {
+	text-decoration: underline;
+}
+.tab-1 {
+	margin-left: 2em;
+}
+.tab-2 {
+	margin-left: 4em;
+}
+.tab-3 {
+	margin-left: 6em;
+}
+#archive div,
+#archive li {
+	margin-bottom: 8px;
+}
