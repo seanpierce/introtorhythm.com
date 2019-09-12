@@ -55,7 +55,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'episode',
     'subscribers',
-    'webpack_loader',
     'storages',
     'ckeditor',
 ]
