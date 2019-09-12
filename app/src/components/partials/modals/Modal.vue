@@ -6,7 +6,8 @@
                 @click="closeModal($event)"
                 src="../../../assets/close.svg">
             <!-- content -->
-            <EpisodeInfoModal />
+            <EpisodeInfoModal v-if="type==='episodeInfo'" />
+            <AboutModal v-if="type==='about'" />
         </div>
     </div>
 </template>
@@ -14,13 +15,15 @@
 <script>
 /*eslint no-console: ["error", { allow: ["log"] }] */
 import EpisodeInfoModal from './EpisodeInfoModal.vue';
+import AboutModal from './AboutModal.vue';
 
 export default {
     props : {
         type: String
     },
     components: {
-        EpisodeInfoModal
+        EpisodeInfoModal,
+        AboutModal
     },
     methods: {
         closeModal(event) {
@@ -29,6 +32,9 @@ export default {
 
             if (this.type === "episodeInfo")
                 this.$parent.showEpisodeInfoModal = false;
+
+            if (this.type === "about")
+                this.$parent.showAboutModal = false;
         }
     }
 }
@@ -56,6 +62,9 @@ export default {
 }
 .modal-content * {
 	color: white !important;
+}
+.modal-content .content {
+    margin-top: 1em;
 }
 #close {
     height: 1.5em;

@@ -25,7 +25,7 @@
           <a :href="'/' + episode.number">{{ episode.number }}- {{ episode.title }}</a>
         </li>
         <li>------</li>
-        <li><span class="pointer">About ITR</span></li>
+        <li><span class="pointer" @click="showAboutModal()">About ITR</span></li>
         <li><a href="/archive">Archive</a></li>
         <SubscriptionForm />
       </ul>
@@ -51,6 +51,9 @@ export default {
     },
     showEpisodeInfoModal() {
       this.$parent.showEpisodeInfoModal = true;
+    },
+    showAboutModal() {
+      this.$parent.showAboutModal = true;
     },
     toggleMobileNav() {
       this.$parent.showMobileNav = !this.$parent.showMobileNav;

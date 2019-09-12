@@ -1,5 +1,5 @@
 <template>
-    <div id="episode-info">
+    <div id="episode-info" class="content">
         <div id="episode-heading">{{ currentEpisode.number }}- {{ currentEpisode.title }}</div>
         <div v-html="currentEpisode.content"></div>
         <div>
@@ -24,7 +24,4 @@ export default {
 </script>
 
 <style scoped>
-#episode-heading {
-    margin-top: 1em;
-}
 </style>

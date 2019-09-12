@@ -4,6 +4,7 @@
     <BackgroundImage />
     <PlayButton />
     <Modal v-if="showEpisodeInfoModal" type="episodeInfo"/>
+    <Modal v-if="showAboutModal" type="about"/>
     <Player />
   </div>
 </template>
@@ -29,6 +30,7 @@ export default {
       playing: false,
       audio: new Audio(),
       showEpisodeInfoModal: false,
+      showAboutModal: false,
       currentTime: '00:00:00',
       totalTime: null,
       playPercent: 0,
