@@ -16,11 +16,9 @@ before_install:
 
 install:
   - pip install -r requirements.txt
-  - python scripts/install-frontend.py
 
 before_script:
   - cp test.env.ini env.ini
 
 script:
-  - python scripts/build-frontend.py
-  - python scripts/run-tests.py
+  - python run-tests.py
