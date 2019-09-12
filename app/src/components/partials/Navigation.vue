@@ -1,13 +1,13 @@
 <template>
   <div>
-    <div id="mobile-nav-toggle">
-      <div id="menu-container" @click="toggleMobileNav()">
+    <div id="mobile-nav-toggle" v-if="mobile">
+      <div id="menu-container" @click="toggleMobileNav()" :class="{ 'change': showMobileNav }">
         <div class="bar1"></div>
         <div class="bar2"></div>
         <div class="bar3"></div>
       </div>
     </div>
-    <div id="nav" v-if="loaded">
+    <div id="nav" v-if="loaded && showNav">
       <ul>
         <li><a href="/">Intro To Rhythm</a><li>
         <li>------</li>
@@ -43,6 +43,8 @@ export default {
   },
   data() {
     return {
+      mobile: document.documentElement.clientWidth < 750,
+      showMobileNav: false
     }
   },
   methods: {
@@ -53,33 +55,20 @@ export default {
       this.$parent.showEpisodeInfoModal = true;
     },
     toggleMobileNav() {
-      var menu = document.getElementById('menu-container');
-      var nav = document.getElementById('nav');
-
-      menu.classList.toggle('change');
-
-      if (nav.style.display === 'inherit')
-        nav.style.display = 'none';
-      else
-        nav.style.display = 'inherit';
+      this.showMobileNav = !this.showMobileNav;
     },
-    showNavOnResize() {
-      var width = document.documentElement.clientWidth;
-      var menu = document.getElementById('menu-container');
-      var nav = document.getElementById('nav');
-
+    resize() {
+      var width = document.documentElement.clientWidth;  
       if (width > 750) {
-        nav.style.display = 'inherit';
-        menu.classList.remove('change');
+        this.mobile = false;
       } else {
-        nav.style.display = 'none';
-        // menu.classList.remove('change');
+        this.mobile = true;
       }
     }
   }, 
   computed: {
-    debug() {
-      return this.$root.debug;
+    showNav() {
+      return this.mobile && this.showMobileNav || !this.mobile;
     },
     loaded() {
       return this.$root.loaded;
@@ -92,7 +81,7 @@ export default {
     },
   },
   mounted() {
-    window.addEventListener('resize', this.showNavOnResize);
+    window.addEventListener('resize', this.resize);
   }
 }; 
 </script>
@@ -126,7 +115,6 @@ export default {
 	color: red;
 }
 #mobile-nav-toggle {
-  display: none;
   position: relative;
   font-size: 3em;
   z-index: 12;
@@ -157,19 +145,15 @@ export default {
 @media (max-width: 750px) {
   #nav {
     width: 100%;
-    display: none;
   }
   #nav ul {
     margin-top: 4em;
-  }
-  #mobile-nav-toggle {
-    display: inherit;
   }
 }
 @media (max-width: 500px) {
 	#nav {
 		width: 100%;
-    background: rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 0.9);
 	}
 }
 </style>

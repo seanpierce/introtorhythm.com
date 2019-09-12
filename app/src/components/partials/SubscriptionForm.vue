@@ -56,10 +56,8 @@ export default {
 
             axios.post('/api/requests/', payload)
                 .then(res => {
-                    if (res.data.data)
-                        this.handleSuccess(this.email);
-                    else 
-                        this.handleError(res);
+                    this.handleSuccess(this.email);
+                    console.log(res);
                 })
                 .catch(err => {
                     this.handleError(err);
