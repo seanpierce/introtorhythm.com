@@ -33,7 +33,9 @@ export default {
       totalTime: null,
       playPercent: 0,
       playerWidth: 0,
-      onplayhead: false
+      onplayhead: false,
+      mobile: document.documentElement.clientWidth < 750,
+      showMobileNav: false
     }
   },
   methods: {

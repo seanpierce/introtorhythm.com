@@ -2,6 +2,7 @@
     <div id="play-button-container">
         <button 
             id="play-button" 
+            v-if="!$parent.showMobileNav || !$parent.mobile"
             v-bind:style="{ 
                 backgroundImage: 'url(' + playButtonBackgroundUrl + ')', 
                 backgroundColor: 'rgba(0,0,0,0)'

@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div id="mobile-nav-toggle" v-if="mobile">
-      <div id="menu-container" @click="toggleMobileNav()" :class="{ 'change': showMobileNav }">
+    <div id="mobile-nav-toggle" v-if="$parent.mobile">
+      <div id="menu-container" @click="toggleMobileNav()" :class="{ 'change': $parent.showMobileNav }">
         <div class="bar1"></div>
         <div class="bar2"></div>
         <div class="bar3"></div>
@@ -43,8 +43,6 @@ export default {
   },
   data() {
     return {
-      mobile: document.documentElement.clientWidth < 750,
-      showMobileNav: false
     }
   },
   methods: {
@@ -55,20 +53,19 @@ export default {
       this.$parent.showEpisodeInfoModal = true;
     },
     toggleMobileNav() {
-      this.showMobileNav = !this.showMobileNav;
+      this.$parent.showMobileNav = !this.$parent.showMobileNav;
     },
     resize() {
       var width = document.documentElement.clientWidth;  
-      if (width > 750) {
-        this.mobile = false;
-      } else {
-        this.mobile = true;
-      }
+      if (width > 750)
+        this.$parent.mobile = false;
+      else
+        this.$parent.mobile = true;
     }
   }, 
   computed: {
     showNav() {
-      return this.mobile && this.showMobileNav || !this.mobile;
+      return this.$parent.mobile && this.$parent.showMobileNav || !this.$parent.mobile;
     },
     loaded() {
       return this.$root.loaded;
@@ -115,7 +112,7 @@ export default {
 	color: red;
 }
 #mobile-nav-toggle {
-  position: relative;
+  position: absolute;
   font-size: 3em;
   z-index: 12;
 }
@@ -125,7 +122,7 @@ export default {
   cursor: pointer;
 }
 .bar1, .bar2, .bar3 {
-  width: 35px;
+  width: 40px;
   height: 5px;
   background-color: black;
   margin: 6px 0;
@@ -145,15 +142,10 @@ export default {
 @media (max-width: 750px) {
   #nav {
     width: 100%;
+    background: rgba(255, 255, 255, 0.6);
   }
   #nav ul {
     margin-top: 4em;
   }
-}
-@media (max-width: 500px) {
-	#nav {
-		width: 100%;
-    background: rgba(255, 255, 255, 0.9);
-	}
 }
 </style>
