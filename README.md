@@ -20,9 +20,9 @@ The purpose of this project it to take what I've learned with the [initial djang
 |![](https://user-images.githubusercontent.com/15679739/64751042-c3cfb900-d4cf-11e9-9ab6-ee37f24562ce.png)|![](https://user-images.githubusercontent.com/15679739/64751177-3fca0100-d4d0-11e9-80a6-787d19f3de0e.png)|
 
 ### Mobile Views
-| Main | Details |
-|:-----|:--------|
-|![](https://user-images.githubusercontent.com/15679739/64751043-c3cfb900-d4cf-11e9-9279-09f8b6af3f20.png)|![](https://user-images.githubusercontent.com/15679739/64751044-c3cfb900-d4cf-11e9-8d77-f1bec2260b86.png)|
+| Main | Mobile Nav | Details |
+|:-----|:-----------|:--------|
+|![](https://user-images.githubusercontent.com/15679739/64751043-c3cfb900-d4cf-11e9-9279-09f8b6af3f20.png)|![](https://user-images.githubusercontent.com/15679739/64751044-c3cfb900-d4cf-11e9-8d77-f1bec2260b86.png)|![](https://user-images.githubusercontent.com/15679739/64751554-5c1a6d80-d4d1-11e9-95f1-076312d56236.png)|
 
 ## Installation
 
