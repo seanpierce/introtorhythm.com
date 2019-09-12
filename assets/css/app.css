@@ -113,3 +113,31 @@ ul, li {
     background: white;
     border-radius: 0;
 }
+
+/* ---------------------------------------- Background Image */
+#background-image {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+	filter: grayscale(100%);
+    z-index: 1;
+}
+
+#brighten {
+    display: block;
+	position: fixed;
+	top: 0;
+	left: 0;
+    width: 100%;
+	height: 100%;
+	background-color: rgba(255, 255, 255, 0.2);
+	background-size: cover;
+	background-position: center;
+	z-index: 2;
+}

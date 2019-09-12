@@ -1,8 +1,10 @@
 import { Navigation } from './partials/Navigation.js';
+import { BackgroundImage } from './partials/BackgroundImage.js';
 
 export var Home = {
     components: {
-        'Navigation': Navigation
+        'Navigation': Navigation,
+        'BackgroundImage': BackgroundImage
     },
     data() {
         return {
@@ -63,6 +65,7 @@ export var Home = {
     template: `
         <div id="home">
             <Navigation />
+            <BackgroundImage />
         </div>
     `
 }
