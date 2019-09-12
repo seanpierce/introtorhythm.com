@@ -69,6 +69,7 @@ export default {
     });
 
     playhead.addEventListener('mousedown', this.mouseDownEvent, false);
+    window.addEventListener('resize', this.getPlayerWidth);
   }
 }; 
 </script>
@@ -81,7 +82,7 @@ export default {
 	height: 3em;
 	width: 100%;
 	background-color: rgba(255, 255, 255, 1);
-	z-index: 7;
+	z-index: 14;
 }
 #audioplayer {
 	width: 100%;

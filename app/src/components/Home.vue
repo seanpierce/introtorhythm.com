@@ -2,6 +2,7 @@
   <div id="home">
     <Navigation />
     <BackgroundImage />
+    <PlayButton />
     <Modal v-if="showEpisodeInfoModal" type="episodeInfo"/>
     <Player />
   </div>
@@ -11,6 +12,7 @@
 /*eslint no-console: ["error", { allow: ["log"] }] */
 import Navigation from './partials/Navigation';
 import BackgroundImage from './partials/BackgroundImage';
+import PlayButton from './partials/PlayButton';
 import Modal from './partials/modals/Modal';
 import Player from './partials/Player';
 
@@ -18,6 +20,7 @@ export default {
   components: {
     Navigation,
     BackgroundImage,
+    PlayButton,
     Modal,
     Player,
   },
@@ -30,7 +33,9 @@ export default {
       totalTime: null,
       playPercent: 0,
       playerWidth: 0,
-      onplayhead: false
+      onplayhead: false,
+      mobile: document.documentElement.clientWidth < 750,
+      showMobileNav: false
     }
   },
   methods: {
