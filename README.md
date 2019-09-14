@@ -55,15 +55,6 @@ python manage.py migrate
 # run unit tests
 python scripts/run-tests.py
 
-# install front end dependencies
-python scripts/install-frontend.py
-
-# build the FE for development
-python scripts/serve-frontend.py
-
-# build the FE for production
-python scripts/build-frontend.py
-
 # start the development server
 python manage.py runserver
 

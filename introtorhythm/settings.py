@@ -37,10 +37,10 @@ DEBUG = eval(CONFIG.get('Environment', 'DEBUG'))
 ALLOWED_HOSTS = CONFIG.get('Environment', 'ALLOWED_HOSTS').split(',')
 HOST_URL = CONFIG.get('Environment', 'HOST_URL')
 
-if DEBUG is True:
-	SECURE_SSL_REDIRECT = False
-else:
-	SECURE_SSL_REDIRECT = True
+# if DEBUG is True:
+# 	SECURE_SSL_REDIRECT = False
+# else:
+# 	SECURE_SSL_REDIRECT = True
 
 
 # Application definition
@@ -86,6 +86,25 @@ TEMPLATES = [
         },
     },
 ]
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': 'debug.log',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
 
 WSGI_APPLICATION = 'introtorhythm.wsgi.application'
 
@@ -143,8 +162,16 @@ INTERNAL_IPS = (
     '127.0.0.1'
 )
 
+# pulls in assets for the Django Admin settings
 STATIC_ROOT = 'static'
-STATIC_URL = '/static/'
+
+# url for referencing assets
+# ex: mysite.com/public/styles.css
+STATIC_URL = '/assets/'
+
+# the location where the static assets live
+# note: when the app refernces the public URL, it will point to the assets folder
+# note2: all files under this directory will be pulled into the static folder
 STATICFILES_DIRS = ( os.path.join('assets'), )
 
 AWS_ACCESS_KEY_ID = CONFIG.get('AWS Secret Keys', 'AWS_ACCESS_KEY_ID')

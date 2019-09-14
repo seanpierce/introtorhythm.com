@@ -5,6 +5,10 @@
 	box-sizing: border-box;
 }
 
+body {
+	margin: 0;
+}
+
 ul, li {
 	list-style: none;
 	padding: 0;
@@ -47,19 +51,22 @@ ul, li {
 }
 
 #mobile-nav-toggle {
-  position: absolute;
+  position: relative;
   font-size: 3em;
   z-index: 12;
+  display: block;
+  background: rgba(255, 255, 255, 0.7);
+  border-bottom: solid 1px black;
 }
 
 #menu-container {
   padding: 8px;
-  display: inline-block;
   cursor: pointer;
+  display: block;
 }
 
 .bar1, .bar2, .bar3 {
-  width: 40px;
+  width: 38px;
   height: 5px;
   background-color: black;
   margin: 6px 0;
@@ -169,12 +176,12 @@ ul, li {
 
 .play {
 	background: rgba(0, 0, 0, 0);
-	background-image: url('/static/images/play.png');
+	background-image: url('../images/play.png');
 }
 
 .pause {
 	background: rgba(0, 0, 0, 0);
-	background-image: url('/static/images/pause.png');
+	background-image: url('../images/pause.png');
 }
 
 /* ---------------------------------------- Modals */
@@ -264,4 +271,19 @@ ul, li {
 #archive div,
 #archive li {
 	margin-bottom: 8px;
+}
+
+/* ----------------------------- Subscription Confirmation */
+#subscription-confirmation-modal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 20;
+	background: white;
+}
+
+#subscription-confirmation-modal .content {
+	margin: 2em;
 }
