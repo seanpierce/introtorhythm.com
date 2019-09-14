@@ -5,6 +5,10 @@
 	box-sizing: border-box;
 }
 
+body {
+	margin: 0;
+}
+
 ul, li {
 	list-style: none;
 	padding: 0;
@@ -47,15 +51,18 @@ ul, li {
 }
 
 #mobile-nav-toggle {
-  position: absolute;
+  position: relative;
   font-size: 3em;
   z-index: 12;
+  display: block;
+  background: rgba(255, 255, 255, 0.7);
+  border-bottom: solid 1px black;
 }
 
 #menu-container {
   padding: 8px;
-  display: inline-block;
   cursor: pointer;
+  display: block;
 }
 
 .bar1, .bar2, .bar3 {

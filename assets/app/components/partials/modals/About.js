@@ -14,9 +14,18 @@ export var About = {
                 <br>
                 Additionally, ITR is dedicated to open-source projects, and the collective idea sharing that fuels creative expression. If you're interested in developing your own live-streaming station or podcasting platform, you're invited to refer to ITR's source code (Licence MIT).<br>
                 <br>
-                Send questions and comments to infor@introtorhythm.com<br>
-                <br>
+                Send questions and comments to introtorhythm@gmail.com<br>
                 Follow ITR on: <a href="https://www.facebook.com/introtorhythm/">Facebook</a> / <a href="https://www.instagram.com/introtorhythm/">Instagram</a> / <a href="https://twitter.com/introtorhythm">Twitter</a>
+                <br>
+                <br>
+                Maintaining the application and server environments can be costly and time consuming. If you appreciate ITR and you have the means, please consider making a donation.<br>
+                <br>
+                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                    <input type="hidden" name="cmd" value="_s-xclick" />
+                    <input type="hidden" name="hosted_button_id" value="TUHQST72H25YS" />
+                    <input type="image" src="https://introtorhythm.com/assets/images/donate-button-2.png" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+                <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
+                </form>
             </div>
         </div>
     `
