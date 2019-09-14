@@ -169,12 +169,12 @@ ul, li {
 
 .play {
 	background: rgba(0, 0, 0, 0);
-	background-image: url('/static/images/play.png');
+	background-image: url('../images/play.png');
 }
 
 .pause {
 	background: rgba(0, 0, 0, 0);
-	background-image: url('/static/images/pause.png');
+	background-image: url('../images/pause.png');
 }
 
 /* ---------------------------------------- Modals */

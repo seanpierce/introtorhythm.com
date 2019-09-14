@@ -7,10 +7,8 @@ from django.http import HttpResponse
 from django.views.generic import View
 from django.shortcuts import redirect
 from django.conf import settings
-
-if settings.DEBUG:
-    from django.views.decorators.csrf import csrf_exempt
-    from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
 
 from .repository import SubscriberRepository as repo
 from .emails import SubscriberEmails as email
@@ -51,13 +49,12 @@ class SubscrptionConfirmationAPI(View):
 
 
 class SubscriptionRequestAPI(View):
-    if settings.DEBUG:
-        @method_decorator(csrf_exempt)
-        def dispatch(self, request, *args, **kwargs):
-            """If DEBUG, add decorator to internal class method to
-            ignore the pressence of a csrf token/ cookie in the requrest.
-            """
-            return super(SubscriptionRequestAPI, self).dispatch(request, *args, **kwargs)
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args, **kwargs):
+        """Add decorator to internal class method to
+        ignore the pressence of a csrf token/ cookie in the requrest.
+        """
+        return super(SubscriptionRequestAPI, self).dispatch(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
         """Creates a SubscriptionRequest record in the database,
@@ -69,7 +66,7 @@ class SubscriptionRequestAPI(View):
         Returns:
             A boolean value indicating the success or failure of the process.
         """
-        body = json.loads(request.body)
+        body = json.loads(request.body.decode('utf-8'))
 
         if repo.create_subscription_request(body['email']):
             token = repo.get_token_by_email(body['email'])

@@ -33,7 +33,7 @@ export var Modal = {
                 <img id="close" 
                     class="pointer" 
                     @click="closeModal($event)"
-                    src="static/images/close.svg">
+                    :src="$root.staticUrl + '/images/close.svg'">
                 <!-- content -->
                 <EpisodeInfo v-if="type==='episodeInfo'" />
                 <About v-if="type==='about'" />

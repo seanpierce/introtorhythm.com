@@ -9,7 +9,8 @@ export const vue = new Vue({
     data: {
         data: null,
         debug: null,
-        mediaUrl: 'https://s3.amazonaws.com/podcasts.introtorhythm.com/media/'
+        mediaUrl: 'https://s3.amazonaws.com/podcasts.introtorhythm.com/media/',
+        staticUrl: 'public'
     },
     computed: {
         loaded() {

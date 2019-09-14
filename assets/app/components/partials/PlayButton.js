@@ -24,7 +24,10 @@ export var PlayButton = {
             <button 
                 id="play-button" 
                 v-if="!$parent.showMobileNav || !$parent.mobile"
-                v-bind:class="{ 'play' : !playing, 'pause' : playing}"
+                v-bind:class="{ 
+                    'play' : !playing, 
+                    'pause' : playing,
+                }"
                 @click="togglePlay()">
             </button>
         </div>
