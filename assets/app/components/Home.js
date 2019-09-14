@@ -3,6 +3,8 @@ import { BackgroundImage } from './partials/BackgroundImage.js';
 import { PlayButton } from './partials/PlayButton.js';
 import { Modal } from './partials/modals/Modal.js';
 import { Player } from './partials/Player.js';
+import { Success } from './partials/modals/SubscriptionConfirmation/Success.js';
+import { Failure } from './partials/modals/SubscriptionConfirmation/Failure.js';
 
 export var Home = {
     components: {
@@ -10,7 +12,9 @@ export var Home = {
         'BackgroundImage': BackgroundImage,
         'PlayButton': PlayButton,
         'Modal': Modal,
-        'Player': Player
+        'Player': Player,
+        'ConfirmationSuccess': Success,
+        'ConfirmationFailure': Failure
     },
     data() {
         return {
@@ -24,7 +28,9 @@ export var Home = {
             playerWidth: 0,
             onplayhead: false,
             mobile: document.documentElement.clientWidth < 750,
-            showMobileNav: false
+            showMobileNav: false,
+            showConfirmationSuccess: false,
+            showConfirmationFailure: false,
         }
     },
     methods: {
@@ -54,6 +60,18 @@ export var Home = {
             this.currentTime = this.formatTime(this.audio.currentTime);
             if (!this.onplayhead)
                 this.playPercent = this.playerWidth * (this.audio.currentTime / this.audio.duration);
+        },
+        scribSubscriptionConfirmationOutcomeUrl() {
+            window.history.replaceState({}, document.title, '/');
+        },
+        checkForSubscriptionConfirmationOutcome() {
+            var url = new URL(window.location.href);
+            var param = url.searchParams.get("success");
+            if (param) {
+                if (param === 'true') this.showConfirmationSuccess = true;
+                else this.showConfirmationFailure = true;
+                this.scribSubscriptionConfirmationOutcomeUrl();
+            }
         }
     },
     computed: {
@@ -65,6 +83,7 @@ export var Home = {
         },
     },
     mounted() {
+        this.checkForSubscriptionConfirmationOutcome();
         this.audio.src = this.$root.mediaUrl + this.currentEpisode.audio;
         this.audio.addEventListener('timeupdate', this.timeUpdate);
     },
@@ -76,6 +95,8 @@ export var Home = {
             <Modal v-if="showEpisodeInfoModal" type="episodeInfo"/>
             <Modal v-if="showAboutModal" type="about"/>
             <Player />
+            <ConfirmationSuccess v-if="showConfirmationSuccess" />
+            <ConfirmationFailure v-if="showConfirmationFailure" />
         </div>
     `
 }

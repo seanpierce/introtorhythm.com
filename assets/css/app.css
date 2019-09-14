@@ -59,7 +59,7 @@ ul, li {
 }
 
 .bar1, .bar2, .bar3 {
-  width: 40px;
+  width: 38px;
   height: 5px;
   background-color: black;
   margin: 6px 0;
@@ -264,4 +264,19 @@ ul, li {
 #archive div,
 #archive li {
 	margin-bottom: 8px;
+}
+
+/* ----------------------------- Subscription Confirmation */
+#subscription-confirmation-modal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 20;
+	background: white;
+}
+
+#subscription-confirmation-modal .content {
+	margin: 2em;
 }

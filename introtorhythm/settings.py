@@ -37,10 +37,10 @@ DEBUG = eval(CONFIG.get('Environment', 'DEBUG'))
 ALLOWED_HOSTS = CONFIG.get('Environment', 'ALLOWED_HOSTS').split(',')
 HOST_URL = CONFIG.get('Environment', 'HOST_URL')
 
-if DEBUG is True:
-	SECURE_SSL_REDIRECT = False
-else:
-	SECURE_SSL_REDIRECT = True
+# if DEBUG is True:
+# 	SECURE_SSL_REDIRECT = False
+# else:
+# 	SECURE_SSL_REDIRECT = True
 
 
 # Application definition
@@ -167,7 +167,7 @@ STATIC_ROOT = 'static'
 
 # url for referencing assets
 # ex: mysite.com/public/styles.css
-STATIC_URL = '/public/'
+STATIC_URL = '/assets/'
 
 # the location where the static assets live
 # note: when the app refernces the public URL, it will point to the assets folder
