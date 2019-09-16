@@ -3,6 +3,7 @@ Routes for the subscriber API.
 """
 import json
 
+from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.generic import View
 from django.shortcuts import redirect
@@ -75,3 +76,15 @@ class SubscriptionRequestAPI(View):
         else:
             return HttpResponse(json.dumps({'data': False}), content_type="application/json")
 
+
+def unsubscribe(request):
+    """
+    """
+
+    data = {
+    }
+
+    return render(request, 'unsubscribe.html', {
+        'data': data,
+        'title': 'Unsubscribe :('
+    })

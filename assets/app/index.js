@@ -8,9 +8,8 @@ export const vue = new Vue({
     },
     data: {
         data: null,
-        debug: null,
         mediaUrl: 'https://s3.amazonaws.com/podcasts.introtorhythm.com/media/',
-        staticUrl: 'assets'
+        staticUrl: 'static'
     },
     computed: {
         loaded() {
@@ -20,10 +19,11 @@ export const vue = new Vue({
     mounted() {
         // Fetch the initial page data MVC style
         var elem = document.getElementById('data');
-        var data = elem.attributes.data.value;
-        var debug = elem.attributes.debug.value;
-        this.data = JSON.parse(data);
-        this.debug = debug === 'True';
+
+        if (elem) {
+            var data = elem.attributes.data.value;
+            this.data = JSON.parse(data);
+        }
     },
     template: `
         <App />
