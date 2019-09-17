@@ -1,0 +1,27 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" type="image/png" sizes="96x96" href="{% static 'images/favicon.png' %}">
+    <title>Intro To Rhythm | {{ title }}</title>
+    <link href="https://fonts.googleapis.com/css?family=Droid+Sans+Mono" rel="stylesheet" type="text/css" />
+    <link href="{% static 'css/app.css' %}" rel="stylesheet" type="text/css" />
+</head>
+<body>
+{% block content %}
+{% endblock %}
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+{% if debug %}
+<!-- development version -->
+<script src="https://unpkg.com/vue"></script>
+{% else %}
+<!-- production version -->
+<script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+{% endif %}
+<script src="{% static 'dist/app.js' %}"></script>
+</html>
