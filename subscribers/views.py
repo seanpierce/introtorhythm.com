@@ -67,9 +67,16 @@ class SubscriptionRequestAPI(View):
         Returns:
             A boolean value indicating the success or failure of the process.
         """
+
+        x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+        if x_forwarded_for:
+            ipaddress = x_forwarded_for.split(',')[-1].strip()
+        else:
+            ipaddress = request.META.get('REMOTE_ADDR')
+
         body = json.loads(request.body.decode('utf-8'))
 
-        if repo.create_subscription_request(body['email']):
+        if repo.create_subscription_request(body['email'], ipaddress):
             token = repo.get_token_by_email(body['email'])
             email.send_request_confirmation_email(body['email'], token)
             return HttpResponse(json.dumps({'data': True}), content_type="application/json")
