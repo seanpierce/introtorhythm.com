@@ -77,6 +77,31 @@ class SubscriptionRequestAPI(View):
             return HttpResponse(json.dumps({'data': False}), content_type="application/json")
 
 
+class UnsubscribeAPI(View):
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args, **kwargs):
+        """Add decorator to internal class method to
+        ignore the pressence of a csrf token/ cookie in the requrest.
+        """
+        return super(UnsubscribeAPI, self).dispatch(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        """Removes a subscriber from the database when provided an email address.
+
+        Args:
+            email: string representing the email address for the subscription request.
+
+        Returns:
+            A boolean value indicating the success or failure of the process.
+        """
+        body = json.loads(request.body.decode('utf-8'))
+
+        if repo.unsubscribe(body['email']):
+            return HttpResponse(json.dumps({'data': True}), content_type="application/json")
+        else:
+            return HttpResponse(json.dumps({'data': False}), content_type="application/json")
+
+
 def unsubscribe(request):
     """
     """
@@ -84,7 +109,7 @@ def unsubscribe(request):
     data = {
     }
 
-    return render(request, 'unsubscribe.html', {
+    return render(request, 'app.html', {
         'data': data,
         'title': 'Unsubscribe :('
     })

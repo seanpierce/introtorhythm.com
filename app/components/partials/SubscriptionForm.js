@@ -1,3 +1,5 @@
+const axios = require('axios');
+
 export var SubscriptionForm = {
     data() {
         return {

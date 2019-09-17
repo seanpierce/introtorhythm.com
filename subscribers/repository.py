@@ -94,3 +94,10 @@ class SubscriberRepository(object):
             return token.token 
         except ObjectDoesNotExist:
             return None
+
+    def unsubscribe(email):
+        try:
+            subscriber = Subscriber.objects.get(email=email).delete()
+            return True
+        except ObjectDoesNotExist:
+            return False

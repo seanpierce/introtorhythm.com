@@ -1,6 +1,6 @@
 {% extends '_layout.html' %}
 
 {% block content %}
-<div id="data" data="{{ data }}"></div>
+<div id="data" data="{{ data }}" debug="{% if debug%}true{% else %}false{% endif %}"></div>
 <div id="app"></div>
 {% endblock %}

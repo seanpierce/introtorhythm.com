@@ -167,7 +167,10 @@ STATIC_ROOT = 'static'
 
 # url for referencing assets
 # ex: mysite.com/public/styles.css
-STATIC_URL = '/static/'
+if DEBUG:
+    STATIC_URL = '/assets/'
+else:
+    STATIC_URL = '/static/'
 
 # the location where the static assets live
 # note: when the app refernces the public URL, it will point to the assets folder
