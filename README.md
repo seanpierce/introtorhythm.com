@@ -1,6 +1,6 @@
 # introtorhythm.com
 
-![Travis CI build badge](https://api.travis-ci.com/seanpierce/introtorhythm.com-rebuild.svg?branch=master) ![Test coverage badge](coverage.svg)
+![Travis CI build badge](https://api.travis-ci.com/seanpierce/introtorhythm.com.svg?branch=master) ![Test coverage badge](coverage.svg)
 
 Intro To Rhythm is a freeform mix series and live-streaming audio station that began in 2017. All episodes and content are owned by their creators and made exclusively for Intro To Rhythm.
 
