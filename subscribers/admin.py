@@ -30,7 +30,8 @@ class SubscriberAdmin(admin.ModelAdmin):
 
 
 class SubscriptionRequestAdmin(admin.ModelAdmin):
-    list_display = ('token', 'email', 'created_at')
+    list_display = ('token', 'email', 'ip_address', 'created_at')
+    readonly_fields = ['token', 'ip_address']
     list_per_page = 10
     actions = ["add_to_subscribers"]
     search_fields = ('email',)

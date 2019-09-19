@@ -28,6 +28,7 @@ class SubscriptionRequest(models.Model):
             unique=True,
             default=uuid.uuid4
         )
+    ip_address = models.GenericIPAddressField(null=True)
 
     class Meta:
         ordering = ['email', ]

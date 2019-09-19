@@ -62,7 +62,7 @@ class SubscriberRepository(object):
         """
         SubscriptionRequest.objects.get(token=token).delete()
 
-    def create_subscription_request(email):
+    def create_subscription_request(email, ipaddress):
         """Creates a new SubscriptionRequest record.
 
         Args:
@@ -73,7 +73,7 @@ class SubscriberRepository(object):
             returns false. Otherwise returns true.
         """
         try:
-            SubscriptionRequest.objects.create(email=email)
+            SubscriptionRequest.objects.create(email=email, ip_address=ipaddress)
             return True
         except Exception as e:
             return False
@@ -94,3 +94,10 @@ class SubscriberRepository(object):
             return token.token 
         except ObjectDoesNotExist:
             return None
+
+    def unsubscribe(email):
+        try:
+            subscriber = Subscriber.objects.get(email=email).delete()
+            return True
+        except ObjectDoesNotExist:
+            return False

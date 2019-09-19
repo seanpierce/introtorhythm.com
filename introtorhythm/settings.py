@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 import os
 import os.path
 import configparser
+import datetime
 
 # configs = ['./env.ini', './test.env.ini']
 CONFIG = configparser.RawConfigParser()
@@ -22,7 +23,6 @@ CONFIG.read('./env.ini')
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
-FRONTEND_DIR = os.path.join(BASE_DIR, 'app')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
@@ -36,11 +36,6 @@ DEBUG = eval(CONFIG.get('Environment', 'DEBUG'))
 # ALLOWED_HOSTS = []
 ALLOWED_HOSTS = CONFIG.get('Environment', 'ALLOWED_HOSTS').split(',')
 HOST_URL = CONFIG.get('Environment', 'HOST_URL')
-
-# if DEBUG is True:
-# 	SECURE_SSL_REDIRECT = False
-# else:
-# 	SECURE_SSL_REDIRECT = True
 
 
 # Application definition
@@ -87,6 +82,9 @@ TEMPLATES = [
     },
 ]
 
+now = datetime.datetime.now()
+log_name = str(now.year) + '-' + str(now.month) + '-' + str(now.day)
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -94,13 +92,13 @@ LOGGING = {
         'file': {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
-            'filename': 'debug.log',
+            'filename': 'logs/' + log_name + '.log',
         },
     },
     'loggers': {
         'django': {
             'handlers': ['file'],
-            'level': 'DEBUG',
+            'level': 'WARNING',
             'propagate': True,
         },
     },
@@ -167,7 +165,10 @@ STATIC_ROOT = 'static'
 
 # url for referencing assets
 # ex: mysite.com/public/styles.css
-STATIC_URL = '/assets/'
+if DEBUG:
+    STATIC_URL = '/assets/'
+else:
+    STATIC_URL = '/static/'
 
 # the location where the static assets live
 # note: when the app refernces the public URL, it will point to the assets folder

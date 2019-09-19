@@ -1,16 +1,21 @@
-import { Home } from './components/Home.js';
-import { Archive } from './components/Archive.js';
+import { Home } from './Home.js';
+import { Archive } from './Archive.js';
+import { Unsubscribe } from './Unsubscribe.js';
 
 export var App = {
     components: {
         'Home': Home,
-        'Archive': Archive
+        'Archive': Archive,
+        'Unsubscribe': Unsubscribe
     },
     data() {
         return {
         }
     },
     methods: {
+        test() {
+            console.log('ok');
+        }
     },
     computed: {
         route() {
@@ -18,6 +23,8 @@ export var App = {
             switch (path) {
                 case '/archive':
                     return 'archive';
+                case '/unsubscribe':
+                    return 'unsubscribe';
                 default:
                     return 'home';
             }
@@ -30,6 +37,7 @@ export var App = {
         <div v-if="loaded">
             <Home v-if="route === 'home'"/>
             <Archive v-if="route === 'archive'"/>
+            <Unsubscribe v-if="route === 'unsubscribe'" />
         </div>
     `
 }
