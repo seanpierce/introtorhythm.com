@@ -10,7 +10,7 @@ Send questions and comments to introtorhythm@gmail.com
 
 -----
 
-The purpose of this project it to take what I've learned with the [initial django build for introtorhythm.com](https://github.com/seanpierce/introtorhythm.com), and rebuild it to be cleaner and scalable.
+The purpose of this project it to take what I've learned with the [initial django build for introtorhythm.com-archive](https://github.com/seanpierce/introtorhythm.com), and rebuild it to be cleaner and scalable.
 
 **Specific goals:**
 
