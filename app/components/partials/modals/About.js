@@ -23,13 +23,13 @@ export var About = {
                 ------------
                 <br>
                 <br>
-                Maintaining this application and it's server environments can be costly and time consuming. If you appreciate ITR and you have the means, please consider making a donation.
+                Maintaining this application and it's server environments can be costly and time consuming. If you appreciate ITR and you have the means, please consider making a donation. Thanks!
                 <br>
                 <br>
                 <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
                     <input type="hidden" name="cmd" value="_s-xclick" />
-                    <input type="hidden" name="hosted_button_id" value="BQAY29PHYNRY2" />
-                    <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+                    <input type="hidden" name="hosted_button_id" value="5TQRYJ72ZR3S6" />
+                    <input type="image" src="https://introtorhythm.com/static/images/donate.png" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
                     <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
                 </form>
             </div>
