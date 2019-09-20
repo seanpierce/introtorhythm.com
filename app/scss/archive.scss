@@ -1,0 +1,21 @@
+#archive {
+	margin: 2em 1em;
+	a {
+		text-decoration: none;
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+	div, li {
+		margin-bottom: 8px;
+	}
+}
+.tab-1 {
+	margin-left: 2em;
+}
+.tab-2 {
+	margin-left: 4em;
+}
+.tab-3 {
+	margin-left: 6em;
+}
