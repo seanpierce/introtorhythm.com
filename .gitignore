@@ -9,6 +9,7 @@ static
 deploy_key
 .vscode
 *.log
-app/dist/*
 app/yarn.lock
 app/node_modules
+assets/dist/*
+assets/dist/
