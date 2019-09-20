@@ -12,3 +12,4 @@ deploy_key
 app/yarn.lock
 app/node_modules
 assets/dist/*
+assets/dist/
