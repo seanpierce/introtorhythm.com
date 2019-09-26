@@ -20,7 +20,7 @@ export var EpisodeInfo = {
                 Share this episode on:<br>
                 <a :href="'https://www.facebook.com/sharer/sharer.php?u=https://introtorhythm.com/' + currentEpisode.number" target="_blank">facebook</a> / <a :href="'https://twitter.com/home?status=https://introtorhythm.com/' + currentEpisode.number">twitter</a><br>
                 <br>
-                info@introtorhythm.com
+                introtorhythm@gmail.com
             </div>
         </div>
     `
