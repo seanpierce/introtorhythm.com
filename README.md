@@ -1,8 +1,16 @@
-# introtorhythm.com with Django and VUE (rebuild)
+# introtorhythm.com
 
-![Travis CI build badge](https://api.travis-ci.com/seanpierce/introtorhythm.com-rebuild.svg?branch=master) ![Test coverage badge](coverage.svg)
+![Travis CI build badge](https://api.travis-ci.com/seanpierce/introtorhythm.com.svg?branch=master) ![Test coverage badge](coverage.svg)
 
-The purpose of this project it to take what I've learned with the [initial django build for introtorhythm.com](https://github.com/seanpierce/introtorhythm.com), and rebuild it to be cleaner and scalable.
+Intro To Rhythm is a freeform mix series and live-streaming audio station that began in 2017. All episodes and content are owned by their creators and made exclusively for Intro To Rhythm.
+
+Additionally, ITR is dedicated to open-source projects, and the collective idea sharing that fuels creative expression. If you're interested in developing your own live-streaming station or podcasting platform, you're invited to refer to ITR's source code (Licence MIT).
+
+Send questions and comments to introtorhythm@gmail.com
+
+-----
+
+The purpose of this project it to take what I've learned with the [initial django build for introtorhythm.com](https://github.com/seanpierce/introtorhythm.com-archive), and rebuild it to be cleaner and scalable.
 
 **Specific goals:**
 

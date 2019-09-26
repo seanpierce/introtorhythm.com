@@ -5,6 +5,7 @@ export var Player = {
     },
     methods: {
         getPlayerWidth() {
+            if (!this.$parent.showPlayer) return;
             var player = document.getElementById('player');
             var playhead = document.getElementById('playhead');
             var playerWidth = player.offsetWidth - playhead.offsetWidth;
