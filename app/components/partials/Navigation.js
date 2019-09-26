@@ -1,8 +1,10 @@
 import { SubscriptionForm } from './SubscriptionForm.js';
+import { MobileNav } from './MobileNav.js';
 
 export var Navigation = {
     components: {
-        'SubscriptionForm': SubscriptionForm
+        'SubscriptionForm': SubscriptionForm,
+        'MobileNav': MobileNav
     },
     data() {
         return {
@@ -21,18 +23,8 @@ export var Navigation = {
         toggleMobileNav() {
             this.$parent.showMobileNav = !this.$parent.showMobileNav;
         },
-        resize() {
-            var width = document.documentElement.clientWidth;  
-            if (width > 750)
-                this.$parent.mobile = false;
-            else
-              this.$parent.mobile = true;
-        }
     },
     computed: {
-        showNav() {
-            return this.$parent.mobile && this.$parent.showMobileNav || !this.$parent.mobile;
-        },
         loaded() {
             return this.$root.loaded;
         },
@@ -44,18 +36,11 @@ export var Navigation = {
         },
     },
     mounted() {
-        window.addEventListener('resize', this.resize);
     },
     template: `
         <div>
-            <div id="mobile-nav-toggle" v-if="$parent.mobile">
-                <div id="menu-container" @click="toggleMobileNav()" :class="{ 'change': $parent.showMobileNav }">
-                    <div class="bar1"></div>
-                    <div class="bar2"></div>
-                    <div class="bar3"></div>
-                </div>
-            </div>
-            <div id="nav" v-if="loaded && showNav">
+            <MobileNav v-if="$parent.mobile" />
+            <div id="nav" v-if="loaded && !$parent.mobile">
                 <ul>
                     <li><a href="/">Intro To Rhythm</a><li>
                     <li>------</li>
@@ -75,6 +60,7 @@ export var Navigation = {
                     <li>------</li>
                     <li><span class="pointer" @click="showAboutModal()">About ITR</span></li>
                     <li><a href="/archive">Archive</a></li>
+                    <li>------</li>
                     <SubscriptionForm />
                 </ul>
             </div>

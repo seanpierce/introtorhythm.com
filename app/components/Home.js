@@ -31,6 +31,8 @@ export var Home = {
             showMobileNav: false,
             showConfirmationSuccess: false,
             showConfirmationFailure: false,
+            showPlayButton: true,
+            showPlayer: true,
         }
     },
     methods: {
@@ -72,6 +74,13 @@ export var Home = {
                 else this.showConfirmationFailure = true;
                 this.scribSubscriptionConfirmationOutcomeUrl();
             }
+        },
+        resize() {
+            var width = document.documentElement.clientWidth;  
+            if (width > 750)
+                this.mobile = false;
+            else
+              this.mobile = true;
         }
     },
     computed: {
@@ -83,6 +92,7 @@ export var Home = {
         },
     },
     mounted() {
+        window.addEventListener('resize', this.resize);
         this.checkForSubscriptionConfirmationOutcome();
         this.audio.src = this.$root.mediaUrl + this.currentEpisode.audio;
         this.audio.addEventListener('timeupdate', this.timeUpdate);
@@ -91,10 +101,10 @@ export var Home = {
         <div id="home">
             <Navigation />
             <BackgroundImage />
-            <PlayButton />
+            <PlayButton v-if="showPlayButton" />
             <Modal v-if="showEpisodeInfoModal" type="episodeInfo"/>
             <Modal v-if="showAboutModal" type="about"/>
-            <Player />
+            <Player v-if="showPlayer" />
             <ConfirmationSuccess v-if="showConfirmationSuccess" />
             <ConfirmationFailure v-if="showConfirmationFailure" />
         </div>
