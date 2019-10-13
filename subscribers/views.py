@@ -14,7 +14,7 @@ from django.utils.decorators import method_decorator
 from .repository import SubscriberRepository as repo
 from .emails import SubscriberEmails as email
 
-class SubscrptionConfirmationAPI(View):
+class SubscriptionConfirmationAPI(View):
     def get(self, request, *args, **kwargs):
         """Creates a Subscriber record when provided a SubscriptionRequest token.
 

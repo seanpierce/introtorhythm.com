@@ -6,7 +6,7 @@ from django.db import IntegrityError
 from subscribers.apps import SubscribersConfig
 
 from .models import Subscriber, SubscriptionRequest
-from .views import SubscriptionRequestAPI, SubscrptionConfirmationAPI
+from .views import SubscriptionRequestAPI, SubscriptionConfirmationAPI
 from .repository import SubscriberRepository as repo
 
 class SubscriberTestCase(TestCase):

@@ -18,7 +18,7 @@ from django.urls import path, include
 from django.views.generic import RedirectView
 
 from episode.views import index, episode, archive
-from subscribers.views import SubscriptionRequestAPI, SubscrptionConfirmationAPI, UnsubscribeAPI, unsubscribe
+from subscribers.views import SubscriptionRequestAPI, SubscriptionConfirmationAPI, UnsubscribeAPI, unsubscribe
 
 urlpatterns = [
     # admin routes
@@ -27,7 +27,7 @@ urlpatterns = [
 
     # api routes
     path('api/requests/', SubscriptionRequestAPI.as_view()),
-    path('api/requests/confirm/<token>', SubscrptionConfirmationAPI.as_view()),
+    path('api/requests/confirm/<token>', SubscriptionConfirmationAPI.as_view()),
     path('api/unsubscribe/', UnsubscribeAPI.as_view()),
 
     # main application routes
