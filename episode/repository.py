@@ -96,3 +96,22 @@ class EpisodeRepository(object):
             'audio': str(episode.audio),
             'content': episode.content
         }
+
+    @staticmethod
+    def get_neighbor_episode_numbers(number=None):
+        try:
+            prev_ep = Episode.objects.filter(
+                active=True, number__lte=number).order_by('-number')[:2][1].number
+        except IndexError:
+            prev_ep = ''
+
+        try:
+            next_ep = Episode.objects.filter(
+                active=True, number__gte=number).order_by('number')[:2][1].number
+        except IndexError:
+            next_ep = ''
+
+        return {
+            'prev': prev_ep,
+            'next': next_ep,
+        }
