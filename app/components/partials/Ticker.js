@@ -53,9 +53,11 @@ export var Ticker = {
                 <div class="ticker__item">&#9873;</div>
                 <div class="ticker__item">Episode: {{ currentEpisode.number }} - {{ currentEpisode.title }}</div>
                 <div class="ticker__item">&#9873;</div>
-                <div class="ticker__item">{{ localTime }}</div>
+                <div class="ticker__item">{{ $parent.currentTime }} / {{ $parent.totalTime || '00:00:00' }}</div>
                 <div class="ticker__item">&#9873;</div>
                 <div class="ticker__item">introtorhythm@gmail.com</div>
+                <div class="ticker__item">&#9873;</div>
+                <div class="ticker__item">{{ localTime }}</div>
                 <div class="ticker__item">&#9873;</div>
             </div>
         </div>
