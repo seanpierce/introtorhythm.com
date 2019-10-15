@@ -3,9 +3,10 @@ from .models import Episode
 class EpisodeRepository(object):
     """Access layer for episode data."""
 
+    @staticmethod
     def get_latest_episode_list():
         """Collects a list of number-title combos.
-        
+
         Returns:
             A list of the ten most recent number-title combos.
             Example [{'number': '001', 'title': 'First Episode'}, ...]
@@ -16,10 +17,10 @@ class EpisodeRepository(object):
             .order_by('-number')[:10]
             .values('number', 'title'))
 
-
+    @staticmethod
     def get_episode_list_by_number(number):
-        """Collects a liist of number-title combos, offset by a specified episode.
-        
+        """Collects a list of number-title combos, offset by a specified episode.
+
         Args:
             number: a value representing an episode number, supplied by the url in the request.
 
@@ -31,7 +32,7 @@ class EpisodeRepository(object):
             .filter(active=True)
             .order_by('-number')[:10]
             .values_list('number', flat=True))
-        
+
         if number in most_recent_ten:
             in_most_recent_ten = True
         else:
@@ -48,10 +49,10 @@ class EpisodeRepository(object):
                 .order_by('-number')[:10]
                 .values('number', 'title'))
 
-    
+    @staticmethod
     def get_all_episode_list():
         """Collects a list of number-title combos.
-        
+
         Returns:
             A list of all number-title combos.
             Example [{'number': '001', 'title': 'First Episode'}, ...]
@@ -62,10 +63,10 @@ class EpisodeRepository(object):
             .order_by('-number')
             .values('number', 'title'))
 
-
+    @staticmethod
     def get_current_episode(number=None):
         """Collects all data for the currently selected episode.
-        
+
         Args:
             number: an optional argument passed in through the url in the request
             which should correspond with an episode's number in the database.
@@ -95,4 +96,23 @@ class EpisodeRepository(object):
             'image': str(episode.image),
             'audio': str(episode.audio),
             'content': episode.content
+        }
+
+    @staticmethod
+    def get_neighbor_episode_numbers(number=None):
+        try:
+            prev_ep = Episode.objects.filter(
+                active=True, number__lte=number).order_by('-number')[:2][1].number
+        except IndexError:
+            prev_ep = ''
+
+        try:
+            next_ep = Episode.objects.filter(
+                active=True, number__gte=number).order_by('number')[:2][1].number
+        except IndexError:
+            next_ep = ''
+
+        return {
+            'prev': prev_ep,
+            'next': next_ep,
         }

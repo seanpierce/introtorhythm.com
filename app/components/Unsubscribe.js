@@ -14,8 +14,7 @@ export var Unsubscribe = {
             }
 
             axios.post('/api/unsubscribe/', payload)
-            .then(data => {
-                console.log(data);
+            .then(() => {
                 this.handleSuccess();
             })
             .catch(err => {

@@ -10,6 +10,7 @@ export const vue = new Vue({
         data: null,
         debug: null,
         mediaUrl: 'https://s3.amazonaws.com/podcasts.introtorhythm.com/media/',
+        nums: null
     },
     computed: {
         loaded() {
@@ -24,9 +25,9 @@ export const vue = new Vue({
         var elem = document.getElementById('data');
 
         if (elem) {
-            var data = elem.attributes.data.value;
-            this.data = JSON.parse(data);
+            this.data = JSON.parse(elem.attributes.data.value);
             this.debug = elem.attributes.debug.value === 'true';
+            this.nums = JSON.parse(elem.attributes.nums.value);
         }
     },
     template: `

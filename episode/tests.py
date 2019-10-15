@@ -72,7 +72,7 @@ class EpisodeTestCase(TestCase):
     def test_index_route_data(self):
         response = self.client.get('/', follow=True)
         data = json.loads(response.context['data'])
-        self.assertEqual('013', data['current_episode']['number'])
+        self.assertEqual('013', data['number'])
 
     def test_episode_route(self):
         response = self.client.get('/002', follow=True)
@@ -81,7 +81,7 @@ class EpisodeTestCase(TestCase):
     def test_episode_route_data(self):
         response = self.client.get('/002', follow=True)
         data = json.loads(response.context['data'])
-        self.assertEqual('002', data['current_episode']['number'])
+        self.assertEqual('002', data['number'])
 
     def test_episode_not_found_route(self):
         response = self.client.get('999', follow=True)
