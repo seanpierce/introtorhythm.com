@@ -1,83 +1,70 @@
-import { SubscriptionForm } from './SubscriptionForm.js';
-
 export var Navigation = {
+    template: `
+        <div id="nav">
+            <h1><a href="/">Intro To Rhythm</a></h1>
+            <ul>
+                <li>
+                    <span class="red"
+                        @click="showEpisodeInfoModal()">Ep {{ currentEpisode.number }} - {{ currentEpisode.title }} <
+                    </span>
+                </li>
+                <li>
+                    <span>{{ $parent.currentTime }} / {{ $parent.totalTime || "00:00:00" }}</span>
+                </li>
+                <li>------</li>
+                <li>
+                    <span v-if="nums.prev">
+                        <a :href="'/' + nums.prev">< {{ nums.prev }}</a>
+                    </span>
+                    <span v-if="nums.prev && nums.next"> - </span>
+                    <span v-if="nums.next">
+                        <a :href="'/' + nums.next">{{ nums.next }} ></a>
+                    </span>
+                </li>
+                <li>
+                    <span @click="showEpisodesModal()">See all episodes</span>
+                </li>
+                <li>
+                    <span @click="showAboutModal()">ITR info</span>
+                </li>
+                <li>
+                    <span @click="showSubscribeModal()">Subscribe</span>
+                </li>
+            </ul>
+        </div>
+    `,
     components: {
-        'SubscriptionForm': SubscriptionForm
     },
     data() {
         return {
         }
     },
     methods: {
-        isCurrent(number) {
-            return this.currentEpisode.number === number;
-        },
         showEpisodeInfoModal() {
             this.$parent.showEpisodeInfoModal = true;
         },
         showAboutModal() {
             this.$parent.showAboutModal = true;
         },
-        toggleMobileNav() {
-            this.$parent.showMobileNav = !this.$parent.showMobileNav;
+        showEpisodesModal() {
+            this.$parent.showEpisodesModal = true;
         },
-        resize() {
-            var width = document.documentElement.clientWidth;  
-            if (width > 750)
-                this.$parent.mobile = false;
-            else
-              this.$parent.mobile = true;
+        showSubscribeModal() {
+            this.$parent.showSubscribeModal = true;
         }
     },
     computed: {
-        showNav() {
-            return this.$parent.mobile && this.$parent.showMobileNav || !this.$parent.mobile;
-        },
         loaded() {
             return this.$root.loaded;
         },
         currentEpisode() {
-            return this.$root.data.current_episode;
+            return this.$root.data;
         },
-        episodes() {
-            return this.$root.data.episodes;
-        },
+        nums() {
+            return this.$root.nums;
+        }
     },
     mounted() {
         window.addEventListener('resize', this.resize);
-    },
-    template: `
-        <div>
-            <div id="mobile-nav-toggle" v-if="$parent.mobile">
-                <div id="menu-container" @click="toggleMobileNav()" :class="{ 'change': $parent.showMobileNav }">
-                    <div class="bar1"></div>
-                    <div class="bar2"></div>
-                    <div class="bar3"></div>
-                </div>
-            </div>
-            <div id="nav" v-if="loaded && showNav">
-                <ul>
-                    <li><a href="/">Intro To Rhythm</a><li>
-                    <li>------</li>
-                    <li>Now Playing: Ep {{ currentEpisode.number }}</li>
-                    <li id="tracktime">{{ $parent.currentTime }} / {{ $parent.totalTime || '00:00:00' }}</li>
-                    <li>
-                    <span 
-                        class="red pointer"
-                        @click="showEpisodeInfoModal()">
-                        See Ep {{ currentEpisode.number }} Info &lt;
-                    </span>
-                    </li>
-                    <li>------</li>
-                    <li v-for="episode in episodes" :key="episode.number" :class="isCurrent(episode.number) ? 'red': ''">
-                    <a :href="'/' + episode.number">{{ episode.number }}- {{ episode.title }}</a>
-                    </li>
-                    <li>------</li>
-                    <li><span class="pointer" @click="showAboutModal()">About ITR</span></li>
-                    <li><a href="/archive">Archive</a></li>
-                    <SubscriptionForm />
-                </ul>
-            </div>
-        </div>
-    `
+    }
 }
