@@ -6,7 +6,7 @@ from django.db import IntegrityError
 from subscribers.apps import SubscribersConfig
 
 from .models import Subscriber, SubscriptionRequest
-from .views import SubscriptionRequestAPI, SubscrptionConfirmationAPI
+from .views import SubscriptionRequestAPI, SubscriptionConfirmationAPI
 from .repository import SubscriberRepository as repo
 
 class SubscriberTestCase(TestCase):
@@ -76,13 +76,13 @@ class SubscriberTestCase(TestCase):
     def test_create_subscription_request(self):
         """Ensures that a subscription request is successfully created.
         """
-        self.assertEqual(repo.create_subscription_request('seven@test.com'), True)
+        self.assertEqual(repo.create_subscription_request('seven@test.com', '127.0.0.1'), True)
 
     def test_create_subscription_request_failure(self):
         """Ensures that a subscription request will not be created 
         if the provided email address is not unique.
         """
-        self.assertEqual(repo.create_subscription_request('two@test.com'), False)
+        self.assertEqual(repo.create_subscription_request('two@test.com', '127.0.0.1'), False)
 
     def test_get_token_by_email(self):
         """Ensures that the repository is able to fetch a SubscriptionRequest

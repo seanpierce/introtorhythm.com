@@ -7,13 +7,16 @@ export var EpisodeInfo = {
     },
     computed: {
         currentEpisode() {
-            return this.$root.data.current_episode;
+            return this.$root.data;
         }
     },
     template: `
         <div id="episode-info" class="content">
             <div id="episode-heading">{{ currentEpisode.number }}- {{ currentEpisode.title }}</div>
             <div v-html="currentEpisode.content"></div>
+            <div id="episode-image">
+                <img :src="$root.mediaUrl + currentEpisode.image" />
+            </div>
             <div>
                 ------------<br>
                 <br>

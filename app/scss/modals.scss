@@ -14,12 +14,8 @@
 	max-width: 900px;
 	display: block;
 	margin: 4em auto 8em auto;
-	border: solid 1px white;
 	padding: 2em;
-	background: rgba(0, 0, 0, 0.5);
-	* {
-		color: white !important;
-	}
+	background: whitesmoke;
 	.content {
 		margin-top: 1em;
 	}
@@ -27,4 +23,30 @@
 
 #close {
     height: 1.5em;
+}
+
+#episode-info {
+	#episode-image {
+		img {
+			width: 100%;
+		}
+	}
+}
+
+#episodes-list {
+	.episode-list-item {
+		a {
+			text-decoration: none;
+			&:hover {
+				color: black;
+			}
+		}
+	}
+}
+
+p.subtext {
+	font-size: 0.8em;
+	* {
+		color: #777 !important;
+	}
 }

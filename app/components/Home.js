@@ -1,20 +1,20 @@
 import { Navigation } from './partials/Navigation.js';
 import { BackgroundImage } from './partials/BackgroundImage.js';
-import { PlayButton } from './partials/PlayButton.js';
 import { Modal } from './partials/modals/Modal.js';
 import { Player } from './partials/Player.js';
 import { Success } from './partials/modals/SubscriptionConfirmation/Success.js';
 import { Failure } from './partials/modals/SubscriptionConfirmation/Failure.js';
+import { Ticker } from './partials/Ticker.js';
 
 export var Home = {
     components: {
         'Navigation': Navigation,
         'BackgroundImage': BackgroundImage,
-        'PlayButton': PlayButton,
         'Modal': Modal,
         'Player': Player,
         'ConfirmationSuccess': Success,
-        'ConfirmationFailure': Failure
+        'ConfirmationFailure': Failure,
+        'Ticker': Ticker
     },
     data() {
         return {
@@ -22,13 +22,14 @@ export var Home = {
             audio: new Audio(),
             showEpisodeInfoModal: false,
             showAboutModal: false,
+            showEpisodesModal: false,
+            showSubscribeModal: false,
             currentTime: '00:00:00',
             totalTime: null,
             playPercent: 0,
             playerWidth: 0,
-            onplayhead: false,
+            onplayHead: false,
             mobile: document.documentElement.clientWidth < 750,
-            showMobileNav: false,
             showConfirmationSuccess: false,
             showConfirmationFailure: false,
             showPlayButton: true,
@@ -41,7 +42,7 @@ export var Home = {
                 this.playing = true;
                 this.audio.play();
             } else {
-                this.playing = false; 
+                this.playing = false;
                 this.audio.pause();
             }
         },
@@ -58,12 +59,12 @@ export var Home = {
         timeUpdate() {
             if (!this.totalTime)
                 this.totalTime = this.formatTime(this.audio.duration);
-        
+
             this.currentTime = this.formatTime(this.audio.currentTime);
-            if (!this.onplayhead)
+            if (!this.onplayHead)
                 this.playPercent = this.playerWidth * (this.audio.currentTime / this.audio.duration);
         },
-        scribSubscriptionConfirmationOutcomeUrl() {
+        scrubSubscriptionConfirmationOutcomeUrl() {
             window.history.replaceState({}, document.title, '/');
         },
         checkForSubscriptionConfirmationOutcome() {
@@ -72,7 +73,7 @@ export var Home = {
             if (param) {
                 if (param === 'true') this.showConfirmationSuccess = true;
                 else this.showConfirmationFailure = true;
-                this.scribSubscriptionConfirmationOutcomeUrl();
+                this.scrubSubscriptionConfirmationOutcomeUrl();
             }
         },
         resize() {
@@ -85,10 +86,7 @@ export var Home = {
     },
     computed: {
         currentEpisode() {
-            return this.$root.data.current_episode;
-        },
-        episodes() {
-            return this.$root.data.episodes;
+            return this.$root.data;
         },
     },
     mounted() {
@@ -98,15 +96,15 @@ export var Home = {
         this.audio.addEventListener('timeupdate', this.timeUpdate);
     },
     template: `
-        <div id="home">
+        <div id="home" v-if="$root.loaded">
             <Navigation />
             <BackgroundImage />
-            <PlayButton v-if="showPlayButton" />
             <Modal v-if="showEpisodeInfoModal" type="episodeInfo"/>
             <Modal v-if="showAboutModal" type="about"/>
-            <Player v-if="showPlayer" />
-            <ConfirmationSuccess v-if="showConfirmationSuccess" />
-            <ConfirmationFailure v-if="showConfirmationFailure" />
+            <Modal v-if="showEpisodesModal" type="episodes"/>
+            <Modal v-if="showSubscribeModal" type="subscribe"/>
+            <Player />
+            <Ticker />
         </div>
     `
 }
