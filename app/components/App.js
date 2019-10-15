@@ -13,9 +13,6 @@ export var App = {
         }
     },
     methods: {
-        test() {
-            console.log('ok');
-        }
     },
     computed: {
         route() {
