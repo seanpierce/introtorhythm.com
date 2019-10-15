@@ -11,7 +11,7 @@ export var Archive = {
     },
     computed: {
         episodes() {
-            return this.$root.data.episodes;
+            return this.$root.episodes;
         }
     },
     template: `
