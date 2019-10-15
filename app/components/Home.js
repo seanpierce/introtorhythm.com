@@ -32,6 +32,8 @@ export var Home = {
             mobile: document.documentElement.clientWidth < 750,
             showConfirmationSuccess: false,
             showConfirmationFailure: false,
+            showPlayButton: true,
+            showPlayer: true,
         }
     },
     methods: {
@@ -73,6 +75,13 @@ export var Home = {
                 else this.showConfirmationFailure = true;
                 this.scrubSubscriptionConfirmationOutcomeUrl();
             }
+        },
+        resize() {
+            var width = document.documentElement.clientWidth;  
+            if (width > 750)
+                this.mobile = false;
+            else
+              this.mobile = true;
         }
     },
     computed: {
@@ -81,6 +90,7 @@ export var Home = {
         },
     },
     mounted() {
+        window.addEventListener('resize', this.resize);
         this.checkForSubscriptionConfirmationOutcome();
         this.audio.src = this.$root.mediaUrl + this.currentEpisode.audio;
         this.audio.addEventListener('timeupdate', this.timeUpdate);

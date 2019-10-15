@@ -1,6 +1,9 @@
 const axios = require('axios');
 
 export var SubscriptionForm = {
+    props: {
+        'mobile': Boolean
+    },
     data() {
         return {
             email: null,
@@ -48,7 +51,7 @@ export var SubscriptionForm = {
     mounted() {
     },
     template: `
-        <div id="subscription-form">
+        <div id="subscription-form" :class="{ 'mobile': mobile }">
             <form @submit.prevent="submit()" v-if="!success">
                 <label for="kjhasd73">Email Address</label>
                 <input type="email" 

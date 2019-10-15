@@ -1,3 +1,6 @@
+import { SubscriptionForm } from './SubscriptionForm.js';
+import { MobileNav } from './MobileNav.js';
+
 export var Navigation = {
     template: `
         <div id="nav">

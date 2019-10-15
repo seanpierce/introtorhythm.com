@@ -4,12 +4,26 @@
         padding: 4px;
         font-size: 0.75em;
         margin-right: 0.75em;
+        border: solid 1px grey;;
     }
     input[type='submit'] {
         color: #222;
         border: solid 1px #222;
         background: white;
         border-radius: 0;
+    }
+    &.mobile {
+        input {
+            padding: 4px;
+            font-size: 1em;
+            margin-right: 0;
+            margin-bottom: 0.5em;
+            width: 100%;
+        }
+        input[type='submit'] {
+            display: block;
+            width: 100%;
+        }
     }
 }
 
