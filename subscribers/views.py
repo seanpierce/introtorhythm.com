@@ -1,5 +1,5 @@
 """
-Routes for the subscriber API. 
+Routes for the subscriber API.
 """
 import json
 
@@ -14,7 +14,7 @@ from django.utils.decorators import method_decorator
 from .repository import SubscriberRepository as repo
 from .emails import SubscriberEmails as email
 
-class SubscrptionConfirmationAPI(View):
+class SubscriptionConfirmationAPI(View):
     def get(self, request, *args, **kwargs):
         """Creates a Subscriber record when provided a SubscriptionRequest token.
 
@@ -25,13 +25,13 @@ class SubscrptionConfirmationAPI(View):
             * delete the original subscription request
             * redirect the user to the main page, with a query string indicating
                 success or failure
-    
-        Path: 
+
+        Path:
             /api/requests/confirm/[token]
-    
+
         Args:
             token: a string value representing a token found in a subscription request record.
-    
+
         Returns:
             Returns a redirect response which includes a url parameter indicating 
             success or failure of the process.
