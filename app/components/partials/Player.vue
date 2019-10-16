@@ -1,4 +1,18 @@
-export var Player = {
+<template>
+    <div id="player" v-if="loaded">
+        <div>
+            <div id="controls" @click="$parent.togglePlay()">
+                <img :src="$parent.playing ? '/assets/images/pause-icon.png' : '/assets/images/play-icon.png'">
+            </div>
+            <div id="timeline">
+                <div id="playHead" :style="{ marginLeft: $parent.playPercent + 'px' }"></div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+export default {
     data() {
         return {
         }
@@ -60,16 +74,5 @@ export var Player = {
         playHead.addEventListener('mousedown', this.mouseDownEvent, false);
         window.addEventListener('resize', this.getPlayerWidth);
     },
-    template: `
-        <div id="player" v-if="loaded">
-            <div>
-                <div id="controls" @click="$parent.togglePlay()">
-                    <img :src="$parent.playing ? '/assets/images/pause-icon.png' : '/assets/images/play-icon.png'">
-                </div>
-                <div id="timeline">
-                    <div id="playHead" :style="{ marginLeft: $parent.playPercent + 'px' }"></div>
-                </div>
-            </div>
-        </div>
-    `
 }
+</script>

@@ -1,20 +1,34 @@
-import { Navigation } from './partials/Navigation.js';
-import { BackgroundImage } from './partials/BackgroundImage.js';
-import { Modal } from './partials/modals/Modal.js';
-import { Player } from './partials/Player.js';
-import { Success } from './partials/modals/SubscriptionConfirmation/Success.js';
-import { Failure } from './partials/modals/SubscriptionConfirmation/Failure.js';
-import { Ticker } from './partials/Ticker.js';
+<template>
+    <div id="home" v-if="$root.loaded">
+        <Navigation />
+        <BackgroundImage />
+        <Modal v-if="showEpisodeInfoModal" type="episodeInfo"/>
+        <Modal v-if="showAboutModal" type="about"/>
+        <Modal v-if="showEpisodesModal" type="episodes"/>
+        <Modal v-if="showSubscribeModal" type="subscribe"/>
+        <Player />
+        <Ticker />
+    </div>
+</template>
 
-export var Home = {
+<script>
+import Navigation from './partials/Navigation.vue';
+import BackgroundImage from './partials/BackgroundImage.vue';
+import Modal from './partials/modals/Modal.vue';
+import Player from './partials/Player.vue';
+import Success from './partials/modals/SubscriptionConfirmation/Success.vue';
+import Failure from './partials/modals/SubscriptionConfirmation/Failure.vue';
+import Ticker from './partials/Ticker.vue';
+
+export default {
     components: {
-        'Navigation': Navigation,
-        'BackgroundImage': BackgroundImage,
-        'Modal': Modal,
-        'Player': Player,
-        'ConfirmationSuccess': Success,
-        'ConfirmationFailure': Failure,
-        'Ticker': Ticker
+        Navigation,
+        BackgroundImage,
+        Modal,
+        Player,
+        Success,
+        Failure,
+        Ticker
     },
     data() {
         return {
@@ -29,7 +43,6 @@ export var Home = {
             playPercent: 0,
             playerWidth: 0,
             onplayHead: false,
-            mobile: document.documentElement.clientWidth < 750,
             showConfirmationSuccess: false,
             showConfirmationFailure: false,
             showPlayButton: true,
@@ -64,25 +77,18 @@ export var Home = {
             if (!this.onplayHead)
                 this.playPercent = this.playerWidth * (this.audio.currentTime / this.audio.duration);
         },
-        scrubSubscriptionConfirmationOutcomeUrl() {
+        scrubConfirmationUrl() {
             window.history.replaceState({}, document.title, '/');
         },
-        checkForSubscriptionConfirmationOutcome() {
+        checkForConfirmationUrl() {
             var url = new URL(window.location.href);
             var param = url.searchParams.get("success");
             if (param) {
                 if (param === 'true') this.showConfirmationSuccess = true;
                 else this.showConfirmationFailure = true;
-                this.scrubSubscriptionConfirmationOutcomeUrl();
+                this.scrubConfirmationUrl();
             }
         },
-        resize() {
-            var width = document.documentElement.clientWidth;  
-            if (width > 750)
-                this.mobile = false;
-            else
-              this.mobile = true;
-        }
     },
     computed: {
         currentEpisode() {
@@ -90,21 +96,9 @@ export var Home = {
         },
     },
     mounted() {
-        window.addEventListener('resize', this.resize);
-        this.checkForSubscriptionConfirmationOutcome();
+        this.checkForConfirmationUrl();
         this.audio.src = this.$root.mediaUrl + this.currentEpisode.audio;
         this.audio.addEventListener('timeupdate', this.timeUpdate);
     },
-    template: `
-        <div id="home" v-if="$root.loaded">
-            <Navigation />
-            <BackgroundImage />
-            <Modal v-if="showEpisodeInfoModal" type="episodeInfo"/>
-            <Modal v-if="showAboutModal" type="about"/>
-            <Modal v-if="showEpisodesModal" type="episodes"/>
-            <Modal v-if="showSubscribeModal" type="subscribe"/>
-            <Player />
-            <Ticker />
-        </div>
-    `
 }
+</script>

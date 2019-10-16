@@ -1,15 +1,17 @@
-const axios = require('axios');
-
-export var Episodes = {
-    template: `
-        <div id="episodes-list" class="content">
-            <div v-for="episode in episodes"
-                :key="episode.number"
-                class="episode-list-item">
-                <a :href="'/' + episode.number">{{ episode.number }}- {{ episode.title }}</a>
-            </div>
+<template>
+    <div id="episodes-list" class="content">
+        <div v-for="episode in episodes"
+            :key="episode.number"
+            class="episode-list-item">
+            <a :href="'/' + episode.number">{{ episode.number }}- {{ episode.title }}</a>
         </div>
-    `,
+    </div>
+</template>
+
+<script>
+import axios from 'axios';
+
+export default {
     data() {
         return {
             episodes: [],
@@ -27,9 +29,8 @@ export var Episodes = {
             window.location.href="/" + number;
         },
     },
-    computed: {
-    },
     mounted() {
         this.getEpisodes();
     }
 }
+</script>
