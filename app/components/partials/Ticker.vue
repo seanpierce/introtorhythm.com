@@ -1,4 +1,23 @@
-export var Ticker = {
+<template>
+    <div class="ticker-wrap">
+        <div class="ticker">
+            <div class="ticker__item">&#9873;</div>
+            <div class="ticker__item">Intro To Rhythm</div>
+            <div class="ticker__item">&#9873;</div>
+            <div class="ticker__item">Episode: {{ currentEpisode.number }} - {{ currentEpisode.title }}</div>
+            <div class="ticker__item">&#9873;</div>
+            <div class="ticker__item">{{ $parent.currentTime }} / {{ $parent.totalTime || '00:00:00' }}</div>
+            <div class="ticker__item">&#9873;</div>
+            <div class="ticker__item">introtorhythm@gmail.com</div>
+            <div class="ticker__item">&#9873;</div>
+            <div class="ticker__item">{{ localTime }}</div>
+            <div class="ticker__item">&#9873;</div>
+        </div>
+    </div>
+</template>
+
+<script>
+export default {
     data() {
         return {
             localTime: null
@@ -30,8 +49,8 @@ export var Ticker = {
             return output;
         },
         pad(num, size) {
-            var s = num+"";
-            while (s.length < size) s = "0" + s;
+            var s = num + '';
+            while (s.length < size) s = '0' + s;
             return s;
         }
     },
@@ -45,26 +64,5 @@ export var Ticker = {
             this.getLocalTime();
         }, 1000)
     },
-    template: `
-        <div>
-            <div id="logo-spinner">
-                <img :src="$root.staticUrl + '/images/itr-logo.png'">
-            </div>
-            <div class="ticker-wrap">
-                <div class="ticker">
-                    <div class="ticker__item">&#9873;</div>
-                    <div class="ticker__item">Intro To Rhythm</div>
-                    <div class="ticker__item">&#9873;</div>
-                    <div class="ticker__item">Episode: {{ currentEpisode.number }} - {{ currentEpisode.title }}</div>
-                    <div class="ticker__item">&#9873;</div>
-                    <div class="ticker__item">{{ $parent.currentTime }} / {{ $parent.totalTime || '00:00:00' }}</div>
-                    <div class="ticker__item">&#9873;</div>
-                    <div class="ticker__item">introtorhythm@gmail.com</div>
-                    <div class="ticker__item">&#9873;</div>
-                    <div class="ticker__item">{{ localTime }}</div>
-                    <div class="ticker__item">&#9873;</div>
-                </div>
-            </div>
-        </div>
-    `
 }
+</script>

@@ -1,6 +1,6 @@
-import { App } from './components/App.js';
+import App from './components/App.vue';
 
-export const vue = new Vue({
+export const app = new Vue({
     delimiters: ['[[', ']]'],
     el: '#app',
     components: {

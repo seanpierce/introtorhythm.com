@@ -13,7 +13,10 @@
     "webpack": "^4.40.2",
     "webpack-cli": "^3.3.8"
   },
-  "dependencies": {},
+  "dependencies": {
+    "vue-loader": "^15.7.1",
+    "vue-template-compiler": "^2.6.10"
+  },
   "scripts": {
     "serve": "webpack --mode development",
     "build": "webpack --mode production"
