@@ -46,19 +46,24 @@ export var Ticker = {
         }, 1000)
     },
     template: `
-        <div class="ticker-wrap">
-            <div class="ticker">
-                <div class="ticker__item">&#9873;</div>
-                <div class="ticker__item">Intro To Rhythm</div>
-                <div class="ticker__item">&#9873;</div>
-                <div class="ticker__item">Episode: {{ currentEpisode.number }} - {{ currentEpisode.title }}</div>
-                <div class="ticker__item">&#9873;</div>
-                <div class="ticker__item">{{ $parent.currentTime }} / {{ $parent.totalTime || '00:00:00' }}</div>
-                <div class="ticker__item">&#9873;</div>
-                <div class="ticker__item">introtorhythm@gmail.com</div>
-                <div class="ticker__item">&#9873;</div>
-                <div class="ticker__item">{{ localTime }}</div>
-                <div class="ticker__item">&#9873;</div>
+        <div>
+            <div id="logo-spinner">
+                <img :src="$root.staticUrl + '/images/itr-logo.png'">
+            </div>
+            <div class="ticker-wrap">
+                <div class="ticker">
+                    <div class="ticker__item">&#9873;</div>
+                    <div class="ticker__item">Intro To Rhythm</div>
+                    <div class="ticker__item">&#9873;</div>
+                    <div class="ticker__item">Episode: {{ currentEpisode.number }} - {{ currentEpisode.title }}</div>
+                    <div class="ticker__item">&#9873;</div>
+                    <div class="ticker__item">{{ $parent.currentTime }} / {{ $parent.totalTime || '00:00:00' }}</div>
+                    <div class="ticker__item">&#9873;</div>
+                    <div class="ticker__item">introtorhythm@gmail.com</div>
+                    <div class="ticker__item">&#9873;</div>
+                    <div class="ticker__item">{{ localTime }}</div>
+                    <div class="ticker__item">&#9873;</div>
+                </div>
             </div>
         </div>
     `
