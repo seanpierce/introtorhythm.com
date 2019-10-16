@@ -1,15 +1,10 @@
-<template>
-    <App />
-</template>
-
-<script>
 import App from './components/App.vue';
 
-export default {
+export const app = new Vue({
     delimiters: ['[[', ']]'],
     el: '#app',
     components: {
-        App
+        'App': App
     },
     data: {
         data: null,
@@ -35,5 +30,7 @@ export default {
             this.nums = JSON.parse(elem.attributes.nums.value);
         }
     },
-}
-</script>
+    template: `
+        <App />
+    `
+  })

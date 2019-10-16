@@ -4,7 +4,7 @@ const { VueLoaderPlugin } = require('vue-loader');
 
 module.exports = {
     watch: true,
-    entry: ['./index.vue', './index.scss'],
+    entry: ['./index.js', './index.scss'],
     output: {
         filename: 'app.js',
         path: path.resolve(__dirname, "../assets/dist"),
@@ -57,6 +57,6 @@ module.exports = {
         new VueLoaderPlugin()
     ],
     resolve: {
-        extensions: ['.js', '.scss']
+        extensions: ['.js', '.scss', '.vue']
     }
 }
