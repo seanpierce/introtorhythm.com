@@ -3,6 +3,7 @@
         <Home v-if="route === 'home'"/>
         <Archive v-if="route === 'archive'"/>
         <Unsubscribe v-if="route === 'unsubscribe'" />
+        <Live v-if="route === 'live'" />
     </div>
 </template>
 
@@ -10,13 +11,15 @@
 import Home from './Home.vue';
 import Archive from './Archive.vue';
 import Unsubscribe from './Unsubscribe.vue';
+import Live from './Live.vue';
 
 export default {
     name: 'App',
     components: {
         Home,
         Archive,
-        Unsubscribe
+        Unsubscribe,
+        Live
     },
     computed: {
         route() {
@@ -26,6 +29,8 @@ export default {
                     return 'archive';
                 case '/unsubscribe':
                     return 'unsubscribe';
+                case '/live':
+                    return 'live';
                 default:
                     return 'home';
             }
