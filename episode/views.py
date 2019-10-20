@@ -68,6 +68,11 @@ def archive(request):
         'title': 'Archive'
     })
 
+def live(request):
+    return render(request, 'live.html', {
+        'title': 'Live'
+    })
+
 
 class EpisodesAPI(View):
     """API controller for handling episode data.

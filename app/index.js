@@ -27,7 +27,11 @@ export const app = new Vue({
         if (elem) {
             this.data = JSON.parse(elem.attributes.data.value);
             this.debug = elem.attributes.debug.value === 'true';
-            this.nums = JSON.parse(elem.attributes.nums.value);
+
+            if (elem.attributes.nums)
+                this.nums = JSON.parse(elem.attributes.nums.value);
+        } else {
+            this.data = true;
         }
     },
     template: `
