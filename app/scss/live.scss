@@ -1,0 +1,37 @@
+#live {
+    #live-text {
+        position: absolute;
+        font-size: 10em;
+    }
+    #live-player {
+        position: fixed;
+        top: 2em;
+        right: 2em;
+        background: rgba(255, 255, 255, 0.7);
+        border: solid 1px #333;
+        font-size: 3em;
+        padding: 0.5em;
+        cursor: pointer;
+        #arrow-span {
+            position: absolute;
+            left: -0.75em;
+            top: -0.75em;
+            color: red;
+            font-size: 1.25em;
+        }
+        #seconds {
+            position: absolute;
+            bottom: -1em;
+            left: 0;
+            color: red;
+        }
+    }
+    #logo-spinner {
+        right: 10em;
+        bottom: 10em;
+        img {
+            height: 10em;
+            width: 10em;
+        }
+    }
+}

@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import RedirectView
 
-from episode.views import index, episode, archive, EpisodesAPI
+from episode.views import index, episode, archive, live, EpisodesAPI
 from subscribers.views import SubscriptionRequestAPI, SubscriptionConfirmationAPI, UnsubscribeAPI, unsubscribe
 
 urlpatterns = [
@@ -35,5 +35,6 @@ urlpatterns = [
     path('', index),
     path('archive', archive),
     path('unsubscribe', unsubscribe),
+    path('live', live),
     path('<number>', episode)
 ]
