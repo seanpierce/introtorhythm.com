@@ -1,6 +1,11 @@
 #live {
-    #live-text {
+    margin-bottom: 4em;
+    img#twisterman {
         position: absolute;
+        top: 0;
+        z-index: -1;
+    }
+    #live-text {
         font-size: 10em;
     }
     #live-player {
@@ -33,5 +38,9 @@
             height: 10em;
             width: 10em;
         }
+    }
+    #links {
+        margin: 1em;
+        font-size: 2em;
     }
 }
