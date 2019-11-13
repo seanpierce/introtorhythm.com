@@ -6,6 +6,8 @@
         <Modal v-if="showAboutModal" type="about"/>
         <Modal v-if="showEpisodesModal" type="episodes"/>
         <Modal v-if="showSubscribeModal" type="subscribe"/>
+        <Success v-if="showConfirmationSuccess" />
+        <Failure v-if="showConfirmationFailure" />
         <Player />
         <Ticker />
     </div>
