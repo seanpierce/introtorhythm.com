@@ -21,13 +21,19 @@
                 </span>
             </li>
             <li>
-                <span @click="showEpisodesModal()">See all episodes</span>
+                <span @click="showEpisodesModal()">Episodes</span>
             </li>
             <li>
-                <span @click="showAboutModal()">ITR info</span>
+                <span @click="showAboutModal()">ITR Info</span>
             </li>
             <li>
                 <span @click="showSubscribeModal()">Subscribe</span>
+            </li>
+            <li>------</li>
+            <li>
+                <span>
+                    <a href="live" id="live">ITR Live</a>
+                </span>
             </li>
         </ul>
     </div>
