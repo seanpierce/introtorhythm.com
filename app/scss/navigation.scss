@@ -1,0 +1,49 @@
+#nav {
+    z-index: 10;
+    position: relative;
+    .top {
+        * {
+            color: white;
+        }
+        padding: 0.5em;
+        background: #333;
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            li {
+                padding: 0;
+                display: inline;
+                margin-right: 0.75em;
+                a {
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+    .bottom {
+        position: relative;
+        ::placeholder {
+            color: #333;
+            opacity: 1;
+        }
+        input {
+            font-size: 1em;
+            width: 100%;
+            border: none;
+            padding: 0.5em;
+            padding-left: 2em;
+            background: white;
+            border-bottom: solid 1px#333;
+            &:focus {
+                outline: none;
+            }
+        }
+        img.icon {
+            position: absolute;
+            height: 1em;
+            top: 0.6em;
+            left: 0.5em;
+        }
+    }
+}
