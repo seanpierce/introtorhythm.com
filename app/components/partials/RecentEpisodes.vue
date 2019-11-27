@@ -15,6 +15,9 @@
                 </div>
             </div>
         </div>
+        <div id="all-episodes-button">
+            <a href="/episodes">See all episodes</a>
+        </div>
     </div>
 </template>
 

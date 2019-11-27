@@ -3,13 +3,14 @@
     padding: 2em 1em;
     h3 {
         font-size: 2em;
+        text-align: center;
     }
     * {
         color: white;
     }
 
     #recent-episodes-list {
-        margin: 1em auto;
+        margin: 2em auto;
     }
 
     .recent-episode-container {
@@ -49,6 +50,16 @@
                 &:hover .recent-episode-content {
                     opacity: 1;
                 }
+            }
+        }
+    }
+
+    #all-episodes-button {
+        text-align: center;
+        a {
+            text-decoration: none;
+            &:hover {
+                text-decoration: underline;
             }
         }
     }

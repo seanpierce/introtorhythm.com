@@ -137,11 +137,12 @@ h1, h2, h3 {
   background: #333;
   padding: 2em 1em; }
   #recent-episodes h3 {
-    font-size: 2em; }
+    font-size: 2em;
+    text-align: center; }
   #recent-episodes * {
     color: white; }
   #recent-episodes #recent-episodes-list {
-    margin: 1em auto; }
+    margin: 2em auto; }
   #recent-episodes .recent-episode-container {
     display: inline-block;
     position: relative;
@@ -176,4 +177,10 @@ h1, h2, h3 {
             transform: skew(-3deg, -3deg) translate(-50%, -55%); }
         #recent-episodes .recent-episode-container .recent-episode-wrapper .recent-episode:hover .recent-episode-content {
           opacity: 1; }
+  #recent-episodes #all-episodes-button {
+    text-align: center; }
+    #recent-episodes #all-episodes-button a {
+      text-decoration: none; }
+      #recent-episodes #all-episodes-button a:hover {
+        text-decoration: underline; }
 
