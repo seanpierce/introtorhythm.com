@@ -22,6 +22,10 @@ ul, li {
   list-style: none;
   padding: 0; }
 
+h1, h2, h3 {
+  margin: 0;
+  padding: 0; }
+
 .pointer {
   cursor: pointer; }
 
@@ -128,4 +132,48 @@ ul, li {
   background-image: url("/assets/images/seanpierce-palabra.jpg");
   background-position: center;
   background-size: cover; }
+
+#recent-episodes {
+  background: #333;
+  padding: 2em 1em; }
+  #recent-episodes h3 {
+    font-size: 2em; }
+  #recent-episodes * {
+    color: white; }
+  #recent-episodes #recent-episodes-list {
+    margin: 1em auto; }
+  #recent-episodes .recent-episode-container {
+    display: inline-block;
+    position: relative;
+    width: 33%; }
+    #recent-episodes .recent-episode-container .recent-episode-wrapper {
+      margin-top: 75%; }
+      #recent-episodes .recent-episode-container .recent-episode-wrapper .recent-episode {
+        padding: 4px;
+        position: absolute;
+        width: 97%;
+        height: 98%;
+        top: 0;
+        left: 3%;
+        background-position: center;
+        background-size: cover;
+        cursor: pointer; }
+        #recent-episodes .recent-episode-container .recent-episode-wrapper .recent-episode .recent-episode-content {
+          transition: all 0.25s;
+          opacity: 0;
+          position: absolute;
+          top: 0;
+          left: 0;
+          bottom: 0;
+          right: 0;
+          background: red;
+          color: white; }
+          #recent-episodes .recent-episode-container .recent-episode-wrapper .recent-episode .recent-episode-content div {
+            font-size: 1.5em;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: skew(-3deg, -3deg) translate(-50%, -55%); }
+        #recent-episodes .recent-episode-container .recent-episode-wrapper .recent-episode:hover .recent-episode-content {
+          opacity: 1; }
 

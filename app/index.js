@@ -9,7 +9,8 @@ export const app = new Vue({
     data: {
         page: null,
         loaded: false,
-        localTime: '00:00:00'
+        localTime: '00:00:00',
+        mediaUrl: 'https://s3.amazonaws.com/podcasts.introtorhythm.com/media/'
     },
     methods: {
         getLocalTime() {
@@ -23,6 +24,7 @@ export const app = new Vue({
                 this.pad((date.getHours() === 12 ? date.getHours() : date.getHours() - 12), 2) + ':'
             output +=  this.pad(date.getMinutes(), 2) + ':';
             output += this.pad(date.getSeconds(), 2);
+            output += am ? ' AM' : ' PM'
             return output;
         },
         pad(num, size) {
