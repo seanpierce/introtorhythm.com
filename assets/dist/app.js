@@ -194,6 +194,42 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _nod
 
 /***/ }),
 
+/***/ "./components/partials/EpisodeGrid.vue":
+/*!*********************************************!*\
+  !*** ./components/partials/EpisodeGrid.vue ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _EpisodeGrid_vue_vue_type_template_id_01270402___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./EpisodeGrid.vue?vue&type=template&id=01270402& */ \"./components/partials/EpisodeGrid.vue?vue&type=template&id=01270402&\");\n/* harmony import */ var _EpisodeGrid_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EpisodeGrid.vue?vue&type=script&lang=js& */ \"./components/partials/EpisodeGrid.vue?vue&type=script&lang=js&\");\n/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ \"./node_modules/vue-loader/lib/runtime/componentNormalizer.js\");\n\n\n\n\n\n/* normalize component */\n\nvar component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"])(\n  _EpisodeGrid_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[\"default\"],\n  _EpisodeGrid_vue_vue_type_template_id_01270402___WEBPACK_IMPORTED_MODULE_0__[\"render\"],\n  _EpisodeGrid_vue_vue_type_template_id_01270402___WEBPACK_IMPORTED_MODULE_0__[\"staticRenderFns\"],\n  false,\n  null,\n  null,\n  null\n  \n)\n\n/* hot reload */\nif (false) { var api; }\ncomponent.options.__file = \"components/partials/EpisodeGrid.vue\"\n/* harmony default export */ __webpack_exports__[\"default\"] = (component.exports);\n\n//# sourceURL=webpack:///./components/partials/EpisodeGrid.vue?");
+
+/***/ }),
+
+/***/ "./components/partials/EpisodeGrid.vue?vue&type=script&lang=js&":
+/*!**********************************************************************!*\
+  !*** ./components/partials/EpisodeGrid.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _node_modules_vue_loader_lib_index_js_vue_loader_options_EpisodeGrid_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../node_modules/vue-loader/lib??vue-loader-options!./EpisodeGrid.vue?vue&type=script&lang=js& */ \"./node_modules/vue-loader/lib/index.js?!./components/partials/EpisodeGrid.vue?vue&type=script&lang=js&\");\n/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__[\"default\"] = (_node_modules_vue_loader_lib_index_js_vue_loader_options_EpisodeGrid_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[\"default\"]); \n\n//# sourceURL=webpack:///./components/partials/EpisodeGrid.vue?");
+
+/***/ }),
+
+/***/ "./components/partials/EpisodeGrid.vue?vue&type=template&id=01270402&":
+/*!****************************************************************************!*\
+  !*** ./components/partials/EpisodeGrid.vue?vue&type=template&id=01270402& ***!
+  \****************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EpisodeGrid_vue_vue_type_template_id_01270402___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../node_modules/vue-loader/lib??vue-loader-options!./EpisodeGrid.vue?vue&type=template&id=01270402& */ \"./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./components/partials/EpisodeGrid.vue?vue&type=template&id=01270402&\");\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EpisodeGrid_vue_vue_type_template_id_01270402___WEBPACK_IMPORTED_MODULE_0__[\"render\"]; });\n\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EpisodeGrid_vue_vue_type_template_id_01270402___WEBPACK_IMPORTED_MODULE_0__[\"staticRenderFns\"]; });\n\n\n\n//# sourceURL=webpack:///./components/partials/EpisodeGrid.vue?");
+
+/***/ }),
+
 /***/ "./components/partials/Navigation.vue":
 /*!********************************************!*\
   !*** ./components/partials/Navigation.vue ***!
@@ -646,6 +682,18 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _par
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/index.js?!./components/partials/EpisodeGrid.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib??vue-loader-options!./components/partials/EpisodeGrid.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n    props: [\n        'episodes'\n    ]\n});\n\n\n//# sourceURL=webpack:///./components/partials/EpisodeGrid.vue?./node_modules/vue-loader/lib??vue-loader-options");
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/index.js?!./components/partials/Navigation.vue?vue&type=script&lang=js&":
 /*!***********************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib??vue-loader-options!./components/partials/Navigation.vue?vue&type=script&lang=js& ***!
@@ -666,7 +714,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var axio
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ \"./node_modules/axios/index.js\");\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n\n\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n    data() {\n        return {\n            recentEpisodes: null\n        }\n    },\n    methods: {\n        getRecentEpisodes() {\n            axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/episodes/recent')\n                .then(response => {\n                    this.recentEpisodes = response.data;\n                })\n        }\n    },\n    mounted() {\n        this.getRecentEpisodes();\n    }\n});\n\n\n//# sourceURL=webpack:///./components/partials/RecentEpisodes.vue?./node_modules/vue-loader/lib??vue-loader-options");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ \"./node_modules/axios/index.js\");\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _EpisodeGrid_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EpisodeGrid.vue */ \"./components/partials/EpisodeGrid.vue\");\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n\n\n\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n    components: {\n        EpisodeGrid: _EpisodeGrid_vue__WEBPACK_IMPORTED_MODULE_1__[\"default\"]\n    },\n    data() {\n        return {\n            recentEpisodes: null\n        }\n    },\n    methods: {\n        getRecentEpisodes() {\n            axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/episodes/recent')\n                .then(response => {\n                    this.recentEpisodes = response.data;\n                })\n        }\n    },\n    mounted() {\n        this.getRecentEpisodes();\n    }\n});\n\n\n//# sourceURL=webpack:///./components/partials/RecentEpisodes.vue?./node_modules/vue-loader/lib??vue-loader-options");
 
 /***/ }),
 
@@ -706,6 +754,18 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./components/partials/EpisodeGrid.vue?vue&type=template&id=01270402&":
+/*!**********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./components/partials/EpisodeGrid.vue?vue&type=template&id=01270402& ***!
+  \**********************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return render; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return staticRenderFns; });\nvar render = function() {\n  var _vm = this\n  var _h = _vm.$createElement\n  var _c = _vm._self._c || _h\n  return _c(\n    \"div\",\n    _vm._l(_vm.episodes, function(episode) {\n      return _c(\n        \"div\",\n        { key: episode.id, staticClass: \"recent-episode-container\" },\n        [\n          _c(\"div\", { staticClass: \"recent-episode-wrapper\" }, [\n            _c(\n              \"div\",\n              {\n                staticClass: \"recent-episode\",\n                style: {\n                  backgroundImage:\n                    \"url(\" + _vm.$root.mediaUrl + episode.image + \")\"\n                }\n              },\n              [\n                _c(\"div\", { staticClass: \"recent-episode-content\" }, [\n                  _c(\"div\", [\n                    _vm._v(_vm._s(episode.number)),\n                    _c(\"br\"),\n                    _vm._v(_vm._s(episode.title))\n                  ])\n                ])\n              ]\n            )\n          ])\n        ]\n      )\n    }),\n    0\n  )\n}\nvar staticRenderFns = []\nrender._withStripped = true\n\n\n\n//# sourceURL=webpack:///./components/partials/EpisodeGrid.vue?./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options");
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./components/partials/Navigation.vue?vue&type=template&id=50dac434&":
 /*!*********************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./components/partials/Navigation.vue?vue&type=template&id=50dac434& ***!
@@ -726,7 +786,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return render; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return staticRenderFns; });\nvar render = function() {\n  var _vm = this\n  var _h = _vm.$createElement\n  var _c = _vm._self._c || _h\n  return _c(\"div\", { attrs: { id: \"recent-episodes\" } }, [\n    _c(\"h3\", [_vm._v(\"Recent Episodes\")]),\n    _vm._v(\" \"),\n    _vm.recentEpisodes\n      ? _c(\n          \"div\",\n          { attrs: { id: \"recent-episodes-list\" } },\n          _vm._l(_vm.recentEpisodes, function(episode) {\n            return _c(\n              \"div\",\n              { key: episode.id, staticClass: \"recent-episode-container\" },\n              [\n                _c(\"div\", { staticClass: \"recent-episode-wrapper\" }, [\n                  _c(\n                    \"div\",\n                    {\n                      staticClass: \"recent-episode\",\n                      style: {\n                        backgroundImage:\n                          \"url(\" + _vm.$root.mediaUrl + episode.image + \")\"\n                      }\n                    },\n                    [\n                      _c(\"div\", { staticClass: \"recent-episode-content\" }, [\n                        _c(\"div\", [\n                          _vm._v(_vm._s(episode.number)),\n                          _c(\"br\"),\n                          _vm._v(_vm._s(episode.title))\n                        ])\n                      ])\n                    ]\n                  )\n                ])\n              ]\n            )\n          }),\n          0\n        )\n      : _vm._e(),\n    _vm._v(\" \"),\n    _vm._m(0)\n  ])\n}\nvar staticRenderFns = [\n  function() {\n    var _vm = this\n    var _h = _vm.$createElement\n    var _c = _vm._self._c || _h\n    return _c(\"div\", { attrs: { id: \"all-episodes-button\" } }, [\n      _c(\"a\", { attrs: { href: \"/episodes\" } }, [_vm._v(\"See all episodes\")])\n    ])\n  }\n]\nrender._withStripped = true\n\n\n\n//# sourceURL=webpack:///./components/partials/RecentEpisodes.vue?./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return render; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return staticRenderFns; });\nvar render = function() {\n  var _vm = this\n  var _h = _vm.$createElement\n  var _c = _vm._self._c || _h\n  return _c(\"div\", { attrs: { id: \"recent-episodes\" } }, [\n    _c(\"h3\", [_vm._v(\"Recent Episodes\")]),\n    _vm._v(\" \"),\n    _vm.recentEpisodes\n      ? _c(\n          \"div\",\n          { attrs: { id: \"recent-episodes-list\" } },\n          [_c(\"EpisodeGrid\", { attrs: { episodes: _vm.recentEpisodes } })],\n          1\n        )\n      : _vm._e(),\n    _vm._v(\" \"),\n    _vm._m(0)\n  ])\n}\nvar staticRenderFns = [\n  function() {\n    var _vm = this\n    var _h = _vm.$createElement\n    var _c = _vm._self._c || _h\n    return _c(\"div\", { attrs: { id: \"all-episodes-button\" } }, [\n      _c(\"a\", { attrs: { href: \"/episodes\" } }, [_vm._v(\"See all episodes\")])\n    ])\n  }\n]\nrender._withStripped = true\n\n\n\n//# sourceURL=webpack:///./components/partials/RecentEpisodes.vue?./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options");
 
 /***/ }),
 
