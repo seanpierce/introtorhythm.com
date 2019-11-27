@@ -14,6 +14,7 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 
 
 # Quick-start development settings - unsuitable for production
@@ -40,6 +41,7 @@ INSTALLED_APPS = [
     'episodes',
     'ckeditor',
     'taggit',
+    'api',
 ]
 
 MIDDLEWARE = [
@@ -57,7 +59,7 @@ ROOT_URLCONF = 'introtorhythm.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [TEMPLATES_DIR,],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -117,7 +119,19 @@ USE_L10N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/2.1/howto/static-files/
+INTERNAL_IPS = (
+    'localhost',
+    '0.0.0.0',
+    '127.0.0.1'
+)
 
-STATIC_URL = '/static/'
+# pulls in assets for the Django Admin settings
+STATIC_ROOT = 'static'
+
+# create nginx alias on the webserver
+STATIC_URL = '/assets/'
+
+# the location where the static assets live
+# note: when the app references the public URL, it will point to the assets folder
+# note2: all files under this directory will be pulled into the static folder
+STATICFILES_DIRS = [os.path.join('assets'),]
