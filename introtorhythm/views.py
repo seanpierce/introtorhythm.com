@@ -5,3 +5,9 @@ def index(request):
         'title': 'Live',
         'page': 'index'
     })
+
+def episodes(request):
+    return render(request, 'app.html', {
+        'title': 'Episodes',
+        'page': 'episodes'
+    })

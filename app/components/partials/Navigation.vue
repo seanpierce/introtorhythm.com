@@ -34,7 +34,11 @@ export default {
             axios.post('/api/episodes/search', { search: this.search })
                 .then(response => {
                     this.showModal('search');
-                    console.log(response);
+                    this.$parent.modalData = {
+                        data: response.data,
+                        search: this.search
+                    }
+                    this.search = null;
                 })
         },
         showModal(name) {

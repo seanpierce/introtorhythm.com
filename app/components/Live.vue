@@ -27,6 +27,11 @@ export default {
     components: {
         RecentEpisodes
     },
+    methods: {
+        play() {
+            this.$parent.play();
+        }
+    },
     computed: {
         playing() {
             return this.$parent.playing;
