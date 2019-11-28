@@ -5,7 +5,7 @@
                 <li><a href="/">ITR</a></li>
                 <li><a href="/episodes">Episodes</a></li>
                 <li><a href="/schedule">Schedule</a></li>
-                <li><span class="pointer">Info</span></li>
+                <li><span class="pointer" @click="showModal('info')">Info</span></li>
                 <li><span class="pointer">Subscribe</span></li>
             </ul>
         </div>
@@ -33,8 +33,12 @@ export default {
         submit() {
             axios.post('/api/episodes/search', { search: this.search })
                 .then(response => {
+                    this.showModal('search');
                     console.log(response);
                 })
+        },
+        showModal(name) {
+            return this.$parent.showModal(name);
         }
     }
 }

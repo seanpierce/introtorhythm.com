@@ -143,19 +143,19 @@ h1, h2, h3 {
     color: white; }
   #recent-episodes #recent-episodes-list {
     margin: 2em auto; }
-  #recent-episodes .recent-episode-container {
+  #recent-episodes .episode-container {
     display: inline-block;
     position: relative;
     width: 33%; }
     @media (max-width: 750px) {
-      #recent-episodes .recent-episode-container {
+      #recent-episodes .episode-container {
         width: 50%; } }
     @media (max-width: 500px) {
-      #recent-episodes .recent-episode-container {
+      #recent-episodes .episode-container {
         width: 100%; } }
-    #recent-episodes .recent-episode-container .recent-episode-wrapper {
+    #recent-episodes .episode-container .episode-wrapper {
       margin-top: 75%; }
-      #recent-episodes .recent-episode-container .recent-episode-wrapper .recent-episode {
+      #recent-episodes .episode-container .episode-wrapper .episode {
         padding: 4px;
         position: absolute;
         width: 97%;
@@ -165,7 +165,7 @@ h1, h2, h3 {
         background-position: center;
         background-size: cover;
         cursor: pointer; }
-        #recent-episodes .recent-episode-container .recent-episode-wrapper .recent-episode .recent-episode-content {
+        #recent-episodes .episode-container .episode-wrapper .episode .episode-content {
           transition: all 0.25s;
           opacity: 0;
           position: absolute;
@@ -176,24 +176,24 @@ h1, h2, h3 {
           background: red;
           color: white; }
           @media (max-width: 750px) {
-            #recent-episodes .recent-episode-container .recent-episode-wrapper .recent-episode .recent-episode-content {
+            #recent-episodes .episode-container .episode-wrapper .episode .episode-content {
               opacity: 1;
               font-size: 1em;
               height: 2.75em; } }
-          #recent-episodes .recent-episode-container .recent-episode-wrapper .recent-episode .recent-episode-content div {
+          #recent-episodes .episode-container .episode-wrapper .episode .episode-content div {
             font-size: 1.5em;
             position: absolute;
             top: 50%;
             left: 50%;
             transform: skew(-3deg, -3deg) translate(-50%, -55%); }
             @media (max-width: 750px) {
-              #recent-episodes .recent-episode-container .recent-episode-wrapper .recent-episode .recent-episode-content div {
+              #recent-episodes .episode-container .episode-wrapper .episode .episode-content div {
                 opacity: 1;
                 font-size: 1em;
                 transform: none;
                 top: 0;
                 left: 4px; } }
-        #recent-episodes .recent-episode-container .recent-episode-wrapper .recent-episode:hover .recent-episode-content {
+        #recent-episodes .episode-container .episode-wrapper .episode:hover .episode-content {
           opacity: 1; }
   #recent-episodes #all-episodes-button {
     margin: 1em 0;
@@ -202,4 +202,19 @@ h1, h2, h3 {
       text-decoration: none;
       padding: 1em;
       border: solid 2px white; }
+
+.modal {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: lightgray;
+  z-index: 9;
+  overflow: scroll; }
+  .modal .content {
+    position: relative;
+    display: block;
+    width: 96%;
+    margin: 2em auto; }
 

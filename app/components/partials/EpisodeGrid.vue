@@ -2,11 +2,11 @@
     <div>
         <div v-for="episode in episodes"
             :key="episode.id"
-            class="recent-episode-container">
-            <div class="recent-episode-wrapper">
-                <div class="recent-episode"
+            class="episode-container">
+            <div class="episode-wrapper">
+                <div class="episode"
                     :style="{ backgroundImage: 'url(' + $root.mediaUrl + episode.image + ')' }">
-                    <div class="recent-episode-content">
+                    <div class="episode-content">
                         <div>{{ episode.number }}<br>{{ episode.title }}</div>
                     </div>
                 </div>

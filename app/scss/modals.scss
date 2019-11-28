@@ -1,0 +1,16 @@
+.modal {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background: lightgray;
+    z-index: 9;
+    overflow: scroll;
+    .content {
+        position: relative;
+        display: block;
+        width: 96%;
+        margin: 2em auto;
+    }
+}
