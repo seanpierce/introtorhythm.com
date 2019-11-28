@@ -11,3 +11,9 @@ def episodes(request):
         'title': 'Episodes',
         'page': 'episodes'
     })
+
+def episode(request, number):
+    return render(request, 'app.html', {
+        'title': number,
+        'page': 'episode'
+    })

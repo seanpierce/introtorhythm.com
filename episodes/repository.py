@@ -28,3 +28,14 @@ class EpisodeRepository:
                 Q(content__contains=search_text)
             ).order_by('-number')
             .values('number', 'title', 'content', 'image', 'audio'))
+
+    @staticmethod
+    def get_episode_by_number(number):
+        episode = Episode.objects.filter(active=True).order_by('-number').first()
+        return {
+            'number': episode.number,
+            'title': episode.title,
+            'content': episode.content,
+            'image': episode.image.url,
+            'audio': episode.audio.url
+        }

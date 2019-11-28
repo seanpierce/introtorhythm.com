@@ -37,3 +37,12 @@ class Search(View):
         body = json.loads(request.body.decode('utf-8'))
         search_text = body['search']
         return HttpResponse(json.dumps(repo.search(search_text)), content_type="application/json")
+
+class Episode(View):
+    """
+    Returns episode data when provided an episode number.
+    """
+
+    def get(self, request, *args, **kwargs):
+        number = self.kwargs['number']
+        return HttpResponse(json.dumps(repo.get_episode_by_number(number)), content_type="application/json")
