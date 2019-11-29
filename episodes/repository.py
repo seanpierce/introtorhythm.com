@@ -31,7 +31,7 @@ class EpisodeRepository:
 
     @staticmethod
     def get_episode_by_number(number):
-        episode = Episode.objects.filter(active=True).order_by('-number').first()
+        episode = Episode.objects.filter(active=True, number=number).order_by('-number').first()
         return {
             'number': episode.number,
             'title': episode.title,

@@ -6,7 +6,7 @@
                 <h1>{{ modalData.data.length }} result{{ modalData.data.length !== 1 ? 's' : '' }} found for "{{ modalData.search }}"</h1>
                 <ul v-if="modalData.data.length > 0">
                     <li v-for="result in modalData.data" :key="result.id">
-                        <a :href="'/episode/' + result.number">{{ result.number }}- {{ result.title }}</a>
+                        <a :href="'/episodes/' + result.number">{{ result.number }}- {{ result.title }}</a>
                     </li>
                 </ul>
             </div>

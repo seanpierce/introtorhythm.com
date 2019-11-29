@@ -6,6 +6,7 @@
             :modal-data="modalData" />
         <Live v-if="route === 'index'" />
         <Episodes v-if="route === 'episodes'" />
+        <Episode v-if="route === 'episode'" />
     </div>
 </template>
 
@@ -13,6 +14,7 @@
 import Navigation from './partials/Navigation.vue';
 import Live from './Live.vue';
 import Episodes from './Episodes.vue';
+import Episode from './Episode.vue';
 import InfoModal from './partials/modals/InfoModal.vue';
 import SearchModal from './partials/modals/SearchModal.vue';
 
@@ -22,6 +24,7 @@ export default {
         Navigation,
         Live,
         Episodes,
+        Episode,
         InfoModal,
         SearchModal
     },
