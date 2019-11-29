@@ -1,22 +1,9 @@
-#recent-episodes {
-    background: #333;
-    padding: 2em 1em;
-    h3 {
-        font-size: 2em;
-        text-align: center;
-    }
-    * {
-        color: white;
-    }
-
-    #recent-episodes-list {
-        margin: 2em auto;
-    }
-
+.episodes-grid {
     .episode-container {
         display: inline-block;
         position: relative;
         width: 33%;
+        overflow: hidden;
         @media (max-width: $breakpoint) {
             width: 50%;
         }
@@ -24,6 +11,9 @@
             width: 100%;
         }
         .episode-wrapper {
+            * {
+                color: white;
+            }
             margin-top: 75%;
             .episode {
                 padding: 4px;
@@ -44,7 +34,6 @@
                     bottom: 0;
                     right: 0;
                     background: red;
-                    color: white;
                     @media (max-width: $breakpoint) {
                         opacity: 1;
                         font-size: 1em;
@@ -71,14 +60,14 @@
             }
         }
     }
+}
 
-    #all-episodes-button {
-        margin: 1em 0;
-        text-align: center;
-        a {
-            text-decoration: none;
-            padding: 1em;
-            border: solid 2px white;
-        }
-    }
+.show-more-button {
+    margin-top: 1em;
+    text-align: center;
+    font-size: 1.5em;
+    cursor: pointer;
+    color: #333;
+    padding: 0.5em;
+    border: solid 2px #333;
 }
