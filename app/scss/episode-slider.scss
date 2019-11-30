@@ -1,4 +1,9 @@
 .slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     .slide {
         position: absolute;
         width: 100%;
@@ -24,10 +29,6 @@
         font-size: 1.5em;
         z-index: 20;
         cursor: pointer;
-        transition: all 0.25s;
-        &:hover {
-            background: rgba($color: #000000, $alpha: 1);
-        }
         span {
             position: absolute;
             top: 50%;
@@ -41,5 +42,16 @@
     }
     .next {
         right: 1em;
+    }
+    .go-to-episode {
+        font-size: 1.5em;
+        cursor: pointer;
+        position: absolute;
+        z-index: 20;
+        bottom: 0.75em;
+        right: 0.75em;
+        padding: 8px;
+        background: red;
+        color: white;
     }
 }

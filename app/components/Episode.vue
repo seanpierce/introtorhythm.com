@@ -6,7 +6,7 @@
             :style="{ backgroundImage: 'url(' + $root.mediaUrl + episode.image + ')' }">
             <div class="show-info">
                 <div class="title">{{ episode.number }}- {{ episode.title }}</div>
-                <div class="show-time">{{ $root.localTime }}</div>
+                <div class="show-time">{{ currentTime || '00:00:00' }} / {{ totalTime || '00:00:00' }}</div>
             </div>
             <div class="play-button" @click="play()">
                 <img :src="playing ? '/assets/images/pause.png' : '/assets/images/play.png'" alt="">
@@ -37,7 +37,15 @@ export default {
     },
     data() {
         return {
-            episode: null
+            episode: null,
+            time: 0,
+            playing: false,
+            audio: null,
+            currentTime: null,
+            totalTime: null,
+            playPercent: 0,
+            playerWidth: 0,
+            onplayHead: false,
         }
     },
     methods: {
@@ -51,17 +59,40 @@ export default {
                 })
         },
         play() {
-            this.$parent.play();
+            if (this.audio.paused) {
+                this.playing = true;
+                this.audio.play();
+            } else {
+                this.playing = false;
+                this.audio.pause();
+            }
         },
         setAudioSrouce() {
             var audioSource = this.$root.mediaUrl + this.episode.audio;
-            this.$parent.audio.src = audioSource;
-        }
+            this.audio = new Audio();
+            this.audio.src = audioSource;
+            this.audio.addEventListener('timeupdate', this.timeUpdate);
+        },
+        formatTime(input) {
+            var sec_num = parseInt(input, 10);
+            var hours   = Math.floor(sec_num / 3600);
+            var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
+            var seconds = sec_num - (hours * 3600) - (minutes * 60);
+            if (hours   < 10) { hours   = "0" + hours; }
+            if (minutes < 10) { minutes = "0" + minutes; }
+            if (seconds < 10) { seconds = "0" + seconds; }
+            return hours + ':' + minutes + ':' + seconds;
+        },
+        timeUpdate() {
+            if (!this.totalTime)
+                this.totalTime = this.formatTime(this.audio.duration);
+
+            this.currentTime = this.formatTime(this.audio.currentTime);
+            if (!this.onplayHead)
+                this.playPercent = this.playerWidth * (this.audio.currentTime / this.audio.duration);
+        },
     },
     computed: {
-        playing() {
-            return this.$parent.playing;
-        }
     },
     mounted() {
         this.getEpisode();

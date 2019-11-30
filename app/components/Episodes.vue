@@ -1,11 +1,11 @@
 <template>
     <div id="episodes">
         <div class="content">
-            <LatestEpisodes v-if="mostRecent" :episodes="mostRecent" />
+        <div class="cover-filter"></div>
+            <EpisodeSlider v-if="mostRecent" :episodes="mostRecent" />
         </div>
         <div class="sub-content">
             <div v-if="episodes" class="section">
-                <h1>Episodes</h1>
                 <EpisodesGrid :episodes="episodes"
                     :paginate="12" />
             </div>
@@ -19,12 +19,12 @@
 <script>
 import axios from 'axios';
 import EpisodesGrid from './partials/EpisodeGrid.vue';
-import LatestEpisodes from './partials/LatestEpisodes.vue';
+import EpisodeSlider from './partials/EpisodeSlider.vue';
 
 export default {
     components: {
         EpisodesGrid,
-        LatestEpisodes
+        EpisodeSlider
     },
     data() {
         return {
