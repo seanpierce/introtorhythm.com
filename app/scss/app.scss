@@ -32,18 +32,18 @@ h1, h2, h3 {
 
 .content {
 	position: absolute;
-	top: 4em;
+	top: 75px;
 	left: 0;
 	z-index: 0;
 	width: 100%;
-	height: calc(100% - 4em);
+	height: calc(100% - 75px);
 	.show-info {
 		position: absolute;
 		z-index: 10;
-		top: 2em;
+		top: 1em;
 		left: 1em;
 		.title, .show-time {
-			font-size: 2em;
+			font-size: 1.25em;
 			padding: 0.25em;
 		}
 		.title {
@@ -66,7 +66,7 @@ h1, h2, h3 {
 	}
 	img.logo {
 		position: absolute;
-		bottom: 1em;
+		top: 1em;
 		right: 1em;
 		z-index: 10;
 		height: 5em;
@@ -89,6 +89,7 @@ h1, h2, h3 {
 }
 
 .sub-content {
+	background: #f0f0f0;
 	position: absolute;
 	top: 100%;
 	width: 100%;

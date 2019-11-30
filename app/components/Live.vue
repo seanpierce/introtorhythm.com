@@ -12,7 +12,6 @@
             <img src="/assets/images/itr-logo.png" class="logo" alt="">
         </div>
         <div id="recent-episodes-container" class="sub-content">
-            <RecentEpisodes />
             <div>
                 <img src="/assets/images/itr-text.png" class="itr-text">
             </div>
@@ -21,11 +20,9 @@
 </template>
 
 <script>
-import RecentEpisodes from './partials/RecentEpisodes.vue';
 
 export default {
     components: {
-        RecentEpisodes
     },
     methods: {
         play() {

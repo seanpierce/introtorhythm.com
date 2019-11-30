@@ -1,18 +1,7 @@
 <template>
     <div id="episodes">
         <div class="content">
-            <div class="cover-filter"></div>
-            <div v-if="latestEpisode"
-                id="latest-episode"
-                :style="{ backgroundImage: 'url(' + $root.mediaUrl + latestEpisode.image + ')' }">
-                <div class="show-info">
-                    <div class="title">{{ latestEpisode.number }}- {{ latestEpisode.title }}</div>
-                    <div class="show-time">{{ $root.localTime }}</div>
-                </div>
-                <div class="play-button" @click="play()">
-                    <img :src="playing ? '/assets/images/pause.png' : '/assets/images/play.png'" alt="">
-                </div>
-            </div>
+            <LatestEpisodes v-if="mostRecent" :episodes="mostRecent" />
         </div>
         <div class="sub-content">
             <div v-if="episodes" class="section">
@@ -30,38 +19,27 @@
 <script>
 import axios from 'axios';
 import EpisodesGrid from './partials/EpisodeGrid.vue';
+import LatestEpisodes from './partials/LatestEpisodes.vue';
 
 export default {
     components: {
-        EpisodesGrid
+        EpisodesGrid,
+        LatestEpisodes
     },
     data() {
         return {
             episodes: null,
-            latestEpisode: null
+            mostRecent: null
         }
     },
     methods: {
         getEpisodes() {
             axios.get('/api/episodes')
                 .then(response => {
-                    this.latestEpisode = response.data.shift();
+                    this.mostRecent = response.data.slice(0,6);
                     this.episodes = response.data;
-                    this.setAudioSrouce();
                 })
         },
-        play() {
-            this.$parent.play();
-        },
-        setAudioSrouce() {
-            var audioSource = this.$root.mediaUrl + this.latestEpisode.audio;
-            this.$parent.audio.src = audioSource;
-        }
-    },
-    computed: {
-        playing() {
-            return this.$parent.playing;
-        }
     },
     mounted() {
         this.getEpisodes();
