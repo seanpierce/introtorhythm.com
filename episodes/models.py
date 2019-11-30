@@ -1,7 +1,6 @@
 from django.db import models
 
 from ckeditor.fields import RichTextField
-from taggit.managers import TaggableManager
 
 class Episode(models.Model):
     id = models.AutoField(primary_key=True)
@@ -14,7 +13,6 @@ class Episode(models.Model):
     audio = models.FileField(upload_to='episodes/audio/',
         max_length=500, default='assets/not-found.mp3')
     active = models.BooleanField(default=True)
-    tags = TaggableManager()
 
     class Meta:
         ordering = ['-number',]
