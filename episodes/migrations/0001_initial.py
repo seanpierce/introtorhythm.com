@@ -13,22 +13,6 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Genre',
-            fields=[
-                ('id', models.AutoField(primary_key=True, serialize=False)),
-                ('created_at', models.DateTimeField(auto_now=True)),
-                ('name', models.CharField(max_length=255)),
-            ],
-        ),
-        migrations.CreateModel(
-            name='Tag',
-            fields=[
-                ('id', models.AutoField(primary_key=True, serialize=False)),
-                ('created_at', models.DateTimeField(auto_now=True)),
-                ('name', models.CharField(max_length=255)),
-            ],
-        ),
-        migrations.CreateModel(
             name='Episode',
             fields=[
                 ('id', models.AutoField(primary_key=True, serialize=False)),
@@ -39,8 +23,6 @@ class Migration(migrations.Migration):
                 ('image', models.ImageField(default='assets/not-found.jpg', max_length=500, upload_to='episodes/images/')),
                 ('audio', models.FileField(default='assets/not-found.mp3', max_length=500, upload_to='episodes/audio/')),
                 ('active', models.BooleanField(default=True)),
-                ('genres', models.ManyToManyField(to='episodes.Genre')),
-                ('tags', models.ManyToManyField(to='episodes.Tag')),
             ],
             options={
                 'ordering': ['-number'],

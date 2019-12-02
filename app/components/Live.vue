@@ -7,14 +7,14 @@
                 <div class="show-time">{{ $root.localTime }}</div>
             </div>
             <div class="play-button" @click="play()">
-                <img :src="playing ? '/assets/images/pause.png' : '/assets/images/play.png'" alt="">
+                <img :src="playing ? '/assets/images/icons/pause.png' : '/assets/images/icons/play.png'" alt="">
             </div>
             <img src="/assets/images/itr-logo.png" class="logo" alt="">
         </div>
         <div id="recent-episodes-container" class="sub-content">
-            <h1 class="skew">Latest Episodes</h1>
-            <div class="latest-episodes">
-                <EpisodeSlider v-if="latestEpisodes" :episodes="latestEpisodes" />
+            <div class="sub-header">Latest Episodes</div>
+            <div v-if="latestEpisodes">
+                <EpisodeGrid :episodes="latestEpisodes" :paginate="6" />
             </div>
             <div>
                 <img src="/assets/images/itr-text.png" class="itr-text">
@@ -25,11 +25,11 @@
 
 <script>
 import axios from 'axios';
-import EpisodeSlider from './partials/EpisodeSlider';
+import EpisodeGrid from './partials/EpisodeGrid';
 
 export default {
     components: {
-        EpisodeSlider
+        EpisodeGrid
     },
     data() {
         return {

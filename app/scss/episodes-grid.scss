@@ -1,73 +1,40 @@
 .episodes-grid {
-    .episode-container {
-        display: inline-block;
+    display: flex;
+    flex-wrap: wrap;
+    .episode-wrapper {
+        cursor: pointer;
+        width: 33.33%;
+        min-width: 33.33%;
+        box-sizing: border-box;
+        padding: 6px;
+    }
+    .episode-image {
+        padding-top: 80%;
+        width: 100%;
         position: relative;
-        width: 33%;
-        overflow: hidden;
-        @media (max-width: $breakpoint) {
-            width: 50%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        .play-button {
+            height: 40px;
+            width: 60px;
+            background: rgba(255, 255, 255, 0.4);
         }
-        @media (max-width: $small-breakpoint) {
-            width: 100%;
-        }
-        .episode-wrapper {
-            * {
-                color: white;
-            }
-            margin-top: 75%;
-            .episode {
-                padding: 4px;
-                position: absolute;
-                width: 97%;
-                height: 98%;
-                top: 0;
-                left: 3%;
-                background-position: center;
-                background-size: cover;
-                cursor: pointer;
-                .episode-content {
-                    transition: all 0.25s;
-                    opacity: 0;
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    bottom: 0;
-                    right: 0;
-                    background: red;
-                    @media (max-width: $breakpoint) {
-                        opacity: 1;
-                        font-size: 1em;
-                        height: 2.75em;
-                    }
-                    div {
-                        font-size: 1.5em;
-                        position: absolute;
-                        top: 50%;
-                        left: 50%;
-                        transform: skew(-3deg, -3deg) translate(-50%, -55%);
-                        @media (max-width: $breakpoint) {
-                            opacity: 1;
-                            font-size: 1em;
-                            transform: none;
-                            top: 0;
-                            left: 4px;
-                        }
-                    }
-                }
-                &:hover .episode-content {
-                    opacity: 1;
-                }
-            }
-        }
+    }
+    .episode-content {
+        background: red;
+        color: white;
+        padding: 4px;
     }
 }
 
 .show-more-button {
-    margin-top: 1em;
     text-align: center;
-    font-size: 1.5em;
-    cursor: pointer;
-    color: #333;
-    padding: 0.5em;
-    border: solid 2px #333;
+    margin-top: 2em;
+    span {
+        cursor: pointer;
+        border: solid 2px #333;
+        font-size: 1.5em;
+        padding: 0.5em;
+    }
 }

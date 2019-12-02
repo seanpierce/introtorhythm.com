@@ -1,7 +1,7 @@
 <template>
-    <div id="search-modal" class="modal">
+    <div id="search-modal" class="modal" @click="hideModal($event)">
         <div class="content">
-            <span @click="$parent.hideModal()" class="pointer">&lt; Back</span>
+            <img @click="hideModal($event)" src="/assets/images/icons/close.svg" id="icon-close" />
             <div v-if="modalData">
                 <h1>{{ modalData.data.length }} result{{ modalData.data.length !== 1 ? 's' : '' }} found for "{{ modalData.search }}"</h1>
                 <ul v-if="modalData.data.length > 0">
@@ -19,5 +19,13 @@ export default {
     props: [
         'modalData'
     ],
+    methods: {
+        hideModal(event) {
+            var target = event.target.id;
+            console.log(target);
+            if (target !== 'search-modal' && target !== 'icon-close') return;
+            this.$parent.hideModal();
+        }
+    }
 }
 </script>

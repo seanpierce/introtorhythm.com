@@ -12,6 +12,10 @@ body {
 	margin: 0;
 }
 
+ul {
+	margin: 0;
+}
+
 ul, li {
 	list-style: none;
 	padding: 0;
@@ -37,6 +41,7 @@ h1, h2, h3 {
 	z-index: 0;
 	width: 100%;
 	height: calc(100% - 75px);
+	border-bottom: solid 1px #333;
 }
 
 .show-info {
@@ -51,6 +56,9 @@ h1, h2, h3 {
 	.title {
 		background: red;
 		color: white;
+		* {
+			color: white;
+		}
 	}
 	.show-time {
 		background: white;
@@ -90,7 +98,7 @@ img.logo {
 }
 
 .sub-content {
-	background: #f0f0f0;
+	background: white;
 	position: absolute;
 	top: 100%;
 	width: 100%;

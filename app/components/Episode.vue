@@ -9,7 +9,7 @@
                 <div class="show-time">{{ currentTime || '00:00:00' }} / {{ totalTime || '00:00:00' }}</div>
             </div>
             <div class="play-button" @click="play()">
-                <img :src="playing ? '/assets/images/pause.png' : '/assets/images/play.png'" alt="">
+                <img :src="playing ? '/assets/images/icons/pause.png' : '/assets/images/icons/play.png'" alt="">
             </div>
             <img src="/assets/images/itr-logo.png" class="logo" alt="">
             <AudioTimeline />

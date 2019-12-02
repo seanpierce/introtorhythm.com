@@ -43,7 +43,7 @@ export default {
             this.modal = name;
             document.body.style.overflow = 'hidden';
         },
-        hideModal() {
+        hideModal() {;
             this.modal = null;
             document.body.style.overflow = 'inherit';
         },

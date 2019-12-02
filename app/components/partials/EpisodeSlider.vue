@@ -6,11 +6,11 @@
             :key="i"
             :style="{ backgroundImage: 'url(' + $root.mediaUrl + ep.image + ')' }">
             <div class="show-info pointer" @click="goToEpisode(ep.number)">
-                <div class="title">Episode {{ ep.number }}</div>
-                <div class="show-time">{{ ep.title }}</div>
+                <div class="title"><h2>Latest Episodes</h2></div>
+                <div class="show-time">{{ ep.number }}- {{ ep.title }}</div>
             </div>
             <div class="go-to-episode" @click="goToEpisode(ep.number)">
-                Go to episode {{ ep.number }}
+                Listen to episode {{ ep.number }}
             </div>
         </div>
         <div class="prev" @click="previous()"><span>&lt;</span></div>
