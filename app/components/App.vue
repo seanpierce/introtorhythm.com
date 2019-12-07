@@ -6,6 +6,7 @@
             :modal-data="modalData" />
         <InfoModal v-if="modal === 'info'"
             :modal-data="modalData" />
+        <SubscribeModal v-if="modal === 'subscribe'" />
         <Live v-if="route === 'index'" />
         <Episodes v-if="route === 'episodes'" />
         <Episode v-if="route === 'episode'" />
@@ -19,6 +20,7 @@ import Episodes from './Episodes.vue';
 import Episode from './Episode.vue';
 import InfoModal from './partials/modals/InfoModal.vue';
 import SearchModal from './partials/modals/SearchModal.vue';
+import SubscribeModal from './partials/modals/SubscribeModal.vue';
 
 export default {
     name: 'App',
@@ -28,7 +30,8 @@ export default {
         Episodes,
         Episode,
         InfoModal,
-        SearchModal
+        SearchModal,
+        SubscribeModal
     },
     data() {
         return {
