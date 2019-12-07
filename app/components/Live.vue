@@ -15,6 +15,7 @@
             <div class="sub-header">Latest Episodes</div>
             <div v-if="latestEpisodes">
                 <EpisodeGrid :episodes="latestEpisodes" :paginate="6" />
+                <div class="show-more-button"><span @click="goToEpisodes()">See more episodes</span></div>
             </div>
             <div>
                 <img src="/assets/images/itr-text.png" class="itr-text">
@@ -37,6 +38,9 @@ export default {
         }
     },
     methods: {
+        goToEpisodes() {
+            window.location.href="/episodes"
+        },
         play() {
             this.$parent.play();
         },
