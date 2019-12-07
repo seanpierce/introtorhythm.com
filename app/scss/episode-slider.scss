@@ -1,3 +1,12 @@
+@keyframes progress-countdown {
+    0% {
+        width: 100%;
+    }
+    100% {
+        width: 0%;
+    }
+}
+
 .slider {
     position: absolute;
     top: 0;
@@ -13,7 +22,6 @@
         background-position: center;
         background-size: cover;
         opacity: 0;
-        transition: all 0.25s;
     }
     .selected {
         opacity: 1;
@@ -22,19 +30,15 @@
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
+        z-index: 20;
+        cursor: pointer;
         width: 2em;
         height: 2em;
         background: rgba($color: #000000, $alpha: 0.7);
         border-radius: 50%;
-        font-size: 1.5em;
-        z-index: 20;
-        cursor: pointer;
-        span {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: white;
+        img {
+            padding: 0.5em;
+            height: 2em;
         }
     }
     .prev {
@@ -53,5 +57,13 @@
         padding: 8px;
         background: red;
         color: white;
+        img {
+            height: 0.75em;
+        }
+        @media (max-width: $small-breakpoint) {
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
     }
 }

@@ -11,6 +11,13 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+import os.path
+import configparser
+import datetime
+
+# configs = ['./env.ini', './test.env.ini']
+CONFIG = configparser.RawConfigParser()
+CONFIG.read('./env.ini')
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -24,9 +31,11 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 SECRET_KEY = 'hq(x#eh(h^b@cqy584bt_wq_x_yh=d%&ls%bb1r&8dq9apy1oe'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = eval(CONFIG.get('Environment', 'DEBUG'))
 
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = []
+ALLOWED_HOSTS = CONFIG.get('Environment', 'ALLOWED_HOSTS').split(',')
+HOST_URL = CONFIG.get('Environment', 'HOST_URL')
 
 
 # Application definition
@@ -39,6 +48,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'episodes',
+    'content',
+    'subscribers',
     'ckeditor',
     'api',
 ]
@@ -70,6 +81,28 @@ TEMPLATES = [
         },
     },
 ]
+
+now = datetime.datetime.now()
+log_name = str(now.year) + '-' + str(now.month) + '-' + str(now.day)
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': 'logs/' + log_name + '.log',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'WARNING',
+            'propagate': True,
+        },
+    },
+}
 
 WSGI_APPLICATION = 'introtorhythm.wsgi.application'
 
@@ -109,7 +142,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Los_Angeles'
 
 USE_I18N = True
 
@@ -134,3 +167,27 @@ STATIC_URL = '/assets/'
 # note: when the app references the public URL, it will point to the assets folder
 # note2: all files under this directory will be pulled into the static folder
 STATICFILES_DIRS = [os.path.join('assets'),]
+
+AWS_ACCESS_KEY_ID = CONFIG.get('AWS Secret Keys', 'AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = CONFIG.get('AWS Secret Keys', 'AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = 'podcasts.introtorhythm.com'
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+AWS_DEFAULT_ACL = None
+
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400',
+}
+
+DEFAULT_FILE_STORAGE = 'introtorhythm.storage_backends.MediaStorage'
+
+# Email Settings
+if not DEBUG:
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_HOST = CONFIG.get('EMAIL SECRET KEYS', 'EMAIL_HOST')
+    EMAIL_HOST_USER = CONFIG.get('EMAIL SECRET KEYS', 'EMAIL_HOST_USER')
+    EMAIL_HOST_PASSWORD = CONFIG.get('EMAIL SECRET KEYS', 'EMAIL_HOST_PASSWORD')
+    EMAIL_PORT = int(CONFIG.get('EMAIL SECRET KEYS', 'EMAIL_PORT'))
+    EMAIL_USE_TLS = True
+else:
+    EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+    EMAIL_FILE_PATH = 'tmp/emails/'

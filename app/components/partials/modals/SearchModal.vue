@@ -22,7 +22,6 @@ export default {
     methods: {
         hideModal(event) {
             var target = event.target.id;
-            console.log(target);
             if (target !== 'search-modal' && target !== 'icon-close') return;
             this.$parent.hideModal();
         }

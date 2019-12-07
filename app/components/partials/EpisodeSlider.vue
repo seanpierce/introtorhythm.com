@@ -10,11 +10,12 @@
                 <div class="show-time">{{ ep.number }}- {{ ep.title }}</div>
             </div>
             <div class="go-to-episode" @click="goToEpisode(ep.number)">
-                Listen to episode {{ ep.number }}
+
+                <img src="/assets/images/icons/play-arrow.svg" /> Listen to episode {{ ep.number }}
             </div>
         </div>
-        <div class="prev" @click="previous()"><span>&lt;</span></div>
-        <div class="next" @click="next()"><span>&gt;</span></div>
+        <div class="prev" @click="previous()"><img src="/assets/images/icons/left.svg"></div>
+        <div class="next" @click="next()"><img src="/assets/images/icons/right.svg"></div>
 	</div>
 </template>
 
