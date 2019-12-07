@@ -7,7 +7,7 @@
             color: white;
         }
         padding: 0.5em;
-        background: #333;
+        background: #222;
         ul {
             margin: 0;
             padding: 0;
@@ -19,13 +19,22 @@
                 a {
                     text-decoration: none;
                 }
+                &#mobile-trigger {
+                    .header__menu-toggle__icon {
+                        height: 1.5em;
+                        float: right;
+                    }
+                    @media (min-width: $small-breakpoint + 1) {
+                        display: none;
+                    }
+                }
             }
         }
     }
     .bottom {
         position: relative;
         ::placeholder {
-            color: #333;
+            color: #222;
             opacity: 1;
         }
         input {
@@ -35,7 +44,7 @@
             padding: 0.5em;
             padding-left: 2em;
             background: white;
-            border-bottom: solid 1px#333;
+            border-bottom: solid 1px#222;
             &:focus {
                 outline: none;
             }
@@ -46,5 +55,41 @@
             top: 0.6em;
             left: 0.5em;
         }
+    }
+    @media (max-width: $small-breakpoint) {
+        .desktop-nav-item {
+            display: none;
+        }
+    }
+}
+
+ul#mobile-nav {
+    z-index: 22;
+    background: #222;
+    position: fixed;
+    top: 2em;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1em;
+    text-align: right;
+    vertical-align: bottom;
+    li {
+        font-size: 2em;
+        * {
+            color: white;
+        }
+        span {
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+        a {
+            text-decoration: none;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+        display: block;
     }
 }

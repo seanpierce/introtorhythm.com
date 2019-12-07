@@ -2,7 +2,9 @@
     <div v-if="loaded" id="container">
         <Navigation />
         <InfoModal v-if="modal === 'info'" />
-        <SearchModal v-if="modal === 'search'" 
+        <SearchModal v-if="modal === 'search'"
+            :modal-data="modalData" />
+        <InfoModal v-if="modal === 'info'"
             :modal-data="modalData" />
         <Live v-if="route === 'index'" />
         <Episodes v-if="route === 'episodes'" />
