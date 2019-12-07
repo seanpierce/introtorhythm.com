@@ -1,27 +1,4 @@
 <template>
-    <!-- <div class="episodes-grid">
-        <div v-if="!loaded" style="text-align:center">
-            <em>LOADING</em>
-        </div>
-        <div v-if="loaded">
-            <div v-for="episode in showEpisodes"
-                :key="episode.id"
-                class="episode-container"
-                @click="goToEpisode(episode.number)">
-                <div class="episode-wrapper">
-                    <div class="episode"
-                        :style="{ backgroundImage: 'url(' + $root.mediaUrl + episode.image + ')' }">
-                        <div class="episode-content">
-                            <div>{{ episode.number }}<br>{{ episode.title }}</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="show-more-button" v-if="showShowMore" @click="showMore()">
-                Show more
-            </div>
-        </div>
-    </div> -->
     <div>
         <div v-if="!loaded" style="text-align:center">
             <em>LOADING</em>
@@ -43,7 +20,7 @@
             </div>
         </div>
         <div class="show-more-button" v-if="showShowMore && loaded" @click="showMore()">
-            <span>Show more</span>
+            <span>Load more</span>
         </div>
     </div>
 </template>
