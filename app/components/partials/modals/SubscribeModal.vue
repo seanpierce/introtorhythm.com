@@ -3,7 +3,7 @@
         <div class="content">
             <img @click="hideModal($event)" src="/assets/images/icons/close.svg" id="icon-close" />
             <div>
-                <p>Subscribe to ITR to receive updates regarding new episodes, live streaming schedule, or general news. You can <a href="/unsubscribe">unsubscribe</a> at any time.</p>
+                <p>Subscribe to ITR to receive updates regarding new episodes, live streaming schedule, or general news. You can <a href="mailto:introtorhythm@gmail.com?subject=Unsubscribe&body=Please remove this email address from your mail list.">unsibscribe</a> at any time.</p>
                 <br>
                 <div v-if="!success">
                     <label for="email-input">Email Address</label>
@@ -18,7 +18,7 @@
                     Thanks! A confirmation email was sent to {{ email }}
                 </div>
                 <br>
-                <p class="subtext"><em>ITR will nether share nor distribute your email. Collected data is only used for subscription updates and listener notifications.</em></p>
+                <p class="subtext"><em>ITR will neither share nor distribute your email. Collected data is only used for subscription updates and listener notifications.</em></p>
             </div>
         </div>
     </div>
