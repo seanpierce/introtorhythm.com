@@ -28,7 +28,8 @@ class Search(View):
     """
     @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):
-        """Add decorator to internal class method to
+        """
+        Add decorator to internal class method to
         ignore the presence of a csrf token/ cookie in the request.
         """
         return super(Search, self).dispatch(request, *args, **kwargs)
