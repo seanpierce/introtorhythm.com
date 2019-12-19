@@ -41,6 +41,7 @@ HOST_URL = CONFIG.get('Environment', 'HOST_URL')
 # Application definition
 
 INSTALLED_APPS = [
+    'admin_extension',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

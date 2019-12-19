@@ -1,0 +1,24 @@
+{% extends "admin/base.html" %}
+{% load static from staticfiles %}
+{% block extrastyle %}
+<link rel="icon" href='{% static "images/favicon.png"%}'>
+<link href="https://fonts.googleapis.com/css?family=Droid+Sans+Mono" rel="stylesheet" type="text/css" />
+<style>
+* {
+    font-family: 'Droid Sans Mono';
+}
+.module table caption {
+    background-color: #333;
+}
+#header {
+    background: #333;;
+}
+#header, #header h1 {
+    color: white;
+}
+</style>
+{% endblock %}
+
+{% block title %}Intro To Rhythm | Admin{% endblock %}
+{% block branding %}<h1 id="site-name">Intro To Rhythm</h1>{% endblock %}
+{% block content_title %}<h1>Admin Dashboard</h1>{% endblock %}
