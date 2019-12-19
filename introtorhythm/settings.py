@@ -160,9 +160,10 @@ INTERNAL_IPS = (
 
 # pulls in assets for the Django Admin settings
 STATIC_ROOT = 'static'
-
-# create nginx alias on the webserver
-STATIC_URL = '/assets/'
+if DEBUG:
+    STATIC_URL = '/assets/'
+else:
+    STATIC_URL = '/static/'
 
 # the location where the static assets live
 # note: when the app references the public URL, it will point to the assets folder
