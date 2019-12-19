@@ -1,3 +1,6 @@
+import os
+import boto3
+
 from django.conf import settings
 from django.db import models
 from django.dispatch import receiver
@@ -8,6 +11,7 @@ def get_default_title_for_image():
     from datetime import datetime
     now = datetime.now()
     return 'img-%s' % now.strftime("%m%d%Y-%H:%M:%S")
+
 
 class Content(models.Model):
     id = models.AutoField(primary_key=True)
@@ -42,19 +46,17 @@ class Image(models.Model):
 
 
 @receiver(models.signals.post_delete, sender=Image)
-def auto_delete_file_on_delete(sender, instance, **kwargs):
+def remove_file_from_s3(sender, instance, using, **kwargs):
     """
-    Deletes image from filesystem
-    when corresponding `Image` object is deleted.
+    Deletes image from filesystem (AWS S3)
+    when corresponding `Image` record is deleted.
     """
-    if instance.image:
-        if os.path.isfile(instance.image.path):
-            os.remove(instance.image.path)
+    instance.image.delete(save=False)
 
 @receiver(models.signals.pre_save, sender=Image)
 def auto_delete_file_on_change(sender, instance, **kwargs):
     """
-    Deletes old image from filesystem
+    Deletes old image from filesystem (AWS S3)
     when corresponding `Image` object is updated
     with new file.
     """
@@ -68,5 +70,4 @@ def auto_delete_file_on_change(sender, instance, **kwargs):
 
     new_file = instance.image
     if not old_file == new_file:
-        if os.path.isfile(old_file.path):
-            os.remove(old_file.path)
+        old_file.delete(save=False)
