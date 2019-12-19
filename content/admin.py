@@ -23,8 +23,13 @@ class ImageAdmin(admin.ModelAdmin):
 
     image_tag.short_description = 'Preview'
 
-    list_display = ['image_tag','filename',]
-    list_display_links = ['image_tag','filename',]
-    readonly_fields = ['image_tag',]
+    list_display = ['title', 'image_tag', 'filename',]
+    list_display_links = ['title', 'image_tag', 'filename',]
+    # readonly_fields = ['image_tag',]
+
+    def get_readonly_fields(self, request, obj=None):
+        if obj:
+            return self.readonly_fields + ('title','image_tag',)
+        return self.readonly_fields
 
 admin.site.register(Image, ImageAdmin)

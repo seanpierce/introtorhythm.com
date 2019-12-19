@@ -1,9 +1,13 @@
-import os
-
+from django.conf import settings
 from django.db import models
 from django.dispatch import receiver
 
 from ckeditor.fields import RichTextField
+
+def get_default_title_for_image():
+    from datetime import datetime
+    now = datetime.now()
+    return 'img-%s' % now.strftime("%m%d%Y-%H:%M:%S")
 
 class Content(models.Model):
     id = models.AutoField(primary_key=True)
@@ -23,7 +27,8 @@ class Content(models.Model):
 class Image(models.Model):
     id = models.AutoField(primary_key=True)
     created_at = models.DateTimeField(auto_now=True)
-    image = models.ImageField(upload_to='images')
+    title = models.CharField(max_length=50, default=get_default_title_for_image())
+    image = models.ImageField(upload_to='content/images')
 
     @property
     def filename(self):
