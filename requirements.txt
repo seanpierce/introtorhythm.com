@@ -6,7 +6,7 @@ chardet==3.0.4
 colorama==0.4.1
 coverage==4.5.4
 coverage-badge==1.0.1
-Django==2.2.4
+Django>=2.2.8
 django-ckeditor==5.7.1
 django-js-asset==1.2.2
 django-storages==1.7.1
