@@ -31,8 +31,24 @@
     }
     .episode-content {
         background: #222;
-        color: white;
         padding: 4px;
+        color: white;
+        * {
+            color: white;
+        }
+        .tags {
+            margin-top: 0.5em;
+            .tag-pill {
+                font-size: 0.75em;
+                color: white;
+                cursor: pointer;
+                display: inline-block;
+                margin-right: 1em;
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
     }
 }
 

@@ -3,7 +3,8 @@
         <div class="content">
             <img @click="hideModal($event)" src="/assets/images/icons/close.svg" id="icon-close" />
             <div v-if="modalData">
-                <h1>{{ modalData.data.length }} result{{ modalData.data.length !== 1 ? 's' : '' }} found for "{{ modalData.search }}"</h1>
+                <h1 v-if="!tagSearch">{{ modalData.data.length }} result{{ modalData.data.length !== 1 ? 's' : '' }} found for "{{ modalData.search }}"</h1>
+                <h1 v-if="tagSearch">{{ modalData.data.length }} episode{{ modalData.data.length !== 1 ? 's' : '' }} tagged "{{ modalData.tag }}"</h1>
                 <ul v-if="modalData.data.length > 0">
                     <li v-for="result in modalData.data" :key="result.id">
                         <a :href="'/episodes/' + result.number">{{ result.number }}- {{ result.title }}</a>
@@ -16,9 +17,13 @@
 
 <script>
 export default {
-    props: [
-        'modalData'
-    ],
+    props: {
+        modalData: Object,
+        tagSearch: {
+            type: Boolean,
+            default: false
+        }
+    },
     methods: {
         hideModal(event) {
             var target = event.target.id;
