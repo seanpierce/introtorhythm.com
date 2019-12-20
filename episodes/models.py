@@ -13,6 +13,7 @@ class Episode(models.Model):
     audio = models.FileField(upload_to='episodes/audio/',
         max_length=500, default='assets/not-found.mp3')
     active = models.BooleanField(default=True)
+    featured = models.BooleanField(default=False)
 
     class Meta:
         ordering = ['-number',]
