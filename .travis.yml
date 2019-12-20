@@ -1,0 +1,24 @@
+dist: xenial
+language: python
+python:
+  - 3.6.3
+  
+branches:
+  only:
+    - master
+
+env:
+  - DJANGO_VERSION=2.2.4
+
+before_install:
+  - virtualenv venv
+  - source venv/bin/activate
+
+install:
+  - pip install -r requirements.txt
+
+before_script:
+  - cp test.env.ini env.ini
+
+script:
+  - python run-tests.py
