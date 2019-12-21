@@ -3,8 +3,10 @@
     margin: 2em auto;
     width: 96%;
     max-width: 600px;
-    #form {
+    #wrapper {
         margin: 1em 0;
+    }
+    #form {
         input, button {
             display: block;
             width: 100%;
@@ -16,8 +18,11 @@
             }
         }
         input {
-            border: none;
-            border-bottom: solid 1px #222;
+            border: solid 1px #222;
+            &::placeholder {
+                color: #222;
+                opacity: 1;
+            }
         }
         button {
             border: solid 1px #222;
