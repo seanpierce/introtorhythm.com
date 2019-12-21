@@ -3,7 +3,7 @@
         <div id="nav">
             <div class="top">
                 <ul>
-                    <li><a href="/">ITR</a></li>
+                    <li><a href="/">ITR-Live</a></li>
                     <li><a href="/episodes" class="desktop-nav-item">Episodes</a></li>
                     <li><span class="pointer desktop-nav-item" @click="showInfo()">Info</span></li>
                     <li><span class="pointer desktop-nav-item" @click="showModal('subscribe')">Subscribe</span></li>
@@ -23,7 +23,7 @@
         </div>
         <ul v-if="showMobileNav && smallScreen" id="mobile-nav">
             <li><img @click="toggleMobileNav()" src="/assets/images/icons/close-but-in-white.svg" id="icon-close" /></li>
-            <li><a href="/">Live</a></li>
+            <li><a href="/">ITR-Live</a></li>
             <li><a href="/episodes">Episodes</a></li>
             <li><span class="pointer" @click="showInfo()">Info</span></li>
             <li><span class="pointer" @click="showModal('subscribe')">Subscribe</span></li>
