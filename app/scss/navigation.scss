@@ -45,6 +45,7 @@
             padding-left: 2em;
             background: white;
             border-bottom: solid 1px#222;
+            border-radius: 0;
             &:focus {
                 outline: none;
             }
@@ -67,7 +68,7 @@ ul#mobile-nav {
     z-index: 22;
     background: #222;
     position: fixed;
-    top: 2em;
+    top: 0;
     right: 0;
     bottom: 0;
     left: 0;
@@ -78,6 +79,11 @@ ul#mobile-nav {
         font-size: 2em;
         * {
             color: white;
+        }
+        img#icon-close {
+            height: 1em;
+            margin-bottom: 0.5em;
+            cursor: pointer;
         }
         span {
             &:hover {
