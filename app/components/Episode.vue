@@ -67,12 +67,14 @@ export default {
             axios.get(url)
                 .then(response => {
                     this.episode = response.data;
-                    this.episode.tags = this.formatEpisodeTags(this.episode.tags);
+                    this.episode.tags = this.getEpisodeTags(this.episode.tags);
                     this.setAudioSrouce();
                 })
         },
-        formatEpisodeTags(tags) {
-            return tags.split(',').map(x => this.formatTag(x));
+        getEpisodeTags(tags) {
+            if (tags && tags !== '')
+                return tags.split(',').map(x => this.formatTag(x));
+            else return []
         },
         formatTag(tag) {
             if (tag[0] === ' ')
