@@ -13,3 +13,7 @@ class IntroToRhythmTestCase(TestCase):
     def test_episode_route(self):
         response = self.client.get('/episodes/002', follow=True)
         self.assertTemplateUsed(response, 'app.html')
+
+    def test_unsubscribe_route(self):
+        response = self.client.get('/unsubscribe', follow=True)
+        self.assertTemplateUsed(response, 'app.html')
