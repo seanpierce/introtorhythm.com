@@ -16,4 +16,12 @@
     margin: 4em auto;
     border: solid 2px #222;
     padding: 2em;
+    .tag {
+        cursor: pointer;
+        display: inline-block;
+        margin-right: 1em;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
 }

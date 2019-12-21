@@ -8,11 +8,13 @@ class Episode(models.Model):
     title = models.CharField(max_length=255)
     number = models.CharField(max_length=3)
     content = RichTextField()
+    tags = models.CharField(max_length=255, default='', help_text='comma separated. ex: "funk, house, soca disco"')
     image = models.ImageField(upload_to='episodes/images/',
         max_length=500, default='assets/not-found.jpg')
     audio = models.FileField(upload_to='episodes/audio/',
         max_length=500, default='assets/not-found.mp3')
     active = models.BooleanField(default=True)
+    featured = models.BooleanField(default=False)
 
     class Meta:
         ordering = ['-number',]

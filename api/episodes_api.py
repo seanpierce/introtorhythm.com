@@ -47,3 +47,30 @@ class Episode(View):
     def get(self, request, *args, **kwargs):
         number = self.kwargs['number']
         return HttpResponse(json.dumps(repo.get_episode_by_number(number)), content_type="application/json")
+
+
+class Featured(View):
+    """
+    Returns episode data for episodes marked as 'featured'.
+    """
+
+    def get(self, request, *args, **kwargs):
+        return HttpResponse(json.dumps(repo.get_featured_episodes()), content_type="application/json")
+
+
+class SearchTags(View):
+    """
+    Returns episode data matching a provided tag.
+    """
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args, **kwargs):
+        """
+        Add decorator to internal class method to
+        ignore the presence of a csrf token/ cookie in the request.
+        """
+        return super(SearchTags, self).dispatch(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        body = json.loads(request.body.decode('utf-8'))
+        tag = body['tag']
+        return HttpResponse(json.dumps(repo.search_by_tag(tag)), content_type="application/json")

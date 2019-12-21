@@ -15,8 +15,12 @@
             <div class="sub-header">Latest Episodes</div>
             <div v-if="latestEpisodes">
                 <EpisodeGrid :episodes="latestEpisodes" :paginate="6" />
-                <div class="show-more-button"><span @click="goToEpisodes()">See more episodes</span></div>
             </div>
+            <div class="sub-header">Featured Episodes</div>
+            <div v-if="featuredEpisodes">
+                <EpisodeGrid :episodes="featuredEpisodes" />
+            </div>
+            <div class="show-more-button"><span @click="goToEpisodes()">See more episodes</span></div>
             <div>
                 <img src="/assets/images/itr-text.png" class="itr-text">
             </div>
@@ -34,7 +38,8 @@ export default {
     },
     data() {
         return {
-            latestEpisodes: null
+            latestEpisodes: null,
+            featuredEpisodes: null
         }
     },
     methods: {
@@ -49,7 +54,13 @@ export default {
                 .then(response => {
                     this.latestEpisodes = response.data;
                 })
-        }
+        },
+        getFeaturedEpisodes() {
+            axios.get('/api/episodes/featured')
+                .then(response => {
+                    this.featuredEpisodes = response.data;
+                })
+        },
     },
     computed: {
         playing() {
@@ -58,6 +69,7 @@ export default {
     },
     mounted() {
         this.getLatestEpisodes();
+        this.getFeaturedEpisodes();
     }
 }
 </script>

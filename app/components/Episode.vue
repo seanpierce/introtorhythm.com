@@ -19,21 +19,31 @@
                 <h2>{{ episode.number }}</h2>
                 <h1>{{ episode.title }}</h1>
                 <div v-html="episode.content"></div>
+                <div id="tags">
+                    <span v-for="(tag, index) in episode.tags" :key="index">
+                        <span class="tag" @click="searchTag(tag)">#{{ tag }}</span>
+                    </span>
+                </div>
             </div>
             <div>
                 <img src="/assets/images/itr-text.png" class="itr-text">
             </div>
         </div>
+        <SearchModal v-if="modal === 'search-tags'"
+            :tag-search="true"
+            :modal-data="modalData" />
     </div>
 </template>
 
 <script>
 import axios from 'axios';
 import AudioTimeline from './partials/AudioTimeline';
+import SearchModal from './partials/modals/SearchModal';
 
 export default {
     components: {
-        AudioTimeline
+        AudioTimeline,
+        SearchModal
     },
     data() {
         return {
@@ -46,6 +56,8 @@ export default {
             playPercent: 0,
             playerWidth: 0,
             onplayHead: false,
+            modal: null,
+            modalData: null
         }
     },
     methods: {
@@ -55,8 +67,23 @@ export default {
             axios.get(url)
                 .then(response => {
                     this.episode = response.data;
+                    this.episode.tags = this.getEpisodeTags(this.episode.tags);
                     this.setAudioSrouce();
                 })
+        },
+        getEpisodeTags(tags) {
+            if (tags && tags !== '')
+                return tags.split(',').map(x => this.formatTag(x));
+            else return []
+        },
+        formatTag(tag) {
+            if (tag[0] === ' ')
+                tag = tag.slice(1);
+
+            if (tag[tag.length -1] === ' ')
+                tag = tag.slice(0, -1);
+
+            return tag;
         },
         play() {
             if (this.audio.paused) {
@@ -90,6 +117,25 @@ export default {
             this.currentTime = this.formatTime(this.audio.currentTime);
             if (!this.onplayHead)
                 this.playPercent = this.playerWidth * (this.audio.currentTime / this.audio.duration);
+        },
+        searchTag(tag) {
+            tag = this.formatTag(tag);
+            axios.post('/api/episodes/search/tag', { tag: tag })
+                .then(response => {
+                    this.modalData = {
+                        data: response.data,
+                        tag: tag
+                    }
+                    this.showModal('search-tags');
+                })
+        },
+        showModal(name) {
+            this.modal = name;
+            document.body.style.overflow = 'hidden';
+        },
+        hideModal() {;
+            this.modal = null;
+            document.body.style.overflow = 'inherit';
         },
     },
     computed: {

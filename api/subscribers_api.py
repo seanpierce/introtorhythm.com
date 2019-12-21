@@ -99,6 +99,6 @@ class Unsubscribe(View):
         body = json.loads(request.body.decode('utf-8'))
 
         if repo.unsubscribe(body['email']):
-            return HttpResponse(json.dumps({'data': True}), content_type="application/json")
+            return HttpResponse(json.dumps(True), content_type="application/json")
         else:
-            return HttpResponse(json.dumps({'data': False}), content_type="application/json")
+            return HttpResponse(json.dumps(False), content_type="application/json")

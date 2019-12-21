@@ -2,11 +2,11 @@
     display: flex;
     flex-wrap: wrap;
     .episode-wrapper {
-        cursor: pointer;
         width: 33.33%;
         min-width: 33.33%;
         box-sizing: border-box;
         padding: 6px;
+        margin-bottom: 0.5em;
         @media (max-width: $medium-breakpoint) {
             width: 50%;
             min-width: 50%;
@@ -17,6 +17,7 @@
         }
     }
     .episode-image {
+        cursor: pointer;
         padding-top: 80%;
         width: 100%;
         position: relative;
@@ -30,9 +31,22 @@
         }
     }
     .episode-content {
-        background: #222;
-        color: white;
         padding: 4px;
+        .ep-grid-header {
+            cursor: pointer;
+        }
+        .tags {
+            margin-top: 0.15em;
+            .tag-pill {
+                font-size: 0.75em;
+                cursor: pointer;
+                display: inline-block;
+                margin-right: 1em;
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
     }
 }
 

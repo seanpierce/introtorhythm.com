@@ -59,7 +59,7 @@ export default {
     mounted() {
         setTimeout(() => {
             this.cycle();
-        }, 3000);
+        }, 2000);
     }
 }
 </script>

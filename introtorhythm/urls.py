@@ -16,13 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
-from .views import index, episodes, episode
+from .views import index, episodes, episode, unsubscribe
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('api.urls')),
     path('episodes', episodes),
     path('live', index),
+    path('unsubscribe', unsubscribe),
     path('episodes/<number>', episode),
     path('', index),
 ]

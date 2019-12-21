@@ -1,0 +1,33 @@
+#unsubscribe {
+    display: block;
+    margin: 2em auto;
+    width: 96%;
+    max-width: 600px;
+    #wrapper {
+        margin: 1em 0;
+    }
+    #form {
+        input, button {
+            display: block;
+            width: 100%;
+            margin: 0.5em 0;
+            font-size: 1em;
+            padding: 4px;
+            &:focus {
+                outline: none;
+            }
+        }
+        input {
+            border: solid 1px #222;
+            &::placeholder {
+                color: #222;
+                opacity: 1;
+            }
+        }
+        button {
+            border: solid 1px #222;
+            background: white;
+            cursor: pointer;
+        }
+    }
+}

@@ -21,7 +21,7 @@
                 <img src="/assets/images/icons/search-icon.svg" class="icon">
             </div>
         </div>
-        <ul v-if="showMobileNav" id="mobile-nav">
+        <ul v-if="showMobileNav && smallScreen" id="mobile-nav">
             <li><a href="/">Live</a></li>
             <li><a href="/episodes">Episodes</a></li>
             <li><span class="pointer" @click="showInfo()">Info</span></li>
@@ -37,7 +37,8 @@ export default {
     data() {
         return {
             search: null,
-            showMobileNav: false
+            showMobileNav: false,
+            smallScreen: false
         }
     },
     methods: {
@@ -74,7 +75,20 @@ export default {
         },
         showModal(name) {
             return this.$parent.showModal(name);
-        }
+        },
+        checkWindow() {
+            if (window.innerWidth > 500 && this.smallScreen) {
+                this.smallScreen = false;
+                this.toggleMobileNav();
+            }
+
+            if (window.innerWidth <= 500 && !this.smallScreen)
+                this.smallScreen = true;
+        },
+    },
+    mounted() {
+        if (window.innerWidth <= 500) this.smallScreen = true;
+        window.addEventListener('resize', this.checkWindow);
     }
 }
 </script>
