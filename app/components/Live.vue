@@ -10,6 +10,10 @@
                 <img :src="playing ? '/assets/images/icons/pause.png' : '/assets/images/icons/play.png'" alt="">
             </div>
             <img src="/assets/images/itr-logo.png" class="logo" alt="">
+            <div id="scroll-down-cta"
+                @click="scrollToRecent()">
+                ⤺ Latest & Featured
+            </div>
         </div>
         <div id="recent-episodes-container" class="sub-content">
             <div class="sub-header">Latest Episodes</div>
@@ -61,6 +65,10 @@ export default {
                     this.featuredEpisodes = response.data;
                 })
         },
+        scrollToRecent() {
+            var element = document.getElementById('recent-episodes-container');
+            element.scrollIntoView({behavior: 'smooth'});
+        }
     },
     computed: {
         playing() {
