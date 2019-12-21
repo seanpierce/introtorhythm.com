@@ -80,7 +80,8 @@ export default {
         checkWindow() {
             if (window.innerWidth > 500 && this.smallScreen) {
                 this.smallScreen = false;
-                this.toggleMobileNav();
+                this.showMobileNav = false;
+                document.body.style.overflow = 'inherit';
             }
 
             if (window.innerWidth <= 500 && !this.smallScreen)
