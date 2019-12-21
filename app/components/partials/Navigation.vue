@@ -22,6 +22,7 @@
             </div>
         </div>
         <ul v-if="showMobileNav && smallScreen" id="mobile-nav">
+            <li><img @click="toggleMobileNav()" src="/assets/images/icons/close-but-in-white.svg" id="icon-close" /></li>
             <li><a href="/">Live</a></li>
             <li><a href="/episodes">Episodes</a></li>
             <li><span class="pointer" @click="showInfo()">Info</span></li>
