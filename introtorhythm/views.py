@@ -17,3 +17,9 @@ def episode(request, number):
         'title': number,
         'page': 'episode'
     })
+
+def unsubscribe(request):
+    return render(request, 'app.html', {
+        'title': ':(',
+        'page': 'unsubscribe'
+    })
