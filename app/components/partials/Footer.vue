@@ -8,7 +8,7 @@
                 <a href="https://introtorhythm.com/stream" target="_blank">stream.mp3</a>
             </li>
             <li>
-                <a href="https://introtorhythm.com/stream" target="_blank">stream.m3u</a>
+                <a href="https://introtorhythm.com/stream/m3u" target="_blank">stream.m3u</a>
             </li>
             <li>
                 ITR &copy; {{ year }}
