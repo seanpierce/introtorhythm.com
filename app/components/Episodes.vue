@@ -9,9 +9,6 @@
                 <EpisodesGrid :episodes="episodes"
                     :paginate="12" />
             </div>
-            <div>
-                <img src="/assets/images/itr-text.png" class="itr-text">
-            </div>
         </div>
     </div>
 </template>

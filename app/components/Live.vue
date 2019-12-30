@@ -25,9 +25,6 @@
                 <EpisodeGrid :episodes="featuredEpisodes" />
             </div>
             <div class="show-more-button"><span @click="goToEpisodes()">See more episodes</span></div>
-            <div>
-                <img src="/assets/images/itr-text.png" class="itr-text">
-            </div>
         </div>
     </div>
 </template>

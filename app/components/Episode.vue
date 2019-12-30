@@ -25,9 +25,6 @@
                     </span>
                 </div>
             </div>
-            <div>
-                <img src="/assets/images/itr-text.png" class="itr-text">
-            </div>
         </div>
         <SearchModal v-if="modal === 'search-tags'"
             :tag-search="true"
