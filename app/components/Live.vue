@@ -24,7 +24,8 @@
             <div v-if="featuredEpisodes">
                 <EpisodeGrid :episodes="featuredEpisodes" />
             </div>
-            <div class="show-more-button"><span @click="goToEpisodes()">See more episodes</span></div>
+            <div class="show-more-button"><span @click="goToEpisodes()">See all episodes</span></div> 
+            <Footer />
         </div>
     </div>
 </template>
@@ -32,10 +33,12 @@
 <script>
 import axios from 'axios';
 import EpisodeGrid from './partials/EpisodeGrid';
+import Footer from './partials/Footer';
 
 export default {
     components: {
-        EpisodeGrid
+        EpisodeGrid,
+        Footer
     },
     data() {
         return {

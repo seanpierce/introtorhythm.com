@@ -23,3 +23,9 @@ def unsubscribe(request):
         'title': ':(',
         'page': 'unsubscribe'
     })
+
+def archive(request):
+    return render(request, 'app.html', {
+        'title': 'Archive',
+        'page': 'archive'
+    })

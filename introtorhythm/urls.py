@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
-from .views import index, episodes, episode, unsubscribe
+from .views import index, episodes, episode, unsubscribe, archive
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,6 +24,7 @@ urlpatterns = [
     path('episodes', episodes),
     path('live', index),
     path('unsubscribe', unsubscribe),
+    path('archive', archive),
     path('episodes/<number>', episode),
     path('', index),
 ]
