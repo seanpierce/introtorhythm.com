@@ -24,7 +24,7 @@
             <div v-if="featuredEpisodes">
                 <EpisodeGrid :episodes="featuredEpisodes" />
             </div>
-            <div class="show-more-button"><span @click="goToEpisodes()">See all episodes</span></div> 
+            <div class="show-more-button"><span @click="goToEpisodes()">More Episodes</span></div> 
             <Footer />
         </div>
     </div>

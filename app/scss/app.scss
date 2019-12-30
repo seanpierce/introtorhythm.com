@@ -126,6 +126,9 @@ img.logo {
 	top: 100%;
 	width: 100%;
 	padding-bottom: 6em !important;
+	@media (max-width: $small-breakpoint) {
+		padding-bottom: 9em !important;
+	}
 	.section {
 		padding: 2em 1em;
 		h1 {

@@ -57,9 +57,9 @@ export default {
         },
         checkSubmit(event) {
             if (!this.search) return;
-            if (event.key === 'Enter') this.submit();
+            if (event.key === 'Enter') this.submit(event.target);
         },
-        submit() {
+        submit(element) {
             axios.post('/api/episodes/search', { search: this.search })
                 .then(response => {
                     this.showModal('search');
@@ -68,6 +68,7 @@ export default {
                         search: this.search
                     }
                     this.search = null;
+                    element.blur();
                 })
         },
         showInfo() {
