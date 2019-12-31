@@ -1,11 +1,11 @@
 <template>
     <div>
-        <div v-if="!loaded" style="text-align:center">
+        <!-- <div v-if="!loaded" style="text-align:center">
             <em>LOADING</em>
-        </div>
-        <div class="episodes-grid" v-if="loaded">
+        </div> -->
+        <div class="episodes-grid">
             <div class="episode-wrapper"
-                v-for="episode in showEpisodes"
+                v-for="episode in episodes"
                 :key="episode.id">
                 <div class="episode-inner-wrapper">
                     <div class="episode-image"
@@ -45,43 +45,38 @@ export default {
     components: {
         SearchModal
     },
-    props: [
-        'episodes',
-        'paginate'
-    ],
+    props: {
+        paginate: {
+            type: Boolean,
+            default: false
+        },
+        episodes: {
+            type: Array,
+            default: []
+        }
+    },
     data() {
         return {
             imageCount: 0,
             loadedImages: 0,
-            showEpisodes: [],
             modal: null,
-            modalData: null
+            modalData: null,
+            loadingMore: false,
+            loadedAll: false
         }
     },
     methods: {
-        preloadImages() {
-            var images = this.episodes.map(x => x.image);
-            this.imageCount = images.length;
-            images.forEach(img => {
-                var image = new Image();
-                image.onload = () => {
-                    this.loadedImages ++;
-                }
-                image.src = this.$root.mediaUrl + img;
-            });
-        },
-        initialShowEpisodes() {
-            if (!this.paginate) this.showEpisodes = this.episodes;
-            else {
-                this.showEpisodes = this.episodes.slice(0, this.paginate);
-            }
-        },
-        showMore() {
-            var startAt = this.showEpisodes.length;
-            var take = this.paginate + startAt;
-            var add = this.episodes.slice(startAt, take);
-            this.showEpisodes = this.showEpisodes.concat(add);
-        },
+        // preloadImages() {
+        //     var images = this.episodes.map(x => x.image);
+        //     this.imageCount = images.length;
+        //     images.forEach(img => {
+        //         var image = new Image();
+        //         image.onload = () => {
+        //             this.loadedImages ++;
+        //         }
+        //         image.src = this.$root.mediaUrl + img;
+        //     });
+        // },
         goToEpisode(number) {
             window.location.href = '/episodes/' + number;
         },
@@ -121,21 +116,39 @@ export default {
             this.modal = null;
             document.body.style.overflow = 'inherit';
         },
-    },
-    computed: {
-        loaded() {
-            if (this.imageCount === 0) return false;
-            if (this.imageCount === this.loadedImages)
-                return true;
-            else return false;
+        loadMore() {
+            var vm = this;
+            if (!this.episodes) return;
+            this.loadingMore = true;
+            axios.post('/api/episodes/paginate', { offset: this.episodes.length, take: 6 })
+                .then(res => {
+                    var eps = res.data;
+                    if (eps.length === 0) {
+                        this.loadedAll = true;
+                        return;
+                    }
+
+                    eps.forEach(ep => {
+                        this.episodes.push(ep);
+                    })
+                    this.loadingMore = false;
+                })
         },
-        showShowMore() {
-            return this.episodes.length !== this.showEpisodes.length;
+        setLazyLoad() {
+            window.onscroll = () => {
+                let bottomOfWindow = document.documentElement.scrollTop > this.$el.offsetHeight;
+                if (bottomOfWindow && !this.loadingMore && !this.loadedAll) {
+                    this.loadMore();
+                }
+            };
         }
     },
+    computed: {
+    },
     mounted() {
-        this.initialShowEpisodes();
-        this.preloadImages();
+        if (this.paginate) {
+            this.setLazyLoad();
+        }
     }
 }
 </script>

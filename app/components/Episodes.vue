@@ -7,7 +7,7 @@
         <div class="sub-content">
             <div v-if="episodes" class="section">
                 <EpisodesGrid :episodes="episodes"
-                    :paginate="12" />
+                    :paginate="true" />
             </div>
             <Footer />
         </div>
@@ -34,7 +34,7 @@ export default {
     },
     methods: {
         getEpisodes() {
-            axios.get('/api/episodes')
+            axios.post('/api/episodes/paginate', { offset: 0, take: 12 })
                 .then(response => {
                     this.mostRecent = response.data.slice(0,6);
                     this.episodes = response.data;

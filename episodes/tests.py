@@ -49,11 +49,11 @@ class EpisodeTestCase(TestCase):
         """
 
         # take 6 episodes
-        episode_list = repo.get_episodes(6)
+        episode_list = repo.get_episodes(take=6)
         self.assertEqual(len(episode_list), 6)
 
         # take 9 episodes
-        episode_list = repo.get_episodes(9)
+        episode_list = repo.get_episodes(take=9)
         self.assertEqual(len(episode_list), 9)
 
         # ensure most recent episode is first in the list of returned episodes

@@ -18,7 +18,7 @@
         <div id="recent-episodes-container" class="sub-content">
             <div class="sub-header">Latest Episodes</div>
             <div v-if="latestEpisodes">
-                <EpisodeGrid :episodes="latestEpisodes" :paginate="6" />
+                <EpisodeGrid :episodes="latestEpisodes" />
             </div>
             <div class="sub-header">Featured Episodes</div>
             <div v-if="featuredEpisodes">

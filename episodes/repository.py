@@ -8,21 +8,14 @@ class EpisodeRepository:
     """
 
     @staticmethod
-    def get_episodes(take=None):
+    def get_episodes():
         """
         Returns a list of episode data.
         """
-
-        if take is None:
-            return list(Episode.objects
-                .filter(active=True)
-                .order_by('-number')
-                .values('number', 'title', 'image', 'tags'))
-        else:
-            return list(Episode.objects
-                .filter(active=True)
-                .order_by('-number')[:take]
-                .values('number', 'title', 'image', 'tags'))
+        return list(Episode.objects
+            .filter(active=True)
+            .order_by('-number')
+            .values('number', 'title', 'image', 'tags'))
 
     @staticmethod
     def search(search_text):
@@ -70,4 +63,11 @@ class EpisodeRepository:
 
         return list(Episode.objects
             .filter(active=True, featured=True)
+            .values('number', 'title', 'image', 'tags'))
+
+    @staticmethod
+    def paginate(offset, take):
+        return list(Episode.objects
+            .filter(active=True)
+            .order_by('-number')[offset:][:take]
             .values('number', 'title', 'image', 'tags'))
