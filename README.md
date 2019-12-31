@@ -18,7 +18,7 @@ The purpose of this project it to take what I've learned with the [initial djang
   * Add coverage badge to README ✓
 * CI/CD pipeline (in progress with Travis CI)
 * Integration with VueJS ✓
-* Exposed (and enhanced) _Subscriber_ and _Episodes_ API
+* Exposed (and enhanced) _Subscriber_ and _Episodes_ API ✓
 
 ## Installation
 
