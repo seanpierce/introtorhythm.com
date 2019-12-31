@@ -9,9 +9,7 @@
                 <EpisodesGrid :episodes="episodes"
                     :paginate="12" />
             </div>
-            <div>
-                <img src="/assets/images/itr-text.png" class="itr-text">
-            </div>
+            <Footer />
         </div>
     </div>
 </template>
@@ -20,11 +18,13 @@
 import axios from 'axios';
 import EpisodesGrid from './partials/EpisodeGrid.vue';
 import EpisodeSlider from './partials/EpisodeSlider.vue';
+import Footer from './partials/Footer';
 
 export default {
     components: {
         EpisodesGrid,
-        EpisodeSlider
+        EpisodeSlider,
+        Footer
     },
     data() {
         return {

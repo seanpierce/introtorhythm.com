@@ -1,0 +1,15 @@
+#archive {
+    padding: 1em;
+    a {
+        text-decoration: none;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+    .tab-1 {
+        margin-left: 1em;
+    }
+    .tab-2 {
+        margin-left: 4em;
+    }
+}

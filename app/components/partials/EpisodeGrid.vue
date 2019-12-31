@@ -31,9 +31,6 @@
                 </div>
             </div>
         </div>
-        <div class="show-more-button" v-if="showShowMore && loaded" @click="showMore()">
-            <span>Load more</span>
-        </div>
         <SearchModal v-if="modal === 'search-tags'"
             :tag-search="true"
             :modal-data="modalData" />

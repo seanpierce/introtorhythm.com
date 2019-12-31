@@ -25,9 +25,7 @@
                     </span>
                 </div>
             </div>
-            <div>
-                <img src="/assets/images/itr-text.png" class="itr-text">
-            </div>
+            <Footer />
         </div>
         <SearchModal v-if="modal === 'search-tags'"
             :tag-search="true"
@@ -39,11 +37,13 @@
 import axios from 'axios';
 import AudioTimeline from './partials/AudioTimeline';
 import SearchModal from './partials/modals/SearchModal';
+import Footer from './partials/Footer';
 
 export default {
     components: {
         AudioTimeline,
-        SearchModal
+        SearchModal,
+        Footer
     },
     data() {
         return {

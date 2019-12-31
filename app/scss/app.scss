@@ -36,11 +36,11 @@ h1, h2, h3 {
 
 .content {
 	position: absolute;
-	top: 75px;
+	top: 68px;
 	left: 0;
 	z-index: 0;
 	width: 100%;
-	height: calc(100% - 75px);
+	height: calc(100% - 68px);
 	border-bottom: solid 1px #222;
 	#scroll-down-cta {
 		z-index: 10;
@@ -52,6 +52,10 @@ h1, h2, h3 {
 		font-size: 1em;
 		padding: 0.25em;
 		cursor: pointer;
+	}
+	@media (max-width: $small-breakpoint) {
+		top: 33px;
+		height: calc(100% - 33px);
 	}
 }
 
@@ -121,14 +125,9 @@ img.logo {
 	position: absolute;
 	top: 100%;
 	width: 100%;
-	h1.skew {
-		text-align: center;
-		margin: 1em auto;
-		transform: skew(-3deg, -3deg);
-	}
-	img.itr-text {
-		width: 100%;
-		margin: 2em auto;
+	padding-bottom: 6em !important;
+	@media (max-width: $small-breakpoint) {
+		padding-bottom: 9em !important;
 	}
 	.section {
 		padding: 2em 1em;
