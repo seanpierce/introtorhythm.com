@@ -12,7 +12,7 @@ class Recent(View):
     Returns most recent episode data.
     """
     def get(self, request, *args, **kwargs):
-        return HttpResponse(json.dumps(repo.get_episodes(6)), content_type="application/json")
+        return HttpResponse(json.dumps(repo.paginate(0, 6)), content_type="application/json")
 
 class All(View):
     """
@@ -74,3 +74,22 @@ class SearchTags(View):
         body = json.loads(request.body.decode('utf-8'))
         tag = body['tag']
         return HttpResponse(json.dumps(repo.search_by_tag(tag)), content_type="application/json")
+
+
+class Paginate(View):
+    """
+    Returns paginated episode data.
+    """
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args, **kwargs):
+        """
+        Add decorator to internal class method to
+        ignore the presence of a csrf token/ cookie in the request.
+        """
+        return super(Paginate, self).dispatch(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        body = json.loads(request.body.decode('utf-8'))
+        offset = body['offset']
+        take = body['take']
+        return HttpResponse(json.dumps(repo.paginate(offset, take)), content_type="application/json")
