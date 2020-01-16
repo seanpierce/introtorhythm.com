@@ -18,7 +18,7 @@ The purpose of this project it to take what I've learned with the [initial djang
   * Add coverage badge to README ✓
 * CI/CD pipeline (in progress with Travis CI)
 * Integration with VueJS ✓
-* Exposed (and enhanced) _Subscriber_ and _Episodes_ API
+* Exposed (and enhanced) _Subscriber_ and _Episodes_ API ✓
 
 ## Installation
 
@@ -64,3 +64,7 @@ yarn run serve
 cd ../
 python manage.py runserver
 ```
+
+# More info
+
+For more information regarding [configuration](https://github.com/seanpierce/introtorhythm.com/wiki/Configuration) and [cron jobs](https://github.com/seanpierce/introtorhythm.com/wiki/Cron-Jobs), check [the wiki](https://github.com/seanpierce/introtorhythm.com/wiki)!
