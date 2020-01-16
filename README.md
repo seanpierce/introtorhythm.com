@@ -64,3 +64,7 @@ yarn run serve
 cd ../
 python manage.py runserver
 ```
+
+# More info
+
+For more information regarding [configuration](https://github.com/seanpierce/introtorhythm.com/wiki/Configuration) and [cron jobs](https://github.com/seanpierce/introtorhythm.com/wiki/Cron-Jobs), check [the wiki](https://github.com/seanpierce/introtorhythm.com/wiki)!
