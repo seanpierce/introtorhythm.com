@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'episodes',
     'content',
     'subscribers',
+    'schedule',
     'ckeditor',
     'api',
 ]
@@ -182,6 +183,9 @@ AWS_S3_OBJECT_PARAMETERS = {
 }
 
 DEFAULT_FILE_STORAGE = 'introtorhythm.storage_backends.MediaStorage'
+
+# local storage
+MEDIA_ROOT = 'uploads/'
 
 # Email Settings
 if not DEBUG:
