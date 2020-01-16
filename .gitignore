@@ -9,5 +9,7 @@ app/node_modules/
 assets/dist/
 introtorhythm/__pycache__/
 env.ini
+uploads/*
+!uploads/.keep
 
 .DS_Store
