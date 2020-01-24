@@ -6,6 +6,7 @@
         <InfoModal v-if="modal === 'info'"
             :modal-data="modalData" />
         <SubscribeModal v-if="modal === 'subscribe'" />
+        <ScheduleModal v-if="modal === 'schedule'" />
         <Live v-if="route === 'index'" />
         <Episodes v-if="route === 'episodes'" />
         <Episode v-if="route === 'episode'" />
@@ -13,6 +14,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 import Navigation from './partials/Navigation.vue';
 import Live from './Live.vue';
 import Episodes from './Episodes.vue';
@@ -20,6 +22,7 @@ import Episode from './Episode.vue';
 import InfoModal from './partials/modals/InfoModal.vue';
 import SearchModal from './partials/modals/SearchModal.vue';
 import SubscribeModal from './partials/modals/SubscribeModal.vue';
+import ScheduleModal from './partials/modals/ScheduleModal.vue';
 
 export default {
     name: 'Main',
@@ -30,7 +33,8 @@ export default {
         Episode,
         InfoModal,
         SearchModal,
-        SubscribeModal
+        SubscribeModal,
+        ScheduleModal
     },
     data() {
         return {
@@ -39,7 +43,8 @@ export default {
             time: 0,
             playing: false,
             audio: null,
-            liveUrl: 'https://introtorhythm.com/stream'
+            liveUrl: 'https://introtorhythm.com/stream',
+            schedule: null
         }
     },
     methods: {
@@ -72,6 +77,12 @@ export default {
                 vm.onError(vm);
             }
         },
+        getSchedule() {
+            axios.get('/api/schedule')
+                .then(response => {
+                    this.schedule = response.data;
+                })
+        },
     },
     computed: {
         route() {
@@ -91,6 +102,8 @@ export default {
         this.audio.onerror = function() {
             vm.onError(vm);
         }
+
+        this.getSchedule();
     }
 }
 </script>
