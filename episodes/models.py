@@ -33,8 +33,12 @@ class Episode(models.Model):
         s3 = boto3.resource('s3', aws_access_key_id=settings.AWS_ACCESS_KEY_ID, aws_secret_access_key=settings.AWS_SECRET_ACCESS_KEY)
         bucket = s3.Bucket(settings.AWS_STORAGE_BUCKET_NAME)
         filename = 'media/episodes/images/thumbnails/' + os.path.basename(self.image.name)
+
         image = Image.open(self.image)
         image.thumbnail((100,100), Image.ANTIALIAS)
+        if image.mode != 'RGB':
+            image = image.convert('RGB')
+
         buffer = io.BytesIO()
         image.save(buffer, "JPEG")
         buffer.seek(0)
