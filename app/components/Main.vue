@@ -1,7 +1,6 @@
 <template>
     <div v-if="loaded" id="container">
         <Navigation />
-        <InfoModal v-if="modal === 'info'" />
         <SearchModal v-if="modal === 'search'"
             :modal-data="modalData" />
         <InfoModal v-if="modal === 'info'"

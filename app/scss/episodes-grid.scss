@@ -15,16 +15,22 @@
             width: 100%;
             min-width: 100%;
         }
+        .episode-inner-wrapper {
+            overflow: hidden;
+        }
     }
-    .episode-image {
+    .episode {
         cursor: pointer;
-        padding-top: 80%;
-        width: 100%;
         position: relative;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
+        .episode-image {
+            padding-top: 80%;
+            width: 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
         .play-button {
+
             height: 40px;
             width: 60px;
             background: rgba(255, 255, 255, 0.4);
@@ -59,4 +65,12 @@
         font-size: 1.5em;
         padding: 0.5em;
     }
+}
+
+.blur {
+    filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius='6');
+    -webkit-filter: url(#blur-filter);
+    filter: url(#blur-filter);
+    -webkit-filter: blur(6px);
+    filter: blur(6px);
 }
