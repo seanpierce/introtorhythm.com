@@ -16,7 +16,7 @@
 
 <script>
 import axios from 'axios';
-import EpisodesGrid from './partials/EpisodeGrid.vue';
+import EpisodesGrid from './partials/episode-grid/EpisodeGrid.vue';
 import EpisodeSlider from './partials/EpisodeSlider.vue';
 import Footer from './partials/Footer';
 
