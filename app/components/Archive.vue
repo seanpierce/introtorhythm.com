@@ -4,7 +4,7 @@
         <h2 class="tab-1">Archive/</h2>
         <ul v-if="episodes" class="tab-2">
             <li v-for="episode in episodes" :key="episode.id">
-                <a :href="'/episode/' + episode.number">{{ episode.number }}- {{ episode.title }}</a>
+                <a :href="'/episodes/' + episode.number">{{ episode.number }}- {{ episode.title }}</a>
             </li>
         </ul>
     </div>

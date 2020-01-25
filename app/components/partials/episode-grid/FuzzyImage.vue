@@ -15,9 +15,9 @@ export default {
     },
     methods: {
         preloadImage() {
-            var image = new Image(); 
+            var image = new Image();
             image.onload = () => {
-                this.loaded = true
+                this.loaded = true;
             }
             image.src = this.$root.mediaUrl + this.image;
         },
