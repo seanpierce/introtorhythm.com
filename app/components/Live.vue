@@ -32,7 +32,7 @@
 
 <script>
 import axios from 'axios';
-import EpisodeGrid from './partials/EpisodeGrid';
+import EpisodeGrid from './partials/episode-grid/EpisodeGrid';
 import Footer from './partials/Footer';
 
 export default {
