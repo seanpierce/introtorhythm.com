@@ -95,8 +95,6 @@ export default {
         this.audio.onerror = function() {
             vm.onError(vm);
         }
-
-        $('#chat').draggable();
     }
 }
 </script>
