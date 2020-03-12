@@ -10,7 +10,7 @@ export const app = new Vue({
         page: null,
         loaded: false,
         localTime: '00:00:00',
-        mediaUrl: 'https://s3.amazonaws.com/podcasts.introtorhythm.com/media/'
+        mediaUrl: 'https://s3.amazonaws.com/podcasts.introtorhythm.com/media/',
     },
     methods: {
         getLocalTime() {

@@ -1,0 +1,36 @@
+#chat {
+    width: 300px;
+    height: 400px;
+    position: fixed;
+    top: 40%;
+    right: 2em;
+    background: rgba($color: white, $alpha: 0.8);
+    z-index: 30;
+    border: solid 1px #333;
+    box-shadow: -2px 3px 4px #333;
+    #chat-header {
+        padding: 6px;
+        border-bottom: solid 1px #333;
+    }
+    #chat-body {
+        padding: 6px;
+        .chat-message {
+            font-size: 0.75em;
+        }
+    }
+    #chat-footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        padding: 6px;
+        border-top: solid 1px #333;
+        input {
+            width: 100%;
+            background: none;
+            border: none;
+            &:focus {
+                outline: none;
+            }
+        }
+    }
+}
