@@ -1,4 +1,5 @@
-#chat {
+#chat-wrapper {
+    overflow: scroll;
     width: 100%;
     max-width: 400px;
     height: 100%;
@@ -7,13 +8,20 @@
     right: 0;
     background: rgba($color: white, $alpha: 0.8);
     z-index: 30;
-    border: solid 1px #333;
+    border-left: solid 1px #333;
     transition: all 0.5s;
+    #chat {
+        position: relative;
+    }
     #chat-header {
-        padding: 6px;
+        padding: 0.4em;
+        position: fixed;
+        width: 100%;
         border-bottom: solid 1px #333;
+        background: white;;
         #chat-close {
             cursor: pointer;
+            position: relative;
         }
     }
     #chat-enter-username {
@@ -31,21 +39,28 @@
             }
         }
     }
-    #chat-body {
-        padding: 6px;
+    #chat-body {        
+        padding: 2.5em 6px;
+        overflow: scroll;
         .chat-message {
             font-size: 0.75em;
             .highlight {
                 color: red;
             }
         }
+        .end-of-messages {
+            font-size: 0.75em;
+            font-style: italic;
+            color: #666;
+        }
     }
     #chat-footer {
-        position: absolute;
+        position: fixed;
         bottom: 0;
         width: 100%;
         padding: 6px;
         border-top: solid 1px #333;
+        background: white;
         input {
             width: 100%;
             background: none;

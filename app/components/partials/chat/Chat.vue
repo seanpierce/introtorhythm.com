@@ -1,19 +1,24 @@
 <template>
-    <div id="chat">
-        <div id="chat-header">
-            <span id="chat-close" @click="close()">x</span>
-        </div>
-        <div id="chat-enter-username" v-if="!username">
-            Please enter a username:<br>
-            <input type="text" maxlength="20" v-model="requestedUsername" @keyup.enter="setUsername">
-        </div>
-        <div id="chat-body" v-if="username">
-            <div class="chat-message" v-for="(message, index) in messages" :key="index">
-                <span class="timestamp">[{{ getTime(message.timestamp) }}]</span> <span class="user" v-bind:class="{ highlight : message.username == username }">{{ message.username }}</span> - <span>{{ message.message }}</span>
+    <div id="chat-wrapper">
+        <div id="chat">
+            <div id="chat-header">
+                <span id="chat-close" @click="close()">x</span>
             </div>
-        </div>
-        <div id="chat-footer" v-if="username">
-            <input type="text" v-model="message" @keyup.enter="submitMessage" placeholder="Say something">
+            <div id="chat-enter-username" v-if="!username">
+                Please enter a username:<br>
+                <input type="text" maxlength="20" v-model="requestedUsername" @keyup.enter="setUsername">
+                <span v-if="showUsernameExists" class="red">Username already exists</span>
+            </div>
+            <div id="chat-body" v-if="username">
+                <div class="chat-message" v-for="(message, index) in messages" :key="index">
+                    <span class="timestamp">[{{ getTime(message.timestamp) }}]</span> <span class="user" v-bind:class="{ highlight : message.username == username }">{{ message.username }}</span> - <span>{{ message.message }}</span>
+                </div>
+                <div v-if="!messages || messages.length == 0" class="end-of-messages">No one has said anything...</div>
+                <div v-if="messages && messages.length > 0" class="end-of-messages">End of conversation</div>
+            </div>
+            <div id="chat-footer" v-if="username">
+                <input type="text" v-model="message" @keyup.enter="submitMessage" placeholder="Say something">
+            </div>
         </div>
     </div>
 </template>
@@ -25,9 +30,10 @@ export default {
     data() {
         return {
             requestedUsername: null,
+            showUsernameExists: false,
             username: null,
             message: null,
-            messages: null
+            messages: null,
         }
     },
     methods: {
@@ -42,6 +48,7 @@ export default {
             }
             firebase.database().ref('messages').push(message);
             this.message = null;
+            this.$parent.scrollToChatBottom();
         },
         getTime(time) {
             var date = new Date(time);
@@ -52,9 +59,17 @@ export default {
             this.username = username || null;
         },
         setUsername() {
+            this.showUsernameExists = false;
+            var usernames = this.messages.map(x => x.username.toLowerCase());
+
+            if (usernames.indexOf(this.requestedUsername.toLowerCase()) > -1) {
+                this.showUsernameExists = true;
+                return;
+            }
+
             localStorage.setItem('chat-username', this.requestedUsername);
             this.username = this.requestedUsername;
-        }
+        },
     },
     computed: {
         toggleChat() {

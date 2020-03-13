@@ -76,6 +76,10 @@ export default {
                 vm.onError(vm);
             }
         },
+        scrollToChatBottom() {
+            var chat = document.getElementById("chat-wrapper");
+            chat.scrollTop = chat.scrollHeight;
+        }
     },
     computed: {
         route() {
