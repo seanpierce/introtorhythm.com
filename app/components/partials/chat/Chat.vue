@@ -1,68 +1,99 @@
 <template>
     <div id="chat">
         <div id="chat-header">
-            <span id="chat-close">x</span>
+            <span id="chat-close" @click="close()">x</span>
         </div>
-        <div id="chat-body">
+        <div id="chat-enter-username" v-if="!username">
+            Please enter a username:<br>
+            <input type="text" maxlength="20" v-model="requestedUsername" @keyup.enter="setUsername">
+        </div>
+        <div id="chat-body" v-if="username">
             <div class="chat-message" v-for="(message, index) in messages" :key="index">
-                <span class="timestamp">[{{ message.time }}]</span> <span class="user">{{ message.user }}</span> - <span>{{ message.message }}</span>
+                <span class="timestamp">[{{ getTime(message.timestamp) }}]</span> <span class="user" v-bind:class="{ highlight : message.username == username }">{{ message.username }}</span> - <span>{{ message.message }}</span>
             </div>
         </div>
-        <div id="chat-footer">
+        <div id="chat-footer" v-if="username">
             <input type="text" v-model="message" @keyup.enter="submitMessage" placeholder="Say something">
         </div>
     </div>
 </template>
 
 <script>
+import firebase from 'firebase';
+
 export default {
     data() {
         return {
-            user: 'Sean',
+            requestedUsername: null,
+            username: null,
             message: null,
-            messages: [
-                {
-                    time: '10:00am',
-                    user: 'Sean',
-                    message: 'wow, this sucks'
-                },
-                {
-                    time: '10:01am',
-                    user: 'Lizi',
-                    message: 'track ID? this is fire as hell'
-                },
-                {
-                    time: '10:02am',
-                    user: 'Charlie',
-                    message: 'SOMEONE IS AT THE FRONT DOOR!!'
-                },
-                {
-                    time: '10:02am',
-                    user: 'Sean',
-                    message: 'It\'s "Sutro" by Sean Pierce'
-                },
-            ]
+            messages: null
         }
     },
     methods: {
+        close() {
+            this.$parent.toggleChat = false;
+        },
         submitMessage() { 
             var message = {
-                time: this.getTime(),
-                user: this.user,
+                timestamp: Date.now(),
+                username: this.username,
                 message: this.message
             }
-            this.messages.push(message);
+            firebase.database().ref('messages').push(message);
             this.message = null;
         },
-        getTime() {
-            var time = new Date();
-            return time.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
+        getTime(time) {
+            var date = new Date(time);
+            return date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
         },
+        checkForUsername() {
+            var username = localStorage.getItem('chat-username');
+            this.username = username || null;
+        },
+        setUsername() {
+            localStorage.setItem('chat-username', this.requestedUsername);
+            this.username = this.requestedUsername;
+        }
     },
     computed: {
         toggleChat() {
             return this.$parent.toggleChat;
         }
+    },
+    mounted() {
+        let vm = this;
+        vm.checkForUsername();
+
+        // create and connect firebase chat
+        var config = JSON.parse(atob(vm.$root.config));
+        firebase.initializeApp(config);
+        const ref = firebase.database().ref('messages');
+        ref.on('value', snapshot => {
+            let messages = [];
+            let data = snapshot.val();
+
+            if (data) {
+                Object.keys(data)
+                    .forEach(key => {
+                        messages.push({
+                            id: key,
+                            username: data[key].username,
+                            message: data[key].message,
+                            timestamp: data[key].timestamp
+                        });
+                    });
+                vm.messages = messages || [];
+                var now = Date.now();
+                var onHourAgo = now - 1 * 60 * 60 * 1000;
+                var oldMessages = ref.orderByChild('timestamp').endAt(onHourAgo).limitToLast(1);
+                oldMessages.on('child_added', snapshot => {
+                    snapshot.ref.remove();
+                });
+            } else {
+                vm.messages = [];
+            }
+        });
     }
 }
 </script>
