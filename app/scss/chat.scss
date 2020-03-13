@@ -1,5 +1,6 @@
 #chat {
-    width: 300px;
+    width: 100%;
+    max-width: 400px;
     height: 100%;
     position: fixed;
     top: 0;
@@ -7,15 +8,36 @@
     background: rgba($color: white, $alpha: 0.8);
     z-index: 30;
     border: solid 1px #333;
-    border-left: solid 2px #333;
+    transition: all 0.5s;
     #chat-header {
         padding: 6px;
         border-bottom: solid 1px #333;
+        #chat-close {
+            cursor: pointer;
+        }
+    }
+    #chat-enter-username {
+        padding: 0.5em;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        input {
+            border: none;
+            border-bottom: solid 1px #333;
+            background: none;
+            &:focus {
+                outline: none;
+            }
+        }
     }
     #chat-body {
         padding: 6px;
         .chat-message {
             font-size: 0.75em;
+            .highlight {
+                color: red;
+            }
         }
     }
     #chat-footer {
