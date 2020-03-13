@@ -10,6 +10,11 @@
     z-index: 30;
     border-left: solid 1px #333;
     transition: all 0.5s;
+    @media (max-width: 500px) {
+        width: 100%;
+        max-width: none;
+        background: white;
+    }
     #chat {
         position: relative;
     }

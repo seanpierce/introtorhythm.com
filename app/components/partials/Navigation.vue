@@ -28,6 +28,7 @@
             <li><a href="/episodes">Episodes</a></li>
             <li><span class="pointer" @click="showInfo()">Info</span></li>
             <li><span class="pointer" @click="showModal('subscribe')">Subscribe</span></li>
+            <li><span class="pointer" @click="toggleChat()">Chat</span></li>
             <li class="search">
                 <input type="text" placeholder="Search" v-model="search" @keydown="checkSubmit($event)">
             </li>
