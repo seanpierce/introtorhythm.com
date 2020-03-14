@@ -10,7 +10,8 @@ export const app = new Vue({
         page: null,
         loaded: false,
         localTime: '00:00:00',
-        mediaUrl: 'https://s3.amazonaws.com/podcasts.introtorhythm.com/media/'
+        mediaUrl: 'https://s3.amazonaws.com/podcasts.introtorhythm.com/media/',
+        config: null
     },
     methods: {
         getLocalTime() {
@@ -42,6 +43,11 @@ export const app = new Vue({
         if (elem) {
             if (elem.attributes.page.value)
                 this.page = elem.attributes.page.value;
+
+            if (elem.attributes.config.value) {
+                this.config = elem.attributes.config.value;
+                elem.removeAttribute('config');
+            }
         }
 
         setInterval(() => {
