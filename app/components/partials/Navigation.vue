@@ -7,6 +7,7 @@
                     <li><a href="/episodes" class="desktop-nav-item">Episodes</a></li>
                     <li><span class="pointer desktop-nav-item" @click="showInfo()">Info</span></li>
                     <li><span class="pointer desktop-nav-item" @click="showModal('subscribe')">Subscribe</span></li>
+                    <li><span class="pointer desktop-nav-item" @click="toggleChat()">Chat</span></li>
                     <li id="mobile-trigger">
                         <span class="pointer" @click="toggleMobileNav()">
                             <svg class="header__menu-toggle__icon header__menu-toggle__icon--cross" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600">
@@ -27,6 +28,7 @@
             <li><a href="/episodes">Episodes</a></li>
             <li><span class="pointer" @click="showInfo()">Info</span></li>
             <li><span class="pointer" @click="showModal('subscribe')">Subscribe</span></li>
+            <li><span class="pointer" @click="toggleChat()">Chat</span></li>
             <li class="search">
                 <input type="text" placeholder="Search" v-model="search" @keydown="checkSubmit($event)">
             </li>
@@ -46,6 +48,10 @@ export default {
         }
     },
     methods: {
+        toggleChat() {
+            this.$parent.toggleChat = !this.$parent.toggleChat;
+            this.$parent.scrollToChatBottom();
+        },
         toggleMobileNav() {
             if (this.showMobileNav) {
                 this.showMobileNav = false;

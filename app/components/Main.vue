@@ -9,6 +9,7 @@
         <Live v-if="route === 'index'" />
         <Episodes v-if="route === 'episodes'" />
         <Episode v-if="route === 'episode'" />
+        <Chat v-show="toggleChat" />
     </div>
 </template>
 
@@ -20,6 +21,7 @@ import Episode from './Episode.vue';
 import InfoModal from './partials/modals/InfoModal.vue';
 import SearchModal from './partials/modals/SearchModal.vue';
 import SubscribeModal from './partials/modals/SubscribeModal.vue';
+import Chat from './partials/chat/Chat.vue';
 
 export default {
     name: 'Main',
@@ -30,7 +32,8 @@ export default {
         Episode,
         InfoModal,
         SearchModal,
-        SubscribeModal
+        SubscribeModal,
+        Chat
     },
     data() {
         return {
@@ -38,6 +41,7 @@ export default {
             modalData: null,
             time: 0,
             playing: false,
+            toggleChat: false,
             audio: null,
             liveUrl: 'https://introtorhythm.com/stream'
         }
@@ -72,6 +76,10 @@ export default {
                 vm.onError(vm);
             }
         },
+        scrollToChatBottom() {
+            var chat = document.getElementById("chat-wrapper");
+            chat.scrollTop = chat.scrollHeight;
+        }
     },
     computed: {
         route() {
