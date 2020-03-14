@@ -9,7 +9,7 @@
         <Live v-if="route === 'index'" />
         <Episodes v-if="route === 'episodes'" />
         <Episode v-if="route === 'episode'" />
-        <Chat v-show="toggleChat" />
+        <Chat v-show="showChat" />
     </div>
 </template>
 
@@ -41,12 +41,15 @@ export default {
             modalData: null,
             time: 0,
             playing: false,
-            toggleChat: false,
+            showChat: false,
             audio: null,
             liveUrl: 'https://introtorhythm.com/stream'
         }
     },
     methods: {
+        toggleChat() {
+            this.showChat = !this.showChat;
+        },
         showModal(name) {
             this.modal = name;
             document.body.style.overflow = 'hidden';
