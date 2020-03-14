@@ -12,3 +12,28 @@
         padding: 6px;
     }
 }
+
+#donations-cta {
+    position: absolute;
+    bottom: 4em;
+    left: 2em;
+    z-index: 10;
+    background: white;
+    color: red;
+    padding: 1em;
+    a {
+        color: red;
+        text-decoration: none;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+    #down-arrow {
+        font-size: 4em;
+        color: red;
+        position: absolute;
+        top: -1em;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
