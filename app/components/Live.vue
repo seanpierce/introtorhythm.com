@@ -5,7 +5,7 @@
             <div class="show-info">
                 <div class="title">Listen Live</div>
                 <div class="show-time">{{ $root.localTime }}</div>
-                <div class="show-time">CALL (503) 877-9051‬</div>
+                <div class="call-in">CALL (503) 877-9051‬</div>
             </div>
             <div class="play-button" @click="play()">
                 <img :src="playing ? '/assets/images/icons/pause.png' : '/assets/images/icons/play.png'" alt="">

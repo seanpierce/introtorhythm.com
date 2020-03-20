@@ -22,8 +22,9 @@
     background: white;
     color: red;
     padding: 1em;
-    @media (min-width: 500px) {
+    @media (max-width: 500px) {
         bottom: 3em;
+        width: 90%;
     }
     a {
         color: red;
