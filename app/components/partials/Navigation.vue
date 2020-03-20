@@ -49,7 +49,7 @@ export default {
     },
     methods: {
         toggleChat() {
-            this.$parent.toggleChat = !this.$parent.toggleChat;
+            this.$parent.toggleChat();
             this.$parent.scrollToChatBottom();
         },
         toggleMobileNav() {
