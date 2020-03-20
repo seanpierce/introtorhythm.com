@@ -1,5 +1,5 @@
 #chat-wrapper {
-    overflow: scroll;
+    overflow-y: scroll;
     width: 100%;
     max-width: 400px;
     height: 100%;
@@ -14,9 +14,6 @@
         width: 100%;
         max-width: none;
         background: white;
-    }
-    #chat {
-        position: relative;
     }
     #chat-header {
         padding: 0.4em;
@@ -46,7 +43,6 @@
     }
     #chat-body {        
         padding: 2.5em 6px;
-        overflow: scroll;
         .chat-message {
             font-size: 0.75em;
             .highlight {

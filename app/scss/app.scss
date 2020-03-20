@@ -69,7 +69,7 @@ h1, h2, h3 {
 		right: 0;
 		top: 0;
 	}
-	.title, .show-time {
+	.title, .show-time, .call-in {
 		font-size: 1.25em;
 		padding: 0.25em;
 	}
@@ -83,6 +83,11 @@ h1, h2, h3 {
 	.show-time {
 		background: white;
 		color: red;
+	}
+	.call-in {
+		font-size: 1em;
+		background: none;
+		color: white;
 	}
 }
 .cover-filter {

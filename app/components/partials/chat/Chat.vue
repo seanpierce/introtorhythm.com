@@ -17,7 +17,7 @@
                 <div v-if="messages && messages.length > 0" class="end-of-messages">End of conversation</div>
             </div>
             <div id="chat-footer" v-if="username">
-                <input type="text" v-model="message" @keyup.enter="submitMessage" placeholder="Say something">
+                <input type="text" id="chat-input" v-model="message" @keyup.enter="submitMessage" placeholder="Say something">
             </div>
         </div>
     </div>
@@ -38,9 +38,10 @@ export default {
     },
     methods: {
         close() {
-            this.$parent.toggleChat = false;
+            this.$parent.showChat = false;
         },
         submitMessage() { 
+            if (!this.message) return;
             var message = {
                 timestamp: Date.now(),
                 username: this.username,
@@ -73,7 +74,7 @@ export default {
     },
     computed: {
         toggleChat() {
-            return this.$parent.toggleChat;
+            return this.$parent.toggleChat();
         }
     },
     mounted() {
