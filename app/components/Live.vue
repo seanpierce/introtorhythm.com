@@ -13,8 +13,9 @@
             <img src="/assets/images/itr-logo.png" class="logo" alt="">
             <div id="donations-cta">
                 <span id="down-arrow">&darr;</span>
-                <a href="https://opencollective.com/portland-corona-virus-mutual-aid-fund/" target="_blank">✓ PDX CORONAVIRUS MUTUAL AID FUND</a><br/>
-                <a href="https://opencollective.com/portland-corona-virus-mutual-aid-fund/donate" target="_blank">✓ DIRECT DONATION</a><br/>
+                <a href="https://beech.seanpierce.us" target="_blank">✓ BEECH ST WORKERS FUNDRAISER</a><br/>
+                ✓ VENMO @BEECHST<br/>
+                ✓ PAYPAL MARYAMTRONCCELLITI@GMAIL.COM<br/>
                 <a href="https://paypal.me/introtorhythm" target="_blank">✓ DONATE VIA ITR (PAYPAL)</a>
             </div>
             <div id="scroll-down-cta"
