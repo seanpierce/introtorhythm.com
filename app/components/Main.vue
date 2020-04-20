@@ -9,7 +9,7 @@
         <Live v-if="route === 'index'" />
         <Episodes v-if="route === 'episodes'" />
         <Episode v-if="route === 'episode'" />
-        <Chat v-show="showChat" />
+        <!-- <Chat v-show="showChat" /> -->
     </div>
 </template>
 
@@ -21,7 +21,7 @@ import Episode from './Episode.vue';
 import InfoModal from './partials/modals/InfoModal.vue';
 import SearchModal from './partials/modals/SearchModal.vue';
 import SubscribeModal from './partials/modals/SubscribeModal.vue';
-import Chat from './partials/chat/Chat.vue';
+// import Chat from './partials/chat/Chat.vue';
 
 export default {
     name: 'Main',
@@ -33,7 +33,7 @@ export default {
         InfoModal,
         SearchModal,
         SubscribeModal,
-        Chat
+        // Chat
     },
     data() {
         return {

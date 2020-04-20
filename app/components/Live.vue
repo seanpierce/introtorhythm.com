@@ -11,13 +11,13 @@
                 <img :src="playing ? '/assets/images/icons/pause.png' : '/assets/images/icons/play.png'" alt="">
             </div>
             <img src="/assets/images/itr-logo.png" class="logo" alt="">
-            <div id="donations-cta">
+            <!-- <div id="donations-cta">
                 <span id="down-arrow">&darr;</span>
                 <a href="https://beech.seanpierce.us" target="_blank">✓ BEECH ST WORKERS FUNDRAISER</a><br/>
                 ✓ VENMO @BEECHST<br/>
                 ✓ PAYPAL MARYAMTRONCCELLITI@GMAIL.COM<br/>
                 <a href="https://paypal.me/introtorhythm" target="_blank">✓ DONATE VIA ITR (PAYPAL)</a>
-            </div>
+            </div> -->
             <div id="scroll-down-cta"
                 @click="scrollToRecent()">
                 ⤺ Latest & Featured
