@@ -2,7 +2,7 @@ from django.conf import settings
 from django.contrib import admin
 from django.utils.html import format_html
 
-from .models import Content, Image
+from .models import Content, BackgroundImage
 
 
 class ContentAdmin(admin.ModelAdmin):
@@ -11,10 +11,8 @@ class ContentAdmin(admin.ModelAdmin):
             return self.readonly_fields + ('name',)
         return self.readonly_fields
 
-admin.site.register(Content, ContentAdmin)
 
-
-class ImageAdmin(admin.ModelAdmin):
+class BackgroundImageAdmin(admin.ModelAdmin):
     def image_tag(self, obj):
         if obj is None:
             return "Not available"
@@ -23,13 +21,20 @@ class ImageAdmin(admin.ModelAdmin):
 
     image_tag.short_description = 'Preview'
 
-    list_display = ['title', 'image_tag', 'filename',]
-    list_display_links = ['title', 'image_tag', 'filename',]
-    # readonly_fields = ['image_tag',]
+    list_display = ['image_tag', 'filename',]
+    list_display_links = ['image_tag', 'filename',]
 
     def get_readonly_fields(self, request, obj=None):
         if obj:
-            return self.readonly_fields + ('title','image_tag',)
+            return self.readonly_fields + ('image_tag',)
         return self.readonly_fields
 
-admin.site.register(Image, ImageAdmin)
+    def has_add_permission(self, request):
+        return False if self.model.objects.count() > 0 else super().has_add_permission(request)
+    
+    def has_delete_permission(self, request, obj=None):
+        return False
+
+
+admin.site.register(Content, ContentAdmin)
+admin.site.register(BackgroundImage, BackgroundImageAdmin)

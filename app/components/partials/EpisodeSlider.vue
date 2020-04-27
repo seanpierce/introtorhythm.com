@@ -5,12 +5,18 @@
             v-for="(ep, i) in episodes"
             :key="i"
             :style="{ backgroundImage: 'url(' + $root.mediaUrl + ep.image + ')' }">
-            <div class="show-info pointer" @click="goToEpisode(ep.number)">
-                <div class="title"><h2>Latest Episodes</h2></div>
-                <div class="show-time">{{ ep.number }}- {{ ep.title }}</div>
+            <div class="show-info pointer">
+                <div @click="goToEpisode(ep.number)">
+                    <div class="title"><h2>Latest Episodes</h2></div>
+                    <div class="show-time">{{ ep.number }}- {{ ep.title }}</div>
+                </div>
+                <div class="slider-circles">
+                    <span v-for="(ep, i) in episodes" :key="i" 
+                        v-bind:class="{ selected: index === i }"
+                        @click="jumpTo(i)"></span>
+                </div>
             </div>
             <div class="go-to-episode" @click="goToEpisode(ep.number)">
-
                 <img src="/assets/images/icons/play-arrow.svg" /> Listen to episode {{ ep.number }}
             </div>
         </div>
@@ -46,6 +52,11 @@ export default {
                 previous = this.episodes.length - 1;
             this.index = previous;
             this.cycle();
+        },
+        jumpTo(index) {
+            clearInterval(this.interval);
+            this.index = index;
+            this.cycle(); 
         },
         goToEpisode(number) {
             window.location.href = "/episodes/" + number;

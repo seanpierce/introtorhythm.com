@@ -14,3 +14,11 @@ class Info(View):
     def get(self, request, *args, **kwargs):
         name = self.kwargs['name']
         return HttpResponse(json.dumps(repo.get_content_by_name(name)), content_type="application/json")
+
+
+class BackgroundImage(View):
+    """
+    Returns the background image url for the configured background image.
+    """
+    def get(self, request, *args, **kwargs):
+        return HttpResponse(json.dumps(repo.get_background_image()), content_type="application/json")

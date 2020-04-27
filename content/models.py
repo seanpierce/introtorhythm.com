@@ -28,24 +28,23 @@ class Content(models.Model):
         return self.name
 
 
-class Image(models.Model):
+class BackgroundImage(models.Model):
     id = models.AutoField(primary_key=True)
     created_at = models.DateTimeField(auto_now=True)
-    title = models.CharField(max_length=50, default=get_default_title_for_image())
     image = models.ImageField(upload_to='content/images')
+
+    class Meta:
+        verbose_name_plural = "Background Image"
 
     @property
     def filename(self):
         return os.path.basename(self.image.name)
 
-    class Meta:
-        ordering = ['-created_at']
-
     def __str__(self):
         return self.filename
 
 
-@receiver(models.signals.post_delete, sender=Image)
+@receiver(models.signals.post_delete, sender=BackgroundImage)
 def remove_file_from_s3(sender, instance, using, **kwargs):
     """
     Deletes image from filesystem (AWS S3)
@@ -53,7 +52,7 @@ def remove_file_from_s3(sender, instance, using, **kwargs):
     """
     instance.image.delete(save=False)
 
-@receiver(models.signals.pre_save, sender=Image)
+@receiver(models.signals.pre_save, sender=BackgroundImage)
 def auto_delete_file_on_change(sender, instance, **kwargs):
     """
     Deletes old image from filesystem (AWS S3)
@@ -64,8 +63,8 @@ def auto_delete_file_on_change(sender, instance, **kwargs):
         return False
 
     try:
-        old_file = Image.objects.get(pk=instance.pk).image
-    except Image.DoesNotExist:
+        old_file = BackgroundImage.objects.get(pk=instance.pk).image
+    except BackgroundImage.DoesNotExist:
         return False
 
     new_file = instance.image

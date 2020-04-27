@@ -22,6 +22,22 @@
         background-position: center;
         background-size: cover;
         opacity: 0;
+        .slider-circles {
+            margin-top: 0.5em;
+            cursor: initial;
+            span {
+                cursor: pointer;
+                width: 1em;
+                height: 1em;
+                margin-right: 0.5em;
+                background: white;
+                display: inline-block;
+                border-radius: 50%;
+                &.selected {
+                    background-color: red;
+                }
+            }
+        }
     }
     .selected {
         opacity: 1;
@@ -36,6 +52,9 @@
         height: 2em;
         background: rgba($color: #000000, $alpha: 0.7);
         border-radius: 50%;
+        &:hover {
+            background: rgba($color: #000000, $alpha: 0.8);
+        }
         img {
             padding: 0.5em;
             height: 2em;
