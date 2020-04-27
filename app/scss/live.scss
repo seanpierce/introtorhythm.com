@@ -1,6 +1,6 @@
 
 #live {
-    background-image: url('/assets/images/itr-gif.gif');
+    // background-image: url('/assets/images/itr-live-image.jpg');
     background-position: center;
     background-size: cover;
 }
@@ -25,6 +25,10 @@
     @media (max-width: 500px) {
         bottom: 3em;
         width: 90%;
+    }
+    p {
+       color: red;
+       margin: 0; 
     }
     a {
         color: red;

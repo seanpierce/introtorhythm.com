@@ -1,6 +1,8 @@
 <template>
     <div>
-        <div id="live" class="content">
+        <div id="live" 
+            class="content"
+            :style="{ backgroundImage: 'url(' + backgroundImage + ')' }">
             <div class="cover-filter"></div>
             <div class="show-info">
                 <div class="title">Listen Live</div>
@@ -11,12 +13,9 @@
                 <img :src="playing ? '/assets/images/icons/pause.png' : '/assets/images/icons/play.png'" alt="">
             </div>
             <img src="/assets/images/itr-logo.png" class="logo" alt="">
-            <div id="donations-cta">
+            <div id="donations-cta" v-if="liveCallout && liveCallout.active">
                 <span id="down-arrow">&darr;</span>
-                <a href="https://beech.seanpierce.us" target="_blank">✓ BEECH ST WORKERS FUNDRAISER</a><br/>
-                ✓ VENMO @BEECHST<br/>
-                ✓ PAYPAL MARYAMTRONCCELLITI@GMAIL.COM<br/>
-                <a href="https://paypal.me/introtorhythm" target="_blank">✓ DONATE VIA ITR (PAYPAL)</a>
+                <div v-html="liveCallout.info"></div>
             </div>
             <div id="scroll-down-cta"
                 @click="scrollToRecent()">
@@ -51,7 +50,9 @@ export default {
     data() {
         return {
             latestEpisodes: null,
-            featuredEpisodes: null
+            featuredEpisodes: null,
+            liveCallout: null,
+            liveBackgroundImage: null
         }
     },
     methods: {
@@ -76,16 +77,35 @@ export default {
         scrollToRecent() {
             var element = document.getElementById('recent-episodes-container');
             element.scrollIntoView({behavior: 'smooth'});
+        },
+        getLiveCallout() {
+            axios.get('/api/content/live%20callout')
+                .then(response => {
+                    this.liveCallout = response.data;
+                })
+        },
+        getLiveBackgroundImage() {
+            axios.get('/api/content/backgroundimage')
+                .then(response => {
+                    this.liveBackgroundImage = response.data.image;
+                })
         }
     },
     computed: {
         playing() {
             return this.$parent.playing;
+        },
+        backgroundImage() {
+            if (this.liveBackgroundImage)
+                return this.$root.mediaUrl + this.liveBackgroundImage;
+            else return '/assets/images/palabra.png';
         }
     },
     mounted() {
         this.getLatestEpisodes();
         this.getFeaturedEpisodes();
+        this.getLiveCallout();
+        this.getLiveBackgroundImage();
     }
 }
 </script>
