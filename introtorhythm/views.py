@@ -1,35 +1,58 @@
-from django.conf import settings
+
+import json
+
 from django.shortcuts import render
 
+from content.repository import ContentRepository
+
 def index(request):
+    mvcData = {
+        'page': 'index',
+        'backgroundImage': ContentRepository.get_background_image(),
+        'liveCallout': ContentRepository.get_content_by_name('Live Callout'),
+    }
+
     return render(request, 'app.html', {
         'title': 'Live',
-        'page': 'index',
-        'config': settings.CHAT_CONFIG
+        'mvcData': json.dumps(mvcData)
     })
 
 def episodes(request):
+    mvcData = {
+        'page': 'episodes',
+    }
+
     return render(request, 'app.html', {
         'title': 'Episodes',
-        'page': 'episodes',
-        'config': settings.CHAT_CONFIG
+        'mvcData': json.dumps(mvcData)
     })
 
 def episode(request, number):
+    mvcData = {
+        'page': 'episode',
+    }
+
     return render(request, 'app.html', {
         'title': number,
-        'page': 'episode',
-        'config': settings.CHAT_CONFIG
+        'mvcData': json.dumps(mvcData)
     })
 
 def unsubscribe(request):
+    mvcData = {
+        'page': 'unsubscribe'
+    }
+
     return render(request, 'app.html', {
         'title': ':(',
-        'page': 'unsubscribe'
+        'mvcData': json.dumps(mvcData)
     })
 
 def archive(request):
+    mvcData = {
+        'page': 'archive'
+    }
+
     return render(request, 'app.html', {
         'title': 'Archive',
-        'page': 'archive'
+        'mvcData': json.dumps(mvcData)
     })
