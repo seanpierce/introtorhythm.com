@@ -50,9 +50,7 @@ export default {
     data() {
         return {
             latestEpisodes: null,
-            featuredEpisodes: null,
-            liveCallout: null,
-            liveBackgroundImage: null
+            featuredEpisodes: null
         }
     },
     methods: {
@@ -96,16 +94,19 @@ export default {
             return this.$parent.playing;
         },
         backgroundImage() {
-            if (this.liveBackgroundImage)
-                return this.$root.mediaUrl + this.liveBackgroundImage;
+            if (this.$root.data.backgroundImage)
+                return this.$root.mediaUrl + this.$root.data.backgroundImage.image;
             else return '/assets/images/palabra.png';
+        },
+        liveCallout() {
+            if (this.$root.data.liveCallout)
+                return this.$root.data.liveCallout;
+            else return null;
         }
     },
     mounted() {
         this.getLatestEpisodes();
-        this.getFeaturedEpisodes();
-        this.getLiveCallout();
-        this.getLiveBackgroundImage();
+        this.getFeaturedEpisodes(); 
     }
 }
 </script>

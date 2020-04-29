@@ -7,11 +7,11 @@ export const app = new Vue({
         'App': App
     },
     data: {
-        page: null,
         loaded: false,
         localTime: '00:00:00',
         mediaUrl: 'https://s3.amazonaws.com/podcasts.introtorhythm.com/media/',
-        config: null
+        data: null,
+        page: null
     },
     methods: {
         getLocalTime() {
@@ -33,22 +33,25 @@ export const app = new Vue({
             while (s.length < size) s = '0' + s;
             return s;
         },
+        getdata() {
+            // Fetch the initial page data MVC style
+            var elem = document.getElementById('data');
+
+            if (elem) {
+                if (elem.attributes.page.value)
+                    this.page = elem.attributes.page.value;
+
+                if (elem.attributes.data.value)
+                    this.data = JSON.parse(elem.attributes.data.value);
+
+                elem.parentNode.removeChild(elem);
+            }
+        },
     },
     computed: {
     },
     mounted() {
-        // Fetch the initial page data MVC style
-        var elem = document.getElementById('data');
-
-        if (elem) {
-            if (elem.attributes.page.value)
-                this.page = elem.attributes.page.value;
-
-            if (elem.attributes.config.value) {
-                this.config = elem.attributes.config.value;
-                elem.removeAttribute('config');
-            }
-        }
+        this.getdata();
 
         setInterval(() => {
             this.getLocalTime();
