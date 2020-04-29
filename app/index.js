@@ -10,8 +10,8 @@ export const app = new Vue({
         loaded: false,
         localTime: '00:00:00',
         mediaUrl: 'https://s3.amazonaws.com/podcasts.introtorhythm.com/media/',
-        config: null,
-        data: null
+        data: null,
+        page: null
     },
     methods: {
         getLocalTime() {
@@ -33,29 +33,25 @@ export const app = new Vue({
             while (s.length < size) s = '0' + s;
             return s;
         },
-        getMVCData() {
+        getdata() {
             // Fetch the initial page data MVC style
-            var elem = document.getElementById('mvcData');
+            var elem = document.getElementById('data');
 
             if (elem) {
-                if (elem.attributes.mvcData.value)
-                    this.data = JSON.parse(elem.attributes.mvcData.value);
+                if (elem.attributes.page.value)
+                    this.page = elem.attributes.page.value;
+
+                if (elem.attributes.data.value)
+                    this.data = JSON.parse(elem.attributes.data.value);
 
                 elem.parentNode.removeChild(elem);
             }
         },
     },
     computed: {
-        page() {
-            // If the MVC data is loaded and the page property is present 
-            // on that object, return the page property.
-            if (this.data && this.data.page)
-                return this.data.page;
-            else return null;
-        }
     },
     mounted() {
-        this.getMVCData();
+        this.getdata();
 
         setInterval(() => {
             this.getLocalTime();
