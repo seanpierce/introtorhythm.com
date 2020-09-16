@@ -1,0 +1,131 @@
+#episodes {
+
+    #episode-search {
+        margin: 2em auto;
+        padding: 1em;
+
+        input {
+            font-size: 4em;
+            padding-left: 1.25em;
+            position: relative;
+            display: block;
+            width: 100%;
+            background: none;
+            border: none;
+            border-bottom: solid 2px white;
+            outline: none;
+
+
+            &::placeholder {
+                color: white;
+            }
+        }
+
+        #search-icon {
+            position: absolute;
+            height: 3em;
+            top: 4.15em;
+            // left: 0.5em;
+        }
+    }
+
+    #episodes-grid {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 0.75em;
+
+        .episode-wrapper {
+            width: 33.33%;
+            min-width: 33.33%;
+            box-sizing: border-box;
+            padding: 6px;
+            margin-bottom: 0.5em;
+    
+            @media (max-width: 700px) {
+                width: 50%;
+                min-width: 50%;
+            }
+    
+            @media (max-width: 500px) {
+                width: 100%;
+                min-width: 100%;
+            }
+    
+            .episode-inner-wrapper {
+                overflow: hidden;
+            }
+        }
+    
+        .episode {
+            cursor: pointer;
+            position: relative;
+            padding: 4px;
+    
+            .episode-image {
+                padding-top: 80%;
+                width: 100%;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+    
+            .play-button {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                height: 40px;
+                width: 60px;
+                background: rgba(255, 255, 255, 0.4);
+            }
+        }
+    
+        .episode-content {
+            padding: 4px;
+    
+            .ep-grid-header {
+                cursor: pointer;
+            }
+    
+            .tags {
+                margin-top: 0.15em;
+                .tag-pill {
+                    font-size: 0.75em;
+                    cursor: pointer;
+                    display: inline-block;
+                    margin-right: 1em;
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+    }
+}
+
+#episode {
+
+    .episode-content__wraper {
+        position: absolute;
+        top: 100%;
+        width: 100%;
+        padding: 2em 0.5em;
+        background: $color3;
+        // color: $color1 !important;
+
+        .episode-content__inner-wraper {
+            max-width: 600px;
+            width: 100%;
+            margin: auto;
+
+            * {
+                color: $color1 !important;
+            }
+    
+            .selected-episode-content__content {
+                margin: 2em auto;
+            }
+        }
+        
+    }
+}

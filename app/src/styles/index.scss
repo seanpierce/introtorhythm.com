@@ -1,0 +1,83 @@
+@import './variables.scss';
+@import './animations.scss';
+@import './nav.scss';
+@import './live.scss';
+@import './footer.scss';
+@import './chat.scss';
+@import './episodes.scss';
+
+* {
+    font-family: $font-family;
+    color: $color3;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background: $color1;
+}
+
+.content {
+    position: absolute;
+    height: calc(100% - $nav-height);
+    width: 100%;
+    bottom: 0;
+    top: $nav-height;
+    min-height: calc(100vh- $nav-height);
+}
+
+.background-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: url('../assets/images/seanpierce-palabra.jpg');
+    background-position: center;
+    background-size: cover;
+    filter: brightness(75%);
+}
+
+.button {
+    color: $color3;
+    padding: 8px;
+    min-width: 140px;
+    border: solid 1px $color3;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.25s;
+
+    &:hover {
+        background: $color3;
+        color: $color1;
+    }
+}
+
+#logo {
+    height: 6em;
+    position: relative;
+    top: 8px;
+    left: 8px;
+    z-index: 3;
+}
+
+.title {
+    position: absolute;
+    bottom: $padding;
+    left: $padding;
+    padding: 6px 12px;
+    font-size: 2em;
+    background: $color-accent;
+    color: $color3;
+}
+
+#play-button {
+    height: 160px;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+}

@@ -1,27 +1,54 @@
 {
-  "name": "resource_residency",
-  "version": "1.0.0",
-  "description": "The front end application for the Resource Residency website",
-  "main": "index.js",
-  "author": "Sean Pierce Sumler",
-  "license": "MIT",
-  "devDependencies": {
-    "axios": "^0.19.0",
-    "css-loader": "^3.2.0",
-    "mini-css-extract-plugin": "^0.8.0",
-    "node-sass": "^4.12.0",
-    "sass-loader": "^8.0.0",
-    "style-loader": "^1.0.0",
-    "webpack": "^4.40.2",
-    "webpack-cli": "^3.3.8"
+  "name": "itr-vue",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "firebase": "^7.10.0",
-    "vue-loader": "^15.7.1",
-    "vue-template-compiler": "^2.6.10"
+    "axios": "^0.20.0",
+    "circletype": "^2.3.0",
+    "core-js": "^3.6.5",
+    "express": "^4.17.1",
+    "firebase": "^7.20.0",
+    "node-sass": "^4.14.1",
+    "sass-loader": "^10.0.2",
+    "socket.io": "^2.3.0",
+    "socket.io-client": "^2.3.0",
+    "vue": "^2.6.11",
+    "vue-router": "^3.2.0",
+    "vuex": "^3.4.0"
   },
-  "scripts": {
-    "serve": "webpack --mode development",
-    "build": "webpack --mode production"
-  }
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-plugin-router": "~4.5.0",
+    "@vue/cli-plugin-vuex": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.7.2",
+    "eslint-plugin-vue": "^6.2.2",
+    "vue-template-compiler": "^2.6.11"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "parserOptions": {
+      "parser": "babel-eslint"
+    },
+    "rules": {}
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
 }
