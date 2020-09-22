@@ -20,7 +20,12 @@
 
         </div>
 
+        <Timeline />
+
         <div class="episode-content__wraper">
+            <div id="episode-time">
+                03:43:01
+            </div>
             <div class="episode-content__inner-wraper">
                 <h1>{{ episode.number }}</h1>
                 <h2>{{ episode.title }}</h2>
@@ -32,11 +37,13 @@
 
 <script>
 import Spinner from '@/components/Animations/Spinner'
+import Timeline from '@/components/Timeline'
 
 export default {
 
     components: {
-        Spinner
+        Spinner,
+        Timeline
     },
 
     props: {
