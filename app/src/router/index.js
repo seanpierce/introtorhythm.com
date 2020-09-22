@@ -8,16 +8,28 @@ const routes = [
   {
     path: '/',
     name: 'Live',
+    beforeEnter: (to, from, next) => {
+      document.title = 'Intro To Rhythm | Live'
+      next()
+    },
     component: Live
   },
   {
     path: '/episodes',
     name: 'Episodes',
+    beforeEnter: (to, from, next) => {
+      document.title = 'Intro To Rhythm | Episodes'
+      next()
+    },
     component: () => import('@/views/Episodes.vue')
   },
   {
     path: '/episodes/:number',
     name: 'Episode',
+    beforeEnter: (to, from, next) => {
+      document.title = 'Intro To Rhythm | ' + to.params.number
+      next()
+    },
     props: true,
     component: () => import('@/views/Episode.vue')
   }

@@ -5,12 +5,19 @@
         <div class="player__image" :style="{ backgroundImage: 'url(' + image + ')' }"></div>
         <div class="player__title_wrapper">
             <span class="player__title">Now Playing - {{ nowPlaying }}</span>
+            <AudioPlaying />
         </div>
     </div>
 </template>
 
 <script>
+import AudioPlaying from '@/components/Animations/AudioPlaying'
+
 export default {
+
+    components: {
+        AudioPlaying
+    },
 
     data() {
         return {

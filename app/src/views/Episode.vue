@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import Spinner from '@/components/Shared/Spinner'
+import Spinner from '@/components/Animations/Spinner'
 
 export default {
 

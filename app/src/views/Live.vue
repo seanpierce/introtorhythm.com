@@ -31,7 +31,7 @@
 
 <script>
 import CircleType from 'circletype'
-import Spinner from '@/components/Shared/Spinner'
+import Spinner from '@/components/Animations/Spinner'
 // import Footer from '@/components/Footer'
 
 export default {
