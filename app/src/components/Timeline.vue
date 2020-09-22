@@ -10,8 +10,10 @@ export default {
     data() {
         return {
             playerWidth: null,
-            onplayHead: false,
-            playPercent: 0
+            onPlayhead: false,
+            playPercent: 0,
+            duration: null,
+            currentTime: null
         }
     },
     methods: {
@@ -32,7 +34,7 @@ export default {
         },
 
         mouseDownEvent() {
-            this.onplayHead = true
+            this.onPlayhead = true
             window.addEventListener('mousemove', this.movePlayHead, true)
             window.addEventListener('mouseup', this.mouseUpEvent, false)
             // dispatch store event to REMOVE event listener from audio
@@ -40,11 +42,21 @@ export default {
         },
 
         mouseUpEvent() {
-            this.onplayHead = false
+            this.onplayhead = false
             // dispatch store event to ADD event listener to audio
             // this.$parent.audio.addEventListener('timeupdate', this.$parent.timeUpdate, true)
             window.removeEventListener('mousemove', this.movePlayHead, true)
             window.removeEventListener('mouseup', this.mouseUpEvent, true)
+        },
+
+        timeUpdate() {
+            if (!this.duration)
+                this.duration = this.formatTime(this.audio.duration)
+
+            this.currentTime = this.formatTime(this.audio.currentTime)
+
+            if (!this.onplayhead)
+                this.playPercent = this.playerWidth * (this.currentTime / this.duration);
         },
 
         movePlayHead(event) {
