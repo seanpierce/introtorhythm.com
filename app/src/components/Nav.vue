@@ -19,7 +19,7 @@
             </router-link>
 
             <router-link :to="'/episodes/' + selectedEpisodeNumber"
-                v-if="selectedEpisodeNumber" 
+                v-if="currentRoute === 'Episode'" 
                 tag="span" 
                 class="nav-tab"
                 v-bind:class="{ active: currentRoute === 'Episode' }">

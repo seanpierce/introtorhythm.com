@@ -67,6 +67,12 @@ export default {
         },
 
         searchTag(tag) {
+            var options = {
+                left: 0,
+                top: 0,
+                behavior: 'smooth'
+            }
+            window.scrollTo(options)
             this.$parent.search = tag
         }
     }

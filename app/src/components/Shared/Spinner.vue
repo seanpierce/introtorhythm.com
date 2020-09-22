@@ -8,10 +8,17 @@
 </template>
 
 <style scoped>
+.spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+}
 
 .lds-ring {
     display: inline-block;
-    position: relative;
+    /* position: relative; */
     width: 158px;
     height: 158px;
 }

@@ -1,5 +1,9 @@
 <template>
-    <div id="live" class="content">
+    <div id="live" class="content clearfix">
+
+        <img id="logo" 
+            class="flip"
+            :src="require('@/assets/images/itr-logo.png')" alt="Intro To Rhythm logo" />
 
         <div class="background-container"></div>
 
@@ -9,41 +13,39 @@
             </div>
         </div>
 
-        <img v-if="!audioLoading"
+        <img v-if="!loading"
             id="play-button"
             :src="playing ? pauseButton : playButton" 
             @click="toggleLive()"
             alt="Intro To Rhythm Live play button">
 
-        <Spinner v-if="audioLoading" />
+        <Spinner v-if="loading" />
 
         <div class="title">
             Live
         </div>
 
-        <Footer :position="'absolute'"/>
+        <!-- <Footer :position="'absolute'"/> -->
     </div>
 </template>
 
 <script>
 import CircleType from 'circletype'
 import Spinner from '@/components/Shared/Spinner'
-import Footer from '@/components/Footer'
+// import Footer from '@/components/Footer'
 
 export default {
 
     components: {
         Spinner,
-        Footer
+        // Footer
     },
 
     data() {
         return {
             playButton: require('@/assets/images/play-circle.png'),
             pauseButton: require('@/assets/images/pause-circle.png'),
-            audio: null,
-            liveUrl: 'https://introtorhythm.com/stream',
-            audioLoading: false
+            liveUrl: 'https://introtorhythm.com/stream'
         }
 
     },
@@ -53,48 +55,18 @@ export default {
         toggleLive() {
             this.$store.dispatch('toggleLive')
         },
-
-        async setAudio() {
-            console.log('Setting audio...')
-            var vm = this
-            this.audioLoading = true
-
-            this.audio?.pause()
-            this.audio = new Audio()
-            this.audio.src = this.liveUrl
-            this.audio.preload = 'metadata'
-
-            // indicates when the audio file is ready to be played
-            this.audio.addEventListener('loadeddata', function() {
-                if (this.readyState >= 2)
-                    vm.audioLoading = false
-                    // vm.audio.play()
-            })
-
-            // reset audio on error
-            this.audio.addEventListener('error', function() { 
-                console.log('audio error', new Date())
-                vm.setAudio()
-                    .then(() => {
-                        vm.toggleLive()
-                    })
-            })
-
-            return
-        }
     },
 
     watch: {
 
         playing() {
             if (this.playing) {
-                this.setAudio()
+                this.$store.dispatch('setLiveAudio', this.liveUrl)
                     .then(() => {
-                        this.audio.play()
+                        this.$store.dispatch('playLiveAudio')
                     })
             } else {
-                this.audio.pause()
-                this.audio = null
+                this.$store.dispatch('stopLiveAudio')
             }
         }
 
@@ -104,6 +76,14 @@ export default {
 
         playing() {
             return this.$store.state.live.playing
+        },
+
+        audio() {
+            return this.$store.state.live.audio
+        },
+
+        loading() {
+            return this.$store.state.live.loading
         }
     },
 

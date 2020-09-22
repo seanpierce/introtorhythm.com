@@ -24,8 +24,7 @@
         #search-icon {
             position: absolute;
             height: 3em;
-            top: 4.15em;
-            // left: 0.5em;
+            top: 2.25em;
         }
     }
 
@@ -62,11 +61,16 @@
             padding: 4px;
     
             .episode-image {
+                background-image: url('../assets/images/seanpierce-palabra.jpg');
                 padding-top: 80%;
                 width: 100%;
                 background-position: center;
                 background-repeat: no-repeat;
                 background-size: cover;
+
+                &.loading {
+                    filter: blur(8px);
+                }
             }
     
             .play-button {
@@ -105,27 +109,44 @@
 
 #episode {
 
-    .episode-content__wraper {
-        position: absolute;
-        top: 100%;
-        width: 100%;
-        padding: 2em 0.5em;
-        background: $color3;
-        // color: $color1 !important;
+    .episode__wrapper {
+        position: relative;
+        min-height: inherit;
 
-        .episode-content__inner-wraper {
-            max-width: 600px;
-            width: 100%;
-            margin: auto;
-
-            * {
-                color: $color1 !important;
-            }
-    
-            .selected-episode-content__content {
-                margin: 2em auto;
-            }
+        .episode__background-container {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            min-height: inherit;
+            background-image: url('../assets/images/seanpierce-palabra.jpg');
+            background-position: center;
+            background-size: cover;
+            filter: brightness(75%);
         }
-        
+    }
+}
+
+.episode-content__wraper {
+    position: relative;
+    top: 100%;
+    width: 100%;
+    padding: 2em 0.5em;
+    background: $color3;
+    // color: $color1 !important;
+
+    .episode-content__inner-wraper {
+        max-width: 600px;
+        width: 100%;
+        margin: auto;
+
+        * {
+            color: $color1 !important;
+        }
+
+        .selected-episode-content__content {
+            margin: 2em auto;
+        }
     }
 }

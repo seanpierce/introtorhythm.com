@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 
 import chatStore from './chat'
 import episodesStore from './episodes'
+import liveStore from './live'
 
 Vue.use(Vuex)
 
@@ -12,30 +13,22 @@ export default new Vuex.Store({
 
   modules: {
     chat: chatStore,
-    episodes: episodesStore
+    episodes: episodesStore,
+    live: liveStore
   },
 
   state: {
-    live: {
-      playing: false
-    }
+
   },
 
   mutations: {
 
-    TOGGLE_LIVE(state) {
-      state.live.playing = !state.live.playing
-    }
   },
 
   actions: {
 
-    toggleLive({ commit }) {
-      commit('TOGGLE_LIVE')
-    },
-
-    initialize() {
-      this.dispatch('getEpisodes')
+    initialize({ dispatch }) {
+      dispatch('getEpisodes')
     }
   },
 

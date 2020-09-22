@@ -5,6 +5,7 @@
 @import './footer.scss';
 @import './chat.scss';
 @import './episodes.scss';
+@import './player.scss';
 
 * {
     font-family: $font-family;
@@ -18,13 +19,22 @@ body {
     background: $color1;
 }
 
-.content {
-    position: absolute;
-    height: calc(100% - $nav-height);
+#container {
+    position: relative;
     width: 100%;
+    height: 100%;
+    // calc() doenst work with variable...
+    // the second value shoudl be $nav-height
+    min-height: calc(100vh - 110px);
+}
+
+.content {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    min-height: inherit;
     bottom: 0;
-    top: $nav-height;
-    min-height: calc(100vh- $nav-height);
+    top: 0;
 }
 
 .background-container {
@@ -65,7 +75,7 @@ body {
 .title {
     position: absolute;
     bottom: $padding;
-    left: $padding;
+    right: $padding;
     padding: 6px 12px;
     font-size: 2em;
     background: $color-accent;
@@ -80,4 +90,8 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 2;
+}
+
+.blur {
+    filter: blur(8px);
 }

@@ -1,24 +1,28 @@
 <template>
   <div id="app">
     <Nav />
-    <router-view/>
-    <img id="logo" 
-      v-show="showLogo"
-      class="flip"
-      :src="require('@/assets/images/itr-logo.png')" alt="Intro To Rhythm logo" />
+    <div id="container">
+      <router-view/>
+    </div>
+    <Footer />
     <Chat v-bind:class="{ 'show-chat': showChat }" />
+    <Player />
   </div>
 </template>
 
 <script>
 import Nav from '@/components/Nav'
 import Chat from '@/components/Chat/Chat'
+import Footer from '@/components/Footer'
+import Player from '@/components/Player'
 
 export default {
 
   components: {
     Nav,
-    Chat
+    Chat,
+    Footer,
+    Player
   },
 
   computed: {

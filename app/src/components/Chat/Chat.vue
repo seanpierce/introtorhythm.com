@@ -11,7 +11,7 @@
 
             <div v-if="!chat.username" id="chat-enter-username">
                 <div>
-                    Enter your username to join in the chat
+                    Enter a username to join the chat
                 </div>
                 <input type="text" 
                     placeholder="username"

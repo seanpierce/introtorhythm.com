@@ -35,7 +35,7 @@ export default {
 
             let minutes = this.pad(time.getMinutes(), 2)
 
-            let period = time.getHours() > 12 ? 
+            let period = time.getHours() < 12 ? 
                 'am' : 'pm'
 
             return `${hours}:${minutes}${period}`

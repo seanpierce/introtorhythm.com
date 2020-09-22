@@ -8,19 +8,16 @@
         <div id="episodes-grid">
             <EpisodeCard v-for="episode in searchEpisodes" :key="episode.id" :episode="episode" />
         </div>
-        <Footer :position="searchEpisodes.length === 0 ? 'absolute' : ''"/>
     </div>
 </template>
 
 <script>
 import EpisodeCard from '@/components/EpisodeCard'
-import Footer from '@/components/Footer'
 
 export default {
 
     components: {
-        EpisodeCard,
-        Footer
+        EpisodeCard
     },
 
     data() {
@@ -32,7 +29,7 @@ export default {
     computed: {
 
         searchEpisodes() {
-            if (!this.search || this.search.length < 3) return this.episodes
+            if (!this.search) return this.episodes
             else return this.filterEpisodes()
         },
 

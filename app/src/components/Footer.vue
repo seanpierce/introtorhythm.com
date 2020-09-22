@@ -1,5 +1,5 @@
 <template>
-    <div id="footer" v-bind:class="{ 'absolute': position === 'absolute' }">
+    <div id="footer" v-bind:class="{ 'absolute': position === 'absolute' }" class="clearfix">
         <ul>
             <li class="button">Info</li>
             <li class="button">Subscribe</li>
