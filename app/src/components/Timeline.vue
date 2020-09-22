@@ -1,6 +1,7 @@
 <template>
     <div id="timeline">
         <div id="playhead" :style="{ marginLeft: playPercent + 'px' }"></div>
+        <span class="timeline__time">{{ formatTime(currentTime) }} / {{ formatTime(duration) }}</span>
     </div>
 </template>
 
@@ -11,9 +12,7 @@ export default {
         return {
             playerWidth: null,
             onPlayhead: false,
-            playPercent: 0,
-            duration: null,
-            currentTime: null
+            playPercent: 0
         }
     },
     methods: {
@@ -49,14 +48,15 @@ export default {
             window.removeEventListener('mouseup', this.mouseUpEvent, true)
         },
 
-        timeUpdate() {
-            if (!this.duration)
-                this.duration = this.formatTime(this.audio.duration)
-
-            this.currentTime = this.formatTime(this.audio.currentTime)
-
-            if (!this.onplayhead)
-                this.playPercent = this.playerWidth * (this.currentTime / this.duration);
+        formatTime(input) {
+            var sec_num = parseInt(input, 10);
+            var hours   = Math.floor(sec_num / 3600);
+            var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
+            var seconds = sec_num - (hours * 3600) - (minutes * 60);
+            if (hours   < 10) { hours   = "0" + hours; }
+            if (minutes < 10) { minutes = "0" + minutes; }
+            if (seconds < 10) { seconds = "0" + seconds; }
+            return hours + ':' + minutes + ':' + seconds;
         },
 
         movePlayHead(event) {
@@ -84,8 +84,12 @@ export default {
         },
 
         currentTime() {
-            return this.audio?.currentTime
-        }
+            return this.$store.state.episodes.currentTime
+        },
+
+        duration() {
+            return this.$store.state.episodes.duration
+        },
     },
 
     mounted() {

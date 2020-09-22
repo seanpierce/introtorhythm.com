@@ -8,6 +8,8 @@ const episodesStore = {
         nowPlaying: null,
         playing: false,
         audio: null,
+        currentTime: null,
+        duration: null,
         loading: false
     }),
 
@@ -89,7 +91,7 @@ const episodesStore = {
         },
 
 
-        async setEpisodeAudio({ commit }, url) {
+        async setEpisodeAudio({ commit, state }, url) {
             // Set initial loading states.
             console.log('Setting episode audio...')
             commit('SET_EPISODE_LOADING', true)
@@ -105,6 +107,15 @@ const episodesStore = {
                     commit('SET_EPISODE_LOADING', false)
                     return
                 }
+            })
+
+            // Add time update events.
+            audio.addEventListener('timeupdate', function() {
+                console.log(state)
+                if (!state.duration)
+                    state.duration = audio.duration
+                
+                state.currentTime = audio.currentTime
             })
 
             commit('SET_EPISODE_AUDIO', audio)
@@ -123,7 +134,7 @@ const episodesStore = {
         unsetEpisodeAudio({ dispatch, commit }) {
             dispatch('pauseEpisodeAudio')
             commit('SET_EPISODE_AUDIO', null)
-        }
+        },
     }
 
 }
