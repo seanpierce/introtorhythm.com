@@ -1,47 +1,10 @@
-{% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Meta data -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="description" content="Intro To Rhythm is a freeform mix series and live-streaming audio station broadcasting from Portland, OR, USA.">
-    <!-- Twitter card data -->
-    <meta name="twitter:card" value="Intro To Rhythm is a freeform mix series and live-streaming audio station broadcasting from Portland, OR, USA.">
-    <!-- Open Graph data -->
-    <meta property="og:title" content="Intro To Rhythm" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://introtorhythm.com" />
-    <meta property="og:image" content="https://introtorhythm.com/assets/images/itr-logo.png" />
-    <meta property="og:description" content="Intro To Rhythm is a freeform mix series and live-streaming audio station broadcasting from Portland, OR, USA." />
-    <title>ITR | {{ title }}</title>
-
-    <!-- Assets and imports -->
-    <link rel="icon" type="image/png" sizes="96x96" href="/assets/images/itr-logo.png">
-    <link href="https://fonts.googleapis.com/css?family=Droid+Sans+Mono" rel="stylesheet" type="text/css" />
-    <link href="{% static 'dist/app.css' %}" rel="stylesheet" type="text/css" />
-
-    <!-- Google analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-133910589-1"></script>
-	<script>
-		window.dataLayer = window.dataLayer || [];
-		function gtag() { dataLayer.push(arguments); }
-		gtag('js', new Date());
-		gtag('config', 'UA-133910589-1');
-    </script>
+    <title>Intro To Rhythm</title>
 </head>
 <body>
 {% block content %}
 {% endblock %}
 </body>
-{% if debug %}
-<!-- development version -->
-<script src="https://unpkg.com/vue"></script>
-{% else %}
-<!-- production version -->
-<script src="https://unpkg.com/vue/dist/vue.min.js"></script>
-{% endif %}
-<script src="{% static 'dist/app.js' %}?v=1"></script>
 </html>

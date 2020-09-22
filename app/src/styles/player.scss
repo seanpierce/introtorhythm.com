@@ -1,0 +1,31 @@
+#player {
+    box-sizing: content-box;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background: white;
+    cursor: pointer;
+    border: solid 2px $color1;
+    height: 3em;
+
+    .player__image {
+        height: 3em;
+        width: 3em;
+        display: inline-block;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .player__title_wrapper {
+        display: inline-block;
+        height: 3em;
+
+        .player__title {
+            color: $color1;
+            vertical-align: super;
+            display: table-cell;
+            vertical-align: middle;
+            padding: 15px;
+        }
+    }
+}

@@ -23,7 +23,6 @@ CONFIG.read('./env.ini')
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
@@ -36,6 +35,11 @@ DEBUG = eval(CONFIG.get('Environment', 'DEBUG'))
 # ALLOWED_HOSTS = []
 ALLOWED_HOSTS = CONFIG.get('Environment', 'ALLOWED_HOSTS').split(',')
 HOST_URL = CONFIG.get('Environment', 'HOST_URL')
+# CORS_ORIGIN_WHITELIST = CONFIG.get('Environment', 'CORS_ORIGIN_WHITELIST').split(',')
+CORS_ORIGIN_WHITELIST = [
+    "http://localhost:8080",
+    "http://192.168.0.122:8080"
+]
 
 
 # Application definition
@@ -48,12 +52,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
     'episodes',
     'content',
     'subscribers',
     'schedule',
     'ckeditor',
     'api',
+    'repositories'
 ]
 
 MIDDLEWARE = [
@@ -64,6 +70,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
 
 ROOT_URLCONF = 'introtorhythm.urls'
@@ -186,9 +194,6 @@ AWS_MEDIA_URL = 'https://s3.amazonaws.com/%s/media/' % AWS_STORAGE_BUCKET_NAME
 AWS_S3_OBJECT_PARAMETERS = {
     'CacheControl': 'max-age=86400',
 }
-
-# Firebase
-CHAT_CONFIG = CONFIG.get('CHAT', 'CONFIG')
 
 # Email Settings
 if not DEBUG:

@@ -6,6 +6,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 
 from episodes.repository import EpisodeRepository as repo
+from repositories.episodes import EpisodesRepository as newRepo
 
 class Recent(View):
     """
@@ -19,7 +20,7 @@ class All(View):
     Returns all episode data.
     """
     def get(self, request, *args, **kwargs):
-        return HttpResponse(json.dumps(repo.get_episodes()), content_type="application/json")
+        return HttpResponse(json.dumps(newRepo.get_episodes()), content_type="application/json")
 
 
 class Search(View):

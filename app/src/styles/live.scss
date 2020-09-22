@@ -1,0 +1,22 @@
+#live {
+
+    #live-wrapper {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        #circle {
+            font-size: 1.25em;
+            font-family: $font-family-secondary;
+            text-transform: uppercase;
+        }
+    }
+
+    .spinner {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}

@@ -1,0 +1,97 @@
+@import './variables.scss';
+@import './animations.scss';
+@import './nav.scss';
+@import './live.scss';
+@import './footer.scss';
+@import './chat.scss';
+@import './episodes.scss';
+@import './player.scss';
+
+* {
+    font-family: $font-family;
+    color: $color3;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background: $color1;
+}
+
+#container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    // calc() doenst work with variable...
+    // the second value shoudl be $nav-height
+    min-height: calc(100vh - 110px);
+}
+
+.content {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    min-height: inherit;
+    bottom: 0;
+    top: 0;
+}
+
+.background-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: url('../assets/images/seanpierce-palabra.jpg');
+    background-position: center;
+    background-size: cover;
+    filter: brightness(75%);
+}
+
+.button {
+    color: $color3;
+    padding: 8px;
+    min-width: 140px;
+    border: solid 1px $color3;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.25s;
+
+    &:hover {
+        background: $color3;
+        color: $color1;
+    }
+}
+
+#logo {
+    height: 6em;
+    position: relative;
+    top: 8px;
+    left: 8px;
+    z-index: 3;
+}
+
+.title {
+    position: absolute;
+    bottom: $padding;
+    right: $padding;
+    padding: 6px 12px;
+    font-size: 2em;
+    background: $color-accent;
+    color: $color3;
+}
+
+#play-button {
+    height: 160px;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+}
+
+.blur {
+    filter: blur(8px);
+}

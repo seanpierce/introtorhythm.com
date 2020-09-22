@@ -1,0 +1,50 @@
+#nav {
+    position: relative;
+    z-index: 1;
+
+    ul {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+
+        li {
+            display: inline-block;
+            margin-right: 0.75em;
+        }
+    }
+
+    #nav-top {
+        padding: $padding;
+        margin: 0.5em 0;
+        font-size: 1em;
+    }
+
+    #nav-bottom  {
+        border-bottom: solid 2px $color3;
+        padding-left: $padding;
+
+        .nav-tab {
+            font-size: 1em;
+            display: inline-block;
+            border: solid 1px $color3;
+            border-bottom: none;
+            border-top-right-radius: 6px;
+            border-top-left-radius: 6px;
+            padding: 8px 12px;
+            margin-right: 8px;
+            cursor: pointer;
+            transition: all 0.25s;
+
+            &.active {
+                background: $color3;
+                color: $color1;
+            }
+        }
+    }
+    
+    #chat-button {
+        position: absolute;
+        right: 16px;
+        bottom: -54px;
+    }
+}
