@@ -20,7 +20,7 @@
 
         </div>
 
-        <Timeline :active="active" />
+        <Timeline v-if="active" />
 
         <div class="episode-content__wraper">
             <div id="episode-time">
