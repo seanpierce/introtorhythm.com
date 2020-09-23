@@ -20,7 +20,7 @@
 
         </div>
 
-        <Timeline :playing="playing" />
+        <Timeline :active="active" />
 
         <div class="episode-content__wraper">
             <div id="episode-time">
@@ -98,8 +98,11 @@ export default {
         },
 
         playing() {
-            return this.$store.state.episodes.playing && 
-                (this.$store.state.episodes.nowPlaying?.number == this.episode.number)
+            return this.$store.state.episodes.playing && this.active
+        },
+
+        active() {
+            return this.$store.state.episodes.nowPlaying?.number == this.episode.number
         },
 
         audio() {
