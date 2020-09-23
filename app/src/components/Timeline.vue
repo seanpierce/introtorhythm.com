@@ -35,12 +35,12 @@ export default {
 
         timelineClickEvent(event) {
             var percent = (event.pageX - this.timeline.offsetLeft) / this.playerWidth
-            // set current time in episodes store
             this.$store.dispatch('setCurrentTime', this.audio.duration * percent)
         },
 
         playheadMouseDown() {
             this.onPlayhead = true
+            
             window.addEventListener('mousemove', this.movePlayHead, true)
             window.addEventListener('mouseup', this.mouseUpEvent, false)
         },
