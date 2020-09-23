@@ -20,7 +20,7 @@
 
         </div>
 
-        <Timeline />
+        <Timeline :playing="playing" />
 
         <div class="episode-content__wraper">
             <div id="episode-time">

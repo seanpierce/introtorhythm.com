@@ -1,6 +1,8 @@
 <template>
-    <div id="timeline">
-        <div id="playhead" :style="{ marginLeft: playPercent + 'px' }"></div>
+    <div id="timeline" @click="timelineClickEvent($event)">
+        <div id="playhead" 
+            @mousedown="playheadMouseDown()"
+            :style="{ marginLeft: playPercent + 'px' }"></div>
         <span class="timeline__time">{{ formatTime(currentTime) }} / {{ formatTime(duration) }}</span>
     </div>
 </template>
@@ -8,44 +10,44 @@
 <script>
 export default {
 
+    props: {
+        playing: Boolean
+    },
+
     data() {
         return {
+            timeline: null,
+            playhead: null,
             playerWidth: null,
             onPlayhead: false,
-            playPercent: 0
+            mounted: false,
+            mouseDropLocation: null
         }
     },
     methods: {
 
         getPlayerWidth() {
-            var player = document.getElementById('timeline')
-            var playHead = document.getElementById('playhead')
-            var playerWidth = player.offsetWidth - playHead.offsetWidth
-            this.playerWidth = playerWidth
+            this.playerWidth = this.timeline.offsetWidth - this.playhead.offsetWidth
         },
 
-        clickEvent(event) {
-            var player = document.getElementById('timeline')
-            var percent = (event.pageX - player.offsetLeft) / this.playerWidth
-            console.log(percent)
+        timelineClickEvent(event) {
+            var percent = (event.pageX - this.timeline.offsetLeft) / this.playerWidth
             // set current time in episodes store
-            // this.$parent.audio.currentTime = this.audio.duration * percent
+            this.$store.dispatch('setCurrentTime', this.audio.duration * percent)
         },
 
-        mouseDownEvent() {
+        playheadMouseDown() {
             this.onPlayhead = true
             window.addEventListener('mousemove', this.movePlayHead, true)
             window.addEventListener('mouseup', this.mouseUpEvent, false)
-            // dispatch store event to REMOVE event listener from audio
-            // this.$parent.audio.removeEventListener('timeupdate', this.$parent.timeUpdate, false)
         },
 
         mouseUpEvent() {
             this.onplayhead = false
-            // dispatch store event to ADD event listener to audio
-            // this.$parent.audio.addEventListener('timeupdate', this.$parent.timeUpdate, true)
             window.removeEventListener('mousemove', this.movePlayHead, true)
             window.removeEventListener('mouseup', this.mouseUpEvent, true)
+
+            this.setCurrentTime(this.mouseDropLocation)
         },
 
         formatTime(input) {
@@ -62,19 +64,21 @@ export default {
         movePlayHead(event) {
             if (!this.audio) return
 
-            var player = document.getElementById('timeline')
-            var margin = event.pageX - player.offsetLeft
+            var margin = event.pageX - this.timeline.offsetLeft
 
-            if (margin >= 0 && margin <= this.playerWidth) {
-                this.playPercent = margin
-            }
+            if (margin >= 0 && margin <= this.playerWidth)
+                this.mouseDropLocation = margin
 
             if (margin < 0)
-                this.playPercent = 0
+                this.mouseDropLocation = 0
 
             if (margin > this.playerWidth)
-                this.playPercent = this.playerWidth
+                this.mouseDropLocation = this.playerWidth
         },
+
+        setCurrentTime(input) {
+            this.$store.dispatch('setCurrentTime', input)
+        }
 
     },
 
@@ -84,27 +88,39 @@ export default {
         },
 
         currentTime() {
-            return this.$store.state.episodes.currentTime
+            return this.$store.state.episodes.currentTime || 0
         },
 
         duration() {
-            return this.$store.state.episodes.duration
+            return this.$store.state.episodes.duration || 0
+        },
+
+        playPercent() {
+            if (this.mouseDropLocation && this.onPlayhead)
+                return this.mouseDropLocation
+
+            try {
+                return this.playerWidth * (this.currentTime / this.duration)
+            } catch {
+                return 0
+            }
         },
     },
 
     mounted() {
+        this.timeline = document.getElementById('timeline')
+        this.playhead = document.getElementById('playhead')
 
-        var player = document.getElementById('timeline');
-        var playhead = document.getElementById('playhead');
+        this.getPlayerWidth()
 
-        this.getPlayerWidth();
+        if (!this.mounted)
+            window.addEventListener('resize', this.getPlayerWidth())
+        
+        this.mounted = true
+    },
 
-        player.addEventListener('click', (event) => {
-            this.clickEvent(event);
-        });
-
-        playhead.addEventListener('mousedown', this.mouseDownEvent, false);
-        window.addEventListener('resize', this.getPlayerWidth);
+    destroyed() {
+        window.removeEventListener('resize', this.getPlayerWidth())
     },
 }
 </script>

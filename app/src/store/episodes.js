@@ -46,6 +46,10 @@ const episodesStore = {
         PLAY_AUDIO: (state) => {
             state.audio.play()
         },
+
+        SET_CURRENT_TIME: (state, input) => {
+            state.audio.currentTime = input
+        }
     },
 
     actions: {
@@ -111,7 +115,6 @@ const episodesStore = {
 
             // Add time update events.
             audio.addEventListener('timeupdate', function() {
-                console.log(state)
                 if (!state.duration)
                     state.duration = audio.duration
                 
@@ -135,8 +138,13 @@ const episodesStore = {
             dispatch('pauseEpisodeAudio')
             commit('SET_EPISODE_AUDIO', null)
         },
+
+        setCurrentTime({ commit }, input) {
+            commit('SET_CURRENT_TIME', input)
+        },
+
     }
 
 }
   
-  export default episodesStore
+export default episodesStore
