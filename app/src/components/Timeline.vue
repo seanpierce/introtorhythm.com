@@ -12,10 +12,6 @@ import { formatTime } from '@/utilities'
 
 export default {
 
-    props: {
-        active: Boolean
-    },
-
     data() {
         return {
             timeline: null,
@@ -27,6 +23,7 @@ export default {
             formatTime: formatTime
         }
     },
+    
     methods: {
 
         getPlayerWidth() {
