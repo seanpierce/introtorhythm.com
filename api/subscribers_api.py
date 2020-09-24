@@ -11,6 +11,7 @@ from django.utils.decorators import method_decorator
 from subscribers.repository import SubscriberRepository as repo
 from subscribers.emails import SubscriberEmails as email
 
+
 class ConfirmSubscription(View):
     def get(self, request, *args, **kwargs):
         """Creates a Subscriber record when provided a SubscriptionRequest token.
@@ -37,13 +38,14 @@ class ConfirmSubscription(View):
         subscription_request = repo.get_request_by_token(token)
 
         if subscription_request is None:
-            return redirect('/?success=false')
+            return redirect('%s/?success=false' %(settings.FRONT_END_URL))
 
         if repo.create_subscriber(subscription_request['email']):
             repo.remove_subscription_request(subscription_request['token'])
-            return redirect('/?success=true')
+            return redirect('%s/?success=true' %(settings.FRONT_END_URL))
         else:
-            return redirect('/?success=false')
+            return redirect('%s/?success=false' %(settings.FRONT_END_URL))
+
 
 class RequestSubscription(View):
     @method_decorator(csrf_exempt)
