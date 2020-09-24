@@ -30,6 +30,9 @@ class Episode(models.Model):
 
     def save(self, *args, **kwargs):
         super(Episode, self).save(*args, **kwargs)
+        upload_thumbnail(self)
+
+    def upload_thumbnail(self):
         s3 = boto3.resource('s3', aws_access_key_id=settings.AWS_ACCESS_KEY_ID, aws_secret_access_key=settings.AWS_SECRET_ACCESS_KEY)
         bucket = s3.Bucket(settings.AWS_STORAGE_BUCKET_NAME)
         filename = 'media/episodes/images/thumbnails/' + os.path.basename(self.image.name)
@@ -43,4 +46,5 @@ class Episode(models.Model):
         image.save(buffer, "JPEG")
         buffer.seek(0)
         bucket.put_object(Key=filename, Body=buffer, ACL='public-read')
+
         
