@@ -30,7 +30,7 @@ class Episode(models.Model):
 
     def save(self, *args, **kwargs):
         super(Episode, self).save(*args, **kwargs)
-        upload_thumbnail(self)
+        self.upload_thumbnail()
 
     def upload_thumbnail(self):
         s3 = boto3.resource('s3', aws_access_key_id=settings.AWS_ACCESS_KEY_ID, aws_secret_access_key=settings.AWS_SECRET_ACCESS_KEY)
