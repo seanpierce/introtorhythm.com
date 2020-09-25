@@ -7,6 +7,8 @@
     <Footer />
     <Chat v-bind:class="{ 'show-chat': showChat }" />
     <Player />
+    <InfoModal v-if="modal === 'info'" />
+    <SupportModal v-if="modal === 'support'" />
   </div>
 </template>
 
@@ -15,6 +17,8 @@ import Nav from '@/components/Nav'
 import Chat from '@/components/Chat/Chat'
 import Footer from '@/components/Footer'
 import Player from '@/components/Player'
+import InfoModal from '@/components/Modals/Info'
+import SupportModal from '@/components/Modals/Support'
 
 export default {
 
@@ -22,7 +26,15 @@ export default {
     Nav,
     Chat,
     Footer,
-    Player
+    Player,
+    InfoModal,
+    SupportModal
+  },
+
+  data() {
+    return {
+      modal: null
+    }
   },
 
   computed: {

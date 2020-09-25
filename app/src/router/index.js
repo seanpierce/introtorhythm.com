@@ -4,12 +4,14 @@ import Live from '@/views/Live'
 
 Vue.use(VueRouter)
 
+const title = 'ITR | '
+
 const routes = [
   {
     path: '/',
     name: 'Live',
     beforeEnter: (to, from, next) => {
-      document.title = 'Intro To Rhythm | Live'
+      document.title = title + 'Live'
       next()
     },
     component: Live
@@ -18,7 +20,7 @@ const routes = [
     path: '/episodes',
     name: 'Episodes',
     beforeEnter: (to, from, next) => {
-      document.title = 'Intro To Rhythm | Episodes'
+      document.title = title + 'Episodes'
       next()
     },
     component: () => import('@/views/Episodes.vue')
@@ -27,7 +29,7 @@ const routes = [
     path: '/episodes/:number',
     name: 'Episode',
     beforeEnter: (to, from, next) => {
-      document.title = 'Intro To Rhythm | ' + to.params.number
+      document.title = title + to.params.number
       next()
     },
     props: true,

@@ -37,15 +37,18 @@ export default {
 
         playheadMouseDown() {
             this.onPlayhead = true
-            
+
             window.addEventListener('mousemove', this.movePlayHead, true)
             window.addEventListener('mouseup', this.mouseUpEvent, false)
         },
 
         mouseUpEvent() {
-            this.onplayhead = false
+            setTimeout(() => {
+                this.onPlayhead = false
+            }, 500)
+
             window.removeEventListener('mousemove', this.movePlayHead, true)
-            window.removeEventListener('mouseup', this.mouseUpEvent, true)
+            window.removeEventListener('mouseup', this.mouseUpEvent, false)
 
             this.setCurrentTime(this.mouseDropLocation)
         },
@@ -103,13 +106,13 @@ export default {
         this.getPlayerWidth()
 
         if (!this.mounted)
-            window.addEventListener('resize', this.getPlayerWidth())
+            window.addEventListener('resize', this.getPlayerWidth, true)
         
         this.mounted = true
     },
 
     destroyed() {
-        window.removeEventListener('resize', this.getPlayerWidth())
+        window.removeEventListener('resize', this.getPlayerWidth, false)
     },
 }
 </script>

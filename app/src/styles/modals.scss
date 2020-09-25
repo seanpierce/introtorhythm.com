@@ -1,0 +1,27 @@
+.modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba($color: #000000, $alpha: 0.5);
+    z-index: 10;
+    overflow: scroll;
+
+    &__content{
+        width: 98%;
+        max-width: 800px;
+        margin: 6em auto;
+        background-color: #f0f0f0;
+        padding: 2em;
+        
+        p {
+            color: $color1;
+        }
+
+        &__close {
+            height: 1em;
+            cursor: pointer;
+        }
+    }
+}

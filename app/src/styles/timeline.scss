@@ -19,7 +19,7 @@
         color: red;
         position: absolute;
         right: 1em;
-        top: 50%;
-        transform: translateY(-50%);
+        top: calc(100% + 0.5em);
+        z-index: 2;
     }
 }
