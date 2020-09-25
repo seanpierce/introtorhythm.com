@@ -1,27 +1,28 @@
 <template>
     <div id="player" 
-        v-if="nowPlaying && !onNowPlaying"
+        v-if="playing && !onNowPlaying"
         @click="goToNowPlaying()">
-        <div class="player__image" :style="{ backgroundImage: 'url(' + image + ')' }"></div>
+        <div class="player__image" 
+            :style="{ backgroundImage: 'url(' + image + ')' }"></div>
         <div class="player__title_wrapper">
-            <span class="player__title">Now Playing - {{ nowPlaying }}</span>
-            <AudioPlaying />
+            <span class="player__content">
+                <span class="player__title">Now Playing - {{ nowPlaying }}</span>
+            </span>
         </div>
     </div>
 </template>
 
 <script>
-import AudioPlaying from '@/components/Animations/AudioPlaying'
-
 export default {
 
     components: {
-        AudioPlaying
     },
 
     data() {
         return {
-            mediaUrl: process.env.VUE_APP_MEDIA_URL
+            mediaUrl: process.env.VUE_APP_MEDIA_URL,
+            playButton: require('@/assets/images/play-circle-dark.png'),
+            pauseButton: require('@/assets/images/pause-circle-dark.png')
         }
     },
 
@@ -37,6 +38,11 @@ export default {
             return null
         },
 
+        audioWasSelected() {
+            return this.$store.state.live.audio
+                || this.$store.state.episodes.audio
+        },
+
         onNowPlaying() {
             if (this.$store.state.live.playing
                 && this.$route.name === 'Live')
@@ -50,13 +56,27 @@ export default {
         },
 
         image() {
-            if (this.nowPlaying === 'ITR Live')
+            if (this.isLive)
                 return require('@/assets/images/seanpierce-palabra.jpg')
             
-            if (this.nowPlaying !== null && !(this.nowPlaying === 'ITR Live'))
+            if (this.nowPlaying !== null && !this.isLive)
                 return this.mediaUrl + this.$store.state.episodes.nowPlaying.image
 
             return null
+        },
+
+        playing() {
+            if (this.isLive)
+                return this.$store.state.live.playing
+            
+            if (this.nowPlaying !== null && !this.isLive)
+                return this.$store.state.episodes.playing
+
+            return false
+        },
+
+        isLive() {
+            return this.nowPlaying === 'ITR Live'
         }
     },
 
@@ -71,6 +91,14 @@ export default {
                 && this.$route.params?.number !== this.$store.state.episodes.nowPlaying.number)
                 return this.$router.push(`/episodes/${this.$store.state.episodes.nowPlaying.number}`)
 
+        },
+
+        togglePlay() {
+            if (this.isLive) {
+                this.$store.dispatch('toggleLive')
+            } else {
+                this.$store.dispatch('toggleEpisodePlaying', this.$store.state.episodes.nowPlaying.number)
+            }
         }
     }
 }

@@ -147,6 +147,16 @@
 
         .selected-episode-content__content {
             margin: 2em auto;
+
+            p {
+                margin-bottom: 1em;
+            }
+
+            hr {
+                border: solid 1px $color1;
+                border-bottom: none;
+                margin: 1em 0;
+            }
         }
     }
 }

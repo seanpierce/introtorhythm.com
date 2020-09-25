@@ -5,6 +5,7 @@ Django==3.1
 django-ckeditor==6.0.0
 django-cors-headers==3.5.0
 django-js-asset==1.2.2
+django-storages==1.10.1
 djangorestframework==3.11.1
 docutils==0.15.2
 jmespath==0.10.0

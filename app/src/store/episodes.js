@@ -8,6 +8,8 @@ const episodesStore = {
         nowPlaying: null,
         playing: false,
         audio: null,
+        currentTime: null,
+        duration: null,
         loading: false
     }),
 
@@ -44,6 +46,10 @@ const episodesStore = {
         PLAY_AUDIO: (state) => {
             state.audio.play()
         },
+
+        SET_CURRENT_TIME: (state, input) => {
+            state.audio.currentTime = input
+        }
     },
 
     actions: {
@@ -89,7 +95,7 @@ const episodesStore = {
         },
 
 
-        async setEpisodeAudio({ commit }, url) {
+        async setEpisodeAudio({ commit, state }, url) {
             // Set initial loading states.
             console.log('Setting episode audio...')
             commit('SET_EPISODE_LOADING', true)
@@ -103,8 +109,14 @@ const episodesStore = {
             audio.addEventListener('loadeddata', function() {
                 if (this.readyState >= 2) {
                     commit('SET_EPISODE_LOADING', false)
+                    state.duration = audio.duration
                     return
                 }
+            })
+
+            // Add time update events.
+            audio.addEventListener('timeupdate', function() {
+                state.currentTime = audio.currentTime
             })
 
             commit('SET_EPISODE_AUDIO', audio)
@@ -123,9 +135,14 @@ const episodesStore = {
         unsetEpisodeAudio({ dispatch, commit }) {
             dispatch('pauseEpisodeAudio')
             commit('SET_EPISODE_AUDIO', null)
-        }
+        },
+
+        setCurrentTime({ commit }, input) {
+            commit('SET_CURRENT_TIME', input)
+        },
+
     }
 
 }
   
-  export default episodesStore
+export default episodesStore

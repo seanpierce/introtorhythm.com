@@ -4,9 +4,9 @@
     bottom: 0;
     left: 0;
     background: white;
-    cursor: pointer;
     border: solid 2px $color1;
     height: 3em;
+    cursor: pointer;
 
     .player__image {
         height: 3em;
@@ -20,12 +20,26 @@
         display: inline-block;
         height: 3em;
 
-        .player__title {
-            color: $color1;
+        .player__content {
+            * {
+                color: $color1;
+            }
+
             vertical-align: super;
             display: table-cell;
             vertical-align: middle;
             padding: 15px;
+
+            .player__title {
+            }
+
+            img.play-button-dark {
+                height: 1.25em;
+                display: inline-block;
+                vertical-align: bottom;
+                margin-left: 1em;
+
+            }
         }
     }
 }

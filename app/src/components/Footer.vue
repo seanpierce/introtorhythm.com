@@ -1,9 +1,7 @@
 <template>
     <div id="footer" v-bind:class="{ 'absolute': position === 'absolute' }" class="clearfix">
         <ul>
-            <li class="button">Info</li>
-            <li class="button">Subscribe</li>
-            <li class="button">Support</li>
+            <li class="button" @click="$parent.modal = 'info'">Info</li>
         </ul>
     </div>
 </template>
