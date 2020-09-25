@@ -35,10 +35,10 @@ DEBUG = eval(CONFIG.get('Environment', 'DEBUG'))
 # ALLOWED_HOSTS = []
 ALLOWED_HOSTS = CONFIG.get('Environment', 'ALLOWED_HOSTS').split(',')
 HOST_URL = CONFIG.get('Environment', 'HOST_URL')
+
 # CORS_ORIGIN_WHITELIST = CONFIG.get('Environment', 'CORS_ORIGIN_WHITELIST').split(',')
 CORS_ORIGIN_WHITELIST = [
     "http://localhost:8080",
-    "http://192.168.0.122:8080"
 ]
 
 
