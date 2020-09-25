@@ -8,11 +8,11 @@
             <br>
             <p>Intro To Rhythm is a freeform mix series and live-streaming audio station that began in 2017. All episodes and content are owned by their creators and made exclusively for Intro To Rhythm.</p>
             <br>
-            <p>Additionally, ITR is dedicated to open-source projects, and the collective idea sharing that fuels creative expression. If you're interested in developing your own live-streaming station or podcasting platform, you're invited to refer to ITR's source code or reach out for specific info. Send questions and comments to introtorhythm@gmail.com</p>
+            <p>Additionally, ITR is dedicated to open-source projects, and the collective idea sharing that fuels creative expression. If you're interested in developing your own live-streaming station or podcasting platform, you're invited to refer to ITR's source code or reach out for specific info. Send questions and comments to info@introtorhythm.com</p>
             <br>
             <p>========</p>
             <br>
-            <p>We're always looking to host mixes, sound pieces, or other recorded works. We aim to promote those who normally aren't considered for other broadcast platforms. If you have something you'd like us to share, please reach out @ introtorhythm@gmail.com</p>
+            <p>We're always looking to host mixes, sound pieces, or other recorded works. We aim to promote those who normally aren't considered for other broadcast platforms. If you have something you'd like us to share, please reach out to info@introtorhythm.com</p>
             <br>
             <p>========</p>
             <br>
