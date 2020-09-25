@@ -109,15 +109,13 @@ const episodesStore = {
             audio.addEventListener('loadeddata', function() {
                 if (this.readyState >= 2) {
                     commit('SET_EPISODE_LOADING', false)
+                    state.duration = audio.duration
                     return
                 }
             })
 
             // Add time update events.
             audio.addEventListener('timeupdate', function() {
-                if (!state.duration)
-                    state.duration = audio.duration
-                
                 state.currentTime = audio.currentTime
             })
 
