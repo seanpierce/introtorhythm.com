@@ -55,8 +55,11 @@ const liveStore = {
             // reset audio on error
             audio.addEventListener('error', function() { 
                 console.log('audio error', new Date())
+                // set from true to false
+                dispatch('toggleLive')
                 dispatch('setLiveAudio', url)
                     .then(() => {
+                        // set back to true
                         dispatch('toggleLive')
                     })
             })
