@@ -22,4 +22,4 @@ class ContentRepository(object):
     @staticmethod
     def get_background_image():
         """Returns the background image url for th econfigured background image."""
-        return BackgroundImage.objects.values('image').first()
+        return BackgroundImage.objects.values('image', 'active').first()
