@@ -20,4 +20,23 @@ class EpisodesRepository:
             where active = 1
             order by e.number desc
         """
-        return Query.all(sql)
+
+        return Query.many(sql)
+
+
+    @staticmethod
+    def get_episode(number):
+        """
+        Returns an episode from the database when provided an episode number.
+        """
+
+        sql = """
+            select e.*, strftime(e.created_at) as created_at
+            from episodes_episode e
+            where active = 1
+            and number = %s
+        """
+
+        params = [number]
+
+        return Query.single(sql, params)
