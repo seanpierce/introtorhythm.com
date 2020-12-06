@@ -1,12 +1,13 @@
 from django.urls import path
 
-from .episodes_api import All
+from .episodes_api import All, Single
 from .content_api import Info, BackgroundImage
 from .subscribers_api import ConfirmSubscription, RequestSubscription, Unsubscribe
 from .schedule_api import GetShow, GetSchedule
 
 urlpatterns = [
     path('episodes', All.as_view()),
+    path('episode', Single.as_view()),
     path('content/backgroundimage', BackgroundImage.as_view()),
     path('content/<name>', Info.as_view()),
     path('subscribers/request', RequestSubscription.as_view()),

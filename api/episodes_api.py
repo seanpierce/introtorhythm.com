@@ -14,3 +14,21 @@ class All(View):
     """
     def get(self, request, *args, **kwargs):
         return HttpResponse(json.dumps(repo.get_episodes()), content_type="application/json")
+
+
+class Single(View):
+    """
+    Returns a single episode from the database when provided an episode number.
+    """
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args, **kwargs):
+        """
+        Add decorator to internal class method to
+        ignore the presence of a csrf token/ cookie in the request.
+        """
+        return super(Single, self).dispatch(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        body = json.loads(request.body.decode('utf-8'))
+        number = body['number']
+        return HttpResponse(json.dumps(repo.get_episode(number)))
