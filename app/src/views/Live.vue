@@ -5,7 +5,9 @@
             class="flip"
             :src="require('@/assets/images/itr-logo.png')" alt="Intro To Rhythm logo" />
 
-        <div class="background-container"></div>
+        <div class="background-container"
+            :style="{ backgroundImage: 'url(' + bgImage + ')' }">
+        </div>
 
         <div id="live-wrapper">
             <div id="circle" 
@@ -24,8 +26,6 @@
         <div class="title">
             Live
         </div>
-
-        <!-- <Footer :position="'absolute'"/> -->
     </div>
 </template>
 
@@ -45,7 +45,9 @@ export default {
         return {
             playButton: require('@/assets/images/play-circle.png'),
             pauseButton: require('@/assets/images/pause-circle.png'),
-            liveUrl: 'https://introtorhythm.com/stream'
+            liveUrl: 'https://introtorhythm.com/stream',
+            mediaUrl: process.env.VUE_APP_MEDIA_URL,
+            defaultBg: require('@/assets/images/seanpierce-palabra.jpg')
         }
 
     },
@@ -84,6 +86,12 @@ export default {
 
         loading() {
             return this.$store.state.live.loading
+        },
+
+        bgImage() {
+            return this.$store.state.content.bgImage?.active ?
+                this.mediaUrl + this.$store.state.content.bgImage.image :
+                this.defaultBg
         }
     },
 

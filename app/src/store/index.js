@@ -4,6 +4,7 @@ import Vuex from 'vuex'
 import chatStore from './chat'
 import episodesStore from './episodes'
 import liveStore from './live'
+import contentStore from './content'
 
 Vue.use(Vuex)
 
@@ -14,7 +15,8 @@ export default new Vuex.Store({
   modules: {
     chat: chatStore,
     episodes: episodesStore,
-    live: liveStore
+    live: liveStore,
+    content: contentStore
   },
 
   state: {
@@ -29,6 +31,7 @@ export default new Vuex.Store({
 
     initialize({ dispatch }) {
       dispatch('getEpisodes')
+      dispatch('getBgImage')
     }
   },
 
