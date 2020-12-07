@@ -57,7 +57,7 @@ export default {
 
         image() {
             if (this.isLive)
-                return require('@/assets/images/seanpierce-palabra.jpg')
+                return this.liveBgImage
             
             if (this.nowPlaying !== null && !this.isLive)
                 return this.mediaUrl + this.$store.state.episodes.nowPlaying.image
@@ -73,6 +73,12 @@ export default {
                 return this.$store.state.episodes.playing
 
             return false
+        },
+
+        liveBgImage() {
+            return this.$store.state.content.bgImage?.active ?
+                this.mediaUrl + this.$store.state.content.bgImage.image :
+                require('@/assets/images/seanpierce-palabra.jpg')
         },
 
         isLive() {
