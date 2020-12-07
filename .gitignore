@@ -4,7 +4,7 @@ logs/*.log
 db.sqlite3
 .vscode/
 *.pyc
-*/__pycache__/*
+**/__pycache__/
 app/node_modules/
 assets/dist/
 introtorhythm/__pycache__/

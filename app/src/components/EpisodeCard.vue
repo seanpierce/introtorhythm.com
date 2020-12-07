@@ -73,6 +73,7 @@ export default {
                 behavior: 'smooth'
             }
             window.scrollTo(options)
+            this.$router.push('/episodes?tag=' + tag)
             this.$parent.search = tag
         }
     }
