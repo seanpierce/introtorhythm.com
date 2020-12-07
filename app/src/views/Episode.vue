@@ -30,6 +30,12 @@
                 <h1>{{ episode.number }}</h1>
                 <h2>{{ episode.title }}</h2>
                 <div class="selected-episode-content__content" v-html="episode.content"></div>
+                <div class="selected-episode-content__tags">
+                    <span v-for="(tag, index) in getEpisodeTags(episode.tags)" 
+                        :key="index">
+                        <router-link :to="'/episodes?tag=' + encode(tag)">#{{ tag }}</router-link>
+                    </span>
+                </div>
             </div>
         </div>
     </div>
@@ -63,6 +69,27 @@ export default {
         toggleEpisode() {
             this.$store.dispatch('toggleEpisodePlaying', this.episode)
         },
+
+        getEpisodeTags(tags) {
+            tags = tags.split(',').map(x => this.formatTag(x));
+            return tags.sort((a, b) => {
+                if (a < b) return -1;
+                if (a > b) return 1;
+                return 0;
+            })
+        },
+
+        formatTag(tag) {
+            if (tag[0] === ' ')
+                tag = tag.slice(1);
+            if (tag[tag.length -1] === ' ')
+                tag = tag.slice(0, -1);
+            return tag;
+        },
+
+        encode(input) {
+            return encodeURIComponent(input)
+        }
     },
 
 
@@ -82,7 +109,6 @@ export default {
                 this.$store.dispatch('pauseEpisodeAudio')
             }
         }
-
     },
 
     computed: {

@@ -158,5 +158,22 @@
                 margin: 1em 0;
             }
         }
+        
+        .selected-episode-content__tags {
+            font-size: 0.8em;
+
+            span {
+                cursor: pointer;
+                margin-right: 1em;
+
+                a {
+                    text-decoration: none;
+
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
     }
 }
