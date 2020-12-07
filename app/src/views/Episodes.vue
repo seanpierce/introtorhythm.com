@@ -22,7 +22,7 @@ export default {
 
     data() {
         return {
-            search: null
+            search: null,
         }
     },
 
@@ -74,6 +74,9 @@ export default {
 
     mounted() {
         this.focusSearch()
+
+        this.search = this.$route.query['tag'] || null
+        if (this.search) this.filterEpisodes()
     }
 }
 </script>
