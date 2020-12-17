@@ -38,11 +38,9 @@ HOST_URL = CONFIG.get('Environment', 'HOST_URL')
 
 FRONT_END_URL = 'http://localhost:8080'
 
-# CORS_ORIGIN_WHITELIST = CONFIG.get('Environment', 'CORS_ORIGIN_WHITELIST').split(',')
 CORS_ORIGIN_WHITELIST = [
     "http://localhost:8080"
 ]
-
 
 # Application definition
 
