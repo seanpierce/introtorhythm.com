@@ -4,8 +4,8 @@ from django.http import HttpResponse
 from django.views.generic import View
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
-
 from content.repository import ContentRepository as repo
+
 
 class Info(View):
     """

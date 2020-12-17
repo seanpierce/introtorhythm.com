@@ -1,5 +1,4 @@
 import json
-
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.generic import View
@@ -7,7 +6,6 @@ from django.shortcuts import redirect
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
-
 from subscribers.repository import SubscriberRepository as repo
 from subscribers.emails import SubscriberEmails as email
 
@@ -47,14 +45,8 @@ class ConfirmSubscription(View):
             return redirect('%s/?success=false' %(settings.FRONT_END_URL))
 
 
+@method_decorator(csrf_exempt, name='dispatch')
 class RequestSubscription(View):
-    @method_decorator(csrf_exempt)
-    def dispatch(self, request, *args, **kwargs):
-        """Add decorator to internal class method to
-        ignore the presence of a csrf token/ cookie in the request.
-        """
-        return super(RequestSubscription, self).dispatch(request, *args, **kwargs)
-
     def post(self, request, *args, **kwargs):
         """Creates a SubscriptionRequest record in the database,
         then sends a confirmation email to the email address provided in the request.
@@ -81,14 +73,9 @@ class RequestSubscription(View):
         else:
             return HttpResponse(json.dumps({'data': False}), content_type="application/json")
 
-class Unsubscribe(View):
-    @method_decorator(csrf_exempt)
-    def dispatch(self, request, *args, **kwargs):
-        """Add decorator to internal class method to
-        ignore the presence of a csrf token/ cookie in the request.
-        """
-        return super(Unsubscribe, self).dispatch(request, *args, **kwargs)
 
+@method_decorator(csrf_exempt, name='dispatch')
+class Unsubscribe(View):
     def post(self, request, *args, **kwargs):
         """Removes a subscriber from the database when provided an email address.
 

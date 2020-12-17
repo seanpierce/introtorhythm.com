@@ -1,5 +1,4 @@
 from django.urls import path
-
 from .episodes_api import All, Single
 from .content_api import Info, BackgroundImage
 from .subscribers_api import ConfirmSubscription, RequestSubscription, Unsubscribe
