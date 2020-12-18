@@ -1,5 +1,5 @@
 <template>
-    <div class="episode-wrapper">
+    <div class="episode-wrapper" v-bind:class="{ 'show': inView }">
         <div class="episode-inner-wrapper">
             <div class="episode"
                 @click="goToEpisode(episode)">
@@ -38,6 +38,12 @@ export default {
         episode: Object
     },
 
+    data() {
+        return {
+            inView: false
+        }
+    },
+
     methods: {
 
         goToEpisode(episode) {
@@ -67,7 +73,7 @@ export default {
         },
 
         searchTag(tag) {
-            var options = {
+            let options = {
                 left: 0,
                 top: 0,
                 behavior: 'smooth'
@@ -75,7 +81,38 @@ export default {
             window.scrollTo(options)
             this.$router.push('/episodes?tag=' + tag)
             this.$parent.search = tag
+        },
+
+        scrollIntoView() {
+            let element = this.$el
+            let elementHeight = element.clientHeight
+            let windowHeight = window.innerHeight
+            let scrollY = window.scrollY || window.pageYOffset
+            let scrollPosition = scrollY + windowHeight
+            let elementPosition = element.getBoundingClientRect().top + scrollY + elementHeight
+            let offset = scrollPosition + (elementHeight - (elementHeight * 0.25))
+
+            this.inView = offset > elementPosition ? true : false
         }
+    },
+
+    watch: {
+        inView() {
+            if (this.inView === true)
+                window.removeEventListener('scroll', this.scrollIntoView)
+        }
+    },
+
+    mounted() {
+        this.scrollIntoView()
+    },
+
+    created() {
+        window.addEventListener('scroll', this.scrollIntoView)
+    },
+
+    beforeDestroy() {
+        window.removeEventListener('scroll', this.scrollIntoView)
     }
 }
 </script>

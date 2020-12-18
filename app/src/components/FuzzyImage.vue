@@ -1,5 +1,8 @@
 <template>
-    <div class="episode-image" v-bind:class="{ blur: !loaded }" :style="{ backgroundImage: 'url(' + mediaUrl  + (loaded ? image : thumbnail) + ')' }"></div>
+    <div class="episode-image" 
+        v-bind:class="{ loading: !loaded }" 
+        :style="{ backgroundImage: 'url(' + mediaUrl  + (loaded ? image : thumbnail) + ')' }">
+    </div>
 </template>
 
 <script>
