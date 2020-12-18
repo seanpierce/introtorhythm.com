@@ -15,7 +15,6 @@
             border-bottom: solid 2px white;
             outline: none;
 
-
             &::placeholder {
                 color: white;
             }
@@ -39,6 +38,14 @@
             box-sizing: border-box;
             padding: 6px;
             margin-bottom: 0.5em;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s, transform 0.5s;
+
+            &.show {
+                opacity: 1;
+                transform: translateY(0);
+            }
     
             @media (max-width: 700px) {
                 width: 50%;
@@ -67,6 +74,7 @@
                 background-position: center;
                 background-repeat: no-repeat;
                 background-size: cover;
+                transition: filter 0.5s;
 
                 &.loading {
                     filter: blur(8px);
