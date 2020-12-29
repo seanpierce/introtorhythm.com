@@ -23,6 +23,7 @@ export default {
     data() {
         return {
             search: null,
+            bouncing: null
         }
     },
 
@@ -35,6 +36,27 @@ export default {
 
         episodes() {
             return this.$store.state.episodes.episodes || null
+        }
+    },
+
+    watch: {
+        search() {
+            if (this.bouncing) {
+                clearTimeout(this.bouncing)
+                this.bouncing = null
+            }
+
+            this.bouncing = setTimeout(() => {
+                if (this.search) {
+                    this.$router.push({
+                        path: '/episodes',
+                        query: { search: encodeURIComponent(this.search) },
+                    })
+                } else {
+                    this.$router.push({ path: '/episodes' })
+                }
+                this.bouncing = null
+            }, 3000)
         }
     },
 
@@ -75,7 +97,7 @@ export default {
     mounted() {
         this.focusSearch()
 
-        this.search = this.$route.query['tag'] || null
+        this.search = this.$route.query['search'] || null
         if (this.search) this.filterEpisodes()
     }
 }

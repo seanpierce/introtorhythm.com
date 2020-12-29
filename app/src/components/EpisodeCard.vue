@@ -3,7 +3,6 @@
         <div class="episode-inner-wrapper">
             <div class="episode"
                 @click="goToEpisode(episode)">
-                <!-- <div class="episode-image blur" :style="{ backgroundImage: 'url(' + $root.mediaUrl + getThumbnail(episode.image) + ')' }"></div> -->
                 <FuzzyImage :thumbnail="getThumbnail(episode.image)" :image="episode.image" />
                 <svg class="play-button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600"><title>Play</title><g id="_x33_--Hidden-_x28_closing-up_x29_-" transform="translate(-772 -385)"><g id="Drawer" transform="translate(0 43)"><g id="_x32_" transform="translate(18)"><path id="play" d="M1260.4 651.3L882.8 861.2c-4.4 2.4-8.2 2.7-11.2 1-3.1-1.7-4.6-5.1-4.6-10.2V433.2c0-4.8 1.5-8.2 4.6-10.2 3.1-2 6.8-1.7 11.2 1l377.6 210c4.4 2.4 6.6 5.3 6.6 8.7 0 3.3-2.2 6.2-6.6 8.6z"></path></g></g></g></svg>
             </div>
@@ -15,8 +14,7 @@
                     </span>
                 </div>
                 <div v-if="episode.tags" class="tags">
-                    <span
-                        v-for="(tag, index) in getEpisodeTags(episode.tags)"
+                    <span v-for="(tag, index) in getEpisodeTags(episode.tags)"
                         :key='index'>
                         <span class="tag-pill" @click="searchTag(tag)">#{{ formatTag(tag) }}</span>
                     </span>
@@ -79,7 +77,7 @@ export default {
                 behavior: 'smooth'
             }
             window.scrollTo(options)
-            this.$router.push('/episodes?tag=' + tag)
+            this.$router.push('/episodes?search=' + encodeURIComponent(tag))
             this.$parent.search = tag
         },
 
@@ -90,7 +88,7 @@ export default {
             let scrollY = window.scrollY || window.pageYOffset
             let scrollPosition = scrollY + windowHeight
             let elementPosition = element.getBoundingClientRect().top + scrollY + elementHeight
-            let offset = scrollPosition + (elementHeight - (elementHeight * 0.25))
+            let offset = scrollPosition + (elementHeight * 0.75)
 
             this.inView = offset > elementPosition ? true : false
         }
