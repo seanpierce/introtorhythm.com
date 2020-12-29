@@ -31,8 +31,9 @@
                 <h2>{{ episode.title }}</h2>
                 <div class="selected-episode-content__content" v-html="episode.content"></div>
                 <div class="selected-episode-content__tags" v-if="episode.tags">
-                    <span v-for="(tag, index) in getEpisodeTags(episode.tags)" :key="index">
-                        <router-link :to="'/episodes?tag=' + encode(tag)">#{{ tag }}</router-link>
+                    <span v-for="(tag, index) in getEpisodeTags(episode.tags)" 
+                        :key="index">
+                        <router-link :to="'/episodes?search=' + encode(tag)">#{{ tag }}</router-link>
                     </span>
                 </div>
             </div>
