@@ -48,6 +48,8 @@ export default {
 
             this.bouncing = setTimeout(() => {
                 if (this.search) {
+                    if (this.$route.name !== "Episodes") return
+
                     this.$router.push({
                         path: '/episodes',
                         query: { search: encodeURIComponent(this.search) },
