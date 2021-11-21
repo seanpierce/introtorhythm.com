@@ -1,113 +1,124 @@
 #chat {
+    z-index: 1000;
+    position: absolute;
+    overflow: scroll;
 
-    position: fixed;
-    z-index: 3;
-    right: -100%;
-    bottom: 0;
-    height: 100%;
-    width: 100%;
-    // max-height: 500px;
-    max-width: 400px;
-    background: rgba($color: white, $alpha: 0.8);
-    transition: all 0.5s;
-    border: solid 1px #333;
-    box-shadow: -4px 0px 20px rgba($color: #000000, $alpha: 0.4);
-
-    &.show-chat {
-        right: 0;
-    }
-    
-    * {
+    #chat-details {
         color: $color1;
-    }
+        font-size: 12px;
+        position: fixed;
+        width: 100%;
+        height: 2em;
+        background: $color3;
+        padding: 3px 1em;
 
-    #chat-header {
-        border-bottom: solid 1px $color1;
-        padding: 8px;
+        .username.me {
+            color: $color-accent;
+        }
 
-        #close-chat {
+        .logout {
+            color: $color1;
             cursor: pointer;
+        }
+    }
 
-            img {
-                height: 1em;
+    .new-user {
+        padding: 2em;
+        width: 100%;
+        max-width: 500px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        .new-user-form {
+            font-size: 2em;
+            text-align: center;
+
+            input {
+                font-size: 1em;
+                margin: 1em auto;
+                padding: 0.5em;
+                background: none;
+                border: none;
+                border-bottom: solid 2px white;
+                width: 100%;
+                outline: none;
+            }
+
+            button {
+                font-size: 1em;
+                width: 100%;
+                background: none;
+                border: none;
+                padding: 0.25em;
+                border: solid 2px white;
+                border-radius: 0;
+                cursor: pointer;
             }
         }
     }
 
-    #chat-body {
-        position: relative;
-        overflow-y: auto;
+    #messages {
+        width: 100%;
+        padding: 2.5em 1em 1em 1em;
+        padding-bottom: 100px;
 
-        #chat-enter-username {
-            position: fixed;
-            top: 50%;
-            transform: translateY(-50%);
-            padding: 1em;
+        .message {
+            margin-bottom: 8px;
 
-            input {
-                width: 100%;
-                background: none;
-                border: none;
-                padding: 8px;
-                outline: none;
-                border: solid 1px $color1;
-                margin-top: 1em;
-            }
-
-            #chat-errors {
-                position: absolute;
-                top: 100%;
-
-                .chat__error {
-                    color: red;
-                    font-size: 0.8em;
+            &.itr {
+                color: $color-cta !important;
+                * {
+                    color: $color-cta !important;
                 }
             }
-        }
 
-        #chat-messages {
-            padding: 0 8px 10em 8px;
-            margin: 8px 0;
-            position: fixed;
+            .time-stamp {
+                font-size: 0.74em;
+                margin-right: 12px;
+            }
+
+            .username.me {
+                color: $color-accent;
+            }
+        }
+    }
+
+    #message-input {
+        position: fixed;
+        z-index: 100;;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: white;
+        height: 4em;
+
+        input {
+            width: calc(100% - 120px);
             height: 100%;
-            overflow-y: auto;
-
-            .chat-message {
-                font-size: 0.8em;
-                margin-bottom: 0.5em;
-    
-                .chat-message__time {
-                    color: lighten($color1, 25%);
-                    font-size: 0.8em;
-                    margin-right: 6px;
-                    vertical-align: text-bottom;
-                }
-    
-                .chat-message__username {
-                    // margin-right: 4px;
-    
-                    .my-username {
-                        color: $color-accent;
-                    }
-                }
-            }
+            font-size: 2em;
+            padding: 1em 0.5em;
+            border: none;
+            outline: none;
+            color: $color1;;
         }
 
-        #chat-input {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            border-top: solid 1px $color1;
-            background: white;
-            
-            input {
-                width: 100%;
-                background: none;
-                border: none;
-                padding: 8px;
-                outline: none;
-            }
+        button {
+            position: absolute;
+            right: 0;
+            width: 110px;
+            height: 100%;
+            vertical-align: bottom;
+            background: $color-accent;
+            border: none;
+            cursor: pointer;
+            border-radius: 0;
         }
     }
 
+    .error {
+         color: $color-accent;
+         font-size: 16px;
+    }
 }

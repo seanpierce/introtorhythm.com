@@ -2,10 +2,10 @@
   <div id="app">
     <Nav />
     <div id="container">
-      <router-view/>
+      <router-view v-if="!showChat" />
+      <Chat v-show="showChat" />
     </div>
-    <Footer />
-    <Chat v-bind:class="{ 'show-chat': showChat }" />
+    <Footer v-if="!showChat" />
     <Player />
     <InfoModal v-if="modal === 'info'" />
   </div>
