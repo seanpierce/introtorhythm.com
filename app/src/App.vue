@@ -47,8 +47,11 @@ export default {
   },
 
   created() {
-    
-    this.$store.dispatch('initialize')  
+    this.$store.dispatch('initialize')
+    setInterval(() => {
+      // poll for new background images
+      this.$store.dispatch('pollBgImage')
+    }, 120000) // two minutes
   }
 }
 </script>

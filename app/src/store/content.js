@@ -15,9 +15,10 @@ const contentStore = {
 
     actions: {
 
-        async getBgImage({ commit }) {
+        async getBgImage({ commit, state }) {
             let response = await axios.get(process.env.VUE_APP_API_BASE_URL + 'content/backgroundimage')
-            commit('SET_BG_IMAGE', response.data)
+            if (state.bgImage != response.data)
+                commit('SET_BG_IMAGE', response.data)
         }
     }
 }

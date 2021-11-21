@@ -32,6 +32,10 @@ export default new Vuex.Store({
     initialize({ dispatch }) {
       dispatch('getEpisodes')
       dispatch('getBgImage')
+    },
+
+    pollBgImage({ dispatch }) {
+      dispatch('getBgImage')
     }
   },
 
