@@ -18,16 +18,6 @@
         </div>
 
         <div v-else>
-            <div id="chat-details">
-                {{ chat.users.length === 1 ? 'it\s just you bro' : chat.users.length + ' active users'  }} | 
-                username: <span class="username me">{{ this.chat.username }}</span> | 
-                <span 
-                    class="logout"
-                    @click="logout()">
-                    Log out
-                </span>
-            </div>
-
             <div id="messages">
                 <Message 
                     v-for="(message, index) in chat.messages" :key="index"

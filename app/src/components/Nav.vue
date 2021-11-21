@@ -37,11 +37,18 @@
                 Chat
             </span>
         </div>
-<!-- 
-        <span id="chat-button" 
-            class="button" 
-            v-if="!showChat"
-            @click="chatOn()">Chat</span> -->
+
+        <div
+            v-if="showChat && username" 
+            id="chat-details">
+            {{ chat.users.length === 1 ? 'it\s just you bro' : chat.users.length + ' active users'  }} | 
+            username: <span class="username me">{{ this.chat.username }}</span> | 
+            <span 
+                class="logout"
+                @click="logout()">
+                Log out
+            </span>
+        </div>
     </div>
 </template>
 
@@ -64,6 +71,14 @@ export default {
 
         showChat() {
             return this.$store.state.chat.showChat
+        },
+
+        chat() {
+            return this.$store.state.chat
+        },
+
+        username() {
+            return this.$store.state.chat.username
         },
 
         selectedEpisodeNumber() {
