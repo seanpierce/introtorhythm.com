@@ -1,5 +1,6 @@
-const chatStore = {
+import { deleteOldestXMessages } from '@/database/queries'
 
+const chatStore = {
     state: () => ({
         showChat: false,
         users: [],
@@ -13,11 +14,26 @@ const chatStore = {
             state.showChat = !state.showChat
         },
 
+        CHAT_OFF: (state) => {
+            state.showChat = false
+        },
+
+        CHAT_ON: (state) => {
+            state.showChat = true
+        },
+
         SET_USERNAME: (state, username) => {
             state.username = username
         },
 
         SET_MESSAGES: (state, messages) => {
+            // purge messages if too many
+            if (messages.length > 200) {
+                deleteOldestXMessages(50)
+                console.log('REMOVING 300 MESSAGES')
+                return
+            }
+
             state.messages = messages
         }
     },
@@ -26,6 +42,14 @@ const chatStore = {
 
         toggleChat({ commit }) {
             commit('TOGGLE_CHAT')
+        },
+
+        chatOff({ commit }) {
+            commit('CHAT_OFF')
+        },
+
+        chatOn({ commit }) {
+            commit('CHAT_ON')
         },
 
         setUsername({ commit }, username) {

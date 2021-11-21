@@ -1,15 +1,25 @@
 import db from './index'
 import store from '@/store'
+import moment from 'moment'
 
+/**
+ * Inserts a message into the database.
+ * @param {object} payload Object containing the message data:
+ * username, timestamp, message content.
+ */
 export const insertMessage = (payload) => {
     db.ref('messages').push({
         ...payload
     })
 }
 
+/**
+ * Reads the messages form the database.
+ * Updates the value of the sotre when changes are detected.
+ */
 export const readMessages = () => {
     let ref = db.ref('messages')
-    ref.on('value', (snapshot) => {
+    ref.on('value', snapshot => {
         try {
             if (snapshot.val())
                 store.dispatch('setMessages', Object.values(snapshot.val()))
@@ -21,11 +31,21 @@ export const readMessages = () => {
     })
 }
 
-export const purgeOldMessages = () => {
+/**
+ * Removes messages older than a configured amount of time.
+ * @param {number} timeLimit Optional number (in hours) 
+ * representing the time limit to keep messages.
+ */
+export const purgeOldMessages = (timeLimit = null) => {
     let ref = db.ref('messages')
-    let now = Date.now();
-    // 2 hours ago
-    let cutoff = now - 2 * 60 * 60 * 1000;
+    let now = moment.utc().valueOf()
+
+
+    let cutoff = timeLimit ?
+        // supplied timelimit (in hours)
+        now - timeLimit * 60 * 60 * 1000 :
+        // 6 hours ago
+        now - 6 * 60 * 60 * 1000
 
     let old = ref.orderByChild('time')
         .endAt(cutoff)
@@ -34,4 +54,25 @@ export const purgeOldMessages = () => {
     old.on('child_added', snapshot => {
         snapshot.ref.remove()
     })
+}
+
+/**
+ * Removes N number of old messages.
+ * @param {number} numberOfMessages The number of messages to purge.
+ */
+export const deleteOldestXMessages = (numberOfMessages) => {
+    let ref = db.ref('messages')
+    let childCount = 0
+    let updates = {}
+
+    ref.on('value', snapshot => {
+        snapshot.forEach(child => {
+            if (++childCount < snapshot.numChildren() - numberOfMessages) {
+                let key = child.key
+                updates[key] = null
+            }
+        })
+    })
+
+    ref.update(updates)
 }

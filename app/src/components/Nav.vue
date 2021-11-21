@@ -3,10 +3,12 @@
         <div id="nav-top">
             Intro To Rhythm
         </div>
+
         <div id="nav-bottom">
             <router-link to="/"
                 tag="span" 
                 class="nav-tab"
+                @click.native="chatOff()"
                 v-bind:class="{ active: currentRoute === 'Live' }">
                 Listen Live
             </router-link>
@@ -14,6 +16,7 @@
             <router-link to="/episodes"
                 tag="span" 
                 class="nav-tab"
+                @click.native="chatOff()"
                 v-bind:class="{ active: currentRoute === 'Episodes' }">
                 Episodes
             </router-link>
@@ -22,15 +25,23 @@
                 v-if="currentRoute === 'Episode'" 
                 tag="span" 
                 class="nav-tab"
+                @click.native="chatOff()"
                 v-bind:class="{ active: currentRoute === 'Episode' }">
                 {{ selectedEpisodeNumber }}
             </router-link>
-        </div>
 
+            <span 
+                class="nav-tab"
+                v-bind:class="{ active: currentRoute === 'Chat' }"
+                @click="chatOn()">
+                Chat
+            </span>
+        </div>
+<!-- 
         <span id="chat-button" 
             class="button" 
             v-if="!showChat"
-            @click="toggleChat()">Chat</span>
+            @click="chatOn()">Chat</span> -->
     </div>
 </template>
 
@@ -40,14 +51,15 @@ import { mapActions } from 'vuex'
 export default {
 
     methods: {
-
-        ...mapActions(['toggleChat'])
+        ...mapActions(['chatOff', 'chatOn'])
     },
 
     computed: {
-
         currentRoute() {
-            return this.$route.name
+            if (this.showChat)
+                return 'Chat'
+            else
+                return this.$route.name
         },
 
         showChat() {
