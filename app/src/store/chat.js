@@ -1,4 +1,5 @@
-import { deleteOldestXMessages } from '@/database/queries'
+import { deleteOldestXMessages, insertMessage } from '@/database/queries'
+import moment from 'moment'
 
 const chatStore = {
     state: () => ({
@@ -9,11 +10,6 @@ const chatStore = {
     }),
 
     mutations: {
-
-        TOGGLE_CHAT: (state) => {
-            state.showChat = !state.showChat
-        },
-
         CHAT_OFF: (state) => {
             state.showChat = false
         },
@@ -24,6 +20,26 @@ const chatStore = {
 
         SET_USERNAME: (state, username) => {
             state.username = username
+
+            let payload = {
+                username: 'ITR',
+                message: `${username} has entered the chat`,
+                time: moment.utc().valueOf(),
+                itr: true
+            }
+
+            insertMessage(payload)
+
+            window.addEventListener('beforeunload', () => {
+                let payload = {
+                    username: 'ITR',
+                    message: `${username} has left the chat`,
+                    time: moment.utc().valueOf(),
+                    itr: true
+                }
+
+                insertMessage(payload)
+            })
         },
 
         SET_MESSAGES: (state, messages) => {
@@ -35,15 +51,20 @@ const chatStore = {
             }
 
             state.messages = messages
-        }
+        },
+
+        ADD_USER: (state, username) => {
+            state.users.push(username)
+            // username has entered the chat
+        },
+
+        REMOVE_USER: (state, username) => {
+            state.users.splice(state.users.indexOf(username), 1)
+            // username has left the chat
+        },
     },
 
     actions: {
-
-        toggleChat({ commit }) {
-            commit('TOGGLE_CHAT')
-        },
-
         chatOff({ commit }) {
             commit('CHAT_OFF')
         },
@@ -58,6 +79,14 @@ const chatStore = {
 
         setMessages({ commit }, messages) {
             commit('SET_MESSAGES', messages)
+        },
+
+        addUser({ commit }, username) {
+            commit('ADD_USER', username)
+        },
+
+        removeUser({ commit }, username) {
+            commit('REMOVE_USER', username)
         }
     }
 }
