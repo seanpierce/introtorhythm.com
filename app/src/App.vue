@@ -3,10 +3,9 @@
     <Nav />
     <div id="container">
       <router-view v-if="!showChat" />
-      <NewChat v-if="showChat" />
+      <Chat v-show="showChat" />
     </div>
     <Footer v-if="!showChat" />
-    <!-- <Chat v-bind:class="{ 'show-chat': showChat }" /> -->
     <Player />
     <InfoModal v-if="modal === 'info'" />
   </div>
@@ -14,8 +13,7 @@
 
 <script>
 import Nav from '@/components/Nav'
-// import Chat from '@/components/Chat/Chat'
-import NewChat from '@/components/Chat/_Chat'
+import Chat from '@/components/Chat/Chat'
 import Footer from '@/components/Footer'
 import Player from '@/components/Player'
 import InfoModal from '@/components/Modals/Info'
@@ -24,8 +22,7 @@ export default {
 
   components: {
     Nav,
-    // Chat,
-    NewChat,
+    Chat,
     Footer,
     Player,
     InfoModal

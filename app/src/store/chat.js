@@ -1,4 +1,10 @@
-import { deleteOldestXMessages } from '@/database/queries'
+import {
+    addUser,
+    deleteOldestXMessages,
+    insertMessage,
+    removeUser
+} from '@/database/queries'
+import moment from 'moment'
 
 const chatStore = {
     state: () => ({
@@ -9,11 +15,6 @@ const chatStore = {
     }),
 
     mutations: {
-
-        TOGGLE_CHAT: (state) => {
-            state.showChat = !state.showChat
-        },
-
         CHAT_OFF: (state) => {
             state.showChat = false
         },
@@ -24,26 +25,60 @@ const chatStore = {
 
         SET_USERNAME: (state, username) => {
             state.username = username
+
+            let payload = {
+                username: 'ITR',
+                message: `<em>${username}</em> has entered the chat`,
+                time: moment.utc().valueOf(),
+                itr: true
+            }
+
+            insertMessage(payload)
+            addUser(username)
+
+            window.addEventListener('beforeunload', () => {
+                if (state.users.some(u => u.username === username)) {
+                    let payload = {
+                        username: 'ITR',
+                        message: `<em>${username}</em> has left the chat`,
+                        time: moment.utc().valueOf(),
+                        itr: true
+                    }
+    
+                    removeUser(username)
+                    insertMessage(payload)
+                }
+            })
+        },
+
+        LOGOUT_USER: (state, username) => {
+            state.username = null
+
+            let payload = {
+                username: 'ITR',
+                message: `<em>${username}</em> has left the chat`,
+                time: moment.utc().valueOf(),
+                itr: true
+            }
+
+            removeUser(username)
+            insertMessage(payload)
         },
 
         SET_MESSAGES: (state, messages) => {
             // purge messages if too many
-            if (messages.length > 200) {
-                deleteOldestXMessages(50)
-                console.log('REMOVING 300 MESSAGES')
-                return
-            }
+            if (messages.length > 200)
+                deleteOldestXMessages(100)
 
             state.messages = messages
+        },
+
+        SET_USERS: (state, users) => {
+            state.users = users
         }
     },
 
     actions: {
-
-        toggleChat({ commit }) {
-            commit('TOGGLE_CHAT')
-        },
-
         chatOff({ commit }) {
             commit('CHAT_OFF')
         },
@@ -58,6 +93,14 @@ const chatStore = {
 
         setMessages({ commit }, messages) {
             commit('SET_MESSAGES', messages)
+        },
+
+        setUsers({ commit }, users) {
+            commit('SET_USERS', users)
+        },
+
+        logoutUser({ commit }, username) {
+            commit('LOGOUT_USER', username)
         }
     }
 }
