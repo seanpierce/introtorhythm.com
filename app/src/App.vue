@@ -3,7 +3,7 @@
     <Nav />
     <div id="container">
       <router-view v-if="!showChat" />
-      <Chat v-if="showChat" />
+      <Chat v-show="showChat" />
     </div>
     <Footer v-if="!showChat" />
     <Player />

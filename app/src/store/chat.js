@@ -37,16 +37,32 @@ const chatStore = {
             addUser(username)
 
             window.addEventListener('beforeunload', () => {
-                let payload = {
-                    username: 'ITR',
-                    message: `<em>${username}</em> has left the chat`,
-                    time: moment.utc().valueOf(),
-                    itr: true
+                if (state.users.some(u => u.username === username)) {
+                    let payload = {
+                        username: 'ITR',
+                        message: `<em>${username}</em> has left the chat`,
+                        time: moment.utc().valueOf(),
+                        itr: true
+                    }
+    
+                    removeUser(username)
+                    insertMessage(payload)
                 }
-
-                removeUser(username)
-                insertMessage(payload)
             })
+        },
+
+        LOGOUT_USER: (state, username) => {
+            state.username = null
+
+            let payload = {
+                username: 'ITR',
+                message: `<em>${username}</em> has left the chat`,
+                time: moment.utc().valueOf(),
+                itr: true
+            }
+
+            removeUser(username)
+            insertMessage(payload)
         },
 
         SET_MESSAGES: (state, messages) => {
@@ -81,6 +97,10 @@ const chatStore = {
 
         setUsers({ commit }, users) {
             commit('SET_USERS', users)
+        },
+
+        logoutUser({ commit }, username) {
+            commit('LOGOUT_USER', username)
         }
     }
 }
