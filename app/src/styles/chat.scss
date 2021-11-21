@@ -49,9 +49,9 @@
             margin-bottom: 8px;
 
             &.itr {
-                color: #eed202 !important;
+                color: $color-cta !important;
                 * {
-                    color: #eed202 !important;
+                    color: $color-cta !important;
                 }
             }
 
@@ -96,5 +96,10 @@
             cursor: pointer;
             border-radius: 0;
         }
+    }
+
+    .error {
+         color: $color-accent;
+         font-size: 16px;
     }
 }

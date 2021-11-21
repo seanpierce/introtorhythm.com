@@ -76,3 +76,39 @@ export const deleteOldestXMessages = (numberOfMessages) => {
 
     ref.update(updates)
 }
+
+/**
+ * Adds a user to the database.
+ * @param {string} username 
+ */
+export const addUser = username => {
+    db.ref('users').push({ username: username })
+}
+
+/**
+ * Removes a user from the database.
+ * @param {string} username 
+ */
+export const removeUser = username => {
+    db.ref('users').orderByChild('username')
+        .equalTo(username).on("child_added", snapshot => {
+        snapshot.ref.remove()
+    })
+}
+
+/**
+ * Inserts all users data in to the store.
+ */
+export const readUsers = () => {
+    let ref = db.ref('users')
+    ref.on('value', snapshot => {
+        try {
+            if (snapshot.val())
+                store.dispatch('setUsers', Object.values(snapshot.val()))
+            else 
+                store.dispatch('setUsers', [])
+        } catch {
+            store.dispatch('setUsers', [])
+        }
+    })
+}

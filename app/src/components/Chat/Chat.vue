@@ -10,6 +10,8 @@
                 <input 
                     type="text" 
                     autofocus
+                    minlength="4"
+                    maxlength="20"
                     @keyup.enter="setUser()"
                     v-model="newUser">
                 <button @click="setUser()">Join</button>
@@ -27,6 +29,7 @@
             <div id="message-input">
                 <input 
                     type="text" 
+                    maxlength="140"
                     @keyup.enter="submit()"
                     v-model="message">
 
@@ -41,7 +44,8 @@ import moment from 'moment'
 import { 
     insertMessage, 
     readMessages, 
-    purgeOldMessages 
+    purgeOldMessages ,
+    readUsers
 } from '@/database/queries'
 import Message from './Message'
 
@@ -55,7 +59,7 @@ export default {
             message: null,
             user: null,
             newUser: null,
-            errors: []
+            errors: [],
         }
     },
     
@@ -69,11 +73,7 @@ export default {
             this.errors = []
 
             if (!this.message) return
-
-            if (this.message.length > 140) {
-                this.errors.push('Messages must be less than 140 characters')
-                return
-            }
+            if (this.message.length > 140) return
             
             let payload = {
                 username: this.chat.username,
@@ -90,15 +90,21 @@ export default {
 
         getExistingUser() {
             let user = localStorage.getItem('ITR_USER')
-            if (user)
+
+            if (user) {
+                if (user.length > 20) {
+                    localStorage.removeItem('ITR_USER')
+                    return
+                }
+
                 this.$store.dispatch('setUsername', user)
+            }
         },
 
         setUser() {
             this.errors = []
 
             if (!this.newUser) return
-
             if (this.newUser.length > 20) {
                 this.errors.push('Username must be between 4 and 20 characters')
                 return
@@ -120,12 +126,13 @@ export default {
             }
 
             elem.scrollTo(options)
-        }
+        },
     },
 
     created() {
         this.getExistingUser()
         readMessages()
+        readUsers()
     },
 
     mounted() {
