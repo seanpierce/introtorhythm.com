@@ -58,7 +58,12 @@ import { mapActions } from 'vuex'
 export default {
 
     methods: {
-        ...mapActions(['chatOff', 'chatOn'])
+        ...mapActions(['chatOff', 'chatOn']),
+
+        logout() {
+            localStorage.removeItem('ITR_USER')
+            this.$store.dispatch('logoutUser', this.chat.username)
+        }
     },
 
     computed: {
@@ -85,6 +90,5 @@ export default {
             return this.$store.state.episodes.selectedEpisode?.number
         }
     }
-
 }
 </script>
