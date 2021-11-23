@@ -129,11 +129,6 @@ export default {
             }
 
             elem.scrollTo(options)
-        },
-
-        logout() {
-            localStorage.removeItem('ITR_USER')
-            this.$store.dispatch('logoutUser', this.chat.username)
         }
     },
 
