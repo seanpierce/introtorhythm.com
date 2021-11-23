@@ -82,7 +82,13 @@ export const deleteOldestXMessages = (numberOfMessages) => {
  * @param {string} username 
  */
 export const addUser = username => {
+    db.ref('users').orderByChild('username').equalTo(username).once('value', snapshot => {
+        if (snapshot.exists())
+            return false
+    })
+
     db.ref('users').push({ username: username })
+    return true
 }
 
 /**

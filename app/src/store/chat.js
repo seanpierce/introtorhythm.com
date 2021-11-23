@@ -26,15 +26,16 @@ const chatStore = {
         SET_USERNAME: (state, username) => {
             state.username = username
 
-            let payload = {
-                username: 'ITR',
-                message: `<em>${username}</em> has entered the chat`,
-                time: moment.utc().valueOf(),
-                itr: true
+            if (addUser(username)) {
+                let payload = {
+                    username: 'ITR',
+                    message: `<em>${username}</em> has entered the chat`,
+                    time: moment.utc().valueOf(),
+                    itr: true
+                }
+    
+                insertMessage(payload)
             }
-
-            insertMessage(payload)
-            addUser(username)
 
             window.addEventListener('beforeunload', () => {
                 if (state.users.some(u => u.username === username)) {
@@ -53,6 +54,7 @@ const chatStore = {
 
         LOGOUT_USER: (state, username) => {
             state.username = null
+            removeUser(username)
 
             let payload = {
                 username: 'ITR',
@@ -61,7 +63,6 @@ const chatStore = {
                 itr: true
             }
 
-            removeUser(username)
             insertMessage(payload)
         },
 
