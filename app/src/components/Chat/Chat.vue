@@ -43,7 +43,8 @@ import moment from 'moment'
 import { 
     insertMessage, 
     readMessages, 
-    purgeOldMessages ,
+    purgeOldMessages,
+    purgeOldUsers,
     readUsers
 } from '@/database/queries'
 import Message from './Message'
@@ -81,7 +82,7 @@ export default {
             }
 
             // dispatch message to store
-            insertMessage(payload)
+            insertMessage(payload, true)
             this.message = null
 
             this.scrollToBottom()
@@ -140,6 +141,7 @@ export default {
 
     mounted() {
         purgeOldMessages()
+        purgeOldUsers()
         // scroll to bottom on initial view
         setTimeout(() => { 
             this.scrollToBottom()

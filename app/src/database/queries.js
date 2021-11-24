@@ -7,10 +7,15 @@ import moment from 'moment'
  * @param {object} payload Object containing the message data:
  * username, timestamp, message content.
  */
-export const insertMessage = (payload) => {
+export const insertMessage = (payload, updateUserLastActive = false) => {
+    // add message to db
     db.ref('messages').push({
         ...payload
     })
+
+    // update user lastActive property
+    if (updateUserLastActive)
+        db.ref(`users/${payload.username}`).set({ lastActive: payload.time })
 }
 
 /**
@@ -80,15 +85,20 @@ export const deleteOldestXMessages = (numberOfMessages) => {
 /**
  * Adds a user to the database.
  * @param {string} username 
+ * @returns {boolean}
  */
 export const addUser = username => {
-    db.ref('users').orderByChild('username').equalTo(username).once('value', snapshot => {
-        if (snapshot.exists())
-            return false
+    return new Promise(resolve => {
+        // if user not already in users table
+        db.ref('users').once('value', snapshot => {
+            if (snapshot.child(username).exists()) {
+                resolve(false)
+            } else {
+                db.ref(`users/${username}`).set({ lastActive: moment.utc().valueOf() })
+                resolve(true)
+            }
+        })
     })
-
-    db.ref('users').push({ username: username })
-    return true
 }
 
 /**
@@ -96,8 +106,28 @@ export const addUser = username => {
  * @param {string} username 
  */
 export const removeUser = username => {
-    db.ref('users').orderByChild('username')
-        .equalTo(username).on("child_added", snapshot => {
+    db.ref(`users/${username}`).remove()
+}
+
+/**
+ * Method used to purge inactive users from the database.
+ * @param {*} timeLimit amount of time in hours
+ */
+export const purgeOldUsers = (timeLimit = null) => {
+    let ref = db.ref('users')
+    let now = moment.utc().valueOf()
+
+    let cutoff = timeLimit ?
+        // supplied timelimit (in hours)
+        now - timeLimit * 60 * 60 * 1000 :
+        // 30 minutes ago
+        now - 0.5 * 60 * 60 * 1000
+
+    let old = ref.orderByChild('lastActive')
+        .endAt(cutoff)
+        .limitToLast(1)
+
+    old.on('child_added', snapshot => {
         snapshot.ref.remove()
     })
 }
@@ -109,9 +139,15 @@ export const readUsers = () => {
     let ref = db.ref('users')
     ref.on('value', snapshot => {
         try {
-            if (snapshot.val())
-                store.dispatch('setUsers', Object.values(snapshot.val()))
-            else 
+            if (snapshot.val()) {
+                let users = []
+                snapshot.forEach(user => {
+                    users.push({
+                        username: user.key
+                    })
+                })
+                store.dispatch('setUsers', users)
+            } else 
                 store.dispatch('setUsers', [])
         } catch {
             store.dispatch('setUsers', [])

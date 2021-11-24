@@ -25,8 +25,39 @@ const chatStore = {
 
         SET_USERNAME: (state, username) => {
             state.username = username
+        },
 
-            if (addUser(username)) {
+        LOGOUT_USER: (state) => {
+            state.username = null
+        },
+
+        SET_MESSAGES: (state, messages) => {
+            // purge messages if too many
+            if (messages.length > 200)
+                deleteOldestXMessages(100)
+
+            state.messages = messages
+        },
+
+        SET_USERS: (state, users) => {
+            state.users = users
+        }
+    },
+
+    actions: {
+        chatOff({ commit }) {
+            commit('CHAT_OFF')
+        },
+
+        chatOn({ commit }) {
+            commit('CHAT_ON')
+        },
+
+        async setUsername({ commit, state }, username) {
+            commit('SET_USERNAME', username)
+
+            let success = await addUser(username)
+            if (success) {
                 let payload = {
                     username: 'ITR',
                     message: `<em>${username}</em> has entered the chat`,
@@ -52,46 +83,6 @@ const chatStore = {
             })
         },
 
-        LOGOUT_USER: (state, username) => {
-            state.username = null
-            removeUser(username)
-
-            let payload = {
-                username: 'ITR',
-                message: `<em>${username}</em> has left the chat`,
-                time: moment.utc().valueOf(),
-                itr: true
-            }
-
-            insertMessage(payload)
-        },
-
-        SET_MESSAGES: (state, messages) => {
-            // purge messages if too many
-            if (messages.length > 200)
-                deleteOldestXMessages(100)
-
-            state.messages = messages
-        },
-
-        SET_USERS: (state, users) => {
-            state.users = users
-        }
-    },
-
-    actions: {
-        chatOff({ commit }) {
-            commit('CHAT_OFF')
-        },
-
-        chatOn({ commit }) {
-            commit('CHAT_ON')
-        },
-
-        setUsername({ commit }, username) {
-            commit('SET_USERNAME', username)
-        },
-
         setMessages({ commit }, messages) {
             commit('SET_MESSAGES', messages)
         },
@@ -102,6 +93,16 @@ const chatStore = {
 
         logoutUser({ commit }, username) {
             commit('LOGOUT_USER', username)
+            removeUser(username)
+
+            let payload = {
+                username: 'ITR',
+                message: `<em>${username}</em> has left the chat`,
+                time: moment.utc().valueOf(),
+                itr: true
+            }
+
+            insertMessage(payload)
         }
     }
 }
