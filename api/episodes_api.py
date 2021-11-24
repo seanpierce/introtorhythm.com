@@ -1,25 +1,23 @@
 import json
-from django.http import HttpResponse
-from django.views.generic import View
-from django.views.decorators.csrf import csrf_exempt
-from django.utils.decorators import method_decorator
+
+from . import APIView
 from repositories.episodes import EpisodesRepository as repo
 
 
-class All(View):
+class All(APIView):
     """
     Returns all episode data.
     """
     def get(self, request, *args, **kwargs):
-        return HttpResponse(json.dumps(repo.get_episodes()), content_type="application/json")
+        data = repo.get_episodes()
+        return self.Response(data)
 
 
-@method_decorator(csrf_exempt, name='dispatch')
-class Single(View):
+class Single(APIView):
     """
     Returns a single episode from the database when provided an episode number.
     """
     def post(self, request, *args, **kwargs):
-        body = json.loads(request.body.decode('utf-8'))
-        number = body['number']
-        return HttpResponse(json.dumps(repo.get_episode(number)))
+        payload = self.GetPayload(request, ['number'])
+        data = repo.get_episode(payload.number)
+        return self.Response(data)
