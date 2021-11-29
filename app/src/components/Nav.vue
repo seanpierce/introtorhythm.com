@@ -38,32 +38,21 @@
             </span>
         </div>
 
-        <div
-            v-if="showChat && username" 
-            id="chat-details">
-            {{ chat.users.length === 1 ? 'it\s just you bro' : chat.users.length + ' active users'  }} | 
-            username: <span class="username me">{{ this.chat.username }}</span> | 
-            <span 
-                class="logout"
-                @click="logout()">
-                Log out
-            </span>
-        </div>
+        <ChatNav v-if="showChat && chat.username" />
     </div>
 </template>
 
 <script>
 import { mapActions } from 'vuex'
+import ChatNav from '@/components/Chat/ChatNav'
 
 export default {
+    components: {
+        ChatNav
+    },
 
     methods: {
         ...mapActions(['chatOff', 'chatOn']),
-
-        logout() {
-            localStorage.removeItem('ITR_USER')
-            this.$store.dispatch('logoutUser', this.chat.username)
-        }
     },
 
     computed: {
@@ -78,17 +67,13 @@ export default {
             return this.$store.state.chat.showChat
         },
 
+        selectedEpisodeNumber() {
+            return this.$store.state.episodes.selectedEpisode?.number
+        },
+
         chat() {
             return this.$store.state.chat
         },
-
-        username() {
-            return this.$store.state.chat.username
-        },
-
-        selectedEpisodeNumber() {
-            return this.$store.state.episodes.selectedEpisode?.number
-        }
     }
 }
 </script>
