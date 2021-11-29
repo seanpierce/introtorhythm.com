@@ -10,9 +10,8 @@
             v-bind:class="{ 'me' : myMessage }">
             {{ message.username }}
         </span>:
-        <span 
-            class="message-content" 
-            v-html="message.message">
+        <span class="message-content">
+            {{ message.message }}
         </span>
     </div>
 </template>

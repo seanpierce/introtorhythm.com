@@ -14,6 +14,12 @@
                     @keyup.enter="setUser()"
                     v-model="newUser">
                 <button @click="setUser()">Join</button>
+
+                <div 
+                    class="helper" 
+                    v-bind:class="{ warning: newUserError }">
+                    Usernames may only contain letters, numbers, underscores, or hyphens
+                </div>
             </div>
         </div>
 
@@ -26,6 +32,8 @@
             </div>
 
             <div id="message-input">
+                <span></span>
+
                 <input 
                     type="text" 
                     maxlength="140"
@@ -57,9 +65,16 @@ export default {
     data() {
         return {
             message: null,
+            messageStyle: {
+                size: null,
+                itallic: false,
+                bold: false,
+                color: null,
+                font: null
+            },
             user: null,
             newUser: null,
-            errors: [],
+            newUserError: false
         }
     },
     
@@ -70,8 +85,6 @@ export default {
     },
     methods: {
         submit() {
-            this.errors = []
-
             if (!this.message) return
             if (this.message.length > 140) return
             
@@ -102,11 +115,13 @@ export default {
         },
 
         setUser() {
-            this.errors = []
+            this.newUserError = false
 
             if (!this.newUser) return
-            if (this.newUser.length > 20) {
-                this.errors.push('Username must be between 4 and 20 characters')
+            if (this.newUser.length > 20) return
+
+            if (!this.newUser.match(/^[0-9a-z-_]+$/)) {
+                this.newUserError = true
                 return
             }
             
@@ -142,6 +157,7 @@ export default {
     mounted() {
         purgeOldMessages()
         purgeOldUsers()
+
         // scroll to bottom on initial view
         setTimeout(() => { 
             this.scrollToBottom()
