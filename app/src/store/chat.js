@@ -60,7 +60,7 @@ const chatStore = {
             if (success) {
                 let payload = {
                     username: 'ITR',
-                    message: `<em>${username}</em> has entered the chat`,
+                    message: `${username} has entered the chat`,
                     time: moment.utc().valueOf(),
                     itr: true
                 }
@@ -72,7 +72,7 @@ const chatStore = {
                 if (state.users.some(u => u.username === username)) {
                     let payload = {
                         username: 'ITR',
-                        message: `<em>${username}</em> has left the chat`,
+                        message: `${username} has left the chat`,
                         time: moment.utc().valueOf(),
                         itr: true
                     }
@@ -97,7 +97,7 @@ const chatStore = {
 
             let payload = {
                 username: 'ITR',
-                message: `<em>${username}</em> has left the chat`,
+                message: `${username} has left the chat`,
                 time: moment.utc().valueOf(),
                 itr: true
             }
