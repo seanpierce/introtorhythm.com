@@ -4,6 +4,6 @@ from .models import Show
 
 class ShowAdmin(admin.ModelAdmin):
     search_fields = ['title']
-    list_filter = ['day', 'active']
+    list_filter = ['date', 'active']
 
 admin.site.register(Show, ShowAdmin)

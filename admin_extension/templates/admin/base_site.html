@@ -1,7 +1,7 @@
 {% extends "admin/base.html" %}
 {% load static %}
 {% block extrastyle %}
-<link rel="icon" href='{% static "images/favicon.png"%}'>
+<link rel="icon" href='{% static "images/favicon.png" %}'>
 <link href="https://fonts.googleapis.com/css?family=Droid+Sans+Mono" rel="stylesheet" type="text/css" />
 <style>
 * {
@@ -9,6 +9,12 @@
 }
 .module table caption {
     background-color: #222;
+    color: white;
+}
+
+.calendarbox a.calendarnav-previous, 
+.calendarbox a.calendarnav-next {
+    color: white;
 }
 #header {
     background: #222;

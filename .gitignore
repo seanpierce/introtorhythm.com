@@ -11,6 +11,7 @@ introtorhythm/__pycache__/
 env.ini
 uploads/*
 !uploads/.keep
+static/*
 
 .DS_Store
 
