@@ -24,11 +24,15 @@ class QueryHelpers:
             else:
                 cursor.execute(sql)
 
-            columns = [col[0] for col in cursor.description]
+            records = cursor.fetchall()
 
+            if not records:
+                return []
+
+            columns = [col[0] for col in cursor.description]
             return [
                 dict(zip(columns, row))
-                for row in cursor.fetchall()
+                for row in records
             ]
 
 
@@ -49,10 +53,14 @@ class QueryHelpers:
                 cursor.execute(sql, params)
             else:
                 cursor.execute(sql)
-            
-            columns = [col[0] for col in cursor.description]
 
-            return dict(zip(columns, cursor.fetchone()))
+            record = cursor.fetchone()
+
+            if record is None:
+                return None
+
+            columns = [col[0] for col in cursor.description]
+            return dict(zip(columns, record))
 
 
     @staticmethod
@@ -67,5 +75,5 @@ class QueryHelpers:
         """
 
         with connection.cursor() as cursor:
-            cursor.execute(sql, params)            
+            cursor.execute(sql, params)         
             return cursor.fetchone()[0]

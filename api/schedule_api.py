@@ -1,7 +1,7 @@
 import json
 from django.http import HttpResponse
 from django.views.generic import View
-from schedule.repository import ScheduleRepository as repo
+from repositories.schedule import ScheduleRepository as repo
 
 
 class GetShow(View):
@@ -13,7 +13,7 @@ class GetShow(View):
         """
         GET method for the GetShow api.
         """
-        return HttpResponse(json.dumps(repo.get_scheduled_show()), content_type="application/json")
+        return HttpResponse(json.dumps(repo.get_current_show()), content_type="application/json")
 
 
 class GetSchedule(View):
@@ -25,4 +25,4 @@ class GetSchedule(View):
         """
         GET method for the GetSchedule api.
         """
-        return HttpResponse(json.dumps(repo.get_schedule()), content_type="application/json")
+        return HttpResponse(json.dumps(repo.get_shows()), content_type="application/json")

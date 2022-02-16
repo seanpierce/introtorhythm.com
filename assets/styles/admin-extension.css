@@ -1,6 +1,7 @@
 * {
     font-family: 'Droid Sans Mono' !important;
 }
+
 .module table caption {
     background-color: #222;
     color: white;
@@ -9,6 +10,7 @@
 #header {
     background: #222;
 }
+
 #header, #header h1 {
     color: white;
 }
