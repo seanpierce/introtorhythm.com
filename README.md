@@ -38,8 +38,8 @@ pip install -r requirements.txt
 
 ## Versions
 
-* Django 2.2.8
-* Python 3.6.3
+* Django 3.1.4
+* Python 3.8.10
 
 ## Usage
 
