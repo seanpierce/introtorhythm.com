@@ -47,8 +47,13 @@ python -m venv introtorhythm.com/
 # else, install virtualenv, then run the previous step
 pip install virtualenv
 
-# install project packages
-cd introtorhythm.com
+# once the virtual environment is set, connect to the virtualenv and install the project dependencies
+
+# activate the virtual environment
+source ./venv/bin/activate # mac/ linux
+source ./venv/Scripts/activate # windows
+
+# once activated, install project packages
 pip install -r requirements.txt
 
 # install the front-end app
