@@ -20,7 +20,20 @@ The purpose of this project it to take what I've learned with the [initial djang
 * Integration with VueJS ✓
   * Using Vue Router and Vuex ✓
 * Exposed (and enhanced) _Subscriber_ and _Episodes_ API ✓
-* Repository design pattern (ongoing)
+* Repository design pattern ✓
+
+## Dependencies
+
+* Node v12 or greater
+* Python v3.8 or greater
+* Python's `virtualenv` package v20 or greater
+
+
+## Project Versions
+
+* Django 3.1.4
+* Python 3.8.10
+
 
 ## Installation
 
@@ -28,18 +41,23 @@ The purpose of this project it to take what I've learned with the [initial djang
 # download repo
 git clone [this repo] introtorhythm.com
 
-# set up virtual environment
+# if virtualenv is already installed, set up virtual environment
 python -m venv introtorhythm.com/
 
-# install dependencies
+# else, install virtualenv, then run the previous step
+pip install virtualenv
+
+# install project packages
 cd introtorhythm.com
 pip install -r requirements.txt
+
+# install the front-end app
+cd app
+yarn [or npm] install
 ```
 
-## Versions
+Note - the `introtorhythm.com/settings.py` file requires certain config values to be set in a file called `env.ini` in the project root. If you're running this for the first time, you can copy the values from the `example.env.ini` file also found in the project root. Ensure that the `env.ini` file does not go to source control. Similarly, ensure that that any _real_ env keys do not get committed to the `example.env.ini` file.
 
-* Django 3.1.4
-* Python 3.8.10
 
 ## Usage
 
@@ -57,14 +75,12 @@ python manage.py migrate
 # run unit tests
 python scripts/run-tests.py
 
-# build front end application
-cd app
-yarn
-yarn run serve
-
-# start the development server
-cd ../
+# start the back-end server
 python manage.py runserver
+
+# build front-end application
+cd app
+yarn serve
 ```
 
 # More info
