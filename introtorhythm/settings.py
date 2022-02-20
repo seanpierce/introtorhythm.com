@@ -42,6 +42,8 @@ CORS_ORIGIN_WHITELIST = [
     "http://localhost:8080"
 ]
 
+SCHEDULE_AUTH_SECRET = CONFIG.get('Secrets', 'SCHEDULE_AUTH')
+
 # Application definition
 
 INSTALLED_APPS = [
