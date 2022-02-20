@@ -2,6 +2,10 @@
     font-family: 'Droid Sans Mono' !important;
 }
 
+a:hover {
+    color: gold;
+}
+
 .module table caption {
     background-color: #222;
     color: white;
@@ -13,4 +17,19 @@
 
 #header, #header h1 {
     color: white;
+}
+
+.dashboard #content {
+    width: inherit;
+}
+
+.breadcrumbs {
+    background: #222 !important;
+    border-top: solid 1px white !important;
+    color: white !important;
+    margin-bottom: 16px;
+}
+
+.toggle-nav-sidebar {
+    border: none;
 }
