@@ -73,6 +73,18 @@ def create_ezstream_config(filename):
     ezstream_config_file.write(ezstream_config)
 
 
+def start_ezstream():
+    """
+    Compiles a command to execute an ezstream process.
+    Saves the process id (pid) to a file for furure reference.
+    """
+
+    path_to_config = "%s/scheduler.xml" %os.path.dirname(os.path.abspath(__file__))
+    path_to_pid = "%s/pid.txt" %os.path.dirname(os.path.abspath(__file__))
+    command = 'echo $$ > %s; ezstream -c %s' %(path_to_pid, path_to_config)
+    os.system(command)
+
+
 def run():
     show = repo.get_current_show()
 
@@ -101,6 +113,9 @@ def run():
     except Exception as ex:
         return str(ex)
 
+    try:
+        start_ezstream()
+    except Exception as ex:
+        return str(ex)
 
-    # set_config_permissions()
-    # start_ezstream()
+    return True
