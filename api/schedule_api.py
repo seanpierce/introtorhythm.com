@@ -1,4 +1,5 @@
 from . import APIView
+from braces.views import CsrfExemptMixin
 from repositories.schedule import ScheduleRepository as repo
 from schedule import scheduler
 
@@ -23,7 +24,7 @@ class GetSchedule(APIView):
         return self.Response(data)
 
 
-class Initiate(APIView):
+class Initiate(CsrfExemptMixin, APIView):
     """
     Initiates the schedule process which checks for a
     shceudled show in the database. If found, the process
