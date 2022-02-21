@@ -1,11 +1,9 @@
-import os
-import io
 import boto3
-
+import io
+import os
+from ckeditor.fields import RichTextField
 from django.conf import settings
 from django.db import models
-
-from ckeditor.fields import RichTextField
 from PIL import Image
 
 class Episode(models.Model):
@@ -23,10 +21,10 @@ class Episode(models.Model):
     featured = models.BooleanField(default=False)
 
     class Meta:
-        ordering = ['-number',]
+        ordering = ['-number']
 
     def __str__(self):
-        return self.number + '- ' + self.title
+        return '%s- %s' %(self.number, self.title)
 
     def save(self, *args, **kwargs):
         super(Episode, self).save(*args, **kwargs)

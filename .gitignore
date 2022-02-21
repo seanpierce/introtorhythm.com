@@ -16,3 +16,5 @@ static/*
 .DS_Store
 
 app/yarn.lock
+
+schedule/scheduler.xml

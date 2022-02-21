@@ -1,5 +1,5 @@
+import configparser
 import json
-from django.conf import settings
 from django.http import HttpResponse
 from django.views.generic import View
 
@@ -8,6 +8,10 @@ class APIView(View):
     """
     Base class for custom API view.
     """
+    def __init__(self):
+        config = configparser.RawConfigParser()
+        config.read('./env.ini')
+        self.SCHEDULE_AUTH_SECRET = config.get('Secrets', 'SCHEDULE_AUTH')
     
     def Response(self, data, status=200):
         try:
@@ -38,7 +42,7 @@ class APIView(View):
 
         # example SCHEDULE_AUTH_SECRET
         configured_key = '%s_SECRET' %(key.replace('-', '_'))
-        configured_secret = getattr(settings, configured_key, None)
+        configured_secret = getattr(self, configured_key, None)
         if configured_secret is None:
             return False
 

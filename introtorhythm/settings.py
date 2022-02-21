@@ -32,20 +32,15 @@ SECRET_KEY = 'hq(x#eh(h^b@cqy584bt_wq_x_yh=d%&ls%bb1r&8dq9apy1oe'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = eval(CONFIG.get('Environment', 'DEBUG'))
 
-# ALLOWED_HOSTS = []
+# URL Config
 ALLOWED_HOSTS = CONFIG.get('Environment', 'ALLOWED_HOSTS').split(',')
 HOST_URL = CONFIG.get('Environment', 'HOST_URL')
-
 FRONT_END_URL = 'http://localhost:8080'
-
 CORS_ORIGIN_WHITELIST = [
     "http://localhost:8080"
 ]
 
-SCHEDULE_AUTH_SECRET = CONFIG.get('Secrets', 'SCHEDULE_AUTH')
-
 # Application definition
-
 INSTALLED_APPS = [
     'admin_extension',
     'django.contrib.admin',
@@ -178,7 +173,7 @@ else:
 # the location where the static assets live
 # note: when the app references the public URL, it will point to the assets folder
 # note2: all files under this directory will be pulled into the static folder
-STATICFILES_DIRS = [os.path.join('assets'),]
+STATICFILES_DIRS = [os.path.join('assets')]
 
 # local storage
 MEDIA_ROOT = 'uploads/'
