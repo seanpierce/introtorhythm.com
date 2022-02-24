@@ -1,4 +1,4 @@
-import axios from 'axios'
+const apiClient = require('@/utilities/apiClient')
 
 const episodesStore = {
 
@@ -55,7 +55,7 @@ const episodesStore = {
     actions: {
 
         async getEpisodes({ commit }) {
-            let response = await axios.get(process.env.VUE_APP_API_BASE_URL + 'episodes')
+            let response = await apiClient.get('episodes')
             commit('SET_EPISODES', response.data)
         },
 

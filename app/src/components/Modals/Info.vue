@@ -6,17 +6,10 @@
             <img :src="require('@/assets/images/close.svg')" class="modal__content__close">
             <br>
             <br>
-            <p>Intro To Rhythm is a freeform mix series and live-streaming audio station that began in 2017. All episodes and content are owned by their creators and made exclusively for Intro To Rhythm.</p>
+            
+            <div v-html="content.info"></div>
             <br>
-            <p>Additionally, ITR is dedicated to open-source projects, and the collective idea sharing that fuels creative expression. If you're interested in developing your own live-streaming station or podcasting platform, you're invited to refer to ITR's source code or reach out for specific info. Send questions and comments to info@introtorhythm.com</p>
-            <br>
-            <p>========</p>
-            <br>
-            <p>We're always looking to host mixes, sound pieces, or other recorded works. We aim to promote those who normally aren't considered for other broadcast platforms. If you have something you'd like us to share, please reach out to info@introtorhythm.com</p>
-            <br>
-            <p>========</p>
-            <br>
-            <p>This project is an entirely home-grown and DIY effort. While ITR is a labor of love, maintaining this application and it's server environments can be costly and time consuming. If you appreciate ITR and you have the means, please consider making a donation. Thanks!</p>
+
             <br>
             <form action="https://www.paypal.com/donate" method="post" target="_top">
                 <input type="hidden" name="hosted_button_id" value="WUK6JYHURH6KJ" />
@@ -29,6 +22,13 @@
 
 <script>
 export default {
+
+    computed: {
+
+        content() {
+            return this.$store.state.content.infoContent
+        }
+    },
     
     methods: {
 
@@ -39,6 +39,10 @@ export default {
             
             return this.$parent.modal = null
         }
+    },
+
+    mounted() {
+        this.$store.dispatch('getInfoContent')
     }
 }
 </script>
