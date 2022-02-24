@@ -18,3 +18,4 @@ static/*
 app/yarn.lock
 
 schedule/scheduler.xml
+schedule/pid.txt
