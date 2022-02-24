@@ -2,7 +2,7 @@ from django.db import models
 from django.core.files.storage import FileSystemStorage
 from .helpers import TIMES
 
-fs = FileSystemStorage(location='uploads/scheduled/')
+fs = FileSystemStorage(location='uploads/scheduler/')
 
 class Show(models.Model):
     """
