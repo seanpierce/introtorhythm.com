@@ -84,7 +84,6 @@ def start_ezstream():
     command = 'echo $$ > %s; ezstream -c %s' %(path_to_pid, path_to_config)
     os.system(command)
 
-
 def run():
     show = repo.get_current_show()
 

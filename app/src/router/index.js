@@ -34,6 +34,11 @@ const routes = [
     },
     props: true,
     component: () => import('@/views/Episode.vue')
+  },
+  {
+    path: '/call-in',
+    name: 'Cann-In',
+    component: () => import('@/views/Call-In.vue')
   }
 ]
 
