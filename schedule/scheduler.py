@@ -3,14 +3,10 @@ import os
 import glob
 import datetime
 import xml.etree.ElementTree as XML
-from django import conf
-from django.conf import settings
 from repositories.schedule import ScheduleRepository as repo
 
 def delete_existing_config():
-    """
-    Deletes any existing pid or config files.
-    """
+    """Deletes any existing pid or config files."""
 
     config_list = glob.glob('%s/scheduler.xml' %os.path.dirname(os.path.abspath(__file__)))
     pid_list = glob.glob('%s/pid.txt' %os.path.dirname(os.path.abspath(__file__)))
@@ -33,9 +29,8 @@ def delete_existing_config():
 
 
 def create_ezstream_config(filename):
-    """
-    Creates ezstream xml config file
-    """
+    """Creates ezstream xml config file."""
+
     config = configparser.RawConfigParser()
     config.read('./env.ini')
 
@@ -74,9 +69,10 @@ def create_ezstream_config(filename):
 
 
 def start_ezstream():
-    """
-    Compiles a command to execute an ezstream process.
-    Saves the process id (pid) to a file for furure reference.
+    """Compiles a command to execute an ezstream process.
+
+    Saves the process id (pid) to a file for furure reference when
+    replacing the current ezstream config.
     """
 
     path_to_config = "%s/scheduler.xml" %os.path.dirname(os.path.abspath(__file__))

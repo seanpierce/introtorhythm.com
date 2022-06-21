@@ -32,7 +32,6 @@ class Initiate(CsrfExemptMixin, APIView):
     """
 
     def post(self, request):
-        
         if not self.secret_is_valid('SCHEDULE-AUTH', request):
             return self.Response(None, 401)
 
