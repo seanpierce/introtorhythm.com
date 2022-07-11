@@ -9,7 +9,7 @@
             <div class="episode-content">
                 <div>
                     <span class="ep-grid-header"
-                        @click="goToEpisode(episode.number)">
+                        @click="goToEpisode(episode)">
                         {{ episode.number }}- {{ episode.title }}
                     </span>
                 </div>
