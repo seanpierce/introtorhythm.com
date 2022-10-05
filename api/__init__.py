@@ -1,10 +1,20 @@
 import configparser
 import json
 from django.http import HttpResponse
+from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import View
 
+class CSRFExemptMixin(object):
+    """
+    Exempt class ensuring that the front end application can call into the API views.
+    """
+    @method_decorator(csrf_exempt)
+    def dispatch(self, *args, **kwargs):
+        return super(CSRFExemptMixin, self).dispatch(*args, **kwargs)
 
-class APIView(View):
+
+class APIView(CSRFExemptMixin, View):
     """
     Base class for custom API view.
     """
