@@ -1,4 +1,3 @@
-import json
 from . import APIView
 from repositories.episodes import EpisodesRepository as repo
 
