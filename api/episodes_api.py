@@ -1,3 +1,5 @@
+import json
+from django.http import HttpResponse
 from . import APIView
 from repositories.episodes import EpisodesRepository as repo
 
@@ -9,7 +11,7 @@ class All(APIView):
 
     def get(self, request, *args, **kwargs):
         data = repo.get_episodes()
-        return self.Response(data)
+        return HttpResponse(json.dumps(data), content_type='application/json')
 
 
 class Single(APIView):
@@ -18,6 +20,6 @@ class Single(APIView):
     """
 
     def post(self, request, *args, **kwargs):
-        payload = self.GetPayload(request, ['number'])
-        data = repo.get_episode(payload.number)
-        return self.Response(data)
+        payload = json.loads(request.body)
+        data = repo.get_episode(payload['number'])
+        return HttpResponse(json.dumps(data), content_type='application/json')

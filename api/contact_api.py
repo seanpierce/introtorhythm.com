@@ -1,3 +1,5 @@
+import json
+from django.http import HttpResponse
 from django.conf import settings
 from django.core.mail import EmailMessage
 from django.template import Context
@@ -11,10 +13,7 @@ class SendBookingRequest(APIView):
     """
 
     def post(self, request, *args, **kwargs):
-        payload = self.GetPayload(
-            request, 
-            ['name', 'djName', 'email', 'proposal', 'additional']
-        )
+        payload = json.loads(request.body)
 
         template = get_template("emails/booking-request.html").render({
             'name': payload['name'],
@@ -25,15 +24,15 @@ class SendBookingRequest(APIView):
         })
 
         email = EmailMessage(
-            f'Booking Request - {payload["name"]} - {payload["djName"]}',
-            template,
-            f'Booking Request <{settings.EMAIL_HOST_USER}>',
-            [settings.EMAIL_BOOKING_RECIPIENT],
-            [settings.EMAIL_HOST_USER],
-            reply_to=[payload["email"]]
+            f'Booking Request - {payload["name"]} - {payload["djName"]}', # subject
+            template, # body
+            f'Booking Request <{settings.EMAIL_HOST_USER}>', # from
+            [settings.EMAIL_BOOKING_RECIPIENT], # to
+            [settings.EMAIL_HOST_USER], # bcc
+            reply_to=[payload["email"]] #reply-to
         )
 
         email.content_subtype = "html"
         email.send()
 
-        return self.Response(None)
+        return HttpResponse(json.dumps(None), content_type='application/json')

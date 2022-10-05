@@ -1,7 +1,9 @@
-from . import APIView
+import json
+from django.http import HttpResponse
 from braces.views import CsrfExemptMixin
 from repositories.schedule import ScheduleRepository as repo
 from schedule import scheduler
+from . import APIView
 
 
 class GetShow(APIView):
@@ -11,7 +13,7 @@ class GetShow(APIView):
 
     def get(self, request):
         data = repo.get_current_show()
-        return self.Response(data)
+        return HttpResponse(json.dumps(data), content_type='application/json')
 
 
 class GetSchedule(APIView):
@@ -21,7 +23,7 @@ class GetSchedule(APIView):
 
     def get(self, request):        
         data = repo.get_shows()
-        return self.Response(data)
+        return HttpResponse(json.dumps(data), content_type='application/json')
 
 
 class Initiate(CsrfExemptMixin, APIView):
@@ -36,4 +38,4 @@ class Initiate(CsrfExemptMixin, APIView):
             return self.Response(None, 401)
 
         outcome = scheduler.run()
-        return self.Response(outcome)
+        return HttpResponse(json.dumps(outcome), content_type='application/json')

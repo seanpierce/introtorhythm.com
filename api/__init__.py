@@ -1,43 +1,22 @@
 import configparser
-import json
-from django.http import HttpResponse
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import View
 
-class CSRFExemptMixin(object):
-    """
-    Exempt class ensuring that the front end application can call into the API views.
-    """
-    @method_decorator(csrf_exempt)
-    def dispatch(self, *args, **kwargs):
-        return super(CSRFExemptMixin, self).dispatch(*args, **kwargs)
 
-
-class APIView(CSRFExemptMixin, View):
+class APIView(View):
     """
     Base class for custom API view.
     """
+    
+    @method_decorator(csrf_exempt)
+    def dispatch(self, *args, **kwargs):
+        return super(APIView, self).dispatch(*args, **kwargs)
+
     def __init__(self):
         config = configparser.RawConfigParser()
         config.read('./env.ini')
         self.SCHEDULE_AUTH_SECRET = config.get('Secrets', 'SCHEDULE_AUTH')
-    
-    def Response(self, data, status=200):
-        try:
-            return HttpResponse(json.dumps(data), status=status, content_type='application/json')
-        except Exception as e:
-            return HttpResponse('Unable to create API response', status=500, content_type='application/json')
-
-
-    def GetPayload(self, request, params):
-        payload = {}
-        body = json.loads(request.body.decode('utf-8'))
-        
-        for param in params:
-            payload[param] = body[param]
-
-        return payload
 
     
     def secret_is_valid(self, key, request):

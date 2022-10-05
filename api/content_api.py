@@ -1,6 +1,7 @@
 import json
-from . import APIView
+from django.http import HttpResponse
 from content.repository import ContentRepository as repo
+from . import APIView
 
 
 class Info(APIView):
@@ -10,7 +11,7 @@ class Info(APIView):
     def get(self, request, *args, **kwargs):
         name = self.kwargs['name']
         data = repo.get_content_by_name(name)
-        return self.Response(data)
+        return HttpResponse(json.dumps(data), content_type='application/json')
 
 
 class BackgroundImage(APIView):
@@ -19,4 +20,4 @@ class BackgroundImage(APIView):
     """
     def get(self, request, *args, **kwargs):
         data = repo.get_background_image()
-        return self.Response(data)
+        return HttpResponse(json.dumps(data), content_type='application/json')
