@@ -88,6 +88,8 @@
 </template>
 
 <script>
+const apiClient = require('@/utilities/apiClient')
+
 export default {
     data() {
         return {
@@ -103,12 +105,23 @@ export default {
     },
 
     methods: {
-        submit() {
+        async submit() {
             if (!this.validate())
                 return
 
+            const payload = {
+                name: this.name,
+                djName: this.djName,
+                email: this.email,
+                proposal: this.proposal,
+                additional: this.additional
+            }
+
+            let response = await apiClient.post('contact/booking', payload)
+            console.log(response.data)
+
             this.success = true
-            
+
             window.scrollTo({
                 top: 0,
                 left: 0,
