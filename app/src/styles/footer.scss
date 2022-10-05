@@ -1,6 +1,4 @@
 #footer {
-    // display: none;
-    // position: absolute;
     position: relative;
     top: 100%;
     width: 100%;
@@ -23,6 +21,12 @@
         li {
             display: inline-block;
             margin: 0 1em;
+
+            @include mobile {
+                display: block;
+                max-width: 100px;
+                margin: 1em auto;
+            }
         }
     }
 }

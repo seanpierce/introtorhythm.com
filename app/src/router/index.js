@@ -39,6 +39,11 @@ const routes = [
     path: '/call-in',
     name: 'Cann-In',
     component: () => import('@/views/Call-In.vue')
+  },
+  {
+    path: '/booking',
+    name: 'Booking',
+    component: () => import('@/views/Booking.vue')
   }
 ]
 
