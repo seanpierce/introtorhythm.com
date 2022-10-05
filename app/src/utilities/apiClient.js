@@ -40,16 +40,6 @@ let del = async (url, payload) => {
 
 let handleError = error => {
     console.error('Error seen by apiClient', error.response.status, error.response)
-
-    // unauthorized
-    if (error.response.status === 401) {
-        // Reload page if session times out attempting to call API.
-        // The dashboard template will interpolate the redirect URL.
-        // Take the user back to login.
-        window.location.reload()
-        return
-    }
-
     throw error
 }
 
