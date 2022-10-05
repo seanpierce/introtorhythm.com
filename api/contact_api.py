@@ -28,12 +28,12 @@ class SendBookingRequest(APIView):
             f'Booking Request - {payload["name"]} - {payload["djName"]}',
             template,
             f'Booking Request <{settings.EMAIL_HOST_USER}>',
-            ['sumler.sean@gmail.com'],
-            ['hello@introtorhythm.com'],
+            [settings.EMAIL_BOOKING_RECIPIENT],
+            [settings.EMAIL_HOST_USER],
             reply_to=[payload["email"]]
         )
 
         email.content_subtype = "html"
         email.send()
 
-        return self.Response(payload)
+        return self.Response()
