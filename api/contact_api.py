@@ -36,4 +36,4 @@ class SendBookingRequest(APIView):
         email.content_subtype = "html"
         email.send()
 
-        return self.Response()
+        return self.Response(None)
