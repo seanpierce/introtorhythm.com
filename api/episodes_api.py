@@ -1,24 +1,25 @@
 import json
-from . import APIView
+from django.http import HttpResponse
+from django.views.generic import View
 from repositories.episodes import EpisodesRepository as repo
 
 
-class All(APIView):
+class All(View):
     """
     Returns all episode data.
     """
 
     def get(self, request, *args, **kwargs):
         data = repo.get_episodes()
-        return self.Response(data)
+        return HttpResponse(json.dumps(data), content_type='application/json')
 
 
-class Single(APIView):
+class Single(View):
     """
     Returns a single episode from the database when provided an episode number.
     """
 
     def post(self, request, *args, **kwargs):
-        payload = self.GetPayload(request, ['number'])
-        data = repo.get_episode(payload.number)
-        return self.Response(data)
+        payload = json.loads(request.body)
+        data = repo.get_episode(payload['number'])
+        return HttpResponse(json.dumps(data), content_type='application/json')

@@ -16,3 +16,9 @@ $font-family: 'Roboto Mono', monospace;
 $font-family-secondary: 'Source Sans Pro', sans-serif;
 
 $phone-width: 450px;
+
+@mixin mobile {
+	@media (max-width: #{$phone-width}) {
+		@content;
+	}
+}

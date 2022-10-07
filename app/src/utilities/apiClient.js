@@ -1,10 +1,20 @@
 import axios from 'axios'
+import { getCookie } from '.'
 
-const baseUrl = process.env.VUE_APP_API_BASE_URL
+const API = axios.create({
+    baseURL: process.env.VUE_APP_API_BASE_URL,
+    headers: {
+        Accept: "application/json",
+        "Content-type": "application/json",
+        'X-CSRFToken': getCookie('csrftoken')
+    },
+    timeout: 10000,
+    withCredentials: true 
+})
 
 let get = async (url, payload) => {
     try {
-        let response = await axios.get(`${baseUrl}${url}`, payload)
+        let response = await API.get(url, payload)
         return response
     } catch(err) {
         handleError(err)
@@ -13,7 +23,7 @@ let get = async (url, payload) => {
 
 let post = async (url, payload) => {
     try {
-        let response = await axios.post(`${baseUrl}${url}`, payload)
+        let response = await API.post(url, payload)
         return response
     } catch(err) {
         handleError(err)
@@ -22,7 +32,7 @@ let post = async (url, payload) => {
 
 let put = async (url, payload) => {
     try {
-        let response = await axios.put(`${baseUrl}${url}`, payload)
+        let response = await API.put(url, payload)
         return response
     } catch(err) {
         handleError(err)
@@ -31,7 +41,7 @@ let put = async (url, payload) => {
 
 let del = async (url, payload) => {
     try {
-        let response = await axios.delete(`${baseUrl}${url}`, payload)
+        let response = await API.delete(url, payload)
         return response
     } catch(err) {
         handleError(err)
@@ -40,16 +50,6 @@ let del = async (url, payload) => {
 
 let handleError = error => {
     console.error('Error seen by apiClient', error.response.status, error.response)
-
-    // unauthorized
-    if (error.response.status === 401) {
-        // Reload page if session times out attempting to call API.
-        // The dashboard template will interpolate the redirect URL.
-        // Take the user back to login.
-        window.location.reload()
-        return
-    }
-
     throw error
 }
 

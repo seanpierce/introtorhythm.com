@@ -33,12 +33,13 @@ SECRET_KEY = 'hq(x#eh(h^b@cqy584bt_wq_x_yh=d%&ls%bb1r&8dq9apy1oe'
 DEBUG = eval(CONFIG.get('Environment', 'DEBUG'))
 
 # URL Config
-ALLOWED_HOSTS = CONFIG.get('Environment', 'ALLOWED_HOSTS').split(',')
+CORS_ALLOW_CREDENTIALS = True
+ORIGIN_WHITELIST = CONFIG.get('Environment', 'CORS_ORIGIN_WHITELIST').split(',')
+CORS_ALLOWED_ORIGINS = ORIGIN_WHITELIST
+CSRF_TRUSTED_ORIGINS = ORIGIN_WHITELIST
+CORS_ORIGIN_WHITELIST = ORIGIN_WHITELIST
 HOST_URL = CONFIG.get('Environment', 'HOST_URL')
-FRONT_END_URL = 'http://localhost:8080'
-CORS_ORIGIN_WHITELIST = [
-    "http://localhost:8080"
-]
+CSRF_COOKIE_SAMESITE = 'None'
 
 # Application definition
 INSTALLED_APPS = [
@@ -123,7 +124,6 @@ DATABASES = {
     }
 }
 
-
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
 
@@ -142,7 +142,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
@@ -155,13 +154,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
-
-INTERNAL_IPS = (
-    'localhost',
-    '0.0.0.0',
-    '127.0.0.1'
-)
 
 # pulls in assets for the Django Admin settings
 STATIC_ROOT = 'static'
@@ -178,7 +170,6 @@ STATICFILES_DIRS = [os.path.join('assets')]
 # local storage
 MEDIA_ROOT = 'uploads/'
 
-
 # AWS S3 file storage
 DEFAULT_FILE_STORAGE = 'introtorhythm.storage_backends.MediaStorage'
 
@@ -193,13 +184,10 @@ AWS_S3_OBJECT_PARAMETERS = {
 }
 
 # Email Settings
-if not DEBUG:
-    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-    EMAIL_HOST = CONFIG.get('EMAIL SECRET KEYS', 'EMAIL_HOST')
-    EMAIL_HOST_USER = CONFIG.get('EMAIL SECRET KEYS', 'EMAIL_HOST_USER')
-    EMAIL_HOST_PASSWORD = CONFIG.get('EMAIL SECRET KEYS', 'EMAIL_HOST_PASSWORD')
-    EMAIL_PORT = int(CONFIG.get('EMAIL SECRET KEYS', 'EMAIL_PORT'))
-    EMAIL_USE_TLS = True
-else:
-    EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
-    EMAIL_FILE_PATH = 'tmp/emails/'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = CONFIG.get('EMAIL SECRET KEYS', 'EMAIL_HOST')
+EMAIL_HOST_USER = CONFIG.get('EMAIL SECRET KEYS', 'EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = CONFIG.get('EMAIL SECRET KEYS', 'EMAIL_HOST_PASSWORD')
+EMAIL_PORT = int(CONFIG.get('EMAIL SECRET KEYS', 'EMAIL_PORT'))
+EMAIL_USE_TLS = True
+EMAIL_BOOKING_RECIPIENT = CONFIG.get('EMAIL SECRET KEYS', 'EMAIL_BOOKING_RECIPIENT')
