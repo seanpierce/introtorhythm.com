@@ -19,7 +19,9 @@
                         type="text" 
                         id="booking.name" 
                         ref="name" 
-                        v-model="name" />
+                        v-model="name"
+                        maxlength="100" />
+                    <span class="text-area-count">{{ name ? name.length : 0 }}/100</span>
                 </div>
             </div>
 
@@ -29,7 +31,9 @@
                     <input 
                         type="text" 
                         id="booking.djName" 
-                        v-model="djName" />
+                        v-model="djName"
+                        maxlength="100" />
+                    <span class="text-area-count">{{ djName ? djName.length : 0 }}/100</span>
                 </div>
             </div>
 
@@ -39,7 +43,9 @@
                     <input 
                         type="text" 
                         id="booking.email" 
-                        v-model="email" />
+                        v-model="email"
+                        maxlength="100" />
+                    <span class="text-area-count">{{ email ? email.length : 0 }}/100</span>
                 </div>
             </div>
 

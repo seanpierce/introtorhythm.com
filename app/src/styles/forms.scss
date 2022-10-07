@@ -42,7 +42,7 @@
             width: 0;
 
             &:checked ~ .checkmark {
-                background-color: red;
+                background-color: none;
 
                 &:after {
                     display: block;
@@ -79,6 +79,7 @@
     .text-area-count {
         display: block;
         text-align: right;
+        font-size: 12px;
     }
 
     button {
