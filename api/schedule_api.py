@@ -1,12 +1,13 @@
+import configparser
 import json
 from django.http import HttpResponse
+from django.views.generic import View
 from braces.views import CsrfExemptMixin
 from repositories.schedule import ScheduleRepository as repo
 from schedule import scheduler
-from . import APIView
 
 
-class GetShow(APIView):
+class GetShow(View):
     """
     Returns the currently scheduled show.
     """
@@ -16,7 +17,7 @@ class GetShow(APIView):
         return HttpResponse(json.dumps(data), content_type='application/json')
 
 
-class GetSchedule(APIView):
+class GetSchedule(View):
     """
     Returns the weekly schedule.
     """
@@ -26,7 +27,7 @@ class GetSchedule(APIView):
         return HttpResponse(json.dumps(data), content_type='application/json')
 
 
-class Initiate(CsrfExemptMixin, APIView):
+class Initiate(CsrfExemptMixin, View):
     """
     Initiates the schedule process which checks for a
     shceudled show in the database. If found, the process
@@ -34,7 +35,13 @@ class Initiate(CsrfExemptMixin, APIView):
     """
 
     def post(self, request):
-        if not self.secret_is_valid('SCHEDULE-AUTH', request):
+        config = configparser.RawConfigParser()
+        config.read('./env.ini')
+        schedule_auth_secret = config.get('Secrets', 'SCHEDULE_AUTH')
+        secret = request.headers['X-SCHEDULE-AUTH-SECRET']
+        valid = secret == schedule_auth_secret
+
+        if not valid:
             return self.Response(None, 401)
 
         outcome = scheduler.run()

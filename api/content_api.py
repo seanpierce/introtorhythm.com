@@ -1,10 +1,10 @@
 import json
-from django.http import HttpResponse
 from content.repository import ContentRepository as repo
-from . import APIView
+from django.http import HttpResponse
+from django.views.generic import View
 
 
-class Info(APIView):
+class Info(View):
     """
     Returns 'Info' content.
     """
@@ -14,7 +14,7 @@ class Info(APIView):
         return HttpResponse(json.dumps(data), content_type='application/json')
 
 
-class BackgroundImage(APIView):
+class BackgroundImage(View):
     """
     Returns the background image url for the configured background image.
     """

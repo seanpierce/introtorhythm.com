@@ -1,13 +1,12 @@
 import json
-from django.http import HttpResponse
 from django.conf import settings
 from django.core.mail import EmailMessage
-from django.template import Context
+from django.http import HttpResponse
 from django.template.loader import get_template
-from . import APIView
+from django.views.generic import View
 
 
-class SendBookingRequest(APIView):
+class SendBookingRequest(View):
     """
     Sends a booking request email from the website to the ITR booking account.
     """

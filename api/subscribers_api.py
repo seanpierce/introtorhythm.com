@@ -1,5 +1,4 @@
 import json
-from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.generic import View
 from django.shortcuts import redirect
@@ -36,13 +35,13 @@ class ConfirmSubscription(View):
         subscription_request = repo.get_request_by_token(token)
 
         if subscription_request is None:
-            return redirect('%s/?success=false' %(settings.FRONT_END_URL))
+            return redirect('%s/?success=false' %(settings.HOST_URL))
 
         if repo.create_subscriber(subscription_request['email']):
             repo.remove_subscription_request(subscription_request['token'])
-            return redirect('%s/?success=true' %(settings.FRONT_END_URL))
+            return redirect('%s/?success=true' %(settings.HOST_URL))
         else:
-            return redirect('%s/?success=false' %(settings.FRONT_END_URL))
+            return redirect('%s/?success=false' %(settings.HOST_URL))
 
 
 @method_decorator(csrf_exempt, name='dispatch')

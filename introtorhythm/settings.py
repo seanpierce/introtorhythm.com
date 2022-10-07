@@ -33,17 +33,13 @@ SECRET_KEY = 'hq(x#eh(h^b@cqy584bt_wq_x_yh=d%&ls%bb1r&8dq9apy1oe'
 DEBUG = eval(CONFIG.get('Environment', 'DEBUG'))
 
 # URL Config
-ALLOWED_HOSTS = CONFIG.get('Environment', 'ALLOWED_HOSTS').split(',')
+CORS_ALLOW_CREDENTIALS = True
+ORIGIN_WHITELIST = CONFIG.get('Environment', 'CORS_ORIGIN_WHITELIST').split(',')
+CORS_ALLOWED_ORIGINS = ORIGIN_WHITELIST
+CSRF_TRUSTED_ORIGINS = ORIGIN_WHITELIST
+CORS_ORIGIN_WHITELIST = ORIGIN_WHITELIST
 HOST_URL = CONFIG.get('Environment', 'HOST_URL')
-FRONT_END_URL = 'http://localhost:8080'
-CORS_ORIGIN_WHITELIST = [
-    "http://localhost:8080"
-]
-INTERNAL_IPS = (
-    'localhost',
-    '0.0.0.0',
-    '127.0.0.1'
-)
+CSRF_COOKIE_SAMESITE = 'None'
 
 # Application definition
 INSTALLED_APPS = [
