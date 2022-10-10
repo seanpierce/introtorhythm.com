@@ -2,8 +2,10 @@ import json
 from django.http import HttpResponse
 from django.views.generic import View
 from repositories.episodes import EpisodesRepository as repo
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
 
-
+@method_decorator(csrf_exempt, name='dispatch')
 class All(View):
     """
     Returns all episode data.
@@ -14,6 +16,7 @@ class All(View):
         return HttpResponse(json.dumps(data), content_type='application/json')
 
 
+@method_decorator(csrf_exempt, name='dispatch')
 class Single(View):
     """
     Returns a single episode from the database when provided an episode number.

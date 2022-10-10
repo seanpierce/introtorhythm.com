@@ -5,8 +5,11 @@ from django.views.generic import View
 from braces.views import CsrfExemptMixin
 from repositories.schedule import ScheduleRepository as repo
 from schedule import scheduler
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
 
 
+@method_decorator(csrf_exempt, name='dispatch')
 class GetShow(View):
     """
     Returns the currently scheduled show.
@@ -17,6 +20,7 @@ class GetShow(View):
         return HttpResponse(json.dumps(data), content_type='application/json')
 
 
+@method_decorator(csrf_exempt, name='dispatch')
 class GetSchedule(View):
     """
     Returns the weekly schedule.
@@ -27,6 +31,7 @@ class GetSchedule(View):
         return HttpResponse(json.dumps(data), content_type='application/json')
 
 
+@method_decorator(csrf_exempt, name='dispatch')
 class Initiate(CsrfExemptMixin, View):
     """
     Initiates the schedule process which checks for a
