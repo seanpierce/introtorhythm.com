@@ -1,5 +1,4 @@
 import datetime
-from django.core.exceptions import ObjectDoesNotExist
 from schedule.models import Show
 from .query_helpers import QueryHelpers as Query
 
@@ -28,9 +27,9 @@ class ScheduleRepository:
         return Query.single(sql , [date, hour])
 
     @staticmethod
-    def get_shows():
+    def get_shows(startDate, endDate):
         """
-        Returns all active shows that have been scheduled as a list id dict objects.
+        Returns all active shows that have been scheduled between a provided date range.
         """
 
         sql = """
@@ -38,9 +37,8 @@ class ScheduleRepository:
             from schedule_show s
             where active = 1
             and date >= %s
+            and date <= %s
             order by date, start_time
         """
 
-        date = datetime.date.today()
-
-        return Query.many(sql, [date])
+        return Query.many(sql, [startDate, endDate])

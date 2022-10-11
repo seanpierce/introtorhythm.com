@@ -1,4 +1,5 @@
 import configparser
+import datetime
 import json
 from django.http import HttpResponse
 from django.views.generic import View
@@ -21,9 +22,17 @@ class GetSchedule(View):
     Returns the weekly schedule.
     """
 
-    def get(self, request):        
-        data = repo.get_shows()
-        return HttpResponse(json.dumps(data), content_type='application/json')
+    def get(self, request):
+        startDate = datetime.date.today()
+        endDate = startDate + datetime.timedelta(days=30)   
+        data = repo.get_shows(startDate, endDate)
+
+        response = {
+            'shows': data,
+            'startDate': startDate,
+            'endDate': endDate
+        }
+        return HttpResponse(json.dumps(response, default=str), content_type='application/json')
 
 
 class Initiate(View):

@@ -4,7 +4,7 @@ import chatStore from './chat'
 import episodesStore from './episodes'
 import liveStore from './live'
 import contentStore from './content'
-import scheduleStore from './scheduleStore'
+import scheduleStore from './schedule'
 
 Vue.use(Vuex)
 
