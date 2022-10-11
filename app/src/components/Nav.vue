@@ -30,13 +30,6 @@
                 {{ selectedEpisodeNumber }}
             </router-link>
 
-            <span 
-                class="nav-tab"
-                v-bind:class="{ active: currentRoute === 'Chat' }"
-                @click="chatOn()">
-                Chat
-            </span>
-
             <router-link :to="'/schedule'"
                 tag="span" 
                 class="nav-tab"
@@ -44,6 +37,13 @@
                 v-bind:class="{ active: currentRoute === 'Schedule' }">
                 Schedule
             </router-link>
+            
+            <span 
+                class="nav-tab"
+                v-bind:class="{ active: currentRoute === 'Chat' }"
+                @click="chatOn()">
+                Chat
+            </span>
         </div>
 
         <ChatNav v-if="showChat && chat.username" />
