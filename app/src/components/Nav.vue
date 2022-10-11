@@ -30,6 +30,14 @@
                 {{ selectedEpisodeNumber }}
             </router-link>
 
+            <router-link :to="'/schedule'"
+                tag="span" 
+                class="nav-tab"
+                @click.native="chatOff()"
+                v-bind:class="{ active: currentRoute === 'Schedule' }">
+                Schedule
+            </router-link>
+            
             <span 
                 class="nav-tab"
                 v-bind:class="{ active: currentRoute === 'Chat' }"
