@@ -24,7 +24,7 @@ class GetSchedule(View):
 
     def get(self, request):
         startDate = datetime.date.today()
-        endDate = startDate + datetime.timedelta(days=30)   
+        endDate = startDate + datetime.timedelta(days=30) 
         data = repo.get_shows(startDate, endDate)
 
         response = {

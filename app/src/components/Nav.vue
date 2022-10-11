@@ -36,6 +36,14 @@
                 @click="chatOn()">
                 Chat
             </span>
+
+            <router-link :to="'/schedule'"
+                tag="span" 
+                class="nav-tab"
+                @click.native="chatOff()"
+                v-bind:class="{ active: currentRoute === 'Schedule' }">
+                Schedule
+            </router-link>
         </div>
 
         <ChatNav v-if="showChat && chat.username" />
