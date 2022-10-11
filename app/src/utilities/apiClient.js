@@ -1,15 +1,7 @@
 import axios from 'axios'
-import { getCookie } from '.'
 
 const API = axios.create({
-    baseURL: process.env.VUE_APP_API_BASE_URL,
-    headers: {
-        Accept: "application/json",
-        "Content-type": "application/json",
-        'X-CSRFToken': getCookie('csrftoken')
-    },
-    timeout: 10000,
-    withCredentials: true 
+    baseURL: process.env.VUE_APP_API_BASE_URL
 })
 
 let get = async (url, payload) => {

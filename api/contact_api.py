@@ -4,10 +4,8 @@ from django.core.mail import EmailMessage
 from django.http import HttpResponse
 from django.template.loader import get_template
 from django.views.generic import View
-from django.views.decorators.csrf import csrf_exempt
-from django.utils.decorators import method_decorator
 
-@method_decorator(csrf_exempt, name='dispatch')
+
 class SendBookingRequest(View):
     """
     Sends a booking request email from the website to the ITR booking account.

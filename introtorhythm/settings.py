@@ -33,14 +33,11 @@ SECRET_KEY = 'hq(x#eh(h^b@cqy584bt_wq_x_yh=d%&ls%bb1r&8dq9apy1oe'
 DEBUG = eval(CONFIG.get('Environment', 'DEBUG'))
 
 # URL Config
-CORS_ALLOW_CREDENTIALS = True
-ORIGIN_WHITELIST = CONFIG.get('Environment', 'CORS_ORIGIN_WHITELIST').split(',')
-ALLOWED_HOSTS = ORIGIN_WHITELIST
+ORIGIN_WHITELIST = CONFIG.get('Environment', 'ORIGIN_WHITELIST').split(',')
+ALLOWED_HOSTS = CONFIG.get('Environment', 'ALLOWED_HOSTS').split(',')
 CORS_ALLOWED_ORIGINS = ORIGIN_WHITELIST
 CSRF_TRUSTED_ORIGINS = ORIGIN_WHITELIST
-CORS_ORIGIN_WHITELIST = ORIGIN_WHITELIST
 HOST_URL = CONFIG.get('Environment', 'HOST_URL')
-CSRF_COOKIE_SAMESITE = 'None'
 
 # Application definition
 INSTALLED_APPS = [
@@ -64,13 +61,10 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.CommonMiddleware",
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
-    'django.middleware.common.CommonMiddleware',
 ]
 
 ROOT_URLCONF = 'introtorhythm.urls'
