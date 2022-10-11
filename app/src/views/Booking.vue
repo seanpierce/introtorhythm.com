@@ -86,7 +86,7 @@
 
             <div class="input-group">
                 <div class="col100">
-                    <button v-if="!submitting" @click="submit()">Submit</button>
+                    <button @click="submit()">{{ submitting ? 'Loading...' : 'Submit' }}</button>
                 </div>
             </div>
         </div>
