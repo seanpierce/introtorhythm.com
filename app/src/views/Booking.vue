@@ -86,7 +86,7 @@
 
             <div class="input-group">
                 <div class="col100">
-                    <button @click="submit()">Submit</button>
+                    <button v-if="!submitting" @click="submit()">Submit</button>
                 </div>
             </div>
         </div>
@@ -99,6 +99,7 @@ const apiClient = require('@/utilities/apiClient')
 export default {
     data() {
         return {
+            submitting: false,
             success: false,
             name: null,
             djName: null,
@@ -112,6 +113,11 @@ export default {
 
     methods: {
         async submit() {
+            if (this.submitting)
+                return
+            else
+                this.submitting = true
+
             if (!this.validate())
                 return
 
@@ -123,16 +129,19 @@ export default {
                 additional: this.additional
             }
 
-            let response = await apiClient.post('contact/booking', payload)
-            console.log(response.data)
+            try {
+                await apiClient.post('contact/booking', payload)
 
-            this.success = true
+                this.success = true
 
-            window.scrollTo({
-                top: 0,
-                left: 0,
-                behavior: 'smooth'
-            })
+                window.scrollTo({
+                    top: 0,
+                    left: 0,
+                    behavior: 'smooth'
+                })
+            } catch(errors) {
+                this.loading = false
+            }
         },
 
         validate() {
