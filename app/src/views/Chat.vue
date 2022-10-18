@@ -55,7 +55,7 @@ import {
     purgeOldUsers,
     readUsers
 } from '@/database/queries'
-import Message from './Message'
+import Message from '@/components/Chat/Message'
 
 export default {
     components: {

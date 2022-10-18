@@ -17,11 +17,16 @@
         padding: $padding;
         margin: 0.5em 0;
         font-size: 1em;
+
+        @media screen and (max-width: $phone-width) {
+            margin: 0;
+        }
     }
 
     #nav-bottom  {
         border-bottom: solid 2px $color3;
         padding-left: $padding;
+        padding-right: $padding;
 
         .nav-tab {
             font-size: 1em;
@@ -41,8 +46,20 @@
             }
 
             @media screen and (max-width: $phone-width) {
-                font-size: 12px;
-                margin-right: 4px;
+                font-size: 0.8em;
+                border-radius: 0px;
+                border: none;
+                margin: 8px;
+                padding: 0;
+
+                &:first-child {
+                    margin-left: 0;
+                }
+
+                &.active {
+                    background: $color1;
+                    color: red;
+                }
             }
         }
     }
@@ -64,11 +81,6 @@
             margin-right: 6px;
         }
 
-        .hide-on-mobile {
-            @media screen and (max-width: $phone-width) {
-                display: none;
-            }
-        }
 
         .username.me {
             color: $color-accent;

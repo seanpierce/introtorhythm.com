@@ -2,8 +2,7 @@
   <div id="app">
     <Nav />
     <div id="container">
-      <router-view v-if="!showChat" />
-      <Chat v-show="showChat" />
+      <router-view />
     </div>
     <Footer v-if="!showChat" />
     <Player />
@@ -13,7 +12,6 @@
 
 <script>
 import Nav from '@/components/Nav'
-import Chat from '@/components/Chat/Chat'
 import Footer from '@/components/Footer'
 import Player from '@/components/Player'
 import InfoModal from '@/components/Modals/Info'
@@ -22,7 +20,6 @@ export default {
 
   components: {
     Nav,
-    Chat,
     Footer,
     Player,
     InfoModal
@@ -37,12 +34,12 @@ export default {
   computed: {
 
     showLogo() {
-      let options = ['Episode', 'Live']
-      return options.indexOf(this.$route.name) > -1
+      const options = ['Episode', 'Live']
+      return options.includes(this.$route.name)
     },
 
     showChat() {
-      return this.$store.state.chat.showChat
+      return this.$route.name === 'Chat'
     }
   },
 

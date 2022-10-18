@@ -8,50 +8,53 @@
             <router-link to="/"
                 tag="span" 
                 class="nav-tab"
-                @click.native="chatOff()"
-                v-bind:class="{ active: currentRoute === 'Live' }">
-                Listen Live
+                v-bind:class="{ active: route === 'Live' }">
+                <span class="hide-on-mobile">Listen</span> Live
             </router-link>
+
+            <span class="hide-on-desktop">/</span>
 
             <router-link to="/episodes"
                 tag="span" 
                 class="nav-tab"
-                @click.native="chatOff()"
-                v-bind:class="{ active: currentRoute === 'Episodes' }">
+                v-bind:class="{ active: route === 'Episodes' }">
                 Episodes
             </router-link>
 
+            <span class="hide-on-desktop">/</span>
+
             <router-link :to="'/episodes/' + selectedEpisodeNumber"
-                v-if="currentRoute === 'Episode'" 
+                v-if="route === 'Episode'" 
                 tag="span" 
                 class="nav-tab"
-                @click.native="chatOff()"
-                v-bind:class="{ active: currentRoute === 'Episode' }">
+                v-bind:class="{ active: route === 'Episode' }">
                 {{ selectedEpisodeNumber }}
             </router-link>
+
+            <span class="hide-on-desktop" v-if="route === 'Episode'">/</span>
 
             <router-link :to="'/schedule'"
                 tag="span" 
                 class="nav-tab"
-                @click.native="chatOff()"
-                v-bind:class="{ active: currentRoute === 'Schedule' }">
+                v-bind:class="{ active: route === 'Schedule' }">
                 Schedule
             </router-link>
-            
-            <span 
+
+            <span class="hide-on-desktop">/</span>
+
+            <router-link to="/chat"
+                tag="span" 
                 class="nav-tab"
-                v-bind:class="{ active: currentRoute === 'Chat' }"
-                @click="chatOn()">
+                v-bind:class="{ active: route === 'Chat' }">
                 Chat
-            </span>
+            </router-link>
         </div>
 
-        <ChatNav v-if="showChat && chat.username" />
+        <ChatNav v-if="route === 'Chat' && chat.username" />
     </div>
 </template>
 
 <script>
-import { mapActions } from 'vuex'
 import ChatNav from '@/components/Chat/ChatNav'
 
 export default {
@@ -59,20 +62,9 @@ export default {
         ChatNav
     },
 
-    methods: {
-        ...mapActions(['chatOff', 'chatOn']),
-    },
-
     computed: {
-        currentRoute() {
-            if (this.showChat)
-                return 'Chat'
-            else
-                return this.$route.name
-        },
-
-        showChat() {
-            return this.$store.state.chat.showChat
+        route() {
+            return this.$route.name
         },
 
         selectedEpisodeNumber() {

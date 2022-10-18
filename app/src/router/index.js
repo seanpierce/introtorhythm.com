@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Live from '@/views/Live'
 
 Vue.use(VueRouter)
 
@@ -14,7 +13,7 @@ const routes = [
       document.title = title + 'Live'
       next()
     },
-    component: Live
+    component: () => import('@/views/Live')
   },
   {
     path: '/episodes',
@@ -36,18 +35,39 @@ const routes = [
     component: () => import('@/views/Episode.vue')
   },
   {
+    path: '/chat',
+    name: 'Chat',
+    beforeEnter: (to, from, next) => {
+      document.title = title + 'Chat'
+      next()
+    },
+    component: () => import('@/views/Chat.vue')
+  },
+  {
     path: '/call-in',
-    name: 'Cann-In',
+    name: 'Call-In',
+    beforeEnter: (to, from, next) => {
+      document.title = title + 'Call-In'
+      next()
+    },
     component: () => import('@/views/Call-In.vue')
   },
   {
     path: '/booking',
     name: 'Booking',
+    beforeEnter: (to, from, next) => {
+      document.title = title + 'Booking'
+      next()
+    },
     component: () => import('@/views/Booking.vue')
   },
   {
     path: '/schedule',
     name: 'Schedule',
+    beforeEnter: (to, from, next) => {
+      document.title = title + 'Schedule'
+      next()
+    },
     component: () => import('@/views/Schedule.vue')
   }
 ]

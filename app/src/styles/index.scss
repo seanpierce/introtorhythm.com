@@ -99,3 +99,17 @@ body {
 .warning {
     color: $color-cta;
 }
+
+.hide-on-mobile {
+    color: inherit;
+
+    @media screen and (max-width: $phone-width) {
+        display: none;
+    }
+}
+
+.hide-on-desktop {
+    @media screen and (min-width: $phone-width) {
+        display: none;
+    }
+}
