@@ -16,8 +16,7 @@ class Show(models.Model):
     date = models.DateField()
     start_time = models.IntegerField(choices=TIMES)
     active = models.BooleanField(default=True)
-    show_image = models.ImageField(upload_to='shows/images/',
-        max_length=500, default='/assets/seanpierce-palabra.jpg')
+    show_image = models.ImageField(storage=fs, max_length=500, blank=True)
     pre_record_audio = models.FileField(storage=fs, max_length=500, blank=True)
 
     class Meta:
