@@ -11,6 +11,16 @@
 
             .schedule-card {
                 margin: 1em 0;
+                font-size: 1.25em;
+
+                .show-date {
+                    font-size: 0.75em;
+                }
+
+                img.show-image {
+                    width: 100%;
+                    margin-top: 1em;
+                }
             }
         }
     }
