@@ -19,7 +19,7 @@ class GetShow(View):
 
 class GetSchedule(View):
     """
-    Returns the weekly schedule.
+    Returns the monthly schedule.
     """
 
     def get(self, request):
