@@ -1,20 +1,20 @@
 from django.urls import path
-from .contact_api import SendBookingRequest
-from .content_api import Info, BackgroundImage
-from .episodes_api import All, Single
-from .schedule_api import GetShow, GetSchedule, Initiate
-from .subscribers_api import ConfirmSubscription, RequestSubscription, Unsubscribe
+from . import contact_api
+from . import content_api
+from . import episodes_api
+from . import schedule_api
+from . import subscribers_api
 
 urlpatterns = [
-    path('episodes', All.as_view()),
-    path('episode', Single.as_view()),
-    path('content/backgroundimage', BackgroundImage.as_view()),
-    path('content/<name>', Info.as_view()),
-    path('subscribers/request', RequestSubscription.as_view()),
-    path('subscribers/confirm/<token>', ConfirmSubscription.as_view()),
-    path('subscribers/unsubscribe', Unsubscribe.as_view()),
-    path('schedule', GetSchedule.as_view()),
-    path('schedule/show', GetShow.as_view()),
-    path('schedule/initiate-scheduler', Initiate.as_view()),
-    path('contact/booking', SendBookingRequest.as_view())
+    path('episodes', episodes_api.All.as_view()),
+    path('episode', episodes_api.Single.as_view()),
+    path('content/backgroundimage', content_api.BackgroundImage.as_view()),
+    path('content/<name>', content_api.Info.as_view()),
+    path('subscribers/request', subscribers_api.RequestSubscription.as_view()),
+    path('subscribers/confirm/<token>', subscribers_api.ConfirmSubscription.as_view()),
+    path('subscribers/unsubscribe', subscribers_api.Unsubscribe.as_view()),
+    path('schedule', schedule_api.GetSchedule.as_view()),
+    path('schedule/show', schedule_api.GetShow.as_view()),
+    path('schedule/initiate-scheduler', schedule_api.Initiate.as_view()),
+    path('contact/booking', contact_api.SendBookingRequest.as_view())
 ]
