@@ -26,6 +26,7 @@ class ScheduleRepository:
 
         return Query.single(sql , [date, hour])
 
+
     @staticmethod
     def get_shows(startDate, endDate):
         """
@@ -36,8 +37,7 @@ class ScheduleRepository:
             select s.*, strftime(s.created_at) as created_at, strftime(s.date) as date
             from schedule_show s
             where active = 1
-            and date >= %s
-            and date <= %s
+            and date between %s and %s
             order by date, start_time
         """
 
