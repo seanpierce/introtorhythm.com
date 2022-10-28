@@ -26,19 +26,23 @@
         <div class="title">
             Live
         </div>
+        
+        <div class="marquee-wrapper">
+            <Marquee />
+        </div>
     </div>
 </template>
 
 <script>
 import CircleType from 'circletype'
 import Spinner from '@/components/Animations/Spinner'
-// import Footer from '@/components/Footer'
+import Marquee from '@/components/Marquee'
 
 export default {
 
     components: {
         Spinner,
-        // Footer
+        Marquee
     },
 
     data() {
@@ -49,7 +53,6 @@ export default {
             mediaUrl: process.env.VUE_APP_MEDIA_URL,
             defaultBg: require('@/assets/images/seanpierce-palabra.jpg')
         }
-
     },
 
     methods: {
