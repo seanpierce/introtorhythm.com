@@ -28,7 +28,7 @@ class BackgroundImage(View):
 
 class RefreshContent(View):
     """
-    Polls for updated, live content for display in the UI.
+    Polls for updated live content for display in the UI.
     """
 
     def get(self, request, *args, **kwargs):

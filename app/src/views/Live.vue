@@ -23,12 +23,12 @@
 
         <Spinner v-if="loading" />
 
-        <div class="title">
+        <div class="title" :class="{ 'has-marquee' : showMarquee }">
             Live
         </div>
         
-        <div class="marquee-wrapper">
-            <Marquee />
+        <div class="marquee-wrapper" v-if="showMarquee">
+            <Marquee :text="marqueeText" />
         </div>
     </div>
 </template>
@@ -95,6 +95,14 @@ export default {
             return this.$store.state.content.bgImage?.active ?
                 this.mediaUrl + this.$store.state.content.bgImage.image :
                 this.defaultBg
+        },
+
+        marqueeText() {
+            return this.$store.state.content.marqueeText
+        },
+
+        showMarquee() {
+            return this.marqueeText?.length > 0 || false
         }
     },
 

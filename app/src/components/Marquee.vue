@@ -1,6 +1,6 @@
 <template>
     <div id="live-marquee" class="marquee">
-        Coming Up - Chunt and Slart at 10pm PST to ruin YOUR night
+        {{ text }}
     </div>
 </template>
 
@@ -8,6 +8,12 @@
 import nodeMarquee from 'node-marquee'
 
 export default {
+    props: {
+        text: {
+            type: String
+        }
+    },
+
     mounted() {
         nodeMarquee({
             parent: '#live-marquee'
