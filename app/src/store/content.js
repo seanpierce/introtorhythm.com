@@ -40,6 +40,8 @@ const contentStore = {
         async getContentRefresh({ commit, state }) { 
             let response = await apiClient.get('content/refresh')
 
+            console.log(response.data)
+
             let bgImage = getBgImage(response.data)
             if (bgImage && state.bgImage != bgImage)
                 commit('SET_BG_IMAGE', response.data)
