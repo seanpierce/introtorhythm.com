@@ -9,6 +9,7 @@ urlpatterns = [
     path('episodes', episodes_api.All.as_view()),
     path('episode', episodes_api.Single.as_view()),
     path('content/backgroundimage', content_api.BackgroundImage.as_view()),
+    path('content/refresh', content_api.RefreshContent.as_view()),
     path('content/<name>', content_api.Info.as_view()),
     path('subscribers/request', subscribers_api.RequestSubscription.as_view()),
     path('subscribers/confirm/<token>', subscribers_api.ConfirmSubscription.as_view()),

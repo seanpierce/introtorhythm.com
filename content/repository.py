@@ -15,7 +15,8 @@ class ContentRepository(object):
             'id': content.id,
             'name': content.name,
             'info': content.info,
-            'active': content.active
+            'active': content.active,
+            'plain_text': content.plain_text
         }
 
 

@@ -13,10 +13,70 @@
         }
     }
 
+    #logo {
+        height: 6em;
+        position: relative;
+        top: 8px;
+        left: 8px;
+        z-index: 3;
+    }
+    
+    .title {
+        position: absolute;
+        bottom: $padding;
+        right: $padding;
+        padding: 6px 12px;
+        font-size: 2em;
+        background: $color-accent;
+        color: $color3;
+    
+        &.has-marquee {
+            bottom: 60px;
+        }
+
+        @media screen and (max-width: $phone-width) {
+            &.has-marquee {
+                bottom: 48px;
+            }
+        }
+    }
+    
+    #play-button {
+        height: 160px;
+        cursor: pointer;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 2;
+    }
+
     .spinner {
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
+    }
+
+    .marquee-wrapper {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+
+        .marquee {
+            background: rgba($color: #000, $alpha: 0.5);
+
+            * {
+                font-size: 2em;
+                color: yellow;
+            }
+
+            @media screen and (max-width: $phone-width) {
+                * {
+                    font-size: 1.5em;
+                }
+            }
+        }
     }
 }

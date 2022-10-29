@@ -23,8 +23,12 @@
 
         <Spinner v-if="loading" />
 
-        <div class="title">
+        <div class="title" :class="{ 'has-marquee' : showMarquee }">
             Live
+        </div>
+        
+        <div class="marquee-wrapper" v-if="showMarquee">
+            <Marquee :text="marqueeText" />
         </div>
     </div>
 </template>
@@ -32,13 +36,13 @@
 <script>
 import CircleType from 'circletype'
 import Spinner from '@/components/Animations/Spinner'
-// import Footer from '@/components/Footer'
+import Marquee from '@/components/Marquee'
 
 export default {
 
     components: {
         Spinner,
-        // Footer
+        Marquee
     },
 
     data() {
@@ -49,7 +53,6 @@ export default {
             mediaUrl: process.env.VUE_APP_MEDIA_URL,
             defaultBg: require('@/assets/images/seanpierce-palabra.jpg')
         }
-
     },
 
     methods: {
@@ -92,6 +95,14 @@ export default {
             return this.$store.state.content.bgImage?.active ?
                 this.mediaUrl + this.$store.state.content.bgImage.image :
                 this.defaultBg
+        },
+
+        marqueeText() {
+            return this.$store.state.content.marqueeText
+        },
+
+        showMarquee() {
+            return this.marqueeText?.length > 0 || false
         }
     },
 
