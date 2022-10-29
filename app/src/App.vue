@@ -47,7 +47,7 @@ export default {
     this.$store.dispatch('initialize')
     setInterval(() => {
       // poll for new background images
-      this.$store.dispatch('pollBgImage')
+      this.$store.dispatch('pollRefreshContent')
     }, 120000) // two minutes
   }
 }

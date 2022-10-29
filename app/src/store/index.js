@@ -9,7 +9,6 @@ import scheduleStore from './schedule'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-
   root: true,
 
   modules: {
@@ -20,24 +19,14 @@ export default new Vuex.Store({
     schedule: scheduleStore
   },
 
-  state: {
-
-  },
-
-  mutations: {
-
-  },
-
   actions: {
-
     initialize({ dispatch }) {
       dispatch('getEpisodes')
-      dispatch('getBgImage')
       dispatch('getContentRefresh')
     },
 
-    pollBgImage({ dispatch }) {
-      dispatch('getBgImage')
+    pollRefreshContent({ dispatch }) {
+      dispatch('getContentRefresh')
     }
   },
 
