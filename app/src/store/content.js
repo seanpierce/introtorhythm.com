@@ -94,6 +94,21 @@ const getMarqueeText = responseData => {
         text += shows.join(', ')
     }
 
+    if (responseData.schedule_tomorrow.length > 0) { 
+        if (text.length > 0)
+            text += divider
+        
+        text += 'Tomorrow: '
+
+        let shows = []
+        responseData.schedule_tomorrow.forEach(show => { 
+            let startTime = moment(show.start_time, 'h').format('hh:mm a')
+            shows.push(`${show.title} at ${startTime}`)
+        })
+
+        text += shows.join(', ')
+    }
+
     text += divider
     
     return text
