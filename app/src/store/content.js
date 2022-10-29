@@ -62,8 +62,8 @@ const getBgImage = responseData => {
 }
 
 const getMarqueeText = responseData => { 
-    let text = '';
     const divider = ' | '
+    let text = ''
 
     let liveCallout = responseData.live_callout?.plain_text || null
     if (liveCallout)
@@ -91,6 +91,8 @@ const getMarqueeText = responseData => {
 
         text += shows.join(', ')
     }
+
+    text += divider
     
     return text
 }

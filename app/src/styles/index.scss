@@ -28,9 +28,11 @@ body {
     position: relative;
     width: 100%;
     height: 100%;
-    // calc() doenst work with variable...
-    // the second value shoudl be $nav-height
     min-height: calc(100vh - 110px);
+
+    @media screen and (max-width: $phone-width) {
+        min-height: calc(100vh - 88px);
+    }
 }
 
 .content {
