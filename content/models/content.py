@@ -8,7 +8,7 @@ class Content(models.Model):
     created_at = models.DateTimeField(auto_now=True)
     name = models.CharField(max_length=50)
     info = RichTextField(null=True, blank=True)
-    plain_text = models.CharField(max_length=500, null=True)
+    plain_text = models.CharField(max_length=500, null=True, blank=True)
     active = models.BooleanField(default=True)
 
     class Meta:
