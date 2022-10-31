@@ -55,6 +55,36 @@ body {
     filter: brightness(75%);
 }
 
+#play-button {
+    height: 160px;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+}
+
+.title {
+    position: absolute;
+    bottom: $padding;
+    right: $padding;
+    padding: 6px 12px;
+    font-size: 2em;
+    background: $color-accent;
+    color: $color3;
+
+    &.has-marquee {
+        bottom: 60px;
+    }
+
+    @media screen and (max-width: $phone-width) {
+        &.has-marquee {
+            bottom: 48px;
+        }
+    }
+}
+
 .button {
     color: $color3;
     padding: 8px;
