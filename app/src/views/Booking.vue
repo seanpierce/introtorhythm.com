@@ -118,8 +118,10 @@ export default {
             else
                 this.submitting = true
 
-            if (!this.validate())
+            if (!this.validate()) {
+                this.submitting = false
                 return
+            }
 
             const payload = {
                 name: this.name,
@@ -140,7 +142,7 @@ export default {
                     behavior: 'smooth'
                 })
             } catch(errors) {
-                this.loading = false
+                this.submitting = false
             }
         },
 
