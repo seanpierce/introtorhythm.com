@@ -92,9 +92,13 @@ export default {
         },
 
         bgImage() {
-            return this.$store.state.content.bgImage.bg_image?.active ?
-                this.mediaUrl + this.$store.state.content.bgImage.bg_image.image :
-                this.defaultBg
+            try {
+                return this.$store.state.content.bgImage.bg_image?.active ?
+                    this.mediaUrl + this.$store.state.content.bgImage.bg_image.image :
+                    this.defaultBg
+            } catch {
+                return this.mediaUrl + this.defaultBg
+            }
         },
 
         marqueeText() {
