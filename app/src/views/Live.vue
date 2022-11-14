@@ -92,8 +92,8 @@ export default {
         },
 
         bgImage() {
-            return this.$store.state.content.bgImage?.active ?
-                this.mediaUrl + this.$store.state.content.bgImage.image :
+            return this.$store.state.content.bgImage.bg_image?.active ?
+                this.mediaUrl + this.$store.state.content.bgImage.bg_image.image :
                 this.defaultBg
         },
 

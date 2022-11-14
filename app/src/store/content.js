@@ -26,11 +26,11 @@ const contentStore = {
 
     actions: {
 
-        async getBgImage({ commit, state }) {
-            let response = await apiClient.get('content/backgroundimage')
-            if (state.bgImage != response.data)
-                commit('SET_BG_IMAGE', response.data)
-        },
+        // async getBgImage({ commit, state }) {
+        //     let response = await apiClient.get('content/backgroundimage')
+        //     if (state.bgImage != response.data)
+        //         commit('SET_BG_IMAGE', response.data)
+        // },
 
         async getInfoContent({ commit }) {
             let response = await apiClient.get('content/info')
@@ -55,10 +55,13 @@ const contentStore = {
 
 const getBgImage = responseData => { 
     if (responseData.now_playing && responseData.now_playing.show_image)
-        return responseData.now_playing.show_image
+        return {
+            active: true,
+            image: responseData.now_playing.show_image
+        }
     
     if (responseData.bg_image && responseData.bg_image.image && responseData.bg_image.active)
-        return responseData.bg_image.image
+        return responseData.bg_image
     
     return null
 }
