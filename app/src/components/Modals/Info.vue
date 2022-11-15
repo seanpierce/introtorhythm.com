@@ -7,7 +7,7 @@
             <br>
             <br>
             
-            <div v-html="content.info"></div>
+            <div v-html="content"></div>
             <br>
 
             <br>

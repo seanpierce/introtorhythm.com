@@ -27,7 +27,7 @@ const contentStore = {
     actions: {
         async getInfoContent({ commit }) {
             let response = await apiClient.get('content/info')
-            commit('SET_INFO_CONTENT', response.data)
+            commit('SET_INFO_CONTENT', response.data?.info)
         },
 
         async getContentRefresh({ commit, state }) { 
@@ -60,9 +60,8 @@ const getMarqueeText = responseData => {
     const divider = ' | '
     let text = ''
 
-    let liveCallout = responseData.live_callout?.plain_text || null
-    if (liveCallout)
-        text += `${liveCallout}`
+    if (responseData.live_callout?.active && responseData.live_callout?.content)
+        text += `${responseData.live_callout.content}`
 
     let nowPlaying = responseData.now_playing?.title || null
     if (nowPlaying) { 

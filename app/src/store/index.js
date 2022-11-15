@@ -22,6 +22,7 @@ export default new Vuex.Store({
   actions: {
     initialize({ dispatch }) {
       dispatch('getEpisodes')
+      dispatch('getInfoContent')
       dispatch('getContentRefresh')
     },
 

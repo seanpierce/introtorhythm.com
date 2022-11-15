@@ -10,7 +10,7 @@ class ContentRepository(object):
 
     @staticmethod
     def get_site_info():
-        return SiteInfo.objects.values('content', 'active').first()
+        return SiteInfo.objects.values('info').first()
 
 
     @staticmethod
