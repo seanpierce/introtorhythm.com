@@ -11,8 +11,7 @@ class Info(View):
     Returns 'Info' content.
     """
     def get(self, request, *args, **kwargs):
-        name = self.kwargs['name']
-        data = ContentRepository.get_content_by_name(name)
+        data = ContentRepository.get_site_info()
         return HttpResponse(json.dumps(data), content_type='application/json')
 
 
@@ -38,7 +37,7 @@ class RefreshContent(View):
 
         response = {
             'bg_image': ContentRepository.get_background_image(),
-            'live_callout': ContentRepository.get_content_by_name('Live Callout'),
+            'live_callout': ContentRepository.get_live_callout(),
             'now_playing': ScheduleRepository.get_current_show(),
             'schedule_today': [show for show in ScheduleRepository.get_shows(today, today) if show['start_time'] > hour],
             'schedule_tomorrow': ScheduleRepository.get_shows(tomorrow, tomorrow)

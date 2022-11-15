@@ -1,26 +1,18 @@
-from .models import Content, BackgroundImage
+from .models.content import BackgroundImage, SiteInfo, LiveCallout
 
 class ContentRepository(object):
     """Access layer for reading and writing Content data."""
 
     @staticmethod
-    def get_content_by_name(name):
-        """Returns content data when provided a name alias."""
-        content = Content.objects.filter(active=True, name__iexact=name).first()
+    def get_live_callout():
+        return LiveCallout.objects.values('content', 'active').first()
 
-        if content is None:
-            return None
 
-        return {
-            'id': content.id,
-            'name': content.name,
-            'info': content.info,
-            'active': content.active,
-            'plain_text': content.plain_text
-        }
+    @staticmethod
+    def get_site_info():
+        return SiteInfo.objects.values('content', 'active').first()
 
 
     @staticmethod
     def get_background_image():
-        """Returns the background image url for th econfigured background image."""
         return BackgroundImage.objects.values('image', 'active').first()

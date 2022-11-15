@@ -1,14 +1,6 @@
-from django.conf import settings
 from django.contrib import admin
 from django.utils.html import format_html
-from .models import Content, BackgroundImage
-
-
-class ContentAdmin(admin.ModelAdmin):
-    def get_readonly_fields(self, request, obj=None):
-        if obj:
-            return self.readonly_fields + ('name',)
-        return self.readonly_fields
+from .models.content import SiteInfo, LiveCallout, BackgroundImage
 
 
 class BackgroundImageAdmin(admin.ModelAdmin):
@@ -35,5 +27,21 @@ class BackgroundImageAdmin(admin.ModelAdmin):
         return False
 
 
-admin.site.register(Content, ContentAdmin)
+class LiveCalloutAdmin(admin.ModelAdmin):
+    def has_add_permission(self, request):
+        return False if self.model.objects.count() > 0 else super().has_add_permission(request)
+    
+    def has_delete_permission(self, request, obj=None):
+        return False
+
+
+class SiteInfoAdmin(admin.ModelAdmin):
+    def has_add_permission(self, request):
+        return False if self.model.objects.count() > 0 else super().has_add_permission(request)
+    
+    def has_delete_permission(self, request, obj=None):
+        return False
+
+admin.site.register(SiteInfo, SiteInfoAdmin)
+admin.site.register(LiveCallout, LiveCalloutAdmin)
 admin.site.register(BackgroundImage, BackgroundImageAdmin)
