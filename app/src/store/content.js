@@ -25,13 +25,6 @@ const contentStore = {
     },
 
     actions: {
-
-        // async getBgImage({ commit, state }) {
-        //     let response = await apiClient.get('content/backgroundimage')
-        //     if (state.bgImage != response.data)
-        //         commit('SET_BG_IMAGE', response.data)
-        // },
-
         async getInfoContent({ commit }) {
             let response = await apiClient.get('content/info')
             commit('SET_INFO_CONTENT', response.data)
@@ -44,7 +37,7 @@ const contentStore = {
 
             let bgImage = getBgImage(response.data)
             if (bgImage && state.bgImage != bgImage)
-                commit('SET_BG_IMAGE', response.data)
+                commit('SET_BG_IMAGE', bgImage)
             
             let marqueeText = getMarqueeText(response.data)
             if (marqueeText && state.marqueeText != marqueeText)
@@ -55,13 +48,10 @@ const contentStore = {
 
 const getBgImage = responseData => { 
     if (responseData.now_playing && responseData.now_playing.show_image)
-        return {
-            active: true,
-            image: responseData.now_playing.show_image
-        }
+        return responseData.now_playing.show_image
     
-    if (responseData.bg_image && responseData.bg_image.image && responseData.bg_image.active)
-        return responseData.bg_image
+    if (responseData.bg_image?.active)
+        return responseData.bg_image.image
     
     return null
 }

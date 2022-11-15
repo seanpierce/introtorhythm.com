@@ -93,11 +93,11 @@ export default {
 
         bgImage() {
             try {
-                return this.$store.state.content.bgImage.bg_image?.active ?
-                    this.mediaUrl + this.$store.state.content.bgImage.bg_image.image :
+                return this.$store.state.content.bgImage ?
+                    this.mediaUrl + this.$store.state.content.bgImage :
                     this.defaultBg
             } catch {
-                return this.mediaUrl + this.defaultBg
+                return this.defaultBg
             }
         },
 
