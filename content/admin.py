@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.utils.html import format_html
-from .models.content import SiteInfo, LiveCallout, BackgroundImage
+from .models import SiteInfo, LiveCallout, BackgroundImage
 
 
 class BackgroundImageAdmin(admin.ModelAdmin):
