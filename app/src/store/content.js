@@ -30,10 +30,13 @@ const contentStore = {
             commit('SET_INFO_CONTENT', response.data?.info)
         },
 
+        /**
+         * Method used to refresh live data rendered on the site.
+         * Is called in an interval from the front-end app.
+         */
         async getContentRefresh({ commit, state }) { 
             let response = await apiClient.get('content/refresh')
-
-            console.log(response.data)
+            console.log('Content: ', response.data)
 
             let bgImage = getBgImage(response.data)
             if (bgImage && state.bgImage != bgImage)
@@ -46,16 +49,30 @@ const contentStore = {
     }
 }
 
-const getBgImage = responseData => { 
-    if (responseData.now_playing && responseData.now_playing.show_image)
-        return responseData.now_playing.show_image
-    
+/**
+ * Method used to parse content from the content-refresh API and
+ * return the path to an image that will be rendered on the site.
+ * Will return null if no background image is available, 
+ * and the app will render the default.
+ */
+const getBgImage = responseData => {
+    // Check to see if a specific bg image was set and is active
     if (responseData.bg_image?.active)
         return responseData.bg_image.image
-    
+
+    // Check to see if a there is a current show that is now playing
+    // If so, use the show's associated image, if applicable
+    if (responseData.now_playing && responseData.now_playing.show_image)
+        return responseData.now_playing.show_image
+
     return null
 }
 
+/**
+ * Method used to parse content from the content-refresh API and
+ * concatenate a string of text used in the scrolling marquee
+ * on the site.
+ */
 const getMarqueeText = responseData => { 
     const divider = ' | '
     let text = ''
