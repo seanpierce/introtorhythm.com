@@ -1,4 +1,4 @@
-from .models import BackgroundImage, SiteInfo, LiveCallout
+from content.models import BackgroundImage, SiteInfo, LiveCallout
 
 class ContentRepository(object):
     """Access layer for reading and writing Content data."""

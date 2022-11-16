@@ -1,5 +1,4 @@
 import datetime
-from schedule.models import Show
 from .query_helpers import QueryHelpers as Query
 
 class ScheduleRepository:
