@@ -1,7 +1,7 @@
 <template>
     <div class="schedule-card">
         {{ show.title }}<br>
-        <span class="show-date">{{ date }} at {{ startTime }}</span>
+        <span class="show-date">{{ date }} {{ startTime }} - {{ endTime }}</span>
 
         <div v-if="image">
             <img class="show-image" :src="image" :alt="show.title">
@@ -12,6 +12,9 @@
 <script>
 import moment from 'moment'
 const mediaUrl = process.env.VUE_APP_MEDIA_URL
+const dateTimeFormat = 'YYYY-MM-DD hh:mm:ss'
+const dateFormat = 'MM/DD/YYYY'
+const timeFormat = 'hh:mma'
 
 export default {
     props: {
@@ -22,11 +25,15 @@ export default {
 
     computed: {
         date() {
-            return moment(this.show.date, 'YYYY-MM-DD').format('MM/DD/YYYY')
+            return moment(this.show.start_date_time, dateTimeFormat).format(dateFormat)
         },
 
         startTime() {
-            return moment(this.show.start_time, 'h').format('hh:mm a')
+            return moment(this.show.start_date_time, dateTimeFormat).format(timeFormat)
+        },
+
+        endTime() {
+            return moment(this.show.end_date_time, dateTimeFormat).format(timeFormat)
         },
 
         image() {

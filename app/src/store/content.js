@@ -1,5 +1,7 @@
 import moment from 'moment'
 const apiClient = require('@/utilities/apiClient')
+const dateTimeFormat = 'YYYY-MM-DD hh:mm:ss'
+const timeFormat = 'hh:mma'
 
 const contentStore = {
 
@@ -96,7 +98,7 @@ const getMarqueeText = responseData => {
 
         let shows = []
         responseData.schedule_today.forEach(show => { 
-            let startTime = moment(show.start_time, 'h').format('hh:mm a')
+            let startTime = moment(show.start_date_time, dateTimeFormat).format(timeFormat)
             shows.push(`${show.title} at ${startTime}`)
         })
 
@@ -111,7 +113,7 @@ const getMarqueeText = responseData => {
 
         let shows = []
         responseData.schedule_tomorrow.forEach(show => { 
-            let startTime = moment(show.start_time, 'h').format('hh:mm a')
+            let startTime = moment(show.start_date_time, dateTimeFormat).format(timeFormat)
             shows.push(`${show.title} at ${startTime}`)
         })
 
