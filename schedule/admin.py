@@ -65,6 +65,7 @@ class UpcomingShowAdmin(admin.ModelAdmin):
     list_filter = [UpcomingFilter, 'active']
     list_display = ['title', 'date', 'start_time']
     actions = ['mark_shows_active', 'mark_shows_inactive']
+    exclude = ['start_date_time', 'end_date_time']
 
     def mark_shows_active(self, request, queryset):
         queryset.update(active=True)

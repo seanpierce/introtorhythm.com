@@ -13,17 +13,22 @@ class ScheduleRepository:
         """
 
         sql = """
-            select s.*, strftime(s.created_at) as created_at, strftime(s.date) as date
-            from schedule_show s
-            where date = %s
-            and start_time = %s
+            select 
+                id,
+                title,
+                info,
+                show_image,
+                strftime(start_date_time) as start_date_time,
+                strftime(end_date_time) as end_date_time
+            from schedule_show
+            where start_date_time < %s
+            and end_date_time > %s
             and active = 1
         """
 
-        date = datetime.date.today()
-        hour = datetime.datetime.now().hour
+        now = datetime.datetime.now()
 
-        return Query.single(sql , [date, hour])
+        return Query.single(sql , [now, now])
 
 
     @staticmethod
@@ -33,8 +38,14 @@ class ScheduleRepository:
         """
 
         sql = """
-            select s.*, strftime(s.created_at) as created_at, strftime(s.date) as date
-            from schedule_show s
+            select 
+                id,
+                title,
+                info,
+                show_image,
+                strftime(start_date_time) as start_date_time,
+                strftime(end_date_time) as end_date_time
+            from schedule_show
             where active = 1
             and date between %s and %s
             order by date, start_time

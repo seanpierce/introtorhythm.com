@@ -34,3 +34,10 @@ TIMES = [
     (22, '10 pm'),
     (23, '11 pm'),
 ]
+
+DURATION = [
+    (1, '1 hour'),
+    (2, '2 hours'),
+    (3, '3 hours'),
+    (4, '4 hours'),
+]
