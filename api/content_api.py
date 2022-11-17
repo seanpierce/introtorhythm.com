@@ -1,5 +1,6 @@
 import datetime
 import json
+from dateutil import parser
 from django.http import HttpResponse
 from django.views.generic import View
 from repositories.content import ContentRepository
@@ -33,13 +34,12 @@ class RefreshContent(View):
     def get(self, request, *args, **kwargs):
         today = datetime.date.today()
         tomorrow = today + datetime.timedelta(days=1)
-        hour = datetime.datetime.now().hour
 
         response = {
             'bg_image': ContentRepository.get_background_image(),
             'live_callout': ContentRepository.get_live_callout(),
             'now_playing': ScheduleRepository.get_current_show(),
-            'schedule_today': [show for show in ScheduleRepository.get_shows(today, today) if show['start_time'] > hour],
+            'schedule_today': [show for show in ScheduleRepository.get_shows(today, today) if parser.parse(show['start_date_time']) > datetime.datetime.now()],
             'schedule_tomorrow': ScheduleRepository.get_shows(tomorrow, tomorrow)
         }
 
