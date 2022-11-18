@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: executing remote ssh commands using password
-      uses: introtorhythm.com/ssh-action@master
+      uses: appleboy/ssh-action@master
       with:
         host: introtorhythm.com
         username: ${{ secrets.SSH_SERVER_AGENT_USER }}
