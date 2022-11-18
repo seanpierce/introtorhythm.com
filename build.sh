@@ -15,5 +15,5 @@ cd app
 yarn build
 
 # use password supplied by github agent
-echo $1 | sudo -S systemctlrestart gunicorn
-echo $1 | sudo -S systemctlrestart nginx
+echo $1 | sudo -S systemctl restart gunicorn
+echo $1 | sudo -S systemctl restart nginx
