@@ -2,7 +2,7 @@ import pytz
 from datetime import datetime, timedelta
 from django.db import models
 from django.dispatch import receiver
-from .helpers import TIMES, DURATION
+from schedule.helpers import TIMES, DURATION
 
 
 class Show(models.Model):
