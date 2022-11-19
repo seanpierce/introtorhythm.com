@@ -21,8 +21,8 @@ jobs:
           script: |
             cd /home/seanpierce/www/introtorhythm.com
             git pull origin master
-            pip install --upgrade pip
             source venv/bin/activate
+            pip install --upgrade pip
             pip install -r ./requirements.txt
             python manage.py migrate
             python manage.py collectstatic --noinput
@@ -30,4 +30,3 @@ jobs:
             yarn build
             echo "${{ secrets.SSH_SERVER_AGENT_PASSWORD }}" | sudo -S systemctl restart gunicorn
             echo "${{ secrets.SSH_SERVER_AGENT_PASSWORD }}" | sudo -S systemctl restart nginx
-            echo "=========== SUCCESS ============="
