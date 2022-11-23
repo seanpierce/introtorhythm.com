@@ -3,7 +3,7 @@ from .helpers import TIMES
 from django.contrib import admin
 from django.utils.encoding import force_text
 from django.utils.html import format_html
-from .models import Show
+from .models import Show, LiveRecording
 
 class UpcomingFilter(admin.SimpleListFilter):
     title = 'Upcoming'
@@ -95,11 +95,35 @@ class UpcomingShowAdmin(admin.ModelAdmin):
             if obj is not None and obj.show_image:
                 return format_html(img_html.format(obj.show_image.url, obj.show_image.url))
             else:
-                return 'Not available'
+                return 'No image available'
         except:
-            return 'Not available'
+            return 'No image available'
+
+    image_tag.short_description = 'Image'
+
+
+class LiveRecordingAdmin(admin.ModelAdmin):
+    search_fields = ['title', 'info']
+    list_display = ['title', 'start_date_time', 'image_tag']
+    # actions = ['publish']
+    exclude = ['start_date_time', 'image_tag']
+
+    def image_tag(self, obj):
+        img_html = """
+            <img src="{}" 
+                onclick="window.open('{}', '_blank')"
+                style="cursor:pointer;max-height:150px;max-width:150px;" />
+        """
+        try:
+            if obj is not None and obj.show_image:
+                return format_html(img_html.format(obj.show_image.url, obj.show_image.url))
+            else:
+                return 'No image available'
+        except:
+            return 'No image available'
 
     image_tag.short_description = 'Image'
 
 
 admin.site.register(Show, UpcomingShowAdmin)
+admin.site.register(LiveRecording, LiveRecordingAdmin)

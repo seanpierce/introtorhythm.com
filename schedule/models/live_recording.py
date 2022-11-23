@@ -12,7 +12,7 @@ class LiveRecording(models.Model):
     info = models.TextField(default=None, blank=True, null=True)
     start_date_time = models.DateTimeField(null=True)
     show_image = models.ImageField(upload_to='live-recordins/images/', max_length=500, blank=True)
-    show_recording = models.FieldFile(upload_to="live-recordings/audio")
+    show_recording = models.FileField(upload_to="live-recordings/audio")
 
     class Meta:
         ordering = ['start_date_time']
@@ -26,7 +26,7 @@ def pre_save(sender, instance, **kwargs):
     """
     Method that is executed before the instance is saved to the database.
     """
-    auto_delete_file_on_change(instance)
+    auto_delete_files_on_change(instance)
 
 
 @receiver(models.signals.post_delete, sender=LiveRecording)
@@ -34,10 +34,10 @@ def post_delete(sender, instance, using, **kwargs):
     """
     Method that is executed after the instance is deleted from the database.
     """
-    delete_file_when_instance_is_deleted(instance)
+    delete_files_when_instance_is_deleted(instance)
 
 
-def auto_delete_file_on_change(instance):
+def auto_delete_files_on_change(instance):
     """
     Deletes old image and audio files from filesystem (AWS S3)
     when corresponding `Image`, or `File` object is updated
@@ -62,7 +62,7 @@ def auto_delete_file_on_change(instance):
         old_audio_file.delete(save=False)
 
 
-def delete_file_when_instance_is_deleted(instance):
+def delete_files_when_instance_is_deleted(instance):
     """
     Deletes image and audio files from filesystem (AWS S3)
     when corresponding record is deleted.
