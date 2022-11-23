@@ -17,6 +17,7 @@ class Episode(models.Model):
     audio = models.FileField(upload_to='episodes/audio/', max_length=500, default='assets/not-found.mp3')
     active = models.BooleanField(default=True)
     featured = models.BooleanField(default=False)
+    expiration_date = models.DateTimeField(blank=True, null=True)
 
     class Meta:
         ordering = ['-number']
