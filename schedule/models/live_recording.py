@@ -13,6 +13,7 @@ class LiveRecording(models.Model):
     start_date_time = models.DateTimeField(null=True)
     show_image = models.ImageField(upload_to='live-recordins/images/', max_length=500, blank=True)
     show_recording = models.FileField(upload_to="live-recordings/audio")
+    processed = models.BooleanField(default=False)
 
     class Meta:
         ordering = ['start_date_time']
@@ -46,9 +47,11 @@ def auto_delete_files_on_change(instance):
     if not instance.pk:
         return None
 
+    live_recording = LiveRecording.objects.get(pk=instance.pk)
+
     try:
-        old_image_file = LiveRecording.objects.get(pk=instance.pk).show_image
-        old_audio_file = LiveRecording.objects.get(pk=instance.pk).show_recording
+        old_image_file = live_recording.show_image
+        old_audio_file = live_recording.show_recording
     except:
         return None
 
@@ -67,5 +70,7 @@ def delete_files_when_instance_is_deleted(instance):
     Deletes image and audio files from filesystem (AWS S3)
     when corresponding record is deleted.
     """
-    instance.show_image.delete(save=False)
-    instance.show_recording.delete(save=False)
+    # if the instance is not processed, then delete the media assets
+    if not instance.processed:
+        instance.show_image.delete(save=False)
+        instance.show_recording.delete(save=False)
