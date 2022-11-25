@@ -52,3 +52,19 @@ class ScheduleRepository:
         """
 
         return Query.many(sql, [startDate, endDate])
+
+
+    @staticmethod
+    def get_show_by_date_and_hour(date:str, hour:int):
+        sql = """
+        select
+            id,
+            title,
+            info,
+            show_image,
+            strftime(start_date_time) as start_date_time
+        from schedule_show
+        where date = %s and start_time = %s
+        """
+
+        return Query.single(sql, [date, hour])
