@@ -1,9 +1,9 @@
 import json
 from django.http import HttpResponse
 from django.views.generic import View
-from .api_helper import ApiHelper
 from .decorators import header_auth
 from repositories.schedule import ScheduleRepository
+from schedule.schedule_service import ScheduleService
 
 
 class ProcessLiveRecording(View):
@@ -18,14 +18,14 @@ class ProcessLiveRecording(View):
         file = request.FILES['recording']
         
         # get date and hour of show
-        date_string = ApiHelper.get_date_string_from_filename(file.name)
-        hour = ApiHelper.get_hour_from_filename(file.name)
+        date_string = ScheduleService.get_date_string_from_filename(file.name)
+        hour = ScheduleService.get_hour_from_filename(file.name)
         
         # reference shows table to get content
         show = ScheduleRepository.get_show_by_date_and_hour(date_string, hour)
 
         # save live recording to db
         if show is not None:
-            ApiHelper.save_live_recording(show, file)
+            ScheduleService.save_live_recording(show, file)
 
         return HttpResponse(json.dumps(True), content_type='application/json')

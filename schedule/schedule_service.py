@@ -1,26 +1,9 @@
-import configparser
 import datetime
 
-from schedule.models.live_recording import LiveRecording
-from schedule.models.live_recording_admin import get_episode_content
+from .models.live_recording import LiveRecording
+from .models.live_recording_admin import get_episode_content
 
-
-class ApiHelper:
-    """
-    Helper class for API processes.
-    """
-
-    @staticmethod
-    def verify_header_secret(secret:str, header:str, request) -> bool:
-        """
-        Method used to verify supplied header secrets against configured variables.
-        """
-        config = configparser.RawConfigParser()
-        config.read('./env.ini')
-        config_secret = config.get('Secrets', secret)
-        header_secret = request.request.headers[header]
-        return config_secret == header_secret
-
+class ScheduleService:
 
     @staticmethod
     def get_date_string_from_filename(filename:str) -> str:

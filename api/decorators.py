@@ -1,5 +1,5 @@
+import configparser
 from django.http import HttpResponseBadRequest
-from .api_helper import ApiHelper
 
 def header_auth(secret:str, header:str):
     """
@@ -8,7 +8,12 @@ def header_auth(secret:str, header:str):
     """
     def decorator(func):
         def wrapper(request, *args, **kwargs):
-            if not ApiHelper.verify_header_secret(secret, header, request):
+            config = configparser.RawConfigParser()
+            config.read('./env.ini')
+            config_secret = config.get('Secrets', secret)
+            header_secret = request.request.headers[header]
+            valid = config_secret == header_secret
+            if not valid:
                 return HttpResponseBadRequest()
             else:
                 return func(request, *args, **kwargs)
