@@ -27,5 +27,7 @@ class ProcessLiveRecording(View):
         # save live recording to db
         if show is not None:
             ScheduleService.save_live_recording(show, file)
+        else:
+            ScheduleService.save_live_recording_without_show(file)
 
         return HttpResponse(json.dumps(True), content_type='application/json')
