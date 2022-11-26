@@ -12,7 +12,7 @@ class LiveRecording(models.Model):
     info = models.TextField(default=None, blank=True, null=True)
     start_date_time = models.DateTimeField(null=True)
     show_image = models.ImageField(upload_to='live-recordins/images/', max_length=500, blank=True)
-    show_recording = models.FileField(upload_to="live-recordings/audio")
+    show_recording = models.FileField(upload_to="live-recordings/audio", max_length=500, blank=True)
     processed = models.BooleanField(default=False)
 
     class Meta:
@@ -20,6 +20,19 @@ class LiveRecording(models.Model):
 
     def __str__(self):
         return self.title
+
+    def complete(self):
+        if (
+            self.title is not None and 
+            self.info is not None and
+            self.start_date_time is not None and
+            self.show_image is not None and
+            self.show_recording is not None
+        ):
+            return True
+        else:
+            return False
+
 
 
 @receiver(models.signals.pre_save, sender=LiveRecording)
