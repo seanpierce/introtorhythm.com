@@ -8,19 +8,24 @@ from repositories.schedule import ScheduleRepository
 
 class ProcessLiveRecording(View):
     """
-    Initiates the schedule process which checks for a
-    shceudled show in the database. If found, the process
-    reconfigures ezstream to run the scheduled show's file.
+    Based on a posted file's filename, collects data from the scheduled shows tables 
+    to create and save a new instance of a LiveRecording.
     """
 
     @header_auth('PROCESS_LIVE_RECORDING_AUTH', 'X-PROCESS-LIVE-RECORDING-AUTH-SECRET')
     def post(self, request):
 
         file = request.FILES['recording']
+        
         # get date and hour of show
         date_string = ApiHelper.get_date_string_from_filename(file.name)
         hour = ApiHelper.get_hour_from_filename(file.name)
+        
         # reference shows table to get content
         show = ScheduleRepository.get_show_by_date_and_hour(date_string, hour)
+
         # save live recording to db
-        return HttpResponse(json.dumps(show), content_type='application/json')
+        if show is not None:
+            ApiHelper.save_live_recording(show, file)
+
+        return HttpResponse(json.dumps(True), content_type='application/json')

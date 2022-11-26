@@ -1,4 +1,9 @@
 import configparser
+import datetime
+
+from schedule.models.live_recording import LiveRecording
+from schedule.models.live_recording_admin import get_episode_content
+
 
 class ApiHelper:
     """
@@ -20,6 +25,8 @@ class ApiHelper:
     @staticmethod
     def get_date_string_from_filename(filename:str) -> str:
         """
+        When supplied a filename, returns a string 
+        representing the date a scheduled show took place.
         ex: ITR_rec_20221123-090448.mp3
         """
 
@@ -32,6 +39,8 @@ class ApiHelper:
     @staticmethod
     def get_hour_from_filename(filename:str) -> int:
         """
+        When supplied a filename, returns an int 
+        representing the start hour of a scheduled show.
         ex: ITR_rec_20221123-090448.mp3
         """
 
@@ -47,3 +56,18 @@ class ApiHelper:
             hour = hour + 1
 
         return hour
+
+
+    @staticmethod
+    def save_live_recording(show:dict, file):
+        """
+        Persists a LiveRecording to the database.
+        """
+
+        live_recording = LiveRecording()
+        live_recording.title = show['title']
+        live_recording.show_image = show['show_image'] if show['show_image'] is not None else None
+        live_recording.show_recording.save(file.name, file)
+        live_recording.start_date_time = datetime.datetime.strptime(show['start_date_time'], '%Y-%m-%d %X')
+        live_recording.info = get_episode_content(live_recording)
+        live_recording.save()

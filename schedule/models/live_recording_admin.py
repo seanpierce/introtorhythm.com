@@ -49,9 +49,13 @@ class LiveRecordingAdmin(admin.ModelAdmin):
                 continue
 
 
-def get_episode_content(episdoe:Episode, live_recording:LiveRecording):
-    air_date = live_recording.start_date_time.strftime("%m/%d/%Y")
-    return f'"{episdoe.title}" streamed live from Musique Plastique on {air_date}.'
+def get_episode_content(live_recording:LiveRecording):
+    if not live_recording.pk:
+        air_date = live_recording.start_date_time.strftime("%m/%d/%Y")
+    else:
+        air_date = live_recording.start_date_time.strftime("%m/%d/%Y")
+        
+    return f'"{live_recording.title}" streamed live from Musique Plastique on {air_date}.'
 
 
 def process_live_recording(live_recording:LiveRecording):

@@ -56,9 +56,12 @@ class ScheduleRepository:
 
     @staticmethod
     def get_show_by_date_and_hour(date:str, hour:int):
+        """
+        Method used to collect scheduled show information when supplied a date and start hour.
+        """
+
         sql = """
         select
-            id,
             title,
             info,
             show_image,
