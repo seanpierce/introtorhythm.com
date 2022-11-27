@@ -1,5 +1,5 @@
 import datetime
-from .query_helpers import QueryHelpers as Query
+from helpers.query_helper import QueryHelper as Query
 
 class ScheduleRepository:
     """
@@ -52,3 +52,22 @@ class ScheduleRepository:
         """
 
         return Query.many(sql, [startDate, endDate])
+
+
+    @staticmethod
+    def get_show_by_date_and_hour(date:str, hour:int):
+        """
+        Method used to collect scheduled show information when supplied a date and start hour.
+        """
+
+        sql = """
+        select
+            title,
+            info,
+            show_image,
+            strftime(start_date_time) as start_date_time
+        from schedule_show
+        where date = %s and start_time = %s
+        """
+
+        return Query.single(sql, [date, hour])

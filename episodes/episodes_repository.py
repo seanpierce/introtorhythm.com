@@ -1,5 +1,4 @@
-from episodes.models import Episode
-from .query_helpers import QueryHelpers as Query
+from helpers.query_helper import QueryHelper as Query
 
 class EpisodesRepository:
     """
@@ -38,3 +37,16 @@ class EpisodesRepository:
         params = [number]
 
         return Query.single(sql, params)
+
+    
+    @staticmethod
+    def get_max_episode_number():
+        """
+        Returns the largest episode number from the episodes table.
+        """
+
+        sql = """
+            select max(number) as number from episodes_episode
+        """
+
+        return Query.single(sql)

@@ -3,7 +3,7 @@ import os
 import glob
 import datetime
 import xml.etree.ElementTree as XML
-from repositories.schedule import ScheduleRepository as repo
+from schedule.schedule_repository import ScheduleRepository as repo
 
 def delete_existing_config():
     """Deletes any existing pid or config files."""

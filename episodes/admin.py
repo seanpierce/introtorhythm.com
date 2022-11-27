@@ -9,6 +9,11 @@ class EpisodeAdmin(admin.ModelAdmin):
     list_display_links = ['title']
     actions = ['mark_episodes_active', 'mark_episodes_inactive']
 
+    def get_readonly_fields(self, request, obj=None):
+        if obj:
+            return self.readonly_fields + ('expiration_date',)
+        return self.readonly_fields
+
     def mark_episodes_active(self, request, queryset):
         queryset.update(active=True)
 
