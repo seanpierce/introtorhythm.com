@@ -1,4 +1,5 @@
-from content.models.content import SiteInfo, LiveCallout
+from content.models.site_info import SiteInfo
+from content.models.live_callout import LiveCallout
 from django.core.management.base import BaseCommand
 
 class Command(BaseCommand):
