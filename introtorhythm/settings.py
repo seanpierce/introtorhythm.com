@@ -55,7 +55,6 @@ INSTALLED_APPS = [
     'schedule',
     'ckeditor',
     'api',
-    'repositories'
 ]
 
 MIDDLEWARE = [

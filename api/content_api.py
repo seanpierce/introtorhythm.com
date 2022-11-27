@@ -3,8 +3,8 @@ import json
 from dateutil import parser
 from django.http import HttpResponse
 from django.views.generic import View
-from repositories.content import ContentRepository
-from repositories.schedule import ScheduleRepository
+from content.content_repository import ContentRepository
+from schedule.schedule_repository import ScheduleRepository
 
 
 class Info(View):

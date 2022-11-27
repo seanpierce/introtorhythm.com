@@ -2,7 +2,7 @@ import json
 from django.http import HttpResponse
 from django.views.generic import View
 from .decorators import header_auth
-from repositories.schedule import ScheduleRepository
+from schedule.schedule_repository import ScheduleRepository
 from schedule.schedule_service import ScheduleService
 
 

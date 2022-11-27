@@ -1,7 +1,7 @@
 import json
 from django.http import HttpResponse
 from django.views.generic import View
-from repositories.episodes import EpisodesRepository as repo
+from episodes.episodes_repository import EpisodesRepository as repo
 
 
 class All(View):

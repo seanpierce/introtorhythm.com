@@ -1,7 +1,7 @@
 from django.db import connection
 
 
-class QueryHelpers:
+class QueryHelper:
     """
     Helper class for serializing django query sets.
     """

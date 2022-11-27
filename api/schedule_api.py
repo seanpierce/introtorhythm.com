@@ -3,7 +3,7 @@ import datetime
 import json
 from django.http import HttpResponse
 from django.views.generic import View
-from repositories.schedule import ScheduleRepository as repo
+from schedule.schedule_repository import ScheduleRepository as repo
 from schedule import scheduler
 
 

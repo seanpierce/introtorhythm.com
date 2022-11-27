@@ -1,5 +1,5 @@
 import datetime
-from .query_helpers import QueryHelpers as Query
+from helpers.query_helper import QueryHelper as Query
 
 class ScheduleRepository:
     """

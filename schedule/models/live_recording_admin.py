@@ -4,7 +4,7 @@ from episodes.models import Episode
 from django.utils.html import format_html
 from schedule.models import LiveRecording
 from schedule.schedule_service import ScheduleService
-from repositories.episodes import EpisodesRepository
+from episodes.episodes_repository import EpisodesRepository
 
 
 class LiveRecordingAdmin(admin.ModelAdmin):
