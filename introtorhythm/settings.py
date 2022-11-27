@@ -173,7 +173,6 @@ AWS_SECRET_ACCESS_KEY = CONFIG.get('AWS Secret Keys', 'AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = 'podcasts.introtorhythm.com'
 AWS_DEFAULT_ACL = 'public-read'
 AWS_MEDIA_URL = 'https://s3.amazonaws.com/%s/media/' % AWS_STORAGE_BUCKET_NAME
-
 AWS_S3_OBJECT_PARAMETERS = {
     'CacheControl': 'max-age=86400',
 }
