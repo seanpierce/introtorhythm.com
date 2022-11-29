@@ -42,7 +42,7 @@ class LiveRecordingAdmin(admin.ModelAdmin):
                 episode = Episode()
                 episode.title = live_recording.title
                 episode.number = f"{max_number:03}"
-                episode.content = ScheduleService.get_episode_content(episode, live_recording)
+                episode.content = ScheduleService.get_episode_content(live_recording)
                 episode.image = live_recording.show_image if live_recording.show_image is not None else None
                 episode.audio = live_recording.show_recording
                 episode.expiration_date = exp_date
