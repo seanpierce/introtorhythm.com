@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'schedule',
     'ckeditor',
     'api',
+    'image_generator'
 ]
 
 MIDDLEWARE = [
