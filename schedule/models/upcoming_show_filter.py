@@ -38,14 +38,15 @@ class UpcomingFilter(admin.SimpleListFilter):
             return queryset.filter(
                 date__gte = datetime.date.today()
             )
+
         if self.value() == 'Past':
             return queryset.filter(
                 date__lte = datetime.date.today()
-            )
+            ).order_by('-date', '-end_date_time')
 
     def choices(self, changelist):
         """
-        Override to remiove the 'All' option for this filter.
+        Override to remove the 'All' option for this filter.
         """
 
         yield {
