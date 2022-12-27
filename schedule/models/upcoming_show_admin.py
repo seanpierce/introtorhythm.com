@@ -23,7 +23,10 @@ class UpcomingShowAdmin(admin.ModelAdmin):
         Value is formatted using the TIMES helper.
         ex: if the hour is 18, field would show 6 pm.
         """
-        return TIMES[obj.end_date_time.hour][1]
+        if obj is None or obj.end_date_time is None:
+            return None
+        
+        return TIMES[obj.end_date_time.hour]
 
     get_formatted_end_time.short_description = 'End Time'
 

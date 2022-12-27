@@ -12,7 +12,16 @@ class EpisodesRepository:
         """
 
         sql = """
-            select e.*, strftime(e.created_at) as created_at
+            select 
+                e.title,
+                e.number,
+                e.content,
+                e.image,
+                e.image,
+                e.audio,
+                e.active,
+                e.tags,
+                strftime(e.created_at) as created_at
             from episodes_episode e
             where active = 1
             order by e.number desc
