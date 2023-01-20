@@ -19,7 +19,8 @@ class Show(models.Model):
     start_date_time = models.DateTimeField(null=True)
     end_date_time = models.DateTimeField(null=True)
     active = models.BooleanField(default=True)
-    show_image = models.ImageField(upload_to='shows/images/', max_length=500, blank=True)
+    show_image = models.ImageField(upload_to='shows/images/', max_length=500, blank=True, help_text='The show\'s image that will be displayed on the site while the show is live.')
+    show_flyer = models.ImageField(upload_to='shows/images/', max_length=500, blank=True, help_text='The show\'s flyer that will be used on the schedule page and for social media.')
 
     class Meta:
         ordering = ['date', 'start_time']
@@ -35,7 +36,7 @@ def pre_save(sender, instance, **kwargs):
     Method that is executed before the instance is saved to the database.
     """
     set_end_date_time(instance)
-    auto_delete_file_on_change(instance)
+    auto_delete_files_on_change(instance)
 
 
 @receiver(models.signals.post_delete, sender=Show)
@@ -43,7 +44,7 @@ def post_delete(sender, instance, using, **kwargs):
     """
     Method that is executed after the instance is deleted from the database.
     """
-    delete_file_when_instance_is_deleted(instance)
+    delete_files_when_instance_is_deleted(instance)
 
 
 def set_end_date_time(instance):
@@ -62,9 +63,9 @@ def set_end_date_time(instance):
     instance.end_date_time = instance.start_date_time + timedelta(hours=instance.duration)
 
 
-def auto_delete_file_on_change(instance):
+def auto_delete_files_on_change(instance):
     """
-    Deletes old image from filesystem (AWS S3)
+    Deletes old image(s) from filesystem (AWS S3)
     when corresponding `Image` object is updated
     with new file.
     """
@@ -72,19 +73,25 @@ def auto_delete_file_on_change(instance):
         return None
 
     try:
-        old_file = Show.objects.get(pk=instance.pk).show_image
+        old_image = Show.objects.get(pk=instance.pk).show_image
+        old_flyer = Show.objects.get(pk=instance.pk).show_flyer
     except:
         return None
 
-    new_file = instance.show_image
+    new_image = instance.show_image
+    new_flyer = instance.show_flyer
 
-    if not old_file == new_file:
-        old_file.delete(save=False)
+    if not old_image == new_image:
+        old_image.delete(save=False)
+
+    if not old_flyer == new_flyer:
+        old_flyer.delete(save=False)
 
 
-def delete_file_when_instance_is_deleted(instance):
+def delete_files_when_instance_is_deleted(instance):
     """
-    Deletes image from filesystem (AWS S3)
+    Deletes image(s) from filesystem (AWS S3)
     when corresponding `Image` record is deleted.
     """
     instance.show_image.delete(save=False)
+    instance.show_flyer.delete(save=False)

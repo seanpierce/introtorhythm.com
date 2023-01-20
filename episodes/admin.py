@@ -11,6 +11,13 @@ class EpisodeAdmin(admin.ModelAdmin):
     exclude = ['expiration_date']
 
 
+    def get_form(self, *args, **kwargs):
+        help_texts = {
+            'display_expiration_method': 'Determines the date that an episode will expire. Once expired, all data and associated media will be purged. Expiration date is dependent upon the values of the active and featured toggles.'
+        }
+        kwargs.update({'help_texts': help_texts})
+        return super().get_form(*args, **kwargs)
+
     def display_expiration_method(self, obj):
         return obj.expiration_date
 

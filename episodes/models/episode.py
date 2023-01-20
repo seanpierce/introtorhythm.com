@@ -15,11 +15,11 @@ class Episode(models.Model):
     title = models.CharField(max_length=255)
     number = models.CharField(max_length=3)
     content = RichTextField()
-    tags = models.CharField(max_length=255, default='', blank=True, null=True, help_text='comma separated. ex: "funk, house, soca disco"')
-    image = models.ImageField(upload_to = 'episodes/images/', max_length = 500, default = None)
+    tags = models.CharField(max_length=255, default='', blank=True, null=True, help_text='Comma separated. ex: "funk, house, soca disco".')
+    image = models.ImageField(upload_to = 'episodes/images/', max_length = 500, default = None, help_text='Used as the background image for the episode.')
     audio = models.FileField(upload_to = 'episodes/audio/', max_length = 500, default = None)
-    active = models.BooleanField(default=True)
-    featured = models.BooleanField(default=False)
+    active = models.BooleanField(default=True, help_text='Determines whether or not an episode will be visible on the front-end of the website.')
+    featured = models.BooleanField(default=False, help_text='If featured, an episode will persist indefinitely without expiration. Even when featured, the episode must be active to be viewed in the front-end.')
     expiration_date = models.DateTimeField(blank=True, null=True)
 
     class Meta:
