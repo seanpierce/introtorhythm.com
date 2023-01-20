@@ -42,10 +42,13 @@ export default {
         },
 
         image() {
-            if (!this.show.show_image)
-                return null
-            
-            return `${mediaUrl}${this.show.show_image}`
+            if (this.show.show_flyer)
+                return `${mediaUrl}${this.show.show_flyer}`
+
+            if (this.show.show_image)
+                return `${mediaUrl}${this.show.show_image}`
+                
+            return null
         }
     }
 }
