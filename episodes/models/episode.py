@@ -1,4 +1,5 @@
 import boto3
+import datetime
 import io
 import os
 from ckeditor.fields import RichTextField
@@ -12,12 +13,12 @@ class Episode(models.Model):
     title = models.CharField(max_length=255)
     number = models.CharField(max_length=3)
     content = RichTextField()
-    tags = models.CharField(max_length=255, default='', help_text='comma separated. ex: "funk, house, soca disco"')
-    image = models.ImageField(upload_to='episodes/images/', max_length=500, default='assets/not-found.jpg')
-    audio = models.FileField(upload_to='episodes/audio/', max_length=500, default='assets/not-found.mp3')
+    tags = models.CharField(max_length=255, default='', blank=True, null=True, help_text='comma separated. ex: "funk, house, soca disco"')
+    image = models.ImageField(upload_to = 'episodes/images/', max_length = 500, default = None)
+    audio = models.FileField(upload_to = 'episodes/audio/', max_length = 500, default = None)
     active = models.BooleanField(default=True)
     featured = models.BooleanField(default=False)
-    expiration_date = models.DateTimeField(blank=True, null=True)
+    expiration_date = models.DateTimeField(blank=True, null=True, default=datetime.datetime.now() + datetime.timedelta(days=30))
 
     class Meta:
         ordering = ['-number']
