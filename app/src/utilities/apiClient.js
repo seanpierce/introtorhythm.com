@@ -45,7 +45,7 @@ let handleError = error => {
     throw error
 }
 
-export default {
+export {
     get,
     post,
     put,
