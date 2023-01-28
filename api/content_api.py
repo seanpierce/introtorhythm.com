@@ -26,6 +26,16 @@ class BackgroundImage(View):
         return HttpResponse(json.dumps(data), content_type='application/json')
 
 
+class CallInNumber(View):
+    """
+    API endpoint used to fetch the current call-in number that is set in the admin portal.
+    """
+
+    def get(self, request, *args, **kwargs):
+        data = ContentRepository.get_call_in_number()
+        return HttpResponse(json.dumps(data), content_type='application/json')        
+
+
 class RefreshContent(View):
     """
     Polls for updated live content for display in the UI.

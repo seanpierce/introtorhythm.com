@@ -12,6 +12,7 @@ urlpatterns = [
     path('content/backgroundimage', content_api.BackgroundImage.as_view()),
     path('content/refresh', content_api.RefreshContent.as_view()),
     path('content/info', content_api.Info.as_view()),
+    path('content/call-in', content_api.CallInNumber.as_view()),
     path('subscribers/request', subscribers_api.RequestSubscription.as_view()),
     path('subscribers/confirm/<token>', subscribers_api.ConfirmSubscription.as_view()),
     path('subscribers/unsubscribe', subscribers_api.Unsubscribe.as_view()),
