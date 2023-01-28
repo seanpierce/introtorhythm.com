@@ -1,5 +1,5 @@
 <script>
-import apiClient from '@/utilities/apiClient'
+const apiClient = require('@/utilities/apiClient')
 
 export default {
     methods: {
