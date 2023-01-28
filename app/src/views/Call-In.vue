@@ -7,7 +7,7 @@ export default {
             apiClient.get('content/call-in')
                 .then(response => {
                     let link = document.createElement('a')
-                    link.href = `tel:${response.phone_number}`
+                    link.href = `tel:${response.data.phone_number}`
                     link.click()
                     this.$router.push('/')
                 })
