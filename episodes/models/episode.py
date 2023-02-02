@@ -70,12 +70,14 @@ def post_delete(sender, instance, using, **kwargs):
 def set_expiration(instance):
     """
     Updates the episode's expiration date based on its active and featured properties.
-    """    
-    is_featured = instance.featured
-    is_active = instance.active
+    """
+    if instance.featured:
+        instance.expiration_date = None
+        return
 
-    if is_active and not is_featured:
-        instance.expiration_date = datetime.datetime.now() + datetime.timedelta(days = 60)
+    if instance.active:
+        if instance.expiration_date is None:
+            instance.expiration_date = datetime.datetime.now() + datetime.timedelta(days = 60)
     else:
         instance.expiration_date = None
 
