@@ -61,7 +61,7 @@ def create_ezstream_config(filename):
     password.text = config.get('Ezstream', 'PASSWORD')
     mountpoint.text = config.get('Ezstream', 'MOUNTPOINT')
     format_element.text = config.get('Ezstream', 'FORMAT')
-    filename_element.text = '%s/%s' %(config.get('Ezstream', 'UPLOAD_DIR'), filename)
+    filename_element.text = '%s/%s' %(config.get('Ezstream', 'UPLOAD_DIR'), filename.rsplit('/', 1)[1])
     shuffle.text = '0'
     stream_once.text = '1'
 
