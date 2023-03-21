@@ -19,6 +19,7 @@ class ScheduleRepository:
                 info,
                 show_image,
                 show_flyer,
+                pre_recorded_show,
                 strftime(start_date_time) as start_date_time,
                 strftime(end_date_time) as end_date_time
             from schedule_show

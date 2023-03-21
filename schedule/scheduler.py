@@ -6,7 +6,9 @@ import xml.etree.ElementTree as XML
 from schedule.schedule_repository import ScheduleRepository as repo
 
 def delete_existing_config():
-    """Deletes any existing pid or config files."""
+    """
+    Deletes any existing pid or config files.
+    """
 
     config_list = glob.glob('%s/scheduler.xml' %os.path.dirname(os.path.abspath(__file__)))
     pid_list = glob.glob('%s/pid.txt' %os.path.dirname(os.path.abspath(__file__)))
@@ -29,7 +31,9 @@ def delete_existing_config():
 
 
 def create_ezstream_config(filename):
-    """Creates ezstream xml config file."""
+    """
+    Creates ezstream xml config file.
+    """
 
     config = configparser.RawConfigParser()
     config.read('./env.ini')
@@ -69,8 +73,8 @@ def create_ezstream_config(filename):
 
 
 def start_ezstream():
-    """Compiles a command to execute an ezstream process.
-
+    """
+    Compiles a command to execute an ezstream process.
     Saves the process id (pid) to a file for furure reference when
     replacing the current ezstream config.
     """
@@ -90,7 +94,8 @@ def run():
         message = 'No show for this time slot %s - %s' %(date, time)
         return message
 
-    audio = show['pre_record_audio']
+    audio = show['pre_recorded_show']
+
     if audio is None:
         now = datetime.datetime.now()
         date = now.strftime('%m/%d/%Y')
