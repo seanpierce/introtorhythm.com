@@ -1,10 +1,21 @@
 <script>
+const apiClient = require('@/utilities/apiClient')
+
 export default {
+    methods: {
+        getCallInNumber() {
+            apiClient.get('content/call-in')
+                .then(response => {
+                    let link = document.createElement('a')
+                    link.href = `tel:${response.data.phone_number}`
+                    link.click()
+                    this.$router.push('/')
+                })
+        }
+    },
+
     mounted() {
-        let link = document.createElement('a')
-        link.href = 'tel:9713949073'
-        link.click()
-        this.$router.push('/')
+        this.getCallInNumber()
     }
 }
 </script>

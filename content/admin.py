@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.utils.html import format_html
-from .models import SiteInfo, LiveCallout, BackgroundImage
+from .models import SiteInfo, LiveCallout, BackgroundImage, CallInNumber
 
 
 class BackgroundImageAdmin(admin.ModelAdmin):
@@ -42,6 +42,16 @@ class SiteInfoAdmin(admin.ModelAdmin):
     def has_delete_permission(self, request, obj=None):
         return False
 
+
+class CallInNumberAdmin(admin.ModelAdmin):
+    def has_add_permission(self, request):
+        return False if self.model.objects.count() > 0 else super().has_add_permission(request)
+    
+    def has_delete_permission(self, request, obj=None):
+        return False
+
+
 admin.site.register(SiteInfo, SiteInfoAdmin)
 admin.site.register(LiveCallout, LiveCalloutAdmin)
 admin.site.register(BackgroundImage, BackgroundImageAdmin)
+admin.site.register(CallInNumber, CallInNumberAdmin)

@@ -1,7 +1,7 @@
 <template>
     <div class="schedule-card">
         {{ show.title }}<br>
-        <span class="show-date">{{ date }} {{ startTime }} - {{ endTime }}</span>
+        <span class="show-date">{{ dayOfWeek }} {{ date }}, {{ startTime }} - {{ endTime }}</span>
 
         <div v-if="image">
             <img class="show-image" :src="image" :alt="show.title">
@@ -15,6 +15,7 @@ const mediaUrl = process.env.VUE_APP_MEDIA_URL
 const dateTimeFormat = 'YYYY-MM-DD hh:mm:ss'
 const dateFormat = 'MM/DD/YYYY'
 const timeFormat = 'hh:mma'
+const datOfWeekFormat = 'dddd'
 
 export default {
     props: {
@@ -36,11 +37,18 @@ export default {
             return moment(this.show.end_date_time, dateTimeFormat).format(timeFormat)
         },
 
+        dayOfWeek() {
+            return moment(this.show.start_date_time, dateTimeFormat).format(datOfWeekFormat)
+        },
+
         image() {
-            if (!this.show.show_image)
-                return null
-            
-            return `${mediaUrl}${this.show.show_image}`
+            if (this.show.show_flyer)
+                return `${mediaUrl}${this.show.show_flyer}`
+
+            if (this.show.show_image)
+                return `${mediaUrl}${this.show.show_image}`
+                
+            return null
         }
     }
 }
