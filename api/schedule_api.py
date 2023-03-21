@@ -1,4 +1,3 @@
-import configparser
 import datetime
 import json
 from django.http import HttpResponse
@@ -33,24 +32,3 @@ class GetSchedule(View):
             'endDate': endDate
         }
         return HttpResponse(json.dumps(response, default=str), content_type='application/json')
-
-
-class Initiate(View):
-    """
-    Initiates the schedule process which checks for a
-    shceudled show in the database. If found, the process
-    reconfigures ezstream to run the scheduled show's file.
-    """
-
-    def post(self, request):
-        config = configparser.RawConfigParser()
-        config.read('./env.ini')
-        schedule_auth_secret = config.get('Secrets', 'SCHEDULE_AUTH')
-        secret = request.headers['X-SCHEDULE-AUTH-SECRET']
-        valid = secret == schedule_auth_secret
-
-        if not valid:
-            return self.Response(None, 401)
-
-        outcome = scheduler.run()
-        return HttpResponse(json.dumps(outcome), content_type='application/json')

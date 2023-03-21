@@ -17,9 +17,7 @@ class EpisodesRepository:
                 e.number,
                 e.content,
                 e.image,
-                e.image,
                 e.audio,
-                e.active,
                 e.tags,
                 strftime(e.created_at) as created_at
             from episodes_episode e
