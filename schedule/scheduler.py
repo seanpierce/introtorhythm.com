@@ -85,22 +85,21 @@ def start_ezstream():
     os.system(command)
 
 def run():
-    show = repo.get_current_show()
+    now = datetime.datetime.now()
+    date = now.strftime('%Y-%m-%d')
+    time = now.strftime('%H:%M:%S')
+    hour = int(now.strftime('%H'))
+
+    show = repo.get_show_by_date_and_hour(date, hour)
 
     if show is None:
-        now = datetime.datetime.now()
-        date = now.strftime('%m/%d/%Y')
-        time = now.strftime('%H:%M:%S')
         message = 'No show for this time slot %s - %s' %(date, time)
         return message
 
     audio = show['pre_recorded_show']
 
-    if audio is None:
-        now = datetime.datetime.now()
-        date = now.strftime('%m/%d/%Y')
-        time = now.strftime('%H:%M:%S')
-        message = 'Show for this time slot %s - %s does not have pre recorded autio' %(date, time)
+    if not audio:
+        message = 'Show for this time slot %s - %s does not have pre-recorded audio' %(date, time)
         return message
 
     try:
