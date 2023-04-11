@@ -3,7 +3,6 @@ import json
 from django.http import HttpResponse
 from django.views.generic import View
 from schedule.schedule_repository import ScheduleRepository as repo
-from schedule import scheduler
 
 
 class GetShow(View):
