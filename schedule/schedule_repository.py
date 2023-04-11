@@ -64,14 +64,18 @@ class ScheduleRepository:
         """
 
         sql = """
-        select
-            title,
-            info,
-            show_image,
-            show_flyer,
-            strftime(start_date_time) as start_date_time
-        from schedule_show
-        where date = %s and start_time = %s
+            select
+                id,
+                title,
+                info,
+                show_image,
+                show_flyer,
+                pre_recorded_show,
+                strftime(start_date_time) as start_date_time,
+                strftime(end_date_time) as end_date_time
+            from schedule_show
+            where active = 1
+            and date = %s and start_time = %s
         """
 
         return Query.single(sql, [date, hour])
