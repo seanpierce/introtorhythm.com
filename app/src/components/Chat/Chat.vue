@@ -1,8 +1,9 @@
 <template>
-    <div id="chat" class="content">
-        <div 
-            class="new-user"
-            v-if="!chat.username">
+    <div id="chat">
+        <div id="chat-wrapper">
+            <div 
+                class="new-user"
+                v-if="!chat.username">
 
             <div class="new-user-form">
                 Please enter a username
@@ -38,12 +39,14 @@
                     type="text" 
                     maxlength="140"
                     @keyup.enter="submit()"
-                    v-model="message">
+                    v-model="message"
+                    placeholder="Say something">
 
                 <button @click="submit()">Submit</button>
             </div>
         </div>
     </div>
+</div>
 </template>
 
 <script>

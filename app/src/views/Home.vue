@@ -10,7 +10,8 @@
 
         <div id="info">
             <a href="mailto:hello@introtorhythm.com">hello@introtorhythm.com</a><br>
-            <a href="tel:9718018007">971-801-8007</a>
+            <a href="tel:9718018007">971-801-8007</a><br>
+            <a href="/#chat">Chat</a>
         </div>
         
         <Marquee />

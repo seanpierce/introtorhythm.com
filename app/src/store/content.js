@@ -39,35 +39,12 @@ const contentStore = {
         async getContentRefresh({ commit, state }) { 
             let response = await apiClient.get('content/refresh')
             console.log('Content: ', response.data)
-
-            let bgImage = getBgImage(response.data)
-            if (bgImage && state.bgImage != bgImage)
-                commit('SET_BG_IMAGE', bgImage)
             
             let marqueeText = getMarqueeText(response.data)
             if (marqueeText && state.marqueeText != marqueeText)
                 commit('SET_MARQUEE_TEXT', marqueeText)
         }
     }
-}
-
-/**
- * Method used to parse content from the content-refresh API and
- * return the path to an image that will be rendered on the site.
- * Will return null if no background image is available, 
- * and the app will render the default.
- */
-const getBgImage = responseData => {
-    // Check to see if a specific bg image was set and is active
-    if (responseData.bg_image?.active)
-        return responseData.bg_image.image
-
-    // Check to see if a there is a current show that is now playing
-    // If so, use the show's associated image, if applicable
-    if (responseData.now_playing && responseData.now_playing.show_image)
-        return responseData.now_playing.show_image
-
-    return null
 }
 
 /**

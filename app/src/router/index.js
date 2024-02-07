@@ -14,24 +14,6 @@ const routes = [
       next()
     },
     component: () => import('@/views/Home')
-  },
-  {
-    path: '/call-in',
-    name: 'Call-In',
-    beforeEnter: (to, from, next) => {
-      document.title = title + 'Call-In'
-      next()
-    },
-    component: () => import('@/views/Call-In.vue')
-  },
-  {
-    path: '/booking',
-    name: 'Booking',
-    beforeEnter: (to, from, next) => {
-      document.title = title + 'Booking'
-      next()
-    },
-    component: () => import('@/views/Booking.vue')
   }
 ]
 
