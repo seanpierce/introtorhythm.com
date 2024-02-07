@@ -13,35 +13,7 @@ const routes = [
       document.title = title + 'Live'
       next()
     },
-    component: () => import('@/views/Live')
-  },
-  {
-    path: '/episodes',
-    name: 'Episodes',
-    beforeEnter: (to, from, next) => {
-      document.title = title + 'Episodes'
-      next()
-    },
-    component: () => import('@/views/Episodes.vue')
-  },
-  {
-    path: '/episodes/:number',
-    name: 'Episode',
-    beforeEnter: (to, from, next) => {
-      document.title = title + to.params.number
-      next()
-    },
-    props: true,
-    component: () => import('@/views/Episode.vue')
-  },
-  {
-    path: '/chat',
-    name: 'Chat',
-    beforeEnter: (to, from, next) => {
-      document.title = title + 'Chat'
-      next()
-    },
-    component: () => import('@/views/Chat.vue')
+    component: () => import('@/views/Home')
   },
   {
     path: '/call-in',
@@ -60,15 +32,6 @@ const routes = [
       next()
     },
     component: () => import('@/views/Booking.vue')
-  },
-  {
-    path: '/schedule',
-    name: 'Schedule',
-    beforeEnter: (to, from, next) => {
-      document.title = title + 'Schedule'
-      next()
-    },
-    component: () => import('@/views/Schedule.vue')
   }
 ]
 

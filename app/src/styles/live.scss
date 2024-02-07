@@ -13,19 +13,11 @@
         }
     }
 
-    #logo {
-        height: 6em;
-        position: relative;
-        top: 8px;
-        left: 8px;
-        z-index: 3;
-    }
-
     .spinner {
         position: absolute;
         top: 50%;
         left: 50%;
-        transform: translate(-50%, -50%);
+        transform: translate(-50%, calc(-50% - 84px));
     }
 
     .marquee-wrapper {
@@ -35,17 +27,11 @@
         right: 0;
 
         .marquee {
-            background: rgba($color: #000, $alpha: 0.5);
+            background: orange;
 
             * {
-                font-size: 2em;
-                color: yellow;
-            }
-
-            @media screen and (max-width: $phone-width) {
-                * {
-                    font-size: 1.5em;
-                }
+                font-size: 5em;
+                color: #333;
             }
         }
     }
