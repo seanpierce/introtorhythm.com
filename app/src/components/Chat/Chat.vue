@@ -1,49 +1,47 @@
 <template>
-    <div id="chat">
-        <div id="chat-wrapper">
+<div id="chat">
+    <div 
+        class="new-user"
+        v-if="!chat.username">
+
+        <div class="new-user-form">
+            Please enter a username
+            <input 
+                type="text" 
+                autofocus
+                minlength="4"
+                maxlength="20"
+                @keyup.enter="setUser()"
+                v-model="newUser">
+            <button @click="setUser()">Join</button>
+
             <div 
-                class="new-user"
-                v-if="!chat.username">
-
-            <div class="new-user-form">
-                Please enter a username
-                <input 
-                    type="text" 
-                    autofocus
-                    minlength="4"
-                    maxlength="20"
-                    @keyup.enter="setUser()"
-                    v-model="newUser">
-                <button @click="setUser()">Join</button>
-
-                <div 
-                    class="helper" 
-                    v-bind:class="{ warning: newUserError }">
-                    Usernames may only contain letters, numbers, underscores, or hyphens
-                </div>
+                class="helper" 
+                v-bind:class="{ warning: newUserError }">
+                Usernames may only contain letters, numbers, underscores, or hyphens
             </div>
         </div>
+    </div>
 
-        <div v-else>
-            <div id="messages">
-                <Message 
-                    v-for="(message, index) in chat.messages" :key="index"
-                    :message="message"
-                    :myMessage="message.username === chat.username" />
-            </div>
+    <div v-else id="chat-wrapper">
+        <div id="messages">
+            <Message 
+                v-for="(message, index) in chat.messages" :key="index"
+                :message="message"
+                :myMessage="message.username === chat.username" />
+        </div>
 
-            <div id="message-input">
-                <span></span>
+        <div id="message-input">
+            <span></span>
 
-                <input 
-                    type="text" 
-                    maxlength="140"
-                    @keyup.enter="submit()"
-                    v-model="message"
-                    placeholder="Say something">
+            <input 
+                type="text" 
+                maxlength="140"
+                @keyup.enter="submit()"
+                v-model="message"
+                placeholder="Say something">
 
-                <button @click="submit()">Submit</button>
-            </div>
+            <button @click="submit()">Submit</button>
         </div>
     </div>
 </div>

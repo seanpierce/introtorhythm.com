@@ -77,11 +77,11 @@
     width: 100%;
 
     #chat-wrapper {
-        position: relative;
-        width: 100%;
+        position: absolute;
         height: 800px;
         overflow-y: scroll;
-        margin: 4em auto;
+    }
+
 
         .new-user {
             padding: 2em;
@@ -195,5 +195,4 @@
              color: $color-accent;
              font-size: 16px;
         }
-    }
 }
