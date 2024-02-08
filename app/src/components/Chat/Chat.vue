@@ -119,8 +119,10 @@ export default {
         setUser() {
             this.newUserError = false
 
-            if (!this.newUser) return
-            if (this.newUser.length > 20) return
+            if (!this.newUser || this.newUser.length > 20) {
+                this.newUserError = true
+                return
+            }
 
             if (!this.newUser.match(/^[0-9a-z-_]+$/i)) {
                 this.newUserError = true
@@ -153,7 +155,7 @@ export default {
 
         logout() {
             this.$store.dispatch('setUsername', null)
-            localStorage.setItem('ITR_USER', null)
+            localStorage.removeItem('ITR_USER')
         }
     },
 
