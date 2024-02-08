@@ -1,7 +1,7 @@
 <template>
-    <div class="marquee-wrapper" v-if="loaded">
+    <div class="marquee-wrapper">
         <div id="live-marquee" class="marquee">
-            {{ marqueeText }}
+            {{ text }}
         </div>
     </div>
 </template>
@@ -10,14 +10,8 @@
 import nodeMarquee from 'node-marquee'
 
 export default {
-    computed: {
-        marqueeText() {
-            return this.$store.state.content.marqueeText
-        },
-
-        loaded() {
-            return this.marqueeText?.length > 0 || false
-        }
+    props: {
+        text: String
     },
 
     mounted() {

@@ -14,7 +14,7 @@
             <!-- <a href="/#chat">Chat</a> -->
         </div>
         
-        <Marquee />
+        <Marquee v-if="loaded" :text="marqueeText" />
     </div>
 </template>
 
@@ -34,5 +34,15 @@ export default {
             intro: require('@/assets/images/introtorhythm-orange.png')
         }
     },
+
+    computed: {
+        marqueeText() {
+            return this.$store.state.content.marqueeText
+        },
+
+        loaded() {
+            return this.marqueeText?.length > 0 || false
+        }
+    }
 }
 </script>
