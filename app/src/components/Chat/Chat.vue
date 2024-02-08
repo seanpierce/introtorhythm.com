@@ -7,6 +7,7 @@
         <div class="new-user-form">
             Please enter a username
             <input 
+                placeholder="Chester"
                 type="text" 
                 autofocus
                 minlength="4"
@@ -23,7 +24,7 @@
         </div>
     </div>
 
-    <div v-else id="chat-wrapper">
+    <div v-else>
         <div id="messages">
             <Message 
                 v-for="(message, index) in chat.messages" :key="index"
@@ -32,8 +33,6 @@
         </div>
 
         <div id="message-input">
-            <span></span>
-
             <input 
                 type="text" 
                 maxlength="140"
@@ -41,8 +40,10 @@
                 v-model="message"
                 placeholder="Say something">
 
-            <button @click="submit()">Submit</button>
+            <button class="submit" @click="submit()">Submit</button>
         </div>
+
+        <div id="logout" @click="logout()">Logout</div>
     </div>
 </div>
 </template>
@@ -133,19 +134,26 @@ export default {
 
             setTimeout(() => {
                 this.scrollToBottom()
-            }, 500)
+            }, 1000)
         },
 
         scrollToBottom() {
-            let elem = document.getElementById('chat')
+            let elem = document.getElementById('messages')
+
+            if (!elem) return
 
             let options = {
                 left: 0,
-                top: elem.scrollHeight,
+                top: elem.scrollHeight + 100,
                 behavior: 'smooth'
             }
 
             elem.scrollTo(options)
+        },
+
+        logout() {
+            this.$store.dispatch('setUsername', null)
+            localStorage.setItem('ITR_USER', null)
         }
     },
 
