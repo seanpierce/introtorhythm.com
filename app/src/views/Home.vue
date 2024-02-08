@@ -8,7 +8,7 @@
 
         <PlayButton />
 
-        <div id="info">
+        <div id="actions">
             <a href="mailto:hello@introtorhythm.com">hello@introtorhythm.com</a><br>
             <a href="tel:9718018007">971-801-8007</a><br>
             <a href="#chat" @click.prevent="goDown()">Chat</a>
