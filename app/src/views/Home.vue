@@ -11,7 +11,7 @@
         <div id="info">
             <a href="mailto:hello@introtorhythm.com">hello@introtorhythm.com</a><br>
             <a href="tel:9718018007">971-801-8007</a><br>
-            <a href="/#chat">Chat</a>
+            <a href="#chat" @click.prevent="goDown()">Chat</a>
         </div>
         
         <Marquee v-if="loaded" :text="marqueeText" />
@@ -32,6 +32,12 @@ export default {
         return {
             bg: require('@/assets/images/i2r-bg-big-tall.png'),
             intro: require('@/assets/images/introtorhythm-orange.png')
+        }
+    },
+
+    methods: {
+        goDown() {
+            window.scrollTo(0, document.body.scrollHeight);
         }
     },
 
