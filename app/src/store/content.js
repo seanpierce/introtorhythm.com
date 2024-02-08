@@ -53,6 +53,7 @@ const contentStore = {
  * on the site.
  */
 const getMarqueeText = responseData => { 
+    console.log(responseData)
     const divider = ' | '
     let text = ''
 
