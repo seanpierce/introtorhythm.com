@@ -3,17 +3,17 @@
     <div id="container">
       <router-view />
       
-      <Chat />
+      <!-- <Chat /> -->
     </div>
   </div>
 </template>
 
 <script>
-import Chat from '@/components/Chat/Chat.vue';
+// import Chat from '@/components/Chat/Chat.vue';
 
 export default {
   components: {
-    Chat
+    // Chat
   },
   
   computed: {
