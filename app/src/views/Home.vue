@@ -14,18 +14,18 @@
             <!-- <a href="/#chat">Chat</a> -->
         </div>
         
-        <!-- <Marquee /> -->
+        <Marquee />
     </div>
 </template>
 
 <script>
 import PlayButton from '@/components/PlayButton'
-// import Marquee from '@/components/Marquee'
+import Marquee from '@/components/Marquee'
 
 export default {
     components: {
         PlayButton,
-        // Marquee
+        Marquee
     },
 
     data() {
