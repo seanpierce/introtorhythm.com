@@ -23,14 +23,7 @@ const liveStore = {
 
     actions: {
 
-        toggleLive({ commit, rootState, dispatch }) {
-            // turn off episode player, if playing
-            if (rootState.episodes.playing) {
-                // unset 'now playing'
-                dispatch('setNowPlaying', null, { root: true })
-                dispatch('stopLiveAudio', null, { root: true })
-            }
-
+        toggleLive({ commit }) {
             commit('TOGGLE_LIVE')
         },
 

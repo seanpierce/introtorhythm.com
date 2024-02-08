@@ -8,17 +8,8 @@
 </template>
 
 <style scoped>
-.spinner {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 2;
-}
-
 .lds-ring {
     display: inline-block;
-    /* position: relative; */
     width: 158px;
     height: 158px;
 }
@@ -29,11 +20,10 @@
     position: absolute;
     width: 158px;
     height: 158px;
-    /* margin: 0.2em 0 3em 0; */
-    border: 14px solid white;
+    border: 14px solid orange;
     border-radius: 50%;
     animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-    border-color: white transparent transparent transparent;
+    border-color: orange transparent transparent transparent;
 }
 
 .lds-ring div:nth-child(1) {

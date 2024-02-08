@@ -1,16 +1,6 @@
 @import './variables.scss';
 @import './animations.scss';
-@import './nav.scss';
 @import './live.scss';
-@import './booking.scss';
-@import './schedule.scss';
-@import './footer.scss';
-@import './chat.scss';
-@import './episodes.scss';
-@import './player.scss';
-@import './timeline.scss';
-@import './modals.scss';
-@import './forms.scss';
 
 * {
     font-family: $font-family;
@@ -20,19 +10,11 @@
     margin: 0;
 }
 
-body {
-    background: $color1;
-}
-
 #container {
     position: relative;
     width: 100%;
     height: 100%;
-    min-height: calc(100vh - 110px);
-
-    @media screen and (max-width: $phone-width) {
-        min-height: calc(100vh - 88px);
-    }
+    min-height: 100vh;
 }
 
 .content {
@@ -48,11 +30,21 @@ body {
     position: absolute;
     top: 0;
     right: 0;
-    bottom: 0;
+    bottom: 111px;
     left: 0;
-    background-position: center;
-    background-size: cover;
-    filter: brightness(75%);
+
+    #bg {
+        width: 100%;
+        height: 100%;
+    }
+
+    #intro {
+        position: absolute;
+        top: 20px;
+        left: 0;
+        width: 100%;
+        opacity: 0.25;
+    }
 }
 
 #play-button {
@@ -61,59 +53,146 @@ body {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, calc(-50% - 84px));
     z-index: 2;
 }
 
-.title {
+#info {
     position: absolute;
-    bottom: $padding;
-    right: $padding;
-    padding: 6px 12px;
-    font-size: 2em;
-    background: $color-accent;
-    color: $color3;
+    bottom: 131px;
+    right: 20px;
+    text-align: right;
 
-    &.has-marquee {
-        bottom: 60px;
+    * {
+        color: orange;
+        text-decoration: none;
+        font-size: 26px;
+    }
+}
+
+#chat {
+    position: absolute;
+    top: 100%;
+    min-height: 50vh;
+    width: 100%;
+
+    #chat-wrapper {
+        position: absolute;
+        height: 800px;
+        overflow-y: scroll;
     }
 
-    @media screen and (max-width: $phone-width) {
-        &.has-marquee {
-            bottom: 48px;
+
+        .new-user {
+            padding: 2em;
+            width: 100%;
+            max-width: 500px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+    
+            .new-user-form {
+                font-size: 2em;
+                text-align: center;
+    
+                input {
+                    font-size: 1em;
+                    margin: 1em auto;
+                    padding: 0.5em;
+                    background: none;
+                    border: none;
+                    border-bottom: solid 2px white;
+                    width: 100%;
+                    outline: none;
+                }
+    
+                button {
+                    font-size: 1em;
+                    width: 100%;
+                    background: none;
+                    border: none;
+                    padding: 0.25em;
+                    border: solid 2px white;
+                    border-radius: 0;
+                    cursor: pointer;
+                }
+    
+                .helper {
+                    font-size: 16px;
+                    margin-top: 16px;
+                }
+            }
         }
-    }
-}
-
-.button {
-    color: $color3;
-    padding: 8px;
-    min-width: 140px;
-    border: solid 1px $color3;
-    cursor: pointer;
-    text-align: center;
-    transition: all 0.25s;
-
-    &:hover {
-        background: $color3;
-        color: $color1;
-    }
-}
-
-.warning {
-    color: $color-cta;
-}
-
-.hide-on-mobile {
-    color: inherit;
-
-    @media screen and (max-width: $phone-width) {
-        display: none;
-    }
-}
-
-.hide-on-desktop {
-    @media screen and (min-width: $phone-width) {
-        display: none;
-    }
+    
+        #messages {
+            width: 100%;
+            padding: 1em;
+            padding-bottom: 100px;
+    
+            .message {
+                margin-bottom: 8px;
+    
+                &.itr {
+                    color: $color-cta !important;
+    
+                    * {
+                        color: $color-cta !important;
+                    }
+    
+                    .message-content {
+                        font-style: italic;
+                    }
+                }
+    
+                .time-stamp {
+                    font-size: 0.74em;
+                    margin-right: 12px;
+                }
+    
+                .username.me {
+                    color: $color-accent;
+                }
+            }
+        }
+    
+        #message-input {
+            position: fixed;
+            z-index: 100;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: orange;
+            height: 4em;
+    
+            input {
+                width: calc(100% - 120px);
+                height: 100%;
+                font-size: 2em;
+                padding: 1em 0.5em;
+                border: none;
+                outline: none;
+                color: #333;
+                background: orange;
+            }
+    
+            button {
+                position: absolute;
+                font-size: 20px;
+                right: 0;
+                width: 160px;
+                height: 100%;
+                vertical-align: bottom;
+                background: #333;
+                color: white;
+                border: none;
+                cursor: pointer;
+                border-radius: 0;
+            }
+        }
+    
+        .error {
+             color: $color-accent;
+             font-size: 16px;
+        }
 }
