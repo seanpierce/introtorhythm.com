@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <button>
         <img v-if="!loading"
             id="play-button"
             :src="playing ? pauseButton : playButton" 
@@ -7,7 +7,7 @@
             alt="Intro To Rhythm Live play button">
 
         <Spinner v-if="loading" />
-    </div>
+    </button>
 </template>
 
 <script>
