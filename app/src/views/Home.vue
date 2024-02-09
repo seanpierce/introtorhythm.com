@@ -37,7 +37,7 @@ export default {
 
     methods: {
         goDown() {
-            window.scrollTo(0, document.body.scrollHeight);
+            document.getElementById('chat-wrapper').scrollIntoView();
         }
     },
 
