@@ -135,10 +135,9 @@ export default {
             this.$store.dispatch('setUsername', this.newUser)
             localStorage.setItem('ITR_USER', this.newUser)
 
-            this.newUser = null
-
             setTimeout(() => {
                 this.scrollToBottom()
+                this.newUser = null
             }, 1000)
         },
 
@@ -157,7 +156,7 @@ export default {
         },
 
         logout() {
-            this.$store.dispatch('setUsername', null)
+            this.$store.dispatch('logoutUser', this.chat.username)
             localStorage.removeItem('ITR_USER')
         }
     },
