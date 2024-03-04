@@ -17,15 +17,13 @@ export default {
     Chat,
     Info
   },
-  
-  computed: {
-    showChat() {
-      return this.$route.name === 'Chat'
-    }
-  },
 
   created() {
-    this.$store.dispatch('initialize')
+    this.$store.dispatch('initialize');
+
+    setInterval(() => {
+      this.$store.dispatch('pollRefreshContent');
+    }, 120000)
   }
 }
 </script>

@@ -37,10 +37,9 @@ const contentStore = {
          * Is called in an interval from the front-end app.
          */
         async getContentRefresh({ commit, state }) { 
-            let response = await apiClient.get('content/refresh')
-            console.log('Content: ', response.data)
+            const response = await apiClient.get('content/refresh')
             
-            let marqueeText = getMarqueeText(response.data)
+            const marqueeText = getMarqueeText(response.data)
             if (marqueeText && state.marqueeText != marqueeText)
                 commit('SET_MARQUEE_TEXT', marqueeText)
         }
