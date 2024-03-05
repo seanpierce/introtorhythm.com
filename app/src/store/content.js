@@ -71,7 +71,7 @@ const getMarqueeText = responseData => {
         if (text.length > 0)
             text += divider
         
-        text += 'Coming up next: '
+        text += 'Next: '
 
         let shows = []
         responseData.schedule_today.forEach(show => { 
@@ -82,14 +82,14 @@ const getMarqueeText = responseData => {
         text += shows.join(', ')
     }
 
-    if (responseData.schedule_tomorrow.length > 0) { 
+    if (responseData.schedule_upcoming.length > 0) { 
         if (text.length > 0)
             text += divider
         
-        text += 'Tomorrow: '
+        text += 'Coming up: '
 
         let shows = []
-        responseData.schedule_tomorrow.forEach(show => { 
+        responseData.schedule_upcoming.forEach(show => { 
             let startTime = moment(show.start_date_time, dateTimeFormat).format(timeFormat)
             shows.push(`${show.title} at ${startTime}`)
         })
