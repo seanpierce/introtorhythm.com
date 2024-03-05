@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import CallIn from '@/views/CallIn'
 
 Vue.use(VueRouter)
 
@@ -14,6 +15,11 @@ const routes = [
       next()
     },
     component: () => import('@/views/Home')
+  },
+  {
+    path: '/call-in',
+    name: 'Call-In',
+    component: CallIn
   }
 ]
 
