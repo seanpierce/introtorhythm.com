@@ -7,6 +7,7 @@
 </template>
 
 <script>
+// Check out https://github.com/ezekielaquino/Marquee3000
 import nodeMarquee from 'node-marquee'
 
 export default {
@@ -16,7 +17,9 @@ export default {
 
     mounted() {
         nodeMarquee({
-            parent: '#live-marquee'
+            parent: '#live-marquee',
+            pauseOnHover: true,
+            speed: 4
         })
     }
 }
