@@ -92,7 +92,7 @@ const getMarqueeText = responseData => {
         let shows = []
         responseData.schedule_upcoming.forEach(show => { 
             let startTime = moment(show.start_date_time, originalDateTimeFormat).format(newDateTimeFormat)
-            shows.push(`${show.title} at ${startTime}`)
+            shows.push(`${show.title} ${startTime}`)
         })
 
         text += shows.join(', ')
