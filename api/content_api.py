@@ -44,14 +44,14 @@ class RefreshContent(View):
     def get(self, request, *args, **kwargs):
         today = datetime.date.today()
         tomorrow = today + datetime.timedelta(days=1)
-        on_month_from_now = today + datetime.timedelta(days=30)
+        one_month_from_now = tomorrow + datetime.timedelta(days=30)
 
         response = {
             'bg_image': ContentRepository.get_background_image(),
             'live_callout': ContentRepository.get_live_callout(),
             'now_playing': ScheduleRepository.get_current_show(),
             'schedule_today': [show for show in ScheduleRepository.get_shows(today, today) if parser.parse(show['start_date_time']) > datetime.datetime.now()],
-            'schedule_upcoming': ScheduleRepository.get_shows(tomorrow, on_month_from_now)
+            'schedule_upcoming': ScheduleRepository.get_shows(tomorrow, one_month_from_now)
         }
 
         return HttpResponse(json.dumps(response), content_type='application/json')
