@@ -14,7 +14,7 @@
             <a href="#chat" @click.prevent="goDown()">Chat</a>
         </div>
         
-        <Marquee v-if="loaded" :text="marqueeText" />
+        <Marquee v-if="loaded && showMarquee" :text="marqueeText" />
     </div>
 </template>
 
@@ -31,13 +31,31 @@ export default {
     data() {
         return {
             bg: require('@/assets/images/i2r-bg-big-tall.png'),
-            intro: require('@/assets/images/introtorhythm-orange.png')
+            intro: require('@/assets/images/introtorhythm-orange.png'),
+            showMarquee: true,
+            compareMarqueeText: '',
         }
     },
 
     methods: {
         goDown() {
             document.getElementById('chat-wrapper').scrollIntoView({ block: 'end',  behavior: 'smooth' });
+        },
+
+        forceRemount() {
+            this.showMarquee = false;
+            this.$nextTick(() => {
+                this.showMarquee = true;
+            });
+            this.compareMarqueeText = this.marqueeText;
+        },
+    },
+
+
+    watch: {
+        marqueeText() {
+            if (this.compareMarqueeText != this.marqueeText)
+                this.forceRemount();
         }
     },
 
