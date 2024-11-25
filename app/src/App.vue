@@ -23,7 +23,7 @@ export default {
 
     setInterval(() => {
       this.$store.dispatch('pollRefreshContent');
-    }, 120000)
+    }, 60000)
   }
 }
 </script>
