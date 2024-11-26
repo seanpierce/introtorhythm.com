@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import Spinner from '@/components/Animations/Spinner'
+import Spinner from '@/components/Animations/Spinner';
 
 export default {
     components: {
@@ -29,7 +29,7 @@ export default {
     methods: {
         toggleLive() {
             this.$store.dispatch('toggleLive')
-        },
+        }
     },
 
     computed: {

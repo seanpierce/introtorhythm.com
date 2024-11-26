@@ -81,3 +81,110 @@
 .clickable {
     cursor: pointer;
 }
+
+#volume {
+    display: flex;
+    // position: absolute;
+    left: 50%;
+    top: calc(50% + 42px);
+    transform: translate(-50%, -50%);
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    gap: 8px;
+
+    img {
+        width: 26px;
+        height: 24px;
+        cursor: pointer;
+    }
+
+    input[type="range"] {
+        margin: 1.5em 0;        
+        width: calc(100% - 72px);
+        -webkit-appearance: none;
+        background: transparent;
+        
+        &::-webkit-slider-thumb {
+            -webkit-appearance: none;
+        }
+    
+        &::-ms-track {
+            width: 100%;
+            cursor: pointer;  
+            /* Hides the slider so custom styles can be added */
+            background: transparent;
+            border-color: transparent;
+            color: transparent;
+        }
+    
+        &::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            border: 2px solid $color-cta;
+            height: 25px;
+            width: 12px;
+            background: $color-cta;
+            cursor: pointer;
+            margin-top: -12px; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
+        }
+    
+        /* All the same stuff for Firefox */
+        &::-moz-range-thumb {
+            border: 2px solid $color-cta;
+            height: 25px;
+            width: 12px;
+            background: $color-cta;
+            cursor: pointer;
+        }
+    
+        /* All the same stuff for IE */
+        &::-ms-thumb {
+            border: 1px solid $color-cta;
+            height: 25px;
+            width: 12px;
+            background: $color-cta;
+            cursor: pointer;
+        }
+    
+        /*style the track*/
+        &::-webkit-slider-runnable-track {
+            width: calc(100% - 34px);
+            height: 2px;
+            cursor: pointer;
+            background: $color-cta;
+        }
+    
+        &::-moz-range-track {
+            width: calc(100% - 34px);
+            height: 2px;
+            cursor: pointer;
+            background: $color-cta;
+        }
+    
+        &::-ms-track {
+            width: calc(100% - 34px);
+            height: 2px;
+            cursor: pointer;
+            background: transparent;
+            border-color: transparent;
+            color: transparent;
+        }
+    
+        &::-ms-fill-lower {
+            background: $color-cta;
+        }
+    
+        &:focus::-ms-fill-lower {
+            background: $color-cta;
+        }
+    
+        &::-ms-fill-upper {
+            background: $color-cta;
+        }
+    
+        &:focus::-ms-fill-upper {
+            background:$color-cta;
+        }
+    }
+}
