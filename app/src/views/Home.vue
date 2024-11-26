@@ -3,7 +3,6 @@
 
         <div class="background-container">
             <img id="bg" :src="bg" alt="">
-            <img id="intro" :src="intro" alt="">
         </div>
 
         <PlayButton />
