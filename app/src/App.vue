@@ -1,29 +1,11 @@
+<script setup lang="ts">
+import { RouterLink, RouterView } from 'vue-router'
+import HelloWorld from './components/HelloWorld.vue'
+</script>
+
 <template>
-  <div id="app">
-    <div id="container">
-      <router-view />
-      <Chat />
-      <Info />
-    </div>
-  </div>
+  <RouterView />
 </template>
 
-<script>
-import Chat from '@/components/Chat/Chat.vue';
-import Info from './components/Info.vue';
-
-export default {
-  components: {
-    Chat,
-    Info
-  },
-
-  created() {
-    this.$store.dispatch('initialize');
-
-    setInterval(() => {
-      this.$store.dispatch('pollRefreshContent');
-    }, 60000)
-  }
-}
-</script>
+<style scoped>
+</style>

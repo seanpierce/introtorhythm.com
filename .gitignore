@@ -6,6 +6,7 @@ db.sqlite3
 *.pyc
 **/__pycache__/
 app/node_modules/
+app_backup/
 assets/dist/
 introtorhythm/__pycache__/
 env.ini
