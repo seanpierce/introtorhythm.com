@@ -1,10 +1,17 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+import Chat from './components/Chat.vue'
+import Info from './components/Info.vue'
 </script>
 
 <template>
-  <RouterView />
+  <div id="app">
+    <div id="container">
+      <RouterView />
+      <Chat />
+      <Info />
+    </div>
+  </div>
 </template>
 
 <style scoped>
