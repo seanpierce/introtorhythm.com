@@ -21,6 +21,8 @@
 import bg from '@/assets/images/i2r-bg-big-tall.png';
 import { computed, nextTick, ref, watch } from 'vue';
 import { useContentStore } from '@/stores/content';
+import PlayButton from '@/components/PlayButton.vue';
+import Marquee from '@/components/Marquee.vue';
 
 const contentStore = useContentStore();
 const showMarquee = ref(true);
@@ -32,7 +34,7 @@ const marqueeText = computed(() => {
 watch(marqueeText, async () => {
   if (compareMarqueeText.value != marqueeText.value)
     await forceRemount();
-})
+});
 
 const goDown = () => {
   document.getElementById('chat-wrapper')!.scrollIntoView({ block: 'end',  behavior: 'smooth' });
