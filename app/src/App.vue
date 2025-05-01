@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterView } from 'vue-router'
 import Chat from './components/Chat.vue'
 import Info from './components/Info.vue'
 </script>
