@@ -1,5 +1,7 @@
 # introtorhythm.com
 
+__Currently being rebuilt - see the upgrade WIP here: [INTRO TO RHYTHM UPGRADE](https://github.com/seanpierce/ITR_upgrade)__
+
 Intro To Rhythm is a freeform mix series and live-streaming audio station that began in 2017. All episodes and content are owned by their creators and made exclusively for Intro To Rhythm.
 
 Additionally, ITR is dedicated to open-source projects, and the collective idea sharing that fuels creative expression. If you're interested in developing your own live-streaming station or podcasting platform, you're invited to refer to ITR's source code (Licence MIT).
