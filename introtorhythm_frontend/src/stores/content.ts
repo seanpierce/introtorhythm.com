@@ -12,7 +12,7 @@ export const useContentStore = defineStore('content', () => {
   const loadContent = async () => {
     try {
       const data = await fetchContent();
-      marqueeText.value = data.marqueeText;
+      marqueeText.value = data.marqueeText ?? '';
       about.value = data.about;
     } catch (err) {
       console.error('Failed to fetch content:', err);

@@ -21,7 +21,7 @@ Questions and comments: **hello@introtorhythm.com**
 
 ---
 
-## What’s Changing?
+## What's Changing?
 
 In this upgrade:  
 
@@ -32,7 +32,7 @@ In this upgrade:
 
 ---
 
-### What’s Staying
+### What's Staying
 
 - **Streaming**: Live, pre-recorded, and syndicated shows  
 - **Chat**: Rebuilt with Socket.io and typescript (moving away from Firebase)  
@@ -105,4 +105,4 @@ npx tsc --project tsconfig.server.json # compile the server code
 node serrver.js # run the process
 ```
 
-![Intro To Rhythm Logo](introtorhythm_frontend/src/assets/images/i2r-bg-big-tall.png)
+![Intro To Rhythm Logo](introtorhythm_frontend/src/assets/images/i2r-bg-big-tall.webp)
