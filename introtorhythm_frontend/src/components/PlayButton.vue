@@ -17,8 +17,8 @@ import Spinner from '@/components/Spinner.vue';
 import { useLiveStore } from '@/stores/live';
 import { storeToRefs } from 'pinia';
 
-import playButton from '@/assets/images/play-circle-orange.png';
-import pauseButton from '@/assets/images/pause-circle-orange.png';
+import playButton from '@/assets/images/play-circle-orange.webp';
+import pauseButton from '@/assets/images/pause-circle-orange.webp';
 
 const liveStore = useLiveStore();
 const { playing, loading } = storeToRefs(liveStore);

@@ -17,7 +17,7 @@
 </template>
 
 <script setup lang="ts">
-import bg from '@/assets/images/i2r-bg-big-tall.png';
+import bg from '@/assets/images/i2r-bg-big-tall.webp';
 import { nextTick, onMounted, onUnmounted, ref, watch } from 'vue';
 import { useContentStore } from '@/stores/';
 import { storeToRefs } from 'pinia';
