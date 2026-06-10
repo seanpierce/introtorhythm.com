@@ -33,6 +33,8 @@ jobs:
             python3 manage.py migrate
             deactivate
 
+            export PATH="/home/seanpierce/.nvm/versions/node/v25.8.1/bin:$PATH"
+
             cd ../introtorhythm_frontend
             npm ci
             npm run build
