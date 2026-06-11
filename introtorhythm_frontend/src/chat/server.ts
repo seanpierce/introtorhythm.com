@@ -142,4 +142,5 @@ io.on(sock.CONNECTION, (socket) => {
   });
 });
 
-server.listen(3000, () => console.log('Server running on port 3000'));
+const socketPort = process.env.VITE_SOCKET_PORT;
+server.listen(socketPort, () => console.log(`Server running on port ${socketPort}`));
