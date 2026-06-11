@@ -1,5 +1,8 @@
 // Locally run using node path/to/server.js after compiling ts to js with tsc: npx tsc --project tsconfig.server.json
-// On the server use pm2 or similar to run dist/chat/server.js
+// On the server use pm2 or similar to run src/chat/server.js
+import dotenv from "dotenv";
+dotenv.config({ path: '.env.local' });
+
 import express from 'express';
 import * as http from 'http';
 import { Server } from 'socket.io';
@@ -11,7 +14,7 @@ app.use(cors());
 
 const server = http.createServer(app);
 // Use process and not import.env here since this is technically not part of the vite app, but a separate node server.
-const io = new Server(server, { cors: { origin: process.env.VITE_CORS_ORIGIN } });
+const io = new Server(server, { cors: { origin: process.env.CORS_ORIGIN } });
 
 let messages: ChatMessage[] = [];
 const users: Map<string, ChatUser> = new Map(); // username -> user
@@ -142,5 +145,5 @@ io.on(sock.CONNECTION, (socket) => {
   });
 });
 
-const socketPort = process.env.VITE_SOCKET_PORT;
+const socketPort = process.env.SOCKET_PORT;
 server.listen(socketPort, () => console.log(`Server running on port ${socketPort}`));
