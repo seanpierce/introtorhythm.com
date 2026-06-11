@@ -1,11 +1,14 @@
-# (Yet Another) Intro To Rhythm Upgrade
+# introtorhythm.com
 
-This repository contains the latest upgrade of **Intro To Rhythm (I2R)**.  
-The goals of this upgrade are threefold:  
+## (Yet Another) Intro To Rhythm Upgrade
+
+This repository contains the latest production source for **Intro To Rhythm (I2R)**. This was codebase was developed to upgrade a previous version of introtorhythm.com. The goals of this upgrade are threefold:
 
 1. **Update** platform versions to the latest stable releases  
 2. **Modernize** existing features  
-3. **Remove** deprecated or unnecessary legacy features  
+3. **Remove** deprecated or unnecessary legacy features
+
+_See previously deprecated (June 11, 2026) source code archived here: [https://github.com/seanpierce/archive-introtorhythm.com](github.com/seanpierce/archive-introtorhythm.com)_
 
 ---
 
@@ -25,9 +28,9 @@ Questions and comments: **hello@introtorhythm.com**
 
 In this upgrade:  
 
-- **Frameworks**: Django `3.x → 4.x`, Vue `2.x → 3.x`
+- **Frameworks**: Django `3.x → 6.x`, Vue `2.x → 3.x`
 - **Dependencies**: Updated across the board
-- **Typescript**: All `.js` will now be `.ts` (because I hate myself)
+- **Typescript**: All `.js` will now be `.ts` (because I ~~hate~~ love myself)
 - **Features**: Some deprecated features removed, core features modernized
 
 ---
@@ -61,7 +64,7 @@ In this upgrade:
 
 ## Project Versions
 
-- **Django** 4.2  
+- **Django** 6.0.6  
 - **Vue** ^3.5.18  
 
 ## Installation and Local Usage
