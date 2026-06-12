@@ -2,7 +2,7 @@
 
 ## (Yet Another) Intro To Rhythm Upgrade
 
-This repository contains the latest production source for **Intro To Rhythm (I2R)**. This was codebase was developed to upgrade a previous version of introtorhythm.com. The goals of this upgrade are threefold:
+This repository contains the latest production source for **Intro To Rhythm (I2R)**. This codebase was developed to upgrade a previous version of introtorhythm.com. The goals of this upgrade are threefold:
 
 1. **Update** platform versions to the latest stable releases  
 2. **Modernize** existing features  
