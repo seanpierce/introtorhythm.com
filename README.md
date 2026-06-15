@@ -8,7 +8,7 @@ This repository contains the latest production source for **Intro To Rhythm (I2R
 2. **Modernize** existing features  
 3. **Remove** deprecated or unnecessary legacy features
 
-_See previously deprecated (June 11, 2026) source code archived here: [https://github.com/seanpierce/archive-introtorhythm.com](github.com/seanpierce/archive-introtorhythm.com)_
+_See previously deprecated (June 11, 2026) source code archived here: [github.com/seanpierce/archive-introtorhythm.com](https://github.com/seanpierce/archive-introtorhythm.com)_
 
 ---
 
