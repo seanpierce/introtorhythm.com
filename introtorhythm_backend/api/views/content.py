@@ -73,7 +73,7 @@ class GetContentViewSet(viewsets.ViewSet):
             for show in other_shows:
                 if show.start_date_time:
                     # Convert to Pacific Time and format
-                    formatted_time = show.start_date_time.strftime("%I:%M %p")
+                    formatted_time = show.start_date_time.astimezone(PACIFIC).strftime("%I:%M %p")
                 else:
                     formatted_time = "Unknown Time"
                 upcoming_parts.append(f"{show.title} at {formatted_time} {tz_name}")

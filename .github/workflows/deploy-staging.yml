@@ -35,12 +35,19 @@ jobs:
 
             export PATH="/home/seanpierce/.nvm/versions/node/v25.8.1/bin:$PATH"
 
+            echo "Building Frontend..."
             cd ../introtorhythm_frontend
             npm ci
             npm run build
 
+            echo "Building Chat Server"
             cd ./src/chat
             npx tsc --project tsconfig.server.json
-            pm2 restart chat-server
+
+            if pm2 describe chat-server-staging > /dev/null; then
+              pm2 restart chat-server-staging
+            else
+              pm2 start server.js --name chat-server-staging
+            fi
 
           EOF
