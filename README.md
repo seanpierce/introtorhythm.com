@@ -108,4 +108,6 @@ npx tsc --project tsconfig.server.json # compile the server code
 node serrver.js # run the process
 ```
 
-![Intro To Rhythm Logo](introtorhythm_frontend/src/assets/images/i2r-bg-big-tall.webp)
+## Documentation
+
+See the Wiki [> here <](https://github.com/seanpierce/introtorhythm.com/wiki)
