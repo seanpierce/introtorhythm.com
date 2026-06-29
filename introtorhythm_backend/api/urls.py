@@ -1,10 +1,8 @@
-from django.urls import path, include
-from rest_framework.routers import DefaultRouter
-from .views import GetContentViewSet
-
-router = DefaultRouter()
-router.register(r'content', GetContentViewSet, basename='getcontent')
+from django.urls import path
+from .views.content import get_content
+from .views.schedule import initiate_show
 
 urlpatterns = [
-    path('', include(router.urls))
+    path('content/', get_content, name="get_content"),
+    path('schedule/scheduledshow/', initiate_show, name='initiate_show')
 ]
