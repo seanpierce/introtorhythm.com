@@ -17,7 +17,7 @@ from schedule.services.ezstream_scheduler import run_pre_recorded_show_scheduler
 def initiate_show(request):
     """
     Checks for a show that is scheduled to begin at this time. 
-    If one exists, recreate the schedule show XMl config file for the schedule icecast process. 
+    If one exists, recreate the schedule show XMl config file for the "/schedule" icecast mountpoint. 
     """
     result = run_pre_recorded_show_scheduler()
 
