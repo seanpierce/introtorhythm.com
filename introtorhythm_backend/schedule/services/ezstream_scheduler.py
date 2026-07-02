@@ -90,10 +90,13 @@ def stop_existing_scheduler_ezstream():
 
 
 def start_scheduler_ezstream():
+    log_path = SCHEDULER_DIR / "scheduler-ezstream.log"
+
     process = subprocess.Popen(
         ["ezstream", "-c", str(CONFIG_PATH)],
-        stdout=subprocess.DEVNULL,
-        stderr=subprocess.DEVNULL,
+        cwd=str(SCHEDULER_DIR),
+        stdout=open(log_path, "ab"),
+        stderr=subprocess.STDOUT,
         start_new_session=True,
     )
 
@@ -123,16 +126,18 @@ def run_pre_recorded_show_scheduler():
             "started": False,
             "message": f"Audio file does not exist: {audio_path}",
         }
+    
+    file_name = os.path.basename(show.pre_recorded_show.name)
 
     stop_existing_scheduler_ezstream()
 
     CONFIG_PATH.unlink(missing_ok=True)
-    build_ezstream_config(audio_path)
+    build_ezstream_config(file_name)
     start_scheduler_ezstream()
 
     return {
         "started": True,
         "show_id": show.id,
-        "audio": audio_path,
+        "audio": file_name,
         "config": str(CONFIG_PATH)
     }
