@@ -17,6 +17,7 @@ This module is designed to be executed through an authenticated internal
 API endpoint that is periodically invoked by cron.
 """
 
+from datetime import timedelta
 import os
 import signal
 import subprocess
@@ -240,4 +241,44 @@ def run_pre_recorded_show_scheduler():
         "show_id": show.id,
         "audio": file_name,
         "config": str(CONFIG_PATH)
+    }
+
+def cleanup_old_pre_recorded_shows():
+    """
+    Deletes pre-recorded show audio files for shows older than one week.
+
+    For each matching Show:
+    - Confirms a pre-recorded file is assigned.
+    - Deletes the file from storage.
+    - Clears the FileField on the model.
+    - Saves the updated Show record.
+    """
+
+    cutoff = timezone.localtime() - timedelta(days=7)
+
+    old_shows = Show.objects.filter(
+        active=True,
+        pre_recorded_show__isnull=False,
+        start_date_time__lt=cutoff,
+    ).exclude(
+        pre_recorded_show=""
+    )
+
+    deleted = []
+
+    for show in old_shows:
+        file_name = show.pre_recorded_show.name
+
+        show.pre_recorded_show.delete(save=False)
+        show.pre_recorded_show = None
+        show.save(update_fields=["pre_recorded_show"])
+
+        deleted.append({
+            "show_id": show.id,
+            "file": file_name,
+        })
+
+    return {
+        "deleted_count": len(deleted),
+        "deleted": deleted,
     }
