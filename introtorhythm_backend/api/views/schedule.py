@@ -8,10 +8,10 @@ from rest_framework.response import Response
 from rest_framework.throttling import AnonRateThrottle
 
 from api.authentication import InternalAPIKeyAuthentication
-from schedule.services.ezstream_scheduler import run_pre_recorded_show_scheduler
+from schedule.services.ezstream_scheduler import cleanup_old_pre_recorded_shows, run_pre_recorded_show_scheduler
 
 
-@api_view(["GET"])
+@api_view(["POST"])
 @authentication_classes([InternalAPIKeyAuthentication])
 @throttle_classes([AnonRateThrottle])
 def initiate_show(request):
@@ -25,3 +25,14 @@ def initiate_show(request):
         return Response(result, status=status.HTTP_200_OK)
 
     return Response(result, status=status.HTTP_200_OK)
+
+
+@api_view(["POST"])
+@authentication_classes([InternalAPIKeyAuthentication])
+@throttle_classes([AnonRateThrottle])
+def cleanup_pre_recorded_shows(request):
+    """
+    Deletes pre-recorded show audio files for shows older than one week. This is a maintenance task that is periodically invoked by cron.
+    """
+    result = cleanup_old_pre_recorded_shows()
+    return Response(result)
