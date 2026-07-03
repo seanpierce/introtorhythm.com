@@ -24,7 +24,7 @@ def get_content(request):
     - `about`: Content for the about/info section of the website.
 
     Example marquee string:
-    "`marquee text` | Listening Now: `current show title` | Coming Up: `show 1 time` at 02:00 PM PDT, `show 2 time` at 05:00 PM PDT"
+    "`marquee text` | Now Playing: `current show title` | Coming Up: `show 1 time` at 02:00 PM PDT, `show 2 time` at 05:00 PM PDT"
     """
     now = datetime.now()
 
@@ -87,7 +87,7 @@ def build_marquee_content(marquee_data, current_show, other_shows):
 
     # Add current show
     if current_show:
-        parts.append(f"Listening Now: {current_show.title}")
+        parts.append(f"Now Playing: {current_show.title}")
 
     # Add upcoming shows
     if other_shows:

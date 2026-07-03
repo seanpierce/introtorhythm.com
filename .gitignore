@@ -2,3 +2,5 @@
 .api/
 .agents/
 .codex/
+*/uploads/scheduler/*
+!*/uploads/scheduler/.gitkeep

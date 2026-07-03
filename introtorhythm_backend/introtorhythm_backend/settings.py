@@ -64,6 +64,13 @@ CORS_ALLOWED_ORIGINS = os.getenv('CORS_ALLOWED_ORIGINS', '').split(',')
 CSRF_TRUSTED_ORIGINS = os.getenv('CSRF_TRUSTED_ORIGINS', '').split(',')
 INTERNAL_API_KEY = os.getenv("INTERNAL_API_KEY")
 
+EZSTREAM_SCHEDULER_DIR = os.path.join(BASE_DIR, "uploads", "scheduler")
+EZSTREAM_HOST = "stream.introtorhythm.com"
+EZSTREAM_PORT = 8000
+EZSTREAM_PASSWORD = os.getenv("EZSTREAM_PASSWORD")
+EZSTREAM_MOUNTPOINT = "/scheduler"
+EZSTREAM_FORMAT = "MP3"
+
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': [
         'djangorestframework_camel_case.render.CamelCaseJSONRenderer',
