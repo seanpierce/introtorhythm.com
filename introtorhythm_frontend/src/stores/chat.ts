@@ -13,7 +13,13 @@ export const useChatStore = defineStore('chat', () => {
 
   const connect = (name: string) => {
     console.log('Connecting with username:', name);
-    if (socket) socket.disconnect();
+
+    // Socket.IO reconnects this socket automatically. Reusing it avoids creating
+    // a second connection if this method is called again while the view remounts.
+    if (socket) {
+      if (username.value === name && (socket.connected || socket.active)) return;
+      socket.disconnect();
+    }
 
     const socketUrl = import.meta.env.VITE_SOCKET_URL;
     socket = io(socketUrl, { transports: ['websocket', 'polling'] });
@@ -68,7 +74,15 @@ export const useChatStore = defineStore('chat', () => {
     if (!socket || !username.value) return;
     username.value = null;
     localStorage.removeItem(sock.GET_LOCAL_USERNAME);
-    socket.emit(sock.LOGOUT);
+
+    const loggingOutSocket = socket;
+    socket = null;
+
+    // Wait for the server to record the explicit logout before closing. The
+    // timeout still guarantees local cleanup if the connection has already died.
+    loggingOutSocket.timeout(2000).emit(sock.LOGOUT, () => {
+      loggingOutSocket.disconnect();
+    });
   };
 
   const getUsernameFromLocalStorage = () => {
