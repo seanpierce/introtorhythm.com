@@ -23,7 +23,15 @@ const disconnectTimers: Map<string, NodeJS.Timeout> = new Map();
 const MESSAGE_LIMIT = 300;
 const MESSAGE_TTL = 43200000; // 12 hours
 const runPurgeTime = 300000; // 5 minutes
-const DISCONNECT_GRACE = 5000; // 5 seconds
+// Socket.IO disconnects are often temporary on mobile (screen locking, switching
+// networks, or the browser being backgrounded). Keep presence around long enough
+// for the client's built-in reconnection to recover without announcing a
+// leave/join pair. This can be overridden without recompiling the server.
+const parsedDisconnectGrace = Number(process.env.CHAT_DISCONNECT_GRACE_MS);
+const DISCONNECT_GRACE =
+  Number.isFinite(parsedDisconnectGrace) && parsedDisconnectGrace >= 0
+    ? parsedDisconnectGrace
+    : 120000; // 2 minutes
 
 const getTimeOfMessage = (ms: number): string =>
   new Date(ms)
@@ -51,7 +59,9 @@ const sendSystemMessage = (text: string, isJoin?: boolean, isLeave?: boolean) =>
     isLeave,
   };
   messages.push(msg);
-  console.log(messages, msg);
+  if (messages.length > MESSAGE_LIMIT) {
+    messages = messages.slice(-MESSAGE_LIMIT);
+  }
   io.to('general').emit(sock.CHAT_MESSAGES, [msg]);
 };
 
@@ -67,6 +77,14 @@ io.on(sock.CONNECTION, (socket) => {
 
     // If username already exists
     if (users.has(username)) {
+      const existingUser = users.get(username);
+
+      // JOIN can safely be retried by the same socket.
+      if (existingUser?.socketId === socket.id) {
+        socket.emit(sock.JOIN_SUCCESS, username);
+        return;
+      }
+
       // Clear pending disconnect if this is a reconnect
       const timer = disconnectTimers.get(username);
       if (timer) {
@@ -118,13 +136,19 @@ io.on(sock.CONNECTION, (socket) => {
 
   // Logout handling.
   // This differs from disconnects as it is immediate.
-  socket.on(sock.LOGOUT, () => {
+  // The optional acknowledgement (ack) tells the client logout was processed, so it
+  // can safely close the socket without risking the event being dropped.
+  socket.on(sock.LOGOUT, (ack?: () => void) => {
     const user = Array.from(users.values()).find((u) => u.socketId === socket.id);
-    if (!user) return;
+    if (!user) {
+      ack?.();
+      return;
+    }
 
     users.delete(user.username);
     io.emit(sock.USER_LIST, Array.from(users.keys()));
     sendSystemMessage(`${user.username} has left the chat`, false, true);
+    ack?.();
   });
 
   // Disconnect handling.
@@ -135,6 +159,13 @@ io.on(sock.CONNECTION, (socket) => {
 
     // Start grace period before removing user
     const timer = setTimeout(() => {
+      // A replacement socket may have rejoined just as this timer fired. Never
+      // let an old socket remove the current connection.
+      if (users.get(user.username)?.socketId !== socket.id) {
+        disconnectTimers.delete(user.username);
+        return;
+      }
+
       users.delete(user.username);
       disconnectTimers.delete(user.username);
       io.emit(sock.USER_LIST, Array.from(users.keys()));
