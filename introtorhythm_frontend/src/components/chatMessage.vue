@@ -1,7 +1,7 @@
 <template>
     <div class="message">
         <span class="time-stamp">{{ msg.friendlyTime }}</span>
-        <span v-if="!isJoinLeaveMessage"class="username" :class="{ me: msg.username === username }">
+        <span v-if="!isJoinLeaveMessage" class="username" :class="{ me: msg.username === username }">
             {{ msg.username }}
         </span>
         <span v-if="!isJoinLeaveMessage" class="message-content">: {{ msg.text }}</span>

@@ -1,10 +1,10 @@
-import type { MarqueeResponse } from "@/types";
+import type { ContentResponse } from "@/types";
 import apiClient from "./apiClient";
 
 
-export const fetchContent = async (): Promise<MarqueeResponse> => {
+export const fetchContent = async (): Promise<ContentResponse> => {
   try {
-    return await apiClient.get<MarqueeResponse>('/api/content/');
+    return await apiClient.get<ContentResponse>('/api/content/');
   } catch (error) {
     console.error('Error fetching content:', error);
     throw error;

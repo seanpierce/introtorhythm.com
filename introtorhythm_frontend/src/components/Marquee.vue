@@ -10,6 +10,7 @@
 import nodeMarquee from 'node-marquee';
 import { onMounted } from 'vue';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const props = defineProps({
     text: {
         type: String,

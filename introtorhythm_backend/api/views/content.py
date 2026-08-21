@@ -6,8 +6,8 @@ from rest_framework.decorators import api_view, throttle_classes
 from rest_framework.response import Response
 from rest_framework.throttling import AnonRateThrottle
 
-from content.models import MarqueeText, About
-from content.serializers import MarqueeTextSerializer, AboutSerializer
+from content.models import MarqueeText, About, Connections
+from content.serializers import MarqueeTextSerializer, AboutSerializer, ConnectionsSerializer
 from schedule.models import Show
 
 PACIFIC = pytz.timezone("America/Los_Angeles")
@@ -47,6 +47,7 @@ def get_content(request):
     # Fetch other content
     marquee_text_obj = MarqueeText.objects.filter(active=True).first()
     about_text = About.objects.first()
+    connections_obj = Connections.objects.first()
 
     marquee_data = (
         MarqueeTextSerializer(marquee_text_obj).data
@@ -57,6 +58,12 @@ def get_content(request):
     about_data = (
         AboutSerializer(about_text).data
         if about_text
+        else None
+    )
+    
+    connections_data = (
+        ConnectionsSerializer(connections_obj).data
+        if connections_obj
         else None
     )
 
@@ -70,6 +77,7 @@ def get_content(request):
     return Response({
         "marqueeText": marquee_content,
         "about": about_data,
+        "streamUrl": connections_data['connection_url']
     })
 
 

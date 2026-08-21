@@ -22,7 +22,11 @@ import pauseButton from '@/assets/images/pause-circle-orange.webp';
 
 const liveStore = useLiveStore();
 const { playing, loading } = storeToRefs(liveStore);
-const liveUrl = 'https://staging.introtorhythm.com/listen';
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const props = defineProps<{
+  streamUrl: string;
+}>();
 
 const toggleLive = () => {
     liveStore.toggleLive();
@@ -30,7 +34,7 @@ const toggleLive = () => {
 
 watch(playing, async (newVal: boolean) => {
   if (newVal) {
-    await liveStore.setLiveAudio(liveUrl);
+    await liveStore.setLiveAudio(props.streamUrl);
     liveStore.playLiveAudio();
   } else {
     liveStore.stopLiveAudio();

@@ -1,11 +1,12 @@
 import { defineStore } from 'pinia';
 import { ref, onUnmounted } from 'vue';
 import { fetchContent } from '@/services/content';
-import type { MarqueeResponse } from '@/types';
+import type { ContentResponse } from '@/types';
 
 export const useContentStore = defineStore('content', () => {
   const marqueeText = ref<string>('');
-  const about = ref<MarqueeResponse['about']>(null);
+  const about = ref<ContentResponse['about']>(null);
+  const streamUrl = ref<string>('');
 
   let refreshInterval: number | undefined;
 
@@ -14,6 +15,7 @@ export const useContentStore = defineStore('content', () => {
       const data = await fetchContent();
       marqueeText.value = data.marqueeText ?? '';
       about.value = data.about;
+      streamUrl.value = data.streamUrl ?? '';
     } catch (err) {
       console.error('Failed to fetch content:', err);
     }
@@ -42,6 +44,7 @@ export const useContentStore = defineStore('content', () => {
   return {
     marqueeText,
     about,
+    streamUrl,
     startAutoRefresh,
     stopAutoRefresh,
   };
