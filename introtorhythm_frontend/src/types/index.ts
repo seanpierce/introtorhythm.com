@@ -1,6 +1,7 @@
-export interface MarqueeResponse {
+export interface ContentResponse {
   marqueeText: string;
   about: About | null;
+  streamUrl: string;
 }
 
 export interface About {

@@ -4,7 +4,7 @@
       <img id="bg" :src="bg" alt="" />
     </div>
 
-    <PlayButton />
+    <PlayButton v-if="streamUrl.length" :streamUrl="streamUrl"/>
 
     <div id="actions">
       <a href="mailto:hello@introtorhythm.com">hello@introtorhythm.com</a><br />
@@ -25,7 +25,7 @@ import PlayButton from '@/components/PlayButton.vue';
 import Marquee from '@/components/Marquee.vue';
 
 const contentStore = useContentStore();
-const { marqueeText } = storeToRefs(contentStore);
+const { marqueeText, streamUrl } = storeToRefs(contentStore);
 const compareMarqueeText = ref<string>('');
 const showMarquee = ref<boolean>(true);
 
