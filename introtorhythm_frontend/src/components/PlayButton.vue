@@ -23,7 +23,6 @@ import pauseButton from '@/assets/images/pause-circle-orange.webp';
 const liveStore = useLiveStore();
 const { playing, loading } = storeToRefs(liveStore);
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const props = defineProps<{
   streamUrl: string;
 }>();
@@ -38,6 +37,16 @@ watch(playing, async (newVal: boolean) => {
     liveStore.playLiveAudio();
   } else {
     liveStore.stopLiveAudio();
+  }
+});
+
+// if the streaming url updates
+watch(() => props.streamUrl, async (newVal, oldVal) => {
+  if (newVal != oldVal) {
+    // stop, reset, start again
+    liveStore.stopLiveAudio();
+    await liveStore.setLiveAudio(props.streamUrl);
+    liveStore.playLiveAudio();
   }
 });
 </script>
