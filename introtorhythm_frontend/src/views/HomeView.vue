@@ -8,7 +8,7 @@
 
     <div id="actions">
       <a href="mailto:hello@introtorhythm.com">hello@introtorhythm.com</a><br />
-      <a href="tel:5036103801">503-610-3801</a><br />
+      <a :href="`tel:${callInNumber}`">{{ formattedCallInNumber }}</a><br />
       <a href="#chat" @click.prevent="goDown()">Chat</a>
     </div>
 
@@ -18,19 +18,33 @@
 
 <script setup lang="ts">
 import bg from '@/assets/images/i2r-bg-big-tall.webp';
-import { nextTick, onMounted, onUnmounted, ref, watch } from 'vue';
+import { computed, nextTick, onMounted, onUnmounted, ref, watch } from 'vue';
 import { useContentStore } from '@/stores/';
 import { storeToRefs } from 'pinia';
 import PlayButton from '@/components/PlayButton.vue';
 import Marquee from '@/components/Marquee.vue';
 
 const contentStore = useContentStore();
-const { marqueeText, streamUrl } = storeToRefs(contentStore);
+const { marqueeText, streamUrl, callInNumber } = storeToRefs(contentStore);
 const compareMarqueeText = ref<string>('');
 const showMarquee = ref<boolean>(true);
 
 watch(marqueeText, async () => {
   if (compareMarqueeText.value != marqueeText.value) await forceRemount();
+});
+
+
+const formattedCallInNumber = computed(() => {
+  if (!callInNumber.value) return '';
+
+  // 1. Strip all non-numeric characters
+  const cleaned = callInNumber.value.replace(/\D/g, '')
+
+  // 2. Ensure it is 10 digits for NNN-NNN-NNNN format
+  if (cleaned.length !== 10) return '';
+
+  // 3. Insert hyphens at positions 3 and 6
+  return cleaned.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3')
 });
 
 const forceRemount = async () => {
