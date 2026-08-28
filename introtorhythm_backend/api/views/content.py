@@ -77,7 +77,8 @@ def get_content(request):
     return Response({
         "marqueeText": marquee_content,
         "about": about_data,
-        "streamUrl": connections_data['connection_url']
+        "streamUrl": connections_data['connection_url'] or None,
+        "callInNumber": connections_data['call_in_number'] or None,
     })
 
 

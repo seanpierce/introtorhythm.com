@@ -14,4 +14,4 @@ class AboutSerializer(serializers.ModelSerializer):
 class ConnectionsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Connections
-        fields = ['connection_url']
+        fields = ['connection_url', 'call_in_number']

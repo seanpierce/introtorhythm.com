@@ -7,6 +7,7 @@ export const useContentStore = defineStore('content', () => {
   const marqueeText = ref<string>('');
   const about = ref<ContentResponse['about']>(null);
   const streamUrl = ref<string>('');
+  const callInNumber = ref<string>('');
 
   let refreshInterval: number | undefined;
 
@@ -16,6 +17,7 @@ export const useContentStore = defineStore('content', () => {
       marqueeText.value = data.marqueeText ?? '';
       about.value = data.about;
       streamUrl.value = data.streamUrl ?? '';
+      callInNumber.value = data.callInNumber ?? '';
     } catch (err) {
       console.error('Failed to fetch content:', err);
     }
@@ -45,6 +47,7 @@ export const useContentStore = defineStore('content', () => {
     marqueeText,
     about,
     streamUrl,
+    callInNumber,
     startAutoRefresh,
     stopAutoRefresh,
   };

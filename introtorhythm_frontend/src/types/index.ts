@@ -2,6 +2,7 @@ export interface ContentResponse {
   marqueeText: string;
   about: About | null;
   streamUrl: string;
+  callInNumber: string;
 }
 
 export interface About {
