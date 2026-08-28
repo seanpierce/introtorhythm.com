@@ -10,7 +10,7 @@ const router = useRouter();
 
 const redirectToTelRef = () => {
   const link = document.createElement('a');
-  link.href = `tel:${callInNumber}`;
+  link.href = `tel:${callInNumber.value}`;
   link.click();
   router.push('/');
 }
