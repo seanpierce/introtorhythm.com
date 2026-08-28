@@ -50,5 +50,6 @@ export const useContentStore = defineStore('content', () => {
     callInNumber,
     startAutoRefresh,
     stopAutoRefresh,
+    loadContent,
   };
 });
