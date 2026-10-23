@@ -7,7 +7,7 @@
     <PlayButton v-if="streamUrl.length" :streamUrl="streamUrl"/>
 
     <div id="actions">
-      <a href="mailto:hello@introtorhythm.com">{{ contactEmail }}</a><br />
+      <a href="mailto:{{ contactEmail }}">{{ contactEmail }}</a><br />
       <a :href="`tel:${callInNumber}`">{{ formattedCallInNumber }}</a><br />
       <a href="#chat" @click.prevent="goDown()">Chat</a>
     </div>
