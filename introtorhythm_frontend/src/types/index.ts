@@ -2,7 +2,8 @@ export interface ContentResponse {
   marqueeText: string;
   about: About | null;
   streamUrl: string;
-  callInNumber: string;
+  callInNumber: string | null;
+  contactEmail: string | null;
 }
 
 export interface About {

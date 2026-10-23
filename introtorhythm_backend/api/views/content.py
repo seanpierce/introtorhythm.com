@@ -79,6 +79,7 @@ def get_content(request):
         "about": about_data,
         "streamUrl": connections_data['connection_url'] or None,
         "callInNumber": connections_data['call_in_number'] or None,
+        "contactEmail": connections_data['contact_email'] or None,
     })
 
 
